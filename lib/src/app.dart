@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
-import 'package:lettutor_mobile/src/login.dart';
+import 'package:flutter/services.dart';
+import 'package:lettutor_mobile/src/screens/login.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -13,6 +14,11 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const LoginPage());
+        home: const AnnotatedRegion<SystemUiOverlayStyle>(
+            value: SystemUiOverlayStyle(
+              statusBarColor: Colors.white,
+              statusBarIconBrightness: Brightness.dark,
+            ),
+            child: LoginPage()));
   }
 }
