@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
-import 'package:lettutor_mobile/src/screens/login.dart';
+import 'package:lettutor_mobile/src/screens/home/home.dart';
+import 'package:lettutor_mobile/src/screens/login/login.dart';
+import 'package:lettutor_mobile/src/screens/signup.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -19,6 +21,6 @@ class MyApp extends StatelessWidget {
               statusBarColor: Colors.white,
               statusBarIconBrightness: Brightness.dark,
             ),
-            child: LoginPage()));
+            child: HomePage()));
   }
 }
