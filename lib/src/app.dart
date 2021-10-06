@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
+import 'package:lettutor_mobile/src/navigation.dart';
 import 'package:lettutor_mobile/src/screens/home/home.dart';
 import 'package:lettutor_mobile/src/screens/login/login.dart';
 import 'package:lettutor_mobile/src/screens/signup.dart';
@@ -13,14 +14,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: ThemeData(primarySwatch: Colors.blue, primaryColor: const Color(0xff007CFF)),
         home: const AnnotatedRegion<SystemUiOverlayStyle>(
             value: SystemUiOverlayStyle(
               statusBarColor: Colors.white,
               statusBarIconBrightness: Brightness.dark,
             ),
-            child: HomePage()));
+            child: NavigationBar()));
   }
 }

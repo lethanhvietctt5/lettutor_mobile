@@ -1,22 +1,57 @@
 import "package:flutter/material.dart";
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/screens/home/banner.dart';
+import 'package:lettutor_mobile/src/screens/home/recommend_tutor.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          constraints: const BoxConstraints.expand(),
-          color: Colors.white,
-          child: SingleChildScrollView(
-            child: Column(
-              children: const <Widget>[Text("Hello World")],
-            ),
+    return Column(
+      children: [
+        const BannerHomePage(),
+        Container(
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 25),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(bottom: 2),
+                    child: const Text(
+                      "Recommended Tutors",
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color(0xff59585A)),
+                    ),
+                    decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Color(0xff59585A), width: 2))),
+                  ),
+                  Row(
+                    children: [
+                      const Text(
+                        "See all",
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                      SvgPicture.asset(
+                        "asset/svg/ic_next.svg",
+                        color: Colors.blue,
+                      )
+                    ],
+                  ),
+                ],
+              ),
+              const Padding(padding: EdgeInsets.only(top: 25)),
+              ...RecommendTutors().tutors
+            ],
           ),
-        ),
-      ),
+        )
+      ],
     );
   }
 }
