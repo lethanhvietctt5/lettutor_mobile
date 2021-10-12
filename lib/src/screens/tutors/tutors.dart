@@ -15,24 +15,24 @@ class _TutorsPageState extends State<TutorsPage> {
     return Container(
       padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
       child: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                SvgPicture.asset("asset/svg/ic_search.svg"),
-                TextField(
-                    textAlignVertical: TextAlignVertical.center,
-                    style: TextStyle(fontSize: 15, color: Colors.grey[700]),
-                    decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.fromLTRB(30, 5, 0, 5),
-                        filled: true,
-                        fillColor: Colors.grey.shade200,
-                        border: const OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
-                        hintText: "Search")),
-              ],
-            ),
-          ),
+        children: const <Widget>[
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: Row(
+          //     children: [
+          //       SvgPicture.asset("asset/svg/ic_search.svg"),
+          //       TextField(
+          //           textAlignVertical: TextAlignVertical.center,
+          //           style: TextStyle(fontSize: 15, color: Colors.grey[700]),
+          //           decoration: InputDecoration(
+          //               contentPadding: const EdgeInsets.fromLTRB(30, 5, 0, 5),
+          //               filled: true,
+          //               fillColor: Colors.grey.shade200,
+          //               border: const OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
+          //               hintText: "Search")),
+          //     ],
+          //   ),
+          // ),
           const TutorCardInfo(
               name: "Le Thanh Viet",
               sourceImage: "asset/img/profile.jpg",

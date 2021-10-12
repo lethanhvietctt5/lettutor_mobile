@@ -15,7 +15,7 @@ class MenuItem {
           _sourceIcon,
           width: 25,
           height: 25,
-          color: Theme.of(context).primaryColor,
+          color: Colors.blue,
         ),
         icon: SvgPicture.asset(
           _sourceIcon,

@@ -17,7 +17,11 @@ class CardTutor extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       child: Card(
-        elevation: 10,
+        shape: RoundedRectangleBorder(
+          side: const BorderSide(color: Colors.white70, width: 1),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        elevation: 8,
         child: Container(
           padding: const EdgeInsets.fromLTRB(15, 20, 15, 20),
           constraints: const BoxConstraints(maxHeight: 190),

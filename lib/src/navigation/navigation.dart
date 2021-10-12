@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:lettutor_mobile/src/app_bar.dart';
 import 'package:lettutor_mobile/src/screens/home/home.dart';
 import 'package:lettutor_mobile/src/navigation/menu_item.dart';
@@ -26,6 +28,49 @@ class _NavigationBarState extends State<NavigationBar> {
     });
   }
 
+  Widget _generateAppBar() {
+    if (_selectedIndex == 0) {
+      return Container(
+        margin: const EdgeInsets.all(10),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  child: Text(
+                    "Hello, Viet",
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue[800]),
+                  ),
+                ),
+                Text(
+                  "Are you ready to learn with LetTutor ?",
+                  style: TextStyle(color: Colors.grey[600]),
+                )
+              ],
+            ),
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                  image: const DecorationImage(image: AssetImage("asset/img/profile.jpg")),
+                  color: Colors.blue,
+                  borderRadius: const BorderRadius.all(Radius.circular(1000.0)),
+                  border: Border.all(color: Colors.grey)),
+            )
+          ],
+        ),
+      );
+    }
+    return AppBarCustom(
+      title: titles[_selectedIndex],
+      sourceImage: _selectedIndex == 0 ? "asset/img/profile.jpg" : null,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,13 +78,8 @@ class _NavigationBarState extends State<NavigationBar> {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Column(
-            children: <Widget>[
-              AppBarCustom(
-                title: titles[_selectedIndex],
-                sourceImage: _selectedIndex == 0 ? "asset/img/profile.jpg" : null,
-              ),
-              pages[_selectedIndex]
-            ],
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[_generateAppBar(), pages[_selectedIndex]],
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(

@@ -14,9 +14,10 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _repasswordControler = TextEditingController();
 
-  bool? _emailError;
-  bool? _passwordError;
+  // bool? _emailError;
+  // bool? _passwordError;
 
   @override
   Widget build(BuildContext context) {
@@ -42,16 +43,26 @@ class _SignUpPageState extends State<SignUpPage> {
                   secured: false,
                   padding: const EdgeInsets.all(8.0),
                   controller: _emailController,
+                  prefixIconPath: "asset/svg/ic_email.svg",
                 ),
-                InvalidMessage(padding: const EdgeInsets.all(8), message: "* Invalid email", isError: _emailError),
+                //InvalidMessage(padding: const EdgeInsets.all(8), message: "* Invalid email", isError: _emailError),
                 InputTextWithTitle(
                   title: "Password",
                   hintText: "**************",
                   secured: true,
                   padding: const EdgeInsets.all(8.0),
                   controller: _passwordController,
+                  prefixIconPath: "asset/svg/ic_password.svg",
                 ),
-                InvalidMessage(padding: const EdgeInsets.all(8), message: "* Invalid password", isError: _passwordError),
+                InputTextWithTitle(
+                  title: "Re-password",
+                  hintText: "**************",
+                  secured: true,
+                  padding: const EdgeInsets.all(8.0),
+                  controller: _repasswordControler,
+                  prefixIconPath: "asset/svg/ic_password.svg",
+                ),
+                //InvalidMessage(padding: const EdgeInsets.all(8), message: "* Invalid password", isError: _passwordError),
                 Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(

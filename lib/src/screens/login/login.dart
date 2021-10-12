@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile/src/screens/home/home.dart';
+import 'package:lettutor_mobile/src/navigation/navigation.dart';
 import 'package:lettutor_mobile/src/screens/signup.dart';
 import 'package:lettutor_mobile/src/widgets/invalid_message.dart';
 import 'package:lettutor_mobile/src/screens/login/login_with.dart';
@@ -45,16 +45,18 @@ class _LoginPageState extends State<LoginPage> {
                   secured: false,
                   padding: const EdgeInsets.all(8.0),
                   controller: _emailController,
+                  prefixIconPath: "asset/svg/ic_email.svg",
                 ),
-                InvalidMessage(padding: const EdgeInsets.all(8), message: "* Invalid email", isError: _emailError),
+                //InvalidMessage(padding: const EdgeInsets.all(8), message: "* Invalid email", isError: _emailError),
                 InputTextWithTitle(
                   title: "Password",
                   hintText: "**************",
                   secured: true,
                   padding: const EdgeInsets.all(8.0),
                   controller: _passwordController,
+                  prefixIconPath: "asset/svg/ic_password.svg",
                 ),
-                InvalidMessage(padding: const EdgeInsets.all(8), message: "* Invalid password", isError: _passwordError),
+                //InvalidMessage(padding: const EdgeInsets.all(8), message: "* Invalid password", isError: _passwordError),
                 Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -85,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                     text: "Sign in",
                     backgroundColor: const Color(0xff007CFF),
                     onPress: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const NavigationBar()));
                     }),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -15,54 +15,60 @@ class _HomePageState extends State<HomePage> {
     return Column(
       children: [
         Container(
-          height: 200,
-          width: double.infinity,
-          color: const Color(0xff0720AE),
-          child: Center(
-            child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
-              const Text(
-                "Welcome to LetTutor",
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text("Book a lesson", style: TextStyle(color: Colors.blue)),
-                style: ElevatedButton.styleFrom(primary: Colors.white, shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
-              )
-            ]),
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 25),
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.only(bottom: 2),
-                    child: const Text(
-                      "Recommended Tutors",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color(0xff59585A)),
-                    ),
-                    decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Color(0xff59585A), width: 2))),
-                  ),
-                  Row(
-                    children: [
-                      const Text(
-                        "See all",
-                        style: TextStyle(color: Colors.blue),
-                      ),
-                      SvgPicture.asset(
-                        "asset/svg/ic_next.svg",
-                        color: Colors.blue,
-                      )
-                    ],
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.all(5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    TextField(
+                        style: TextStyle(fontSize: 15, color: Colors.grey[900]),
+                        decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey.shade200,
+                            prefixIcon: Container(
+                              padding: const EdgeInsets.all(13),
+                              child: SvgPicture.asset(
+                                "asset/svg/ic_search.svg",
+                                color: Colors.grey[600],
+                              ),
+                            ),
+                            border: const OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
+                            hintText: "Search Tutors or Courses")),
+                  ],
+                ),
               ),
-              const Padding(padding: EdgeInsets.only(top: 25)),
+              Container(
+                margin: const EdgeInsets.only(top: 25, bottom: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(bottom: 2),
+                      child: const Text(
+                        "Recommended Tutors",
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          "See all",
+                          style: TextStyle(color: Colors.blue),
+                        ),
+                        SvgPicture.asset(
+                          "asset/svg/ic_next.svg",
+                          color: Colors.blue,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const Padding(padding: EdgeInsets.only(top: 10)),
               ...RecommendTutors().tutors
             ],
           ),
