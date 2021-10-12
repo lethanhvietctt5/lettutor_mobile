@@ -85,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                     text: "Sign in",
                     backgroundColor: const Color(0xff007CFF),
                     onPress: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
                     }),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

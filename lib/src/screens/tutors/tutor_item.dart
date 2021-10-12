@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CardTutor extends StatelessWidget {
-  const CardTutor({Key? key, required String name, required String sourceImage, required String intro})
+class TutorCardInfo extends StatelessWidget {
+  const TutorCardInfo({Key? key, required String name, required String sourceImage, required String intro})
       : _name = name,
         _sourceImage = sourceImage,
         _intro = intro,
@@ -20,7 +20,7 @@ class CardTutor extends StatelessWidget {
         elevation: 10,
         child: Container(
           padding: const EdgeInsets.fromLTRB(15, 20, 15, 20),
-          constraints: const BoxConstraints(maxHeight: 190),
+          constraints: const BoxConstraints(maxHeight: 185),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -49,40 +49,6 @@ class CardTutor extends StatelessWidget {
                               _name,
                               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                             ),
-                          ),
-                          Row(
-                            children: [
-                              SvgPicture.asset(
-                                "asset/svg/ic_star.svg",
-                                width: 20,
-                                height: 20,
-                                color: Colors.yellow[700],
-                              ),
-                              SvgPicture.asset(
-                                "asset/svg/ic_star.svg",
-                                width: 20,
-                                height: 20,
-                                color: Colors.yellow[700],
-                              ),
-                              SvgPicture.asset(
-                                "asset/svg/ic_star.svg",
-                                width: 20,
-                                height: 20,
-                                color: Colors.yellow[700],
-                              ),
-                              SvgPicture.asset(
-                                "asset/svg/ic_star.svg",
-                                width: 20,
-                                height: 20,
-                                color: Colors.yellow[700],
-                              ),
-                              SvgPicture.asset(
-                                "asset/svg/ic_star.svg",
-                                width: 20,
-                                height: 20,
-                                color: Colors.yellow[700],
-                              ),
-                            ],
                           ),
                           Row(
                             children: [
@@ -118,11 +84,16 @@ class CardTutor extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SvgPicture.asset(
-                    "asset/svg/ic_heart.svg",
-                    width: 30,
-                    height: 30,
-                    color: Colors.blue,
+                  Row(
+                    children: [
+                      const Text("5.00"),
+                      SvgPicture.asset(
+                        "asset/svg/ic_star.svg",
+                        width: 20,
+                        height: 20,
+                        color: Colors.yellow[700],
+                      ),
+                    ],
                   )
                 ],
               ),

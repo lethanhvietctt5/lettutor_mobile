@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile/src/screens/home/app_bar.dart';
+import 'package:lettutor_mobile/src/app_bar.dart';
 import 'package:lettutor_mobile/src/screens/home/home.dart';
-import 'package:lettutor_mobile/src/screens/home/menu_item.dart';
+import 'package:lettutor_mobile/src/navigation/menu_item.dart';
 import 'package:lettutor_mobile/src/screens/message/message.dart';
 import 'package:lettutor_mobile/src/screens/setting/setting.dart';
 import 'package:lettutor_mobile/src/screens/tutors/tutors.dart';

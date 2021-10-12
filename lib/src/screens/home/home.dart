@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lettutor_mobile/src/screens/home/banner.dart';
 import 'package:lettutor_mobile/src/screens/home/recommend_tutor.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,7 +14,24 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const BannerHomePage(),
+        Container(
+          height: 200,
+          width: double.infinity,
+          color: const Color(0xff0720AE),
+          child: Center(
+            child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
+              const Text(
+                "Welcome to LetTutor",
+                style: TextStyle(fontSize: 20, color: Colors.white),
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text("Book a lesson", style: TextStyle(color: Colors.blue)),
+                style: ElevatedButton.styleFrom(primary: Colors.white, shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
+              )
+            ]),
+          ),
+        ),
         Container(
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 25),
           child: Column(

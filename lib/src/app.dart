@@ -1,9 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
-import 'package:lettutor_mobile/src/navigation.dart';
-import 'package:lettutor_mobile/src/screens/home/home.dart';
-import 'package:lettutor_mobile/src/screens/login/login.dart';
-import 'package:lettutor_mobile/src/screens/signup.dart';
+import 'package:lettutor_mobile/src/navigation/navigation.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
