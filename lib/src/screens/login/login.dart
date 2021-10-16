@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile/src/navigation/navigation.dart';
+import 'package:lettutor_mobile/src/navigation.dart';
 import 'package:lettutor_mobile/src/screens/signup.dart';
-import 'package:lettutor_mobile/src/widgets/invalid_message.dart';
 import 'package:lettutor_mobile/src/screens/login/login_with.dart';
 import 'package:lettutor_mobile/src/widgets/button_expand.dart';
 import 'package:lettutor_mobile/src/widgets/text_input.dart';
@@ -17,9 +16,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
-  bool? _emailError;
-  bool? _passwordError;
 
   @override
   Widget build(BuildContext context) {

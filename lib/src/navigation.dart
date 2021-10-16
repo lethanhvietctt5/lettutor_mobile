@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:lettutor_mobile/src/app_bar.dart';
+import 'package:lettutor_mobile/src/widgets/app_bar.dart';
 import 'package:lettutor_mobile/src/screens/home/home.dart';
-import 'package:lettutor_mobile/src/navigation/menu_item.dart';
+import 'package:lettutor_mobile/src/widgets/menu_item.dart';
 import 'package:lettutor_mobile/src/screens/message/message.dart';
 import 'package:lettutor_mobile/src/screens/setting/setting.dart';
 import 'package:lettutor_mobile/src/screens/tutors/tutors.dart';
@@ -31,26 +31,14 @@ class _NavigationBarState extends State<NavigationBar> {
   Widget _generateAppBar() {
     if (_selectedIndex == 0) {
       return Container(
-        margin: const EdgeInsets.all(10),
+        margin: const EdgeInsets.all(15),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  margin: const EdgeInsets.only(bottom: 10),
-                  child: Text(
-                    "Hello, Viet",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue[800]),
-                  ),
-                ),
-                Text(
-                  "Are you ready to learn with LetTutor ?",
-                  style: TextStyle(color: Colors.grey[600]),
-                )
-              ],
+            Text(
+              "Hello, Viet",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue[800]),
             ),
             Container(
               width: 40,

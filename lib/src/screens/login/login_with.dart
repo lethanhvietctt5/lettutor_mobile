@@ -19,7 +19,10 @@ class LoginWithFacebookAndGoogle extends StatelessWidget {
               height: 30,
               color: const Color(0xff007CFF),
             ),
-            style: ElevatedButton.styleFrom(shape: const CircleBorder(side: BorderSide(width: 1, color: Color(0xff007CFF))), padding: const EdgeInsets.all(5), primary: Colors.white),
+            style: ElevatedButton.styleFrom(
+                shape: const CircleBorder(side: BorderSide(width: 1, color: Color(0xff007CFF))),
+                padding: const EdgeInsets.all(5),
+                primary: Colors.white),
           ),
           ElevatedButton(
             onPressed: () {},
@@ -28,7 +31,10 @@ class LoginWithFacebookAndGoogle extends StatelessWidget {
               width: 30,
               height: 30,
             ),
-            style: ElevatedButton.styleFrom(shape: const CircleBorder(side: BorderSide(width: 1, color: Color(0xff007CFF))), padding: const EdgeInsets.all(5), primary: Colors.white),
+            style: ElevatedButton.styleFrom(
+                shape: const CircleBorder(side: BorderSide(width: 1, color: Color(0xff007CFF))),
+                padding: const EdgeInsets.all(5),
+                primary: Colors.white),
           )
         ],
       ),

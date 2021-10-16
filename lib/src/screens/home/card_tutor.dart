@@ -24,7 +24,7 @@ class CardTutor extends StatelessWidget {
         elevation: 8,
         child: Container(
           padding: const EdgeInsets.fromLTRB(15, 20, 15, 20),
-          constraints: const BoxConstraints(maxHeight: 190),
+          //constraints: const BoxConstraints(maxHeight: 200),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -101,7 +101,10 @@ class CardTutor extends StatelessWidget {
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
-                                decoration: BoxDecoration(color: Colors.blue[50], borderRadius: const BorderRadius.all(Radius.circular(20)), border: Border.all(color: Colors.blue)),
+                                decoration: BoxDecoration(
+                                    color: Colors.blue[50],
+                                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                                    border: Border.all(color: Colors.blue)),
                               ),
                               Container(
                                 margin: const EdgeInsets.only(top: 5, right: 8),
@@ -114,7 +117,10 @@ class CardTutor extends StatelessWidget {
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
-                                decoration: BoxDecoration(color: Colors.blue[50], borderRadius: const BorderRadius.all(Radius.circular(20)), border: Border.all(color: Colors.blue)),
+                                decoration: BoxDecoration(
+                                    color: Colors.blue[50],
+                                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                                    border: Border.all(color: Colors.blue)),
                               ),
                             ],
                           )

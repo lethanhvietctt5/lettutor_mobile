@@ -20,12 +20,16 @@ class _MessagePageState extends State<MessagePage> {
                 Container(
                     width: 40,
                     height: 40,
-                    decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("asset/img/profile.jpg")), color: Colors.blue, borderRadius: BorderRadius.all(Radius.circular(100.0)))),
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(image: AssetImage("asset/img/profile.jpg")),
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.all(Radius.circular(100.0)))),
                 Positioned(
                   child: Container(
                     width: 15,
                     height: 15,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), border: Border.all(width: 3, color: Colors.white), color: Colors.green),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100), border: Border.all(width: 3, color: Colors.white), color: Colors.green),
                   ),
                   bottom: 0,
                   right: 0,
@@ -68,12 +72,16 @@ class _MessagePageState extends State<MessagePage> {
                 Container(
                     width: 40,
                     height: 40,
-                    decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("asset/img/profile.jpg")), color: Colors.blue, borderRadius: BorderRadius.all(Radius.circular(100.0)))),
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(image: AssetImage("asset/img/profile.jpg")),
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.all(Radius.circular(100.0)))),
                 Positioned(
                   child: Container(
                     width: 15,
                     height: 15,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), border: Border.all(width: 3, color: Colors.white), color: Colors.green),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100), border: Border.all(width: 3, color: Colors.white), color: Colors.green),
                   ),
                   bottom: 0,
                   right: 0,

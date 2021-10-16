@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
     return Column(
       children: [
         Container(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+          padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
           child: Column(
             children: [
               Padding(

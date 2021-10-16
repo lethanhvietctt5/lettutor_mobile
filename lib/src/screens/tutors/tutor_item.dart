@@ -18,9 +18,13 @@ class TutorCardInfo extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 10),
       child: Card(
         elevation: 10,
+        shape: RoundedRectangleBorder(
+          side: const BorderSide(color: Colors.white70, width: 1),
+          borderRadius: BorderRadius.circular(15),
+        ),
         child: Container(
           padding: const EdgeInsets.fromLTRB(15, 20, 15, 20),
-          constraints: const BoxConstraints(maxHeight: 185),
+          // constraints: const BoxConstraints(maxHeight: 185),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -63,7 +67,10 @@ class TutorCardInfo extends StatelessWidget {
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
-                                decoration: BoxDecoration(color: Colors.blue[50], borderRadius: const BorderRadius.all(Radius.circular(20)), border: Border.all(color: Colors.blue)),
+                                decoration: BoxDecoration(
+                                    color: Colors.blue[50],
+                                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                                    border: Border.all(color: Colors.blue)),
                               ),
                               Container(
                                 margin: const EdgeInsets.only(top: 5, right: 8),
@@ -76,7 +83,10 @@ class TutorCardInfo extends StatelessWidget {
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
-                                decoration: BoxDecoration(color: Colors.blue[50], borderRadius: const BorderRadius.all(Radius.circular(20)), border: Border.all(color: Colors.blue)),
+                                decoration: BoxDecoration(
+                                    color: Colors.blue[50],
+                                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                                    border: Border.all(color: Colors.blue)),
                               ),
                             ],
                           )
@@ -86,7 +96,10 @@ class TutorCardInfo extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      const Text("5.00"),
+                      const Text(
+                        "5.00",
+                        style: TextStyle(fontSize: 14),
+                      ),
                       SvgPicture.asset(
                         "asset/svg/ic_star.svg",
                         width: 20,
@@ -101,6 +114,7 @@ class TutorCardInfo extends StatelessWidget {
                   margin: const EdgeInsets.only(top: 10),
                   child: Text(
                     _intro,
+                    style: const TextStyle(fontSize: 14),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 4,
                   ))
