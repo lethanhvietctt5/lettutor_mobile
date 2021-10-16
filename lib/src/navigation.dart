@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:lettutor_mobile/src/screens/home/recommend_tutor.dart';
 import 'package:lettutor_mobile/src/widgets/app_bar.dart';
 import 'package:lettutor_mobile/src/screens/home/home.dart';
 import 'package:lettutor_mobile/src/widgets/menu_item.dart';
@@ -18,7 +19,13 @@ class NavigationBar extends StatefulWidget {
 
 class _NavigationBarState extends State<NavigationBar> {
   List<String> titles = ["Home", "Message", "Upcoming", "Tutors", "Setting"];
-  List<Widget> pages = [const HomePage(), const MessagePage(), const UpcomingPage(), const TutorsPage(), const SettingPage()];
+  List<Widget> pages = [
+    const HomePage(),
+    const MessagePage(),
+    const UpcomingPage(),
+    const TutorsPage(),
+    const SettingPage()
+  ];
 
   int _selectedIndex = 0;
 
@@ -78,11 +85,16 @@ class _NavigationBarState extends State<NavigationBar> {
           elevation: 20,
           currentIndex: _selectedIndex,
           items: [
-            const MenuItem(sourceIcon: "asset/svg/ic_home.svg", label: "Home").generateItem(context),
-            const MenuItem(sourceIcon: "asset/svg/ic_message.svg", label: "Message").generateItem(context),
-            const MenuItem(sourceIcon: "asset/svg/ic_upcoming.svg", label: "Upcoming").generateItem(context),
-            const MenuItem(sourceIcon: "asset/svg/ic_tutor.svg", label: "Tutors").generateItem(context),
-            const MenuItem(sourceIcon: "asset/svg/ic_setting.svg", label: "Setting").generateItem(context),
+            const MenuItem(sourceIcon: "asset/svg/ic_home.svg", label: "Home")
+                .generateItem(context),
+            const MenuItem(sourceIcon: "asset/svg/ic_message.svg", label: "Message")
+                .generateItem(context),
+            const MenuItem(sourceIcon: "asset/svg/ic_upcoming.svg", label: "Upcoming")
+                .generateItem(context),
+            const MenuItem(sourceIcon: "asset/svg/ic_tutor.svg", label: "Tutors")
+                .generateItem(context),
+            const MenuItem(sourceIcon: "asset/svg/ic_setting.svg", label: "Setting")
+                .generateItem(context),
           ],
         ),
       ),

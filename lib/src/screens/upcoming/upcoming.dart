@@ -16,12 +16,12 @@ class _UpcomingPageState extends State<UpcomingPage> {
     start: "6:00",
     end: "7:00",
   );
-  List<Widget> samples = [];
+  final List<Widget> _samples = [];
 
   void _initSample() {
     setState(() {
       for (int i = 0; i < 10; i++) {
-        samples.add(singleCard);
+        _samples.add(singleCard);
       }
     });
   }
@@ -31,45 +31,13 @@ class _UpcomingPageState extends State<UpcomingPage> {
     _initSample();
     return Container(
       padding: const EdgeInsets.all(10),
-      child: Column(
-        children: const <Widget>[
-          UpComingCard(
-            imgSource: "asset/img/profile.jpg",
-            date: "2021-10-06",
-            name: "Lê Thành Việt",
-            start: "6:00",
-            end: "7:00",
-          ),
-          UpComingCard(
-            imgSource: "asset/img/profile.jpg",
-            date: "2021-10-06",
-            name: "Lê Thành Việt",
-            start: "6:00",
-            end: "7:00",
-          ),
-          UpComingCard(
-            imgSource: "asset/img/profile.jpg",
-            date: "2021-10-06",
-            name: "Lê Thành Việt",
-            start: "6:00",
-            end: "7:00",
-          ),
-          UpComingCard(
-            imgSource: "asset/img/profile.jpg",
-            date: "2021-10-06",
-            name: "Lê Thành Việt",
-            start: "6:00",
-            end: "7:00",
-          ),
-          UpComingCard(
-            imgSource: "asset/img/profile.jpg",
-            date: "2021-10-06",
-            name: "Lê Thành Việt",
-            start: "6:00",
-            end: "7:00",
-          )
-        ],
-      ),
+      child: ListView.builder(
+          itemCount: _samples.length,
+          itemBuilder: (context, index) {
+            return _samples[index];
+          },
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics()),
     );
   }
 }

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CardTutor extends StatelessWidget {
-  const CardTutor({Key? key, required String name, required String sourceImage, required String intro})
+  const CardTutor(
+      {Key? key, required String name, required String sourceImage, required String intro})
       : _name = name,
         _sourceImage = sourceImage,
         _intro = intro,
