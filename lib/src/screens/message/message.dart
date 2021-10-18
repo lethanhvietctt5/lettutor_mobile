@@ -44,9 +44,9 @@ class _MessagePageState extends State<MessagePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                margin: const EdgeInsets.only(bottom: 15),
+                margin: const EdgeInsets.only(bottom: 10),
                 child: TextField(
-                    style: TextStyle(fontSize: 15, color: Colors.grey[900]),
+                    style: TextStyle(fontSize: 12, color: Colors.grey[900]),
                     decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.grey.shade200,
@@ -57,10 +57,11 @@ class _MessagePageState extends State<MessagePage> {
                             color: Colors.grey[600],
                           ),
                         ),
+                        contentPadding: const EdgeInsets.only(left: 5, right: 5),
                         border: const OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(Radius.circular(10))),
-                        hintText: "Search message")),
+                        hintText: "Search messages")),
               ),
               ListView.builder(
                   itemCount: _sampleMessages().length,

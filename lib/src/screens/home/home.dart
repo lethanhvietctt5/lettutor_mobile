@@ -13,33 +13,26 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                TextField(
-                    style: TextStyle(fontSize: 15, color: Colors.grey[900]),
-                    decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.grey.shade200,
-                        prefixIcon: Container(
-                          padding: const EdgeInsets.all(13),
-                          child: SvgPicture.asset(
-                            "asset/svg/ic_search.svg",
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                        border: const OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(Radius.circular(10))),
-                        hintText: "Search Tutors or Courses")),
-              ],
-            ),
-          ),
+          TextField(
+              style: TextStyle(fontSize: 12, color: Colors.grey[900]),
+              decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey.shade200,
+                  prefixIcon: Container(
+                    padding: const EdgeInsets.all(13),
+                    child: SvgPicture.asset(
+                      "asset/svg/ic_search.svg",
+                      color: Colors.grey[600],
+                    ),
+                  ),
+                  contentPadding: const EdgeInsets.only(left: 5, right: 5),
+                  border: const OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  hintText: "Search Tutors or Courses")),
           Container(
             margin: const EdgeInsets.only(top: 25, bottom: 10),
             child: Row(
