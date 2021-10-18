@@ -32,7 +32,7 @@ class SettingButton extends StatelessWidget {
                     margin: const EdgeInsets.only(left: 15),
                     child: Text(
                       _title,
-                      style: TextStyle(color: Colors.grey[700], fontWeight: FontWeight.w400),
+                      style: TextStyle(color: Colors.grey[700], fontWeight: FontWeight.w400, fontSize: 13),
                     ),
                   )
                 ],
@@ -46,8 +46,7 @@ class SettingButton extends StatelessWidget {
         ),
         style: ElevatedButton.styleFrom(
           primary: Colors.white,
-          shape:
-              const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(1000))),
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(1000))),
         ),
       ),
     );

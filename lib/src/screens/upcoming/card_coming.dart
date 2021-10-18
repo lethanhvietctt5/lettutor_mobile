@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 
 class UpComingCard extends StatelessWidget {
-  const UpComingCard(
-      {Key? key,
-      required String imgSource,
-      required String name,
-      required String date,
-      required String start,
-      required String end})
+  const UpComingCard({Key? key, required String imgSource, required String name, required String date, required String start, required String end})
       : _imgSource = imgSource,
         _name = name,
         _date = date,
@@ -32,16 +27,7 @@ class UpComingCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: 50,
-                    height: 50,
-                    margin: const EdgeInsets.only(right: 10),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(image: AssetImage(_imgSource)),
-                      color: Colors.blue,
-                      borderRadius: const BorderRadius.all(Radius.circular(1000)),
-                    ),
-                  ),
+                  Container(margin: const EdgeInsets.only(right: 15), child: AvatarCircle(width: 50, height: 50, source: _imgSource)),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -66,9 +52,7 @@ class UpComingCard extends StatelessWidget {
                               style: const TextStyle(fontSize: 10, color: Colors.blue),
                             ),
                             decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blue, width: 1),
-                                color: Colors.blue[50],
-                                borderRadius: BorderRadius.circular(4)),
+                                border: Border.all(color: Colors.blue, width: 1), color: Colors.blue[50], borderRadius: BorderRadius.circular(4)),
                           ),
                           const Text("-"),
                           Container(
@@ -79,9 +63,7 @@ class UpComingCard extends StatelessWidget {
                               style: const TextStyle(fontSize: 10, color: Colors.orange),
                             ),
                             decoration: BoxDecoration(
-                                border: Border.all(color: Colors.orange, width: 1),
-                                color: Colors.orange[50],
-                                borderRadius: BorderRadius.circular(4)),
+                                border: Border.all(color: Colors.orange, width: 1), color: Colors.orange[50], borderRadius: BorderRadius.circular(4)),
                           )
                         ],
                       )
@@ -99,8 +81,7 @@ class UpComingCard extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey[300] as Color),
-                          borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(4), bottomLeft: Radius.circular(4))),
+                          borderRadius: const BorderRadius.only(topLeft: Radius.circular(4), bottomLeft: Radius.circular(4))),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const <Widget>[Text("Cancel")],
@@ -113,8 +94,7 @@ class UpComingCard extends StatelessWidget {
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey[400] as Color),
                           color: Colors.grey[400],
-                          borderRadius: const BorderRadius.only(
-                              topRight: Radius.circular(4), bottomRight: Radius.circular(4))),
+                          borderRadius: const BorderRadius.only(topRight: Radius.circular(4), bottomRight: Radius.circular(4))),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const <Widget>[

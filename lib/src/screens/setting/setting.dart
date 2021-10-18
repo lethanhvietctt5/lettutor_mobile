@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/screens/setting/setting_btn.dart';
+import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -24,15 +25,7 @@ class _SettingPageState extends State<SettingPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  width: 70,
-                  height: 70,
-                  margin: const EdgeInsets.only(right: 20),
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(image: AssetImage("asset/img/profile.jpg")),
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.all(Radius.circular(1000)),
-                  ),
-                ),
+                    margin: const EdgeInsets.only(right: 25), child: const AvatarCircle(width: 70, height: 70, source: "asset/img/profile.jpg")),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -45,7 +38,7 @@ class _SettingPageState extends State<SettingPage> {
                     ),
                     const Text(
                       "lethanhviet7c@gmail.com",
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(color: Colors.grey, fontSize: 13),
                     )
                   ],
                 ),
@@ -86,8 +79,7 @@ class _SettingPageState extends State<SettingPage> {
               ),
               style: ElevatedButton.styleFrom(
                 primary: Colors.blue,
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(1000))),
+                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(1000))),
               ),
             ),
           )

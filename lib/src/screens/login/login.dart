@@ -65,17 +65,14 @@ class _LoginPageState extends State<LoginPage> {
                               style: TextStyle(fontSize: 12),
                             ),
                             InkWell(
-                              child: const Text("Sign up",
-                                  style: TextStyle(color: Colors.blue, fontSize: 12)),
+                              child: const Text("Sign up", style: TextStyle(color: Colors.blue, fontSize: 12)),
                               onTap: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) => const SignUpPage()));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpPage()));
                               },
                             )
                           ],
                         ),
-                        const Text("Forgot password?",
-                            style: TextStyle(color: Colors.blue, fontSize: 12))
+                        const Text("Forgot password?", style: TextStyle(color: Colors.blue, fontSize: 12))
                       ],
                     )),
                 ButtonFullWidth(
@@ -83,8 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                     text: "Sign in",
                     backgroundColor: const Color(0xff007CFF),
                     onPress: () {
-                      Navigator.push(
-                          context, MaterialPageRoute(builder: (context) => const NavigationBar()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const NavigationBar()));
                     }),
                 Container(
                   margin: const EdgeInsets.only(top: 10),

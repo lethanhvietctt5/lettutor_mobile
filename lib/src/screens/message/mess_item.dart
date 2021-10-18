@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 
 class MessageItem extends StatelessWidget {
   const MessageItem({Key? key}) : super(key: key);
@@ -11,21 +12,13 @@ class MessageItem extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Container(
-                  width: 40,
-                  height: 40,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(image: AssetImage("asset/img/profile.jpg")),
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.all(Radius.circular(100.0)))),
+              const AvatarCircle(width: 40, height: 40, source: "asset/img/profile.jpg"),
               Positioned(
                 child: Container(
                   width: 15,
                   height: 15,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      border: Border.all(width: 3, color: Colors.white),
-                      color: Colors.green),
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(100), border: Border.all(width: 3, color: Colors.white), color: Colors.green),
                 ),
                 bottom: 0,
                 right: 0,
@@ -41,13 +34,13 @@ class MessageItem extends StatelessWidget {
                 children: <Widget>[
                   const Text(
                     "Lê Thành Việt",
-                    style: TextStyle(fontSize: 17),
+                    style: TextStyle(fontSize: 15),
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 5),
                     child: Text(
                       "You: yes yes yes yes yes constraints: const BoxConstraints(maxHeight: 190),",
-                      style: TextStyle(color: Colors.grey[600]),
+                      style: TextStyle(color: Colors.grey[600], fontSize: 12),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                     ),

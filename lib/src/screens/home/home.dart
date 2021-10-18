@@ -29,9 +29,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   contentPadding: const EdgeInsets.only(left: 5, right: 5),
-                  border: const OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  border: const OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
                   hintText: "Search Tutors or Courses")),
           Container(
             margin: const EdgeInsets.only(top: 25, bottom: 10),
@@ -43,8 +41,7 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(bottom: 2),
                   child: const Text(
                     "Recommended Tutors",
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
                   ),
                 ),
                 Row(

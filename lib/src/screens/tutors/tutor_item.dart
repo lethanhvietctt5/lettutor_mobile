@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 
 class TutorCardInfo extends StatelessWidget {
   const TutorCardInfo({Key? key, required String name, required String sourceImage, required String intro})
@@ -34,16 +35,7 @@ class TutorCardInfo extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Container(
-                        width: 70,
-                        height: 70,
-                        margin: const EdgeInsets.only(right: 10),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(image: AssetImage(_sourceImage)),
-                          color: Colors.blue,
-                          borderRadius: const BorderRadius.all(Radius.circular(100)),
-                        ),
-                      ),
+                      Container(margin: const EdgeInsets.only(right: 15), child: AvatarCircle(width: 70, height: 70, source: _sourceImage)),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -114,7 +106,7 @@ class TutorCardInfo extends StatelessWidget {
                   margin: const EdgeInsets.only(top: 10),
                   child: Text(
                     _intro,
-                    style: const TextStyle(fontSize: 14),
+                    style: const TextStyle(fontSize: 12),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 4,
                   ))

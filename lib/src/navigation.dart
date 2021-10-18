@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lettutor_mobile/src/screens/home/recommend_tutor.dart';
-import 'package:lettutor_mobile/src/widgets/app_bar.dart';
 import 'package:lettutor_mobile/src/screens/home/home.dart';
+import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 import 'package:lettutor_mobile/src/widgets/menu_item.dart';
 import 'package:lettutor_mobile/src/screens/message/message.dart';
 import 'package:lettutor_mobile/src/screens/setting/setting.dart';
@@ -47,22 +47,22 @@ class _NavigationBarState extends State<NavigationBar> {
               "Hello, Viet",
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue[800]),
             ),
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                  image: const DecorationImage(image: AssetImage("asset/img/profile.jpg")),
-                  color: Colors.blue,
-                  borderRadius: const BorderRadius.all(Radius.circular(1000.0)),
-                  border: Border.all(color: Colors.grey)),
-            )
+            const AvatarCircle(width: 25, height: 25, source: "asset/img/profile.jpg")
           ],
         ),
       );
     }
-    return AppBarCustom(
-      title: titles[_selectedIndex],
-      sourceImage: _selectedIndex == 0 ? "asset/img/profile.jpg" : null,
+    return Container(
+      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            titles[_selectedIndex],
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          )
+        ],
+      ),
     );
   }
 
