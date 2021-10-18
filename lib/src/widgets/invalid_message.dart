@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
 class InvalidMessage extends StatelessWidget {
-  const InvalidMessage(
-      {Key? key,
-      required EdgeInsets padding,
-      required String message,
-      required isError})
+  const InvalidMessage({Key? key, required EdgeInsets padding, required String message, required isError})
       : _padding = padding,
         _message = message,
         _isError = isError,

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ButtonFullWidth extends StatelessWidget {
-  const ButtonFullWidth(
-      {Key? key,
-      required EdgeInsets padding,
-      required String text,
-      required Color backgroundColor,
-      required VoidCallback onPress})
+  const ButtonFullWidth({Key? key, required EdgeInsets padding, required String text, required Color backgroundColor, required VoidCallback onPress})
       : _padding = padding,
         _text = text,
         _backgroundColor = backgroundColor,

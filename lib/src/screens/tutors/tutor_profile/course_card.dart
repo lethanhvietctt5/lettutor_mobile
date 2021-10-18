@@ -17,13 +17,13 @@ class CourseCard extends StatelessWidget {
       elevation: 8,
       child: SizedBox(
         width: 200,
-        height: 220,
+        height: 500,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Image.asset(
               _source,
-              height: 150,
+              height: 130,
             ),
             Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),

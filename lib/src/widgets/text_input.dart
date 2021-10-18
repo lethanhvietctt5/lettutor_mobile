@@ -3,7 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class InputTextWithTitle extends StatelessWidget {
   const InputTextWithTitle(
-      {Key? key, required String title, required String hintText, required bool secured, required EdgeInsets padding, required TextEditingController controller, required prefixIconPath})
+      {Key? key,
+      required String title,
+      required String hintText,
+      required bool secured,
+      required EdgeInsets padding,
+      required TextEditingController controller,
+      required prefixIconPath})
       : _title = title,
         _hintText = hintText,
         _secured = secured,
