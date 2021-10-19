@@ -30,7 +30,7 @@ class _UpcomingPageState extends State<UpcomingPage> {
   Widget build(BuildContext context) {
     _initSample();
     return Container(
-      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.fromLTRB(15, 10, 15, 10),
       child: ListView.builder(
           itemCount: _samples.length,
           itemBuilder: (context, index) {

@@ -34,37 +34,6 @@ class _NavigationBarState extends State<NavigationBar> {
     });
   }
 
-  Widget _generateAppBar() {
-    if (_selectedIndex == 0) {
-      return Container(
-        margin: const EdgeInsets.all(15),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "Hello, Viet",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue[800]),
-            ),
-            const AvatarCircle(width: 25, height: 25, source: "asset/img/profile.jpg")
-          ],
-        ),
-      );
-    }
-    return Container(
-      padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            titles[_selectedIndex],
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          )
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(

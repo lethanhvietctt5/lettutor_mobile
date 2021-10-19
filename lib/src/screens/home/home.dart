@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
+import 'package:flutter/painting.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/screens/home/recommend_tutor.dart';
 
@@ -12,57 +14,86 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-      child: Column(
-        children: [
-          TextField(
-              style: TextStyle(fontSize: 12, color: Colors.grey[900]),
-              decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.grey.shade200,
-                  prefixIcon: Container(
-                    padding: const EdgeInsets.all(13),
-                    child: SvgPicture.asset(
-                      "asset/svg/ic_search.svg",
-                      color: Colors.grey[600],
-                    ),
-                  ),
-                  contentPadding: const EdgeInsets.only(left: 5, right: 5),
-                  border: const OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
-                  hintText: "Search Tutors or Courses")),
-          Container(
-            margin: const EdgeInsets.only(top: 25, bottom: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  child: const Text(
-                    "Recommended Tutors",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
+    return Column(
+      children: [
+        Container(
+          height: 200,
+          width: MediaQuery.of(context).size.width,
+          color: const Color(0xff0040D6),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                "Total lesson time is 11 hours 45 minutes",
+                style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 8, bottom: 8),
+                child: const Text(
+                  "Upcomming lession",
+                  style: TextStyle(fontSize: 13, color: Colors.white),
+                ),
+              ),
+              const Text(
+                "Wed, 06 Oct 21 06:30 - 06:55",
+                style: TextStyle(fontSize: 13, color: Colors.white),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 10),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/lesson");
+                  },
+                  child: Container(
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      child: const Text(
+                        "Enter lesson room",
+                        style: TextStyle(color: Colors.blue, fontSize: 14, fontWeight: FontWeight.bold),
+                      )),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(1000))),
                   ),
                 ),
-                Row(
-                  children: [
-                    const Text(
-                      "See all",
-                      style: TextStyle(color: Colors.blue),
-                    ),
-                    SvgPicture.asset(
-                      "asset/svg/ic_next.svg",
-                      color: Colors.blue,
-                    )
-                  ],
-                ),
-              ],
-            ),
+              )
+            ],
           ),
-          const Padding(padding: EdgeInsets.only(top: 10)),
-          ...RecommendTutors().tutors
-        ],
-      ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 25, bottom: 10, left: 15, right: 15),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.only(bottom: 2),
+                child: const Text(
+                  "Recommended Tutors",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
+                ),
+              ),
+              Row(
+                children: [
+                  const Text(
+                    "See all",
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                  SvgPicture.asset(
+                    "asset/svg/ic_next.svg",
+                    color: Colors.blue,
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+          child: Column(
+            children: [...RecommendTutors().tutors],
+          ),
+        )
+      ],
     );
   }
 }

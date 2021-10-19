@@ -49,7 +49,7 @@ class _TutorsPageState extends State<TutorsPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+      padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
       child: Column(
         children: <Widget>[
           Container(
