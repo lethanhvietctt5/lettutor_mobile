@@ -4,6 +4,7 @@ import 'package:lettutor_mobile/src/navigation.dart';
 import 'package:lettutor_mobile/src/screens/lesson.dart';
 import 'package:lettutor_mobile/src/screens/login/login.dart';
 import 'package:lettutor_mobile/src/screens/message/mess_area.dart';
+import 'package:lettutor_mobile/src/screens/setting/feedbacks/feedbacks.dart';
 import 'package:lettutor_mobile/src/screens/signup.dart';
 import 'package:lettutor_mobile/src/screens/tutors/tutor_profile/tutor_profile.dart';
 
@@ -29,6 +30,8 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (context) => const NavigationBar());
             case "/lesson":
               return MaterialPageRoute(builder: (context) => const LessonPage());
+            case "/feedbacks":
+              return MaterialPageRoute(builder: (context) => const Feedbacks());
             default:
               return MaterialPageRoute(builder: (context) => const LoginPage());
           }

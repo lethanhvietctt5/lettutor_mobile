@@ -48,21 +48,23 @@ class _NavigationBarState extends State<NavigationBar> {
             titles[_selectedIndex],
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
           ),
-          actions: [
-            Container(
-              margin: const EdgeInsets.only(right: 20),
-              child: CircleAvatar(
-                child: ClipOval(
-                  child: Image.asset(
-                    "asset/img/profile.jpg",
-                    fit: BoxFit.cover,
-                    width: 40,
-                    height: 40,
-                  ),
-                ),
-              ),
-            )
-          ],
+          actions: _selectedIndex == 0
+              ? [
+                  Container(
+                    margin: const EdgeInsets.only(right: 20),
+                    child: CircleAvatar(
+                      child: ClipOval(
+                        child: Image.asset(
+                          "asset/img/profile.jpg",
+                          fit: BoxFit.cover,
+                          width: 40,
+                          height: 40,
+                        ),
+                      ),
+                    ),
+                  )
+                ]
+              : [],
         ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(

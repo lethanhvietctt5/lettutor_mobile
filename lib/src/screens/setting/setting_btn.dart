@@ -2,19 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SettingButton extends StatelessWidget {
-  const SettingButton({Key? key, required String icon, required String title})
+  const SettingButton({Key? key, required String icon, required String title, required String routeName})
       : _icon = icon,
         _title = title,
+        _routeName = routeName,
         super(key: key);
 
-  final String _icon, _title;
+  final String _icon, _title, _routeName;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 15),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, _routeName);
+        },
         child: Container(
           padding: const EdgeInsets.only(top: 10, bottom: 10),
           child: Row(

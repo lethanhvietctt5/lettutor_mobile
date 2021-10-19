@@ -14,7 +14,7 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 50, left: 30, right: 30),
+      margin: const EdgeInsets.only(top: 15, left: 30, right: 30),
       child: Column(
         children: [
           Container(
@@ -24,7 +24,8 @@ class _SettingPageState extends State<SettingPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                    margin: const EdgeInsets.only(right: 25), child: const AvatarCircle(width: 70, height: 70, source: "asset/img/profile.jpg")),
+                    margin: const EdgeInsets.only(right: 25),
+                    child: const AvatarCircle(width: 70, height: 70, source: "asset/img/profile.jpg")),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -46,18 +47,18 @@ class _SettingPageState extends State<SettingPage> {
           ),
           Column(
             children: const <Widget>[
-              SettingButton(icon: "asset/svg/ic_user.svg", title: "View Feedbacks"),
-              SettingButton(icon: "asset/svg/ic_list.svg", title: "Booking History"),
-              SettingButton(icon: "asset/svg/ic_history.svg", title: "Session History"),
-              SettingButton(icon: "asset/svg/ic_setting2.svg", title: "Advanced Settings"),
+              SettingButton(icon: "asset/svg/ic_user.svg", title: "View Feedbacks", routeName: "/feedbacks"),
+              SettingButton(icon: "asset/svg/ic_list.svg", title: "Booking History", routeName: "/feedbacks"),
+              SettingButton(icon: "asset/svg/ic_history.svg", title: "Session History", routeName: "/feedbacks"),
+              SettingButton(icon: "asset/svg/ic_setting2.svg", title: "Advanced Settings", routeName: "/feedbacks"),
             ],
           ),
           Container(
               margin: const EdgeInsets.only(top: 30),
               child: Column(
                 children: const [
-                  SettingButton(icon: "asset/svg/ic_network.svg", title: "Our Website"),
-                  SettingButton(icon: "asset/svg/ic_facebook2.svg", title: "Facebook"),
+                  SettingButton(icon: "asset/svg/ic_network.svg", title: "Our Website", routeName: "/feedbacks"),
+                  SettingButton(icon: "asset/svg/ic_facebook2.svg", title: "Facebook", routeName: "/feedbacks"),
                 ],
               )),
           Container(
