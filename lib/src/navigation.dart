@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lettutor_mobile/src/screens/home/home.dart';
-import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 import 'package:lettutor_mobile/src/widgets/menu_item.dart';
 import 'package:lettutor_mobile/src/screens/message/message.dart';
 import 'package:lettutor_mobile/src/screens/setting/setting.dart';

@@ -48,7 +48,7 @@ class _SettingPageState extends State<SettingPage> {
           Column(
             children: const <Widget>[
               SettingButton(icon: "asset/svg/ic_user.svg", title: "View Feedbacks", routeName: "/feedbacks"),
-              SettingButton(icon: "asset/svg/ic_list.svg", title: "Booking History", routeName: "/feedbacks"),
+              SettingButton(icon: "asset/svg/ic_list.svg", title: "Booking History", routeName: "/bookingHistory"),
               SettingButton(icon: "asset/svg/ic_history.svg", title: "Session History", routeName: "/feedbacks"),
               SettingButton(icon: "asset/svg/ic_setting2.svg", title: "Advanced Settings", routeName: "/feedbacks"),
             ],

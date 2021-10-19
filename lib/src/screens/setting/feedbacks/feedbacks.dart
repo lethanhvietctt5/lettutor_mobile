@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/screens/setting/feedbacks/feedback_item.dart';
-import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 
 class Feedbacks extends StatelessWidget {
   const Feedbacks({Key? key}) : super(key: key);
