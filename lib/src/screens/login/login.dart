@@ -68,6 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                               child: const Text("Sign up", style: TextStyle(color: Colors.blue, fontSize: 12)),
                               onTap: () {
                                 Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpPage()));
+                                Navigator.pushNamed(context, "/register");
                               },
                             )
                           ],
@@ -80,7 +81,8 @@ class _LoginPageState extends State<LoginPage> {
                     text: "Sign in",
                     backgroundColor: const Color(0xff007CFF),
                     onPress: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const NavigationBar()));
+                      //Navigator.push(context, MaterialPageRoute(builder: (context) => const NavigationBar()));
+                      Navigator.pushNamed(context, "/home");
                     }),
                 Container(
                   margin: const EdgeInsets.only(top: 10),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile/src/screens/message/mess_area.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 
 class MessageItem extends StatelessWidget {
@@ -9,7 +8,8 @@ class MessageItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => MessageArea()));
+        //Navigator.push(context, MaterialPageRoute(builder: (context) => MessageArea()));
+        Navigator.pushNamed(context, "/messageDetail");
       },
       child: Container(
         margin: const EdgeInsets.only(top: 8, bottom: 8),

@@ -76,7 +76,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                     color: Colors.blue,
                                   )),
                               onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                                // Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                                Navigator.pushNamed(context, "/login");
                               },
                             )
                           ],
@@ -88,7 +89,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     text: "Sign up",
                     backgroundColor: const Color(0xff007CFF),
                     onPress: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                      Navigator.pushNamed(context, "/login");
                     })
               ],
             ),
