@@ -10,6 +10,42 @@ class TutorsPage extends StatefulWidget {
 }
 
 class _TutorsPageState extends State<TutorsPage> {
+  final List<String> _chips = [
+    "All",
+    "English for Kids",
+    "Business English",
+    "Conversational English",
+    "STARTERS",
+    "MOVERS",
+    "FLYERS",
+    "KET",
+    "PET",
+    "IELTS",
+    "TOEFL",
+    "TOEIC"
+  ];
+
+  List<Widget> _generateChips() {
+    return _chips
+        .map((chip) => Container(
+              margin: const EdgeInsets.only(top: 5, right: 8),
+              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+              child: Text(
+                chip,
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.blue[400],
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              decoration: BoxDecoration(
+                  color: Colors.blue[50],
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  border: Border.all(color: Colors.blue[100] as Color)),
+            ))
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,8 +67,21 @@ class _TutorsPageState extends State<TutorsPage> {
                       ),
                     ),
                     contentPadding: const EdgeInsets.only(left: 5, right: 5),
-                    border: const OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
+                    border: const OutlineInputBorder(
+                        borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
                     hintText: "Search Tutors")),
+          ),
+          Container(
+            margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+            height: 32,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: _generateChips().length,
+              itemBuilder: (context, index) {
+                return _generateChips()[index];
+              },
+              shrinkWrap: true,
+            ),
           ),
           const TutorCardInfo(
               name: "Le Thanh Viet",

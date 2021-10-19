@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:lettutor_mobile/src/screens/home/recommend_tutor.dart';
 import 'package:lettutor_mobile/src/screens/home/home.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 import 'package:lettutor_mobile/src/widgets/menu_item.dart';
@@ -19,7 +18,13 @@ class NavigationBar extends StatefulWidget {
 
 class _NavigationBarState extends State<NavigationBar> {
   List<String> titles = ["Home", "Message", "Upcoming", "Tutors", "Setting"];
-  List<Widget> pages = [const HomePage(), const MessagePage(), const UpcomingPage(), const TutorsPage(), const SettingPage()];
+  List<Widget> pages = [
+    const HomePage(),
+    const MessagePage(),
+    const UpcomingPage(),
+    const TutorsPage(),
+    const SettingPage()
+  ];
 
   int _selectedIndex = 0;
 
@@ -64,11 +69,37 @@ class _NavigationBarState extends State<NavigationBar> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          centerTitle: false,
+          elevation: 0,
+          backgroundColor: Colors.white,
+          iconTheme: const IconThemeData(color: Colors.blue),
+          title: Text(
+            titles[_selectedIndex],
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+          ),
+          actions: [
+            Container(
+              margin: const EdgeInsets.only(right: 20),
+              child: CircleAvatar(
+                child: ClipOval(
+                  child: Image.asset(
+                    "asset/img/profile.jpg",
+                    fit: BoxFit.cover,
+                    width: 40,
+                    height: 40,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[_generateAppBar(), pages[_selectedIndex]],
+            children: <Widget>[pages[_selectedIndex]],
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile/src/navigation.dart';
 import 'package:lettutor_mobile/src/screens/signup.dart';
 import 'package:lettutor_mobile/src/screens/login/login_with.dart';
 import 'package:lettutor_mobile/src/widgets/button_expand.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/screens/setting/setting_btn.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 
