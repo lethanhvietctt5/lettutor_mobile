@@ -26,34 +26,38 @@ class Feedbacks extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Container(
-              margin: const EdgeInsets.only(left: 15, right: 15),
-              child: Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 30),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          "5.0",
-                          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.pink),
+            margin: const EdgeInsets.only(left: 15, right: 15),
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(bottom: 30),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "5.0",
+                        style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.pink),
+                      ),
+                      SizedBox(
+                        width: 40,
+                        child: SvgPicture.asset(
+                          "asset/svg/ic_star.svg",
+                          width: 35,
+                          color: Colors.yellow[700],
                         ),
-                        SizedBox(
-                          width: 40,
-                          child: SvgPicture.asset(
-                            "asset/svg/ic_star.svg",
-                            width: 35,
-                            color: Colors.yellow[700],
-                          ),
-                        )
-                      ],
-                    ),
+                      )
+                    ],
                   ),
-                  const FeedbackItem(),
-                  const FeedbackItem(),
-                  const FeedbackItem(),
-                ],
-              )),
+                ),
+                ListView.builder(
+                  itemCount: 20,
+                  itemBuilder: (context, index) => const FeedbackItem(),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
