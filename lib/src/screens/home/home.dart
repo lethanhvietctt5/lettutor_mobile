@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               const Text(
                 "Total lesson time is 11 hours 45 minutes",
-                style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.bold),
               ),
               Container(
                 margin: const EdgeInsets.only(top: 8, bottom: 8),
@@ -88,11 +88,14 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         Container(
-          margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-          child: Column(
-            children: [...RecommendTutors().tutors],
+          margin: const EdgeInsets.only(left: 15, right: 15),
+          child: ListView.builder(
+            itemCount: RecommendTutors().tutors.length,
+            itemBuilder: (context, index) => RecommendTutors().tutors[index],
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
           ),
-        )
+        ),
       ],
     );
   }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LessonPage extends StatefulWidget {
@@ -61,6 +62,10 @@ class _LessonPageState extends State<LessonPage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+      statusBarIconBrightness: Brightness.light,
+      statusBarColor: Colors.black,
+    ));
     return SafeArea(
         child: Scaffold(
       body: Column(
@@ -149,6 +154,10 @@ class _LessonPageState extends State<LessonPage> {
                 ),
                 InkWell(
                   onTap: () {
+                    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+                      statusBarIconBrightness: Brightness.dark,
+                      statusBarColor: Colors.white,
+                    ));
                     Navigator.pop(context);
                   },
                   child: Container(

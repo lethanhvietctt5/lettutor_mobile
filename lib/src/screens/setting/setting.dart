@@ -50,21 +50,24 @@ class _SettingPageState extends State<SettingPage> {
               SettingButton(icon: "asset/svg/ic_user.svg", title: "View Feedbacks", routeName: "/feedbacks"),
               SettingButton(icon: "asset/svg/ic_list.svg", title: "Booking History", routeName: "/bookingHistory"),
               SettingButton(icon: "asset/svg/ic_history.svg", title: "Session History", routeName: "/sessionHistory"),
-              SettingButton(icon: "asset/svg/ic_setting2.svg", title: "Advanced Settings", routeName: "/feedbacks"),
+              SettingButton(
+                  icon: "asset/svg/ic_setting2.svg", title: "Advanced Settings", routeName: "/advancedSettings"),
             ],
           ),
           Container(
               margin: const EdgeInsets.only(top: 30),
               child: Column(
                 children: const [
-                  SettingButton(icon: "asset/svg/ic_network.svg", title: "Our Website", routeName: "/feedbacks"),
-                  SettingButton(icon: "asset/svg/ic_facebook2.svg", title: "Facebook", routeName: "/feedbacks"),
+                  SettingButton(icon: "asset/svg/ic_network.svg", title: "Our Website", routeName: "/login"),
+                  SettingButton(icon: "asset/svg/ic_facebook2.svg", title: "Facebook", routeName: "/login"),
                 ],
               )),
           Container(
             margin: const EdgeInsets.only(top: 40),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, "/login");
+              },
               child: Container(
                 padding: const EdgeInsets.only(top: 13, bottom: 13),
                 child: Row(

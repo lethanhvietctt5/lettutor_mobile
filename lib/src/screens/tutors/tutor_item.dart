@@ -25,7 +25,7 @@ class TutorCardInfo extends StatelessWidget {
           elevation: 10,
           shape: RoundedRectangleBorder(
             side: const BorderSide(color: Colors.white70, width: 1),
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(6),
           ),
           child: Container(
             padding: const EdgeInsets.fromLTRB(15, 20, 15, 20),
@@ -39,7 +39,9 @@ class TutorCardInfo extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Container(margin: const EdgeInsets.only(right: 15), child: AvatarCircle(width: 70, height: 70, source: _sourceImage)),
+                        Container(
+                            margin: const EdgeInsets.only(right: 15),
+                            child: AvatarCircle(width: 70, height: 70, source: _sourceImage)),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
