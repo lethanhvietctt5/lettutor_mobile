@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile/src/screens/setting/booking_history/booking_item.dart';
+import 'package:lettutor_mobile/src/screens/setting/session_history/session_item.dart';
 
-class BookingHistory extends StatelessWidget {
-  const BookingHistory({Key? key}) : super(key: key);
+class SessionHistory extends StatelessWidget {
+  const SessionHistory({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +17,14 @@ class BookingHistory extends StatelessWidget {
           title: Container(
             margin: const EdgeInsets.only(left: 10),
             child: Text(
-              "Booking History",
+              "Session History",
               style: TextStyle(color: Colors.grey[800]),
             ),
           ),
         ),
         body: Container(
             margin: const EdgeInsets.only(left: 15, right: 15),
-            child: ListView.builder(itemCount: 20, itemBuilder: (context, index) => const BookingItem())),
+            child: ListView.builder(itemCount: 20, itemBuilder: (context, index) => const SessionItem())),
       ),
     );
   }

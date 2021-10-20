@@ -83,26 +83,15 @@ class _TutorsPageState extends State<TutorsPage> {
               shrinkWrap: true,
             ),
           ),
-          const TutorCardInfo(
-              name: "Le Thanh Viet",
-              sourceImage: "asset/img/profile.jpg",
-              intro:
-                  "Hello there, My name is Ralf I am a well-rounded teacher good at teaching communication classes as well as teaching younger kids. If you are a beginner or intermediate student I am here to help you learn. Hope to see you soon."),
-          const TutorCardInfo(
-              name: "Le Thanh Viet",
-              sourceImage: "asset/img/profile.jpg",
-              intro:
-                  "Hello there, My name is Ralf I am a well-rounded teacher good at teaching communication classes as well as teaching younger kids. If you are a beginner or intermediate student I am here to help you learn. Hope to see you soon."),
-          const TutorCardInfo(
-              name: "Le Thanh Viet",
-              sourceImage: "asset/img/profile.jpg",
-              intro:
-                  "Hello there, My name is Ralf I am a well-rounded teacher good at teaching communication classes as well as teaching younger kids. If you are a beginner or intermediate student I am here to help you learn. Hope to see you soon."),
-          const TutorCardInfo(
-              name: "Le Thanh Viet",
-              sourceImage: "asset/img/profile.jpg",
-              intro:
-                  "Hello there, My name is Ralf I am a well-rounded teacher good at teaching communication classes as well as teaching younger kids. If you are a beginner or intermediate student I am here to help you learn. Hope to see you soon.")
+          ListView.builder(
+              itemCount: 20,
+              itemBuilder: (context, index) => const TutorCardInfo(
+                  name: "Le Thanh Viet",
+                  sourceImage: "asset/img/profile.jpg",
+                  intro:
+                      "Hello there, My name is Ralf I am a well-rounded teacher good at teaching communication classes as well as teaching younger kids. If you are a beginner or intermediate student I am here to help you learn. Hope to see you soon."),
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics()),
         ],
       ),
     );
