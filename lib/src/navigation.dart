@@ -51,13 +51,18 @@ class _NavigationBarState extends State<NavigationBar> {
               ? [
                   Container(
                     margin: const EdgeInsets.only(right: 20),
-                    child: CircleAvatar(
-                      child: ClipOval(
-                        child: Image.asset(
-                          "asset/img/profile.jpg",
-                          fit: BoxFit.cover,
-                          width: 40,
-                          height: 40,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, "/profile");
+                      },
+                      child: CircleAvatar(
+                        child: ClipOval(
+                          child: Image.asset(
+                            "asset/img/profile.jpg",
+                            fit: BoxFit.cover,
+                            width: 40,
+                            height: 40,
+                          ),
                         ),
                       ),
                     ),
