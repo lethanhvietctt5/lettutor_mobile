@@ -1,7 +1,8 @@
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
 import 'package:lettutor_mobile/src/navigation.dart';
-import 'package:lettutor_mobile/src/screens/lesson.dart';
+import 'package:lettutor_mobile/src/screens/course/course.dart';
+import 'package:lettutor_mobile/src/screens/lesson/lesson.dart';
 import 'package:lettutor_mobile/src/screens/login/login.dart';
 import 'package:lettutor_mobile/src/screens/message/mess_area.dart';
 import 'package:lettutor_mobile/src/screens/profile/profile.dart';
@@ -24,6 +25,8 @@ class MyApp extends StatelessWidget {
           switch (settings.name) {
             case "/tutorProfile":
               return MaterialPageRoute(builder: (context) => const TutorProfile());
+            case "/course":
+              return MaterialPageRoute(builder: (context) => const Course());
             case "/messageDetail":
               return MaterialPageRoute(builder: (context) => const MessageArea());
             case "/login":
