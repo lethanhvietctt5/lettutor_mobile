@@ -31,24 +31,17 @@ class DropdownEdit extends StatelessWidget {
               border: Border.all(color: Colors.black26, width: 0.3),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  _selectedItem,
-                  style: const TextStyle(fontSize: 17),
-                ),
-                PopupMenuButton<String>(
-                  offset: const Offset(0, 48),
-                  icon: const Icon(Icons.arrow_drop_down),
-                  itemBuilder: (context) => _items
-                      .map((String item) => PopupMenuItem<String>(
-                            child: Text(item),
-                          ))
-                      .toList(),
-                  onSelected: (value) {},
-                ),
-              ],
+            child: DropdownButtonFormField<String>(
+              elevation: 8,
+              decoration: const InputDecoration(border: InputBorder.none),
+              value: _selectedItem,
+              items: _items.map((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              onChanged: (_) {},
             ),
           ),
         ],

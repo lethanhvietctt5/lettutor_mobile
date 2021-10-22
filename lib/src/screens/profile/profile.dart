@@ -11,6 +11,7 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           leadingWidth: 20,
           centerTitle: false,
@@ -57,8 +58,18 @@ class Profile extends StatelessWidget {
                 const PhoneEdition(),
                 const DropdownEdit(
                   title: "Country",
-                  selectedItem: "Việt Nam",
-                  items: ["Việt Nam", "England", "USA"],
+                  selectedItem: "Afghanistan",
+                  items: [
+                    "Afghanistan",
+                    "Albania",
+                    "Algeria",
+                    "Andorra",
+                    "Angola",
+                    "Antigua and Barbuda",
+                    "Argentina",
+                    "Armenia",
+                    "Australia",
+                  ],
                 ),
                 const DropdownEdit(
                   title: "My Level",
