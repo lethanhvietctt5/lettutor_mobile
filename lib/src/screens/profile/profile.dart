@@ -100,7 +100,7 @@ class Profile extends StatelessWidget {
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.blue,
+                      primary: const Color(0xff007CFF),
                       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(1000))),
                     ),
                   ),

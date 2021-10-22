@@ -11,6 +11,7 @@ class MessageArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           leadingWidth: 20,
           centerTitle: false,
@@ -50,7 +51,8 @@ class MessageArea extends StatelessWidget {
                             filled: true,
                             fillColor: Colors.grey.shade200,
                             contentPadding: const EdgeInsets.only(left: 15, right: 15),
-                            border: const OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(1000))),
+                            border: const OutlineInputBorder(
+                                borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(1000))),
                             hintText: "Type message...")),
                   ),
                   Container(
