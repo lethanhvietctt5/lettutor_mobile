@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class AdvancedSetting extends StatefulWidget {
-  const AdvancedSetting({Key? key}) : super(key: key);
+class AdvancedSettingPage extends StatefulWidget {
+  const AdvancedSettingPage({Key? key}) : super(key: key);
 
   @override
-  State<AdvancedSetting> createState() => _AdvancedSettingState();
+  State<AdvancedSettingPage> createState() => _AdvancedSettingPageState();
 }
 
-class _AdvancedSettingState extends State<AdvancedSetting> {
+class _AdvancedSettingPageState extends State<AdvancedSettingPage> {
   int _selected = 0;
 
   @override

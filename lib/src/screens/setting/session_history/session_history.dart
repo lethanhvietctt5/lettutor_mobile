@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile/src/screens/setting/session_history/session_item.dart';
 
-class SessionHistory extends StatelessWidget {
-  const SessionHistory({Key? key}) : super(key: key);
+class SessionHistoryPage extends StatelessWidget {
+  const SessionHistoryPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

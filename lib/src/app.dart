@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
             case "/tutorProfile":
               return MaterialPageRoute(builder: (context) => const TutorProfile());
             case "/course":
-              return MaterialPageRoute(builder: (context) => const Course());
+              return MaterialPageRoute(builder: (context) => const CoursePage());
             case "/messageDetail":
               return MaterialPageRoute(builder: (context) => const MessageArea());
             case "/login":
@@ -36,17 +36,17 @@ class MyApp extends StatelessWidget {
             case "/home":
               return MaterialPageRoute(builder: (context) => const NavigationBar());
             case "/profile":
-              return MaterialPageRoute(builder: (context) => const Profile());
+              return MaterialPageRoute(builder: (context) => const ProfilePage());
             case "/lesson":
               return MaterialPageRoute(builder: (context) => const LessonPage());
             case "/feedbacks":
-              return MaterialPageRoute(builder: (context) => const Feedbacks());
+              return MaterialPageRoute(builder: (context) => const FeedbacksPage());
             case "/bookingHistory":
-              return MaterialPageRoute(builder: (context) => const BookingHistory());
+              return MaterialPageRoute(builder: (context) => const BookingHistoryPage());
             case "/sessionHistory":
-              return MaterialPageRoute(builder: (context) => const SessionHistory());
+              return MaterialPageRoute(builder: (context) => const SessionHistoryPage());
             case "/advancedSettings":
-              return MaterialPageRoute(builder: (context) => const AdvancedSetting());
+              return MaterialPageRoute(builder: (context) => const AdvancedSettingPage());
             default:
               return MaterialPageRoute(builder: (context) => const LoginPage());
           }

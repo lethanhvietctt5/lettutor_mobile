@@ -4,8 +4,8 @@ import 'package:lettutor_mobile/src/screens/profile/dropdown_menu.dart';
 import 'package:lettutor_mobile/src/screens/profile/phone.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({Key? key}) : super(key: key);
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

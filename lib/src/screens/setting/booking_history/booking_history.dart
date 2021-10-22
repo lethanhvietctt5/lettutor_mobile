@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile/src/screens/setting/booking_history/booking_item.dart';
 
-class BookingHistory extends StatelessWidget {
-  const BookingHistory({Key? key}) : super(key: key);
+class BookingHistoryPage extends StatelessWidget {
+  const BookingHistoryPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
