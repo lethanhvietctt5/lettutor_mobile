@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lettutor_mobile/src/screens/tutors/tutor_profile/tutor_profile.dart';
+import 'package:lettutor_mobile/src/screens/tutors_search_page/tutor_profile/tutor_profile.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 import 'package:lettutor_mobile/src/widgets/rate_stars.dart';
 

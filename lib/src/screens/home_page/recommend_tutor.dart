@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:lettutor_mobile/src/screens/home/card_tutor.dart';
+import 'package:lettutor_mobile/src/screens/home_page/card_tutor.dart';
 
 class RecommendTutors {
   List<Widget> tutors = [

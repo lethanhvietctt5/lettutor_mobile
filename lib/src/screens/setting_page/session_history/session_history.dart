@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile/src/screens/setting/session_history/session_item.dart';
+import 'package:lettutor_mobile/src/screens/setting_page/session_history/session_item.dart';
 
 class SessionHistoryPage extends StatelessWidget {
   const SessionHistoryPage({Key? key}) : super(key: key);

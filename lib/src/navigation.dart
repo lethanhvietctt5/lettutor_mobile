@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:lettutor_mobile/src/screens/home/home.dart';
+import 'package:lettutor_mobile/src/screens/courses_page/courses.dart';
+import 'package:lettutor_mobile/src/screens/home_page/home.dart';
 import 'package:lettutor_mobile/src/widgets/menu_item.dart';
-import 'package:lettutor_mobile/src/screens/message/message.dart';
-import 'package:lettutor_mobile/src/screens/setting/setting.dart';
-import 'package:lettutor_mobile/src/screens/tutors/tutors.dart';
-import 'package:lettutor_mobile/src/screens/upcoming/upcoming.dart';
+import 'package:lettutor_mobile/src/screens/setting_page/setting.dart';
+import 'package:lettutor_mobile/src/screens/tutors_search_page/tutors.dart';
+import 'package:lettutor_mobile/src/screens/upcoming_page/upcoming.dart';
 
 class NavigationBar extends StatefulWidget {
   const NavigationBar({Key? key}) : super(key: key);
@@ -16,10 +16,10 @@ class NavigationBar extends StatefulWidget {
 }
 
 class _NavigationBarState extends State<NavigationBar> {
-  List<String> titles = ["Home", "Message", "Upcoming", "Tutors", "Setting"];
+  List<String> titles = ["Home", "Courses", "Upcoming", "Tutors", "Setting"];
   List<Widget> pages = [
     const HomePage(),
-    const MessagePage(),
+    const CoursesSearchPage(),
     const UpcomingPage(),
     const TutorsPage(),
     const SettingPage()
@@ -71,12 +71,7 @@ class _NavigationBarState extends State<NavigationBar> {
               : [],
         ),
         backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[pages[_selectedIndex]],
-          ),
-        ),
+        body: pages[_selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
           selectedFontSize: 12,
           unselectedFontSize: 12,
@@ -86,7 +81,7 @@ class _NavigationBarState extends State<NavigationBar> {
           currentIndex: _selectedIndex,
           items: [
             const MenuItem(sourceIcon: "asset/svg/ic_home.svg", label: "Home").generateItem(context),
-            const MenuItem(sourceIcon: "asset/svg/ic_message.svg", label: "Message").generateItem(context),
+            const MenuItem(sourceIcon: "asset/svg/ic_course.svg", label: "Courses").generateItem(context),
             const MenuItem(sourceIcon: "asset/svg/ic_upcoming.svg", label: "Upcoming").generateItem(context),
             const MenuItem(sourceIcon: "asset/svg/ic_tutor.svg", label: "Tutors").generateItem(context),
             const MenuItem(sourceIcon: "asset/svg/ic_setting.svg", label: "Setting").generateItem(context),

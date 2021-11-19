@@ -3,15 +3,14 @@ import 'package:flutter/services.dart';
 import 'package:lettutor_mobile/src/navigation.dart';
 import 'package:lettutor_mobile/src/screens/course/course.dart';
 import 'package:lettutor_mobile/src/screens/lesson/lesson.dart';
-import 'package:lettutor_mobile/src/screens/login/login.dart';
-import 'package:lettutor_mobile/src/screens/message/mess_area.dart';
+import 'package:lettutor_mobile/src/screens/login_page/login.dart';
 import 'package:lettutor_mobile/src/screens/profile/profile.dart';
-import 'package:lettutor_mobile/src/screens/setting/advanced_setting/advanced_setting.dart';
-import 'package:lettutor_mobile/src/screens/setting/booking_history/booking_history.dart';
-import 'package:lettutor_mobile/src/screens/setting/feedbacks/feedbacks.dart';
-import 'package:lettutor_mobile/src/screens/setting/session_history/session_history.dart';
+import 'package:lettutor_mobile/src/screens/setting_page/advanced_setting/advanced_setting.dart';
+import 'package:lettutor_mobile/src/screens/setting_page/booking_history/booking_history.dart';
+import 'package:lettutor_mobile/src/screens/setting_page/feedbacks/feedbacks.dart';
+import 'package:lettutor_mobile/src/screens/setting_page/session_history/session_history.dart';
 import 'package:lettutor_mobile/src/screens/signup.dart';
-import 'package:lettutor_mobile/src/screens/tutors/tutor_profile/tutor_profile.dart';
+import 'package:lettutor_mobile/src/screens/tutors_search_page/tutor_profile/tutor_profile.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -27,8 +26,6 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (context) => const TutorProfile());
             case "/course":
               return MaterialPageRoute(builder: (context) => const CoursePage());
-            case "/messageDetail":
-              return MaterialPageRoute(builder: (context) => const MessageArea());
             case "/login":
               return MaterialPageRoute(builder: (context) => const LoginPage());
             case "/register":

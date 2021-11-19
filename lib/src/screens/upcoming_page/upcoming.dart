@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile/src/screens/upcoming/card_coming.dart';
+import 'package:lettutor_mobile/src/screens/upcoming_page/card_coming.dart';
 
 class UpcomingPage extends StatefulWidget {
   const UpcomingPage({Key? key}) : super(key: key);
@@ -29,15 +29,17 @@ class _UpcomingPageState extends State<UpcomingPage> {
   @override
   Widget build(BuildContext context) {
     _initSample();
-    return Container(
-      margin: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-      child: ListView.builder(
-          itemCount: _samples.length,
-          itemBuilder: (context, index) {
-            return _samples[index];
-          },
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics()),
+    return SingleChildScrollView(
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+        child: ListView.builder(
+            itemCount: _samples.length,
+            itemBuilder: (context, index) {
+              return _samples[index];
+            },
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics()),
+      ),
     );
   }
 }

@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lettutor_mobile/src/screens/tutors/tutor_profile/course_card.dart';
-import 'package:lettutor_mobile/src/screens/tutors/tutor_profile/infor_chip.dart';
-import 'package:lettutor_mobile/src/screens/tutors/tutor_profile/infor_text.dart';
-import 'package:lettutor_mobile/src/screens/tutors/tutor_profile/rate_comment.dart';
+import 'package:lettutor_mobile/src/screens/tutors_search_page/tutor_profile/course_card.dart';
+import 'package:lettutor_mobile/src/screens/tutors_search_page/tutor_profile/infor_chip.dart';
+import 'package:lettutor_mobile/src/screens/tutors_search_page/tutor_profile/infor_text.dart';
+import 'package:lettutor_mobile/src/screens/tutors_search_page/tutor_profile/rate_comment.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 import 'package:lettutor_mobile/src/widgets/rate_stars.dart';
 

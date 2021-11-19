@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile/src/screens/setting/booking_history/booking_item.dart';
+import 'package:lettutor_mobile/src/screens/setting_page/booking_history/booking_item.dart';
 
 class BookingHistoryPage extends StatelessWidget {
   const BookingHistoryPage({Key? key}) : super(key: key);
