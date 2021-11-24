@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile/src/screens/signup.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/models/user/user.dart';
+import 'package:lettutor_mobile/src/screens/signup_page/signup.dart';
 import 'package:lettutor_mobile/src/screens/login_page/login_with.dart';
 import 'package:lettutor_mobile/src/widgets/button_expand.dart';
 import 'package:lettutor_mobile/src/widgets/text_input.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -18,6 +21,13 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
+    void handleLogin() {
+      if (_emailController.text == 'admin' && _passwordController.text == 'admin') {
+        Navigator.popAndPushNamed(context, '/home');
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -34,24 +44,91 @@ class _LoginPageState extends State<LoginPage> {
                     child: Image.asset("asset/img/logo.png"),
                   ),
                 ),
-                InputTextWithTitle(
-                  title: "Email",
-                  hintText: "abc@gmail.com",
-                  secured: false,
+                Padding(
                   padding: const EdgeInsets.all(8.0),
-                  controller: _emailController,
-                  prefixIconPath: "asset/svg/ic_email.svg",
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 0),
+                        child: Text(
+                          "Email",
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey[800]),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 2.0),
+                        child: Text("*default: admin", style: TextStyle(fontSize: 12, color: Colors.grey[400])),
+                      ),
+                      TextField(
+                        style: TextStyle(fontSize: 15, color: Colors.grey[900]),
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.grey.shade200,
+                          prefixIcon: Container(
+                            padding: const EdgeInsets.all(13),
+                            child: SvgPicture.asset(
+                              "asset/svg/ic_email.svg",
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
+                          hintText: "abc@gmail.com",
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                //InvalidMessage(padding: const EdgeInsets.all(8), message: "* Invalid email", isError: _emailError),
-                InputTextWithTitle(
-                  title: "Password",
-                  hintText: "**************",
-                  secured: true,
+                Padding(
                   padding: const EdgeInsets.all(8.0),
-                  controller: _passwordController,
-                  prefixIconPath: "asset/svg/ic_password.svg",
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 0),
+                        child: Text(
+                          "Password",
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey[800]),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 2.0),
+                        child: Text(
+                          "*default: 12345678",
+                          style: TextStyle(fontSize: 12, color: Colors.grey[400]),
+                        ),
+                      ),
+                      TextField(
+                        style: TextStyle(fontSize: 15, color: Colors.grey[900]),
+                        controller: _passwordController,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.grey.shade200,
+                          prefixIcon: Container(
+                            padding: const EdgeInsets.all(13),
+                            child: SvgPicture.asset(
+                              "asset/svg/ic_password.svg",
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
+                          hintText: "**************",
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                //InvalidMessage(padding: const EdgeInsets.all(8), message: "* Invalid password", isError: _passwordError),
                 Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -79,10 +156,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.all(8.0),
                     text: "Sign in",
                     backgroundColor: const Color(0xff007CFF),
-                    onPress: () {
-                      //Navigator.push(context, MaterialPageRoute(builder: (context) => const NavigationBar()));
-                      Navigator.pushNamed(context, "/home");
-                    }),
+                    onPress: handleLogin),
                 Container(
                   margin: const EdgeInsets.only(top: 10),
                   child: Row(

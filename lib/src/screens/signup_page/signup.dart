@@ -42,6 +42,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   padding: const EdgeInsets.all(8.0),
                   controller: _emailController,
                   prefixIconPath: "asset/svg/ic_email.svg",
+                  defaultValue: "admin",
                 ),
                 //InvalidMessage(padding: const EdgeInsets.all(8), message: "* Invalid email", isError: _emailError),
                 InputTextWithTitle(
@@ -51,6 +52,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   padding: const EdgeInsets.all(8.0),
                   controller: _passwordController,
                   prefixIconPath: "asset/svg/ic_password.svg",
+                  defaultValue: "12345678",
                 ),
                 InputTextWithTitle(
                   title: "Re-password",
@@ -59,6 +61,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   padding: const EdgeInsets.all(8.0),
                   controller: _repasswordControler,
                   prefixIconPath: "asset/svg/ic_password.svg",
+                  defaultValue: "12345678",
                 ),
                 //InvalidMessage(padding: const EdgeInsets.all(8), message: "* Invalid password", isError: _passwordError),
                 Padding(
