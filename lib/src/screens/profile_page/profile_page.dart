@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile/src/screens/profile/birthday.dart';
-import 'package:lettutor_mobile/src/screens/profile/dropdown_menu.dart';
-import 'package:lettutor_mobile/src/screens/profile/phone.dart';
+import 'package:lettutor_mobile/src/screens/profile_page/components/birthday.dart';
+import 'package:lettutor_mobile/src/screens/profile_page/components/dropdown_menu.dart';
+import 'package:lettutor_mobile/src/screens/profile_page/components/phone.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 
 class ProfilePage extends StatelessWidget {

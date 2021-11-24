@@ -4,7 +4,7 @@ import 'package:lettutor_mobile/src/navigation.dart';
 import 'package:lettutor_mobile/src/screens/course/course.dart';
 import 'package:lettutor_mobile/src/screens/lesson/lesson.dart';
 import 'package:lettutor_mobile/src/screens/login_page/login.dart';
-import 'package:lettutor_mobile/src/screens/profile/profile.dart';
+import 'package:lettutor_mobile/src/screens/profile_page/profile_page.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/advanced_setting/advanced_setting.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/booking_history/booking_history.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/feedbacks/feedbacks.dart';

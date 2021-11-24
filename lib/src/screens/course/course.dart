@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile/src/screens/course/about.dart';
-import 'package:lettutor_mobile/src/screens/course/banner.dart';
-import 'package:lettutor_mobile/src/screens/course/topic.dart';
+import 'package:lettutor_mobile/src/screens/course/components/about.dart';
+import 'package:lettutor_mobile/src/screens/course/components/banner.dart';
+import 'package:lettutor_mobile/src/screens/course/components/topic.dart';
 
 class CoursePage extends StatelessWidget {
   const CoursePage({Key? key}) : super(key: key);
