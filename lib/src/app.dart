@@ -13,7 +13,7 @@ import 'package:lettutor_mobile/src/screens/setting_page/booking_history/booking
 import 'package:lettutor_mobile/src/screens/setting_page/feedbacks/feedbacks.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/session_history/session_history.dart';
 import 'package:lettutor_mobile/src/screens/signup_page/signup.dart';
-import 'package:lettutor_mobile/src/screens/tutors_search_page/tutor_profile/tutor_profile.dart';
+import 'package:lettutor_mobile/src/screens/tutor_profile/tutor_profile.dart';
 import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {

@@ -212,6 +212,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  woozy_search:
+    dependency: "direct main"
+    description:
+      name: woozy_search
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3"
   xml:
     dependency: transitive
     description:

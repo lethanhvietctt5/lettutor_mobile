@@ -1,6 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/data/tutors_sample.dart';
+import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
 import 'package:lettutor_mobile/src/screens/tutors_search_page/tutor_item.dart';
+import 'package:woozy_search/woozy_search.dart';
 
 class TutorsPage extends StatefulWidget {
   const TutorsPage({Key? key}) : super(key: key);
@@ -24,6 +29,12 @@ class _TutorsPageState extends State<TutorsPage> {
     "TOEFL",
     "TOEIC"
   ];
+  final TextEditingController _controller = TextEditingController();
+
+  List<Tutor> _results = [];
+
+  // * Debounce timer for search performance
+  Timer? _debounce;
 
   List<Widget> _generateChips() {
     return _chips
@@ -47,7 +58,23 @@ class _TutorsPageState extends State<TutorsPage> {
   }
 
   @override
+  void dispose() {
+    _debounce?.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final woozy = Woozy();
+    List<String> names = TutorsSample.tutors.map((tutor) => tutor.fullName).toList();
+    woozy.setEntries(names);
+
+    if (_controller.text.isEmpty) {
+      setState(() {
+        _results = TutorsSample.tutors;
+      });
+    }
+
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
@@ -57,6 +84,23 @@ class _TutorsPageState extends State<TutorsPage> {
               margin: const EdgeInsets.only(bottom: 10),
               child: TextField(
                   style: TextStyle(fontSize: 12, color: Colors.grey[900]),
+                  controller: _controller,
+                  onChanged: (value) {
+                    if (_debounce?.isActive ?? false) _debounce?.cancel();
+                    _debounce = Timer(const Duration(milliseconds: 1000), () {
+                      final res = woozy.search(value);
+                      List<Tutor> newResults = [];
+                      for (int i = 0; i < res.length; i++) {
+                        if (res[i].score >= 0.3) {
+                          newResults.add(TutorsSample.tutors.firstWhere((tutor) => tutor.fullName == res[i].text));
+                        }
+                      }
+
+                      setState(() {
+                        _results = newResults;
+                      });
+                    });
+                  },
                   decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.grey.shade200,
@@ -85,14 +129,14 @@ class _TutorsPageState extends State<TutorsPage> {
               ),
             ),
             ListView.builder(
-                itemCount: 20,
-                itemBuilder: (context, index) => const TutorCardInfo(
-                    name: "Le Thanh Viet",
-                    sourceImage: "asset/img/profile.jpg",
-                    intro:
-                        "Hello there, My name is Ralf I am a well-rounded teacher good at teaching communication classes as well as teaching younger kids. If you are a beginner or intermediate student I am here to help you learn. Hope to see you soon."),
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics()),
+              itemCount: _results.length,
+              itemBuilder: (context, index) {
+                Tutor tutor = _results[index];
+                return TutorCardInfo(tutor: tutor);
+              },
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+            ),
           ],
         ),
       ),

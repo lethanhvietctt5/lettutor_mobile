@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
-import 'package:lettutor_mobile/src/screens/tutors_search_page/tutor_profile/tutor_profile.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 import 'package:lettutor_mobile/src/widgets/rate_stars.dart';
 
@@ -30,67 +29,74 @@ class CardTutor extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Container(
+                      margin: const EdgeInsets.only(right: 15),
+                      child: AvatarCircle(width: 70, height: 70, source: tutor.image),
+                    ),
                     Expanded(
-                      child: Row(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            margin: const EdgeInsets.only(right: 15),
-                            child: AvatarCircle(width: 70, height: 70, source: tutor.image),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      margin: const EdgeInsets.only(bottom: 5),
+                                      child: Text(
+                                        tutor.fullName,
+                                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    const RateStars(),
+                                  ],
+                                ),
+                              ),
+                              SvgPicture.asset(
+                                "asset/svg/ic_heart.svg",
+                                width: 30,
+                                height: 30,
+                                color: Colors.blue,
+                              )
+                            ],
                           ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.only(bottom: 5),
+                          SizedBox(
+                            height: 35,
+                            child: ListView.builder(
+                              itemCount: tutor.languages.length,
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  margin: const EdgeInsets.only(top: 5, right: 8),
+                                  padding: const EdgeInsets.all(5),
                                   child: Text(
-                                    tutor.fullName,
-                                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
+                                    tutor.languages[index],
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                   ),
-                                ),
-                                const RateStars(),
-                                Container(
-                                  height: 35,
-                                  child: ListView.builder(
-                                    itemCount: tutor.languages.length,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (context, index) {
-                                      return Container(
-                                        margin: const EdgeInsets.only(top: 5, right: 8),
-                                        padding: const EdgeInsets.all(5),
-                                        child: Text(
-                                          tutor.languages[index],
-                                          style: const TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.blue,
-                                            fontWeight: FontWeight.w700,
-                                          ),
-                                        ),
-                                        decoration: BoxDecoration(
-                                            color: Colors.blue[50],
-                                            borderRadius: const BorderRadius.all(Radius.circular(20)),
-                                            border: Border.all(color: Colors.blue)),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ],
+                                  decoration: BoxDecoration(
+                                      color: Colors.blue[50],
+                                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                                      border: Border.all(color: Colors.blue)),
+                                );
+                              },
                             ),
                           ),
                         ],
                       ),
                     ),
-                    SvgPicture.asset(
-                      "asset/svg/ic_heart.svg",
-                      width: 30,
-                      height: 30,
-                      color: Colors.blue,
-                    )
                   ],
                 ),
                 Container(
