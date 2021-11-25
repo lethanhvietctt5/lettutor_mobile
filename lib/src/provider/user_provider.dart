@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:lettutor_mobile/src/data/tutors_sample.dart';
+import 'package:lettutor_mobile/src/models/user/upcomming.dart';
 import 'package:lettutor_mobile/src/models/user/user.dart';
 
 class UserProvider extends ChangeNotifier {
   User? user;
+  List<int> idFavorite = [];
 
   UserProvider([this.user]) {
     user ??=
@@ -13,5 +16,29 @@ class UserProvider extends ChangeNotifier {
   void updateUser(User user) {
     this.user = user;
     notifyListeners();
+  }
+
+  void addUpcomming(Upcomming upcomming) {
+    user!.upcomming.add(upcomming);
+    notifyListeners();
+  }
+
+  void removeUpcomming(int index) {
+    user!.upcomming.removeAt(index);
+    notifyListeners();
+  }
+
+  void addFavorite(int index) {
+    if (index < TutorsSample.tutors.length) {
+      idFavorite.add(index);
+      notifyListeners();
+    }
+  }
+
+  void removeFavorite(int index) {
+    if (index < TutorsSample.tutors.length) {
+      idFavorite.removeWhere((element) => element == index);
+      notifyListeners();
+    }
   }
 }

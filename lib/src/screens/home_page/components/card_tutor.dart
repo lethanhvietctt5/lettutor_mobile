@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/data/tutors_sample.dart';
 import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
+import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 import 'package:lettutor_mobile/src/widgets/rate_stars.dart';
+import 'package:provider/provider.dart';
 
 class CardTutor extends StatelessWidget {
   const CardTutor({Key? key, required this.tutor}) : super(key: key);
   final Tutor tutor;
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
+    final index = TutorsSample.tutors.indexOf(tutor);
+    final exists = userProvider.idFavorite.where((element) => element == index);
+
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       child: InkWell(
@@ -60,11 +67,27 @@ class CardTutor extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              SvgPicture.asset(
-                                "asset/svg/ic_heart.svg",
-                                width: 30,
-                                height: 30,
-                                color: Colors.blue,
+                              InkWell(
+                                onTap: () {
+                                  if (exists.isNotEmpty) {
+                                    userProvider.removeFavorite(index);
+                                  } else {
+                                    userProvider.addFavorite(index);
+                                  }
+                                },
+                                child: exists.isEmpty
+                                    ? SvgPicture.asset(
+                                        "asset/svg/ic_heart.svg",
+                                        width: 35,
+                                        height: 35,
+                                        color: Colors.blue,
+                                      )
+                                    : SvgPicture.asset(
+                                        "asset/svg/ic_heart_fill.svg",
+                                        width: 35,
+                                        height: 35,
+                                        color: Colors.pink,
+                                      ),
                               )
                             ],
                           ),

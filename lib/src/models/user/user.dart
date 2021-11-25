@@ -1,3 +1,6 @@
+import 'package:lettutor_mobile/src/data/tutors_sample.dart';
+import 'package:lettutor_mobile/src/models/user/upcomming.dart';
+
 class User {
   final String _email;
   final String _fullName;
@@ -5,8 +8,19 @@ class User {
   String phone;
   String country;
   String level;
+  List<Upcomming> upcomming = [];
 
-  User(this._email, this._fullName, this.birthDate, this.country, this.level, [this.phone = ""]);
+  User(this._email, this._fullName, this.birthDate, this.country, this.level, [this.phone = ""]) {
+    upcomming.add(Upcomming(
+        tutor: TutorsSample.tutors[0],
+        timeStart: DateTime(2021, 11, 25, 6, 0, 0),
+        timeEnd: DateTime(2021, 11, 25, 7, 0, 0)));
+
+    upcomming.add(Upcomming(
+        tutor: TutorsSample.tutors[1],
+        timeStart: DateTime(2021, 11, 26, 6, 0, 0),
+        timeEnd: DateTime(2021, 11, 26, 7, 0, 0)));
+  }
 
   String get email => _email;
   String get fullName => _fullName;
