@@ -23,43 +23,45 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => UserProvider(),
       child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          onGenerateRoute: (settings) {
-            switch (settings.name) {
-              case "/tutorProfile":
-                return MaterialPageRoute(builder: (context) => const TutorProfile());
-              case "/course":
-                return MaterialPageRoute(builder: (context) => const CoursePage());
-              case "/login":
-                return MaterialPageRoute(builder: (context) => const LoginPage());
-              case "/register":
-                return MaterialPageRoute(builder: (context) => const SignUpPage());
-              case "/home":
-                return MaterialPageRoute(builder: (context) => const NavigationBar());
-              case "/profile":
-                return MaterialPageRoute(builder: (context) => const ProfilePage());
-              case "/lesson":
-                return MaterialPageRoute(builder: (context) => const LessonPage());
-              case "/feedbacks":
-                return MaterialPageRoute(builder: (context) => const FeedbacksPage());
-              case "/bookingHistory":
-                return MaterialPageRoute(builder: (context) => const BookingHistoryPage());
-              case "/sessionHistory":
-                return MaterialPageRoute(builder: (context) => const SessionHistoryPage());
-              case "/advancedSettings":
-                return MaterialPageRoute(builder: (context) => const AdvancedSettingPage());
-              default:
-                return MaterialPageRoute(builder: (context) => const LoginPage());
-            }
-          },
-          title: 'Flutter Demo',
-          theme: ThemeData(primarySwatch: Colors.blue, primaryColor: const Color(0xff007CFF)),
-          home: const AnnotatedRegion<SystemUiOverlayStyle>(
-              value: SystemUiOverlayStyle(
-                statusBarColor: Colors.white,
-                statusBarIconBrightness: Brightness.dark,
-              ),
-              child: LoginPage())),
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case "/tutorProfile":
+              return MaterialPageRoute(builder: (context) => const TutorProfile());
+            case "/course":
+              return MaterialPageRoute(builder: (context) => const CoursePage());
+            case "/login":
+              return MaterialPageRoute(builder: (context) => const LoginPage());
+            case "/register":
+              return MaterialPageRoute(builder: (context) => const SignUpPage());
+            case "/home":
+              return MaterialPageRoute(builder: (context) => const NavigationBar());
+            case "/profile":
+              return MaterialPageRoute(builder: (context) => const ProfilePage());
+            case "/lesson":
+              return MaterialPageRoute(builder: (context) => const LessonPage());
+            case "/feedbacks":
+              return MaterialPageRoute(builder: (context) => const FeedbacksPage());
+            case "/bookingHistory":
+              return MaterialPageRoute(builder: (context) => const BookingHistoryPage());
+            case "/sessionHistory":
+              return MaterialPageRoute(builder: (context) => const SessionHistoryPage());
+            case "/advancedSettings":
+              return MaterialPageRoute(builder: (context) => const AdvancedSettingPage());
+            default:
+              return MaterialPageRoute(builder: (context) => const LoginPage());
+          }
+        },
+        title: 'Flutter Demo',
+        theme: ThemeData(primarySwatch: Colors.blue, primaryColor: const Color(0xff007CFF)),
+        home: const AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle(
+            statusBarColor: Colors.white,
+            statusBarIconBrightness: Brightness.dark,
+          ),
+          child: NavigationBar(),
+        ),
+      ),
     );
   }
 }

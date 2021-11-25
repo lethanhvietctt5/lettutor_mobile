@@ -1,52 +1,20 @@
 import 'package:flutter/cupertino.dart';
+import 'package:lettutor_mobile/src/data/tutors_sample.dart';
+import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
 import 'package:lettutor_mobile/src/screens/home_page/components/card_tutor.dart';
 
 class RecommendTutors {
-  List<Widget> tutors = [
-    const CardTutor(
-        name: "Le Thanh Viet",
-        sourceImage: "asset/img/profile.jpg",
-        intro:
-            "Hello there, My name is Ralf I am a well-rounded teacher good at teaching communication classes as well as teaching younger kids. If you are a beginner or intermediate student I am here to help you learn. Hope to see you soon."),
-    const CardTutor(
-        name: "Le Thanh Viet",
-        sourceImage: "asset/img/profile.jpg",
-        intro:
-            "Hello there, My name is Ralf I am a well-rounded teacher good at teaching communication classes as well as teaching younger kids. If you are a beginner or intermediate student I am here to help you learn. Hope to see you soon."),
-    const CardTutor(
-        name: "Le Thanh Viet",
-        sourceImage: "asset/img/profile.jpg",
-        intro:
-            "Hello there, My name is Ralf I am a well-rounded teacher good at teaching communication classes as well as teaching younger kids. If you are a beginner or intermediate student I am here to help you learn. Hope to see you soon."),
-    const CardTutor(
-        name: "Le Thanh Viet",
-        sourceImage: "asset/img/profile.jpg",
-        intro:
-            "Hello there, My name is Ralf I am a well-rounded teacher good at teaching communication classes as well as teaching younger kids. If you are a beginner or intermediate student I am here to help you learn. Hope to see you soon."),
-    const CardTutor(
-        name: "Le Thanh Viet",
-        sourceImage: "asset/img/profile.jpg",
-        intro:
-            "Hello there, My name is Ralf I am a well-rounded teacher good at teaching communication classes as well as teaching younger kids. If you are a beginner or intermediate student I am here to help you learn. Hope to see you soon."),
-    const CardTutor(
-        name: "Le Thanh Viet",
-        sourceImage: "asset/img/profile.jpg",
-        intro:
-            "Hello there, My name is Ralf I am a well-rounded teacher good at teaching communication classes as well as teaching younger kids. If you are a beginner or intermediate student I am here to help you learn. Hope to see you soon."),
-    const CardTutor(
-        name: "Le Thanh Viet",
-        sourceImage: "asset/img/profile.jpg",
-        intro:
-            "Hello there, My name is Ralf I am a well-rounded teacher good at teaching communication classes as well as teaching younger kids. If you are a beginner or intermediate student I am here to help you learn. Hope to see you soon."),
-    const CardTutor(
-        name: "Le Thanh Viet",
-        sourceImage: "asset/img/profile.jpg",
-        intro:
-            "Hello there, My name is Ralf I am a well-rounded teacher good at teaching communication classes as well as teaching younger kids. If you are a beginner or intermediate student I am here to help you learn. Hope to see you soon."),
-    const CardTutor(
-        name: "Le Thanh Viet",
-        sourceImage: "asset/img/profile.jpg",
-        intro:
-            "Hello there, My name is Ralf I am a well-rounded teacher good at teaching communication classes as well as teaching younger kids. If you are a beginner or intermediate student I am here to help you learn. Hope to see you soon.")
-  ];
+  List<Widget> tutors = [];
+
+  RecommendTutors() {
+    List<Tutor> sampleTutors = TutorsSample.tutors.sublist(0, 4);
+    for (int i = 0; i < sampleTutors.length; i++) {
+      tutors.add(CardTutor(
+        name: sampleTutors[i].fullName,
+        sourceImage: sampleTutors[i].image,
+        intro: sampleTutors[i].intro,
+        languages: sampleTutors[i].languages,
+      ));
+    }
+  }
 }

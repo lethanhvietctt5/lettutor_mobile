@@ -5,15 +5,22 @@ import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 import 'package:lettutor_mobile/src/widgets/rate_stars.dart';
 
 class CardTutor extends StatelessWidget {
-  const CardTutor({Key? key, required String name, required String sourceImage, required String intro})
+  const CardTutor(
+      {Key? key,
+      required String name,
+      required String sourceImage,
+      required String intro,
+      required List<String> languages})
       : _name = name,
         _sourceImage = sourceImage,
         _intro = intro,
+        _languages = languages,
         super(key: key);
 
   final String _name;
   final String _sourceImage;
   final String _intro;
+  final List<String> _languages;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +38,6 @@ class CardTutor extends StatelessWidget {
           elevation: 8,
           child: Container(
             padding: const EdgeInsets.fromLTRB(15, 20, 15, 20),
-            //constraints: const BoxConstraints(maxHeight: 200),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -39,61 +45,57 @@ class CardTutor extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Container(
+                    Expanded(
+                      child: Row(
+                        children: [
+                          Container(
                             margin: const EdgeInsets.only(right: 15),
-                            child: AvatarCircle(width: 70, height: 70, source: _sourceImage)),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(bottom: 5),
-                              child: Text(
-                                _name,
-                                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                              ),
-                            ),
-                            const RateStars(),
-                            Row(
+                            child: AvatarCircle(width: 70, height: 70, source: _sourceImage),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  margin: const EdgeInsets.only(top: 5, right: 8),
-                                  padding: const EdgeInsets.all(5),
-                                  child: const Text(
-                                    "English",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.blue,
-                                      fontWeight: FontWeight.w700,
-                                    ),
+                                  margin: const EdgeInsets.only(bottom: 5),
+                                  child: Text(
+                                    _name,
+                                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                  decoration: BoxDecoration(
-                                      color: Colors.blue[50],
-                                      borderRadius: const BorderRadius.all(Radius.circular(20)),
-                                      border: Border.all(color: Colors.blue)),
                                 ),
+                                const RateStars(),
                                 Container(
-                                  margin: const EdgeInsets.only(top: 5, right: 8),
-                                  padding: const EdgeInsets.all(5),
-                                  child: const Text(
-                                    "Tagalog",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.blue,
-                                      fontWeight: FontWeight.w700,
-                                    ),
+                                  height: 35,
+                                  child: ListView.builder(
+                                    itemCount: _languages.length,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, index) {
+                                      return Container(
+                                        margin: const EdgeInsets.only(top: 5, right: 8),
+                                        padding: const EdgeInsets.all(5),
+                                        child: Text(
+                                          _languages[index],
+                                          style: const TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.blue,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                        decoration: BoxDecoration(
+                                            color: Colors.blue[50],
+                                            borderRadius: const BorderRadius.all(Radius.circular(20)),
+                                            border: Border.all(color: Colors.blue)),
+                                      );
+                                    },
                                   ),
-                                  decoration: BoxDecoration(
-                                      color: Colors.blue[50],
-                                      borderRadius: const BorderRadius.all(Radius.circular(20)),
-                                      border: Border.all(color: Colors.blue)),
                                 ),
                               ],
-                            )
-                          ],
-                        ),
-                      ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     SvgPicture.asset(
                       "asset/svg/ic_heart.svg",
