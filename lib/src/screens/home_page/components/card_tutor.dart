@@ -1,34 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
 import 'package:lettutor_mobile/src/screens/tutors_search_page/tutor_profile/tutor_profile.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 import 'package:lettutor_mobile/src/widgets/rate_stars.dart';
 
 class CardTutor extends StatelessWidget {
-  const CardTutor(
-      {Key? key,
-      required String name,
-      required String sourceImage,
-      required String intro,
-      required List<String> languages})
-      : _name = name,
-        _sourceImage = sourceImage,
-        _intro = intro,
-        _languages = languages,
-        super(key: key);
-
-  final String _name;
-  final String _sourceImage;
-  final String _intro;
-  final List<String> _languages;
-
+  const CardTutor({Key? key, required this.tutor}) : super(key: key);
+  final Tutor tutor;
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       child: InkWell(
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const TutorProfile()));
+          Navigator.pushNamed(context, "/tutorProfile", arguments: {
+            "tutor": tutor,
+          });
         },
         child: Card(
           shape: RoundedRectangleBorder(
@@ -50,7 +38,7 @@ class CardTutor extends StatelessWidget {
                         children: [
                           Container(
                             margin: const EdgeInsets.only(right: 15),
-                            child: AvatarCircle(width: 70, height: 70, source: _sourceImage),
+                            child: AvatarCircle(width: 70, height: 70, source: tutor.image),
                           ),
                           Expanded(
                             child: Column(
@@ -59,7 +47,7 @@ class CardTutor extends StatelessWidget {
                                 Container(
                                   margin: const EdgeInsets.only(bottom: 5),
                                   child: Text(
-                                    _name,
+                                    tutor.fullName,
                                     style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
@@ -69,14 +57,14 @@ class CardTutor extends StatelessWidget {
                                 Container(
                                   height: 35,
                                   child: ListView.builder(
-                                    itemCount: _languages.length,
+                                    itemCount: tutor.languages.length,
                                     scrollDirection: Axis.horizontal,
                                     itemBuilder: (context, index) {
                                       return Container(
                                         margin: const EdgeInsets.only(top: 5, right: 8),
                                         padding: const EdgeInsets.all(5),
                                         child: Text(
-                                          _languages[index],
+                                          tutor.languages[index],
                                           style: const TextStyle(
                                             fontSize: 12,
                                             color: Colors.blue,
@@ -108,7 +96,7 @@ class CardTutor extends StatelessWidget {
                 Container(
                     margin: const EdgeInsets.only(top: 10),
                     child: Text(
-                      _intro,
+                      tutor.intro,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 4,
                     ))

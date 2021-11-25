@@ -9,12 +9,7 @@ class RecommendTutors {
   RecommendTutors() {
     List<Tutor> sampleTutors = TutorsSample.tutors.sublist(0, 4);
     for (int i = 0; i < sampleTutors.length; i++) {
-      tutors.add(CardTutor(
-        name: sampleTutors[i].fullName,
-        sourceImage: sampleTutors[i].image,
-        intro: sampleTutors[i].intro,
-        languages: sampleTutors[i].languages,
-      ));
+      tutors.add(CardTutor(tutor: sampleTutors[i]));
     }
   }
 }
