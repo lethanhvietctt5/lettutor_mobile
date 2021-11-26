@@ -36,6 +36,7 @@ flutter:
     - asset/svg/
     - asset/img/sample/tutor/
     - asset/img/sample/course/
+    - asset/img/sample/book/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
