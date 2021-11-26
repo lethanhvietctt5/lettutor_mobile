@@ -1,20 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile/src/models/course/course.dart';
 
 class TopicCourse extends StatelessWidget {
-  const TopicCourse({Key? key}) : super(key: key);
+  const TopicCourse({Key? key, required this.course}) : super(key: key);
 
-  static const List<String> _topicName = [
-    "Foods You Love",
-    "Your Job",
-    "Playing and Watching Sports",
-    "The Best Pet",
-    "Having Fun in Your Free Time",
-    "Your Daily Routine",
-    "Childhood Memories",
-    "Your Family Members",
-    "Your Hometown",
-    "Shopping Habits",
-  ];
+  final Course course;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +25,7 @@ class TopicCourse extends StatelessWidget {
             ),
           ),
           ListView.builder(
-            itemCount: 10,
+            itemCount: course.topics.length,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (_, index) => Card(
@@ -69,7 +59,7 @@ class TopicCourse extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        _topicName[index],
+                        course.topics[index],
                         style: const TextStyle(
                           fontSize: 20,
                           color: Colors.black,

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:lettutor_mobile/src/screens/courses_page/courses.dart';
+import 'package:lettutor_mobile/src/screens/courses_search_page/courses.dart';
 import 'package:lettutor_mobile/src/screens/home_page/home.dart';
 import 'package:lettutor_mobile/src/widgets/menu_item.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/setting.dart';

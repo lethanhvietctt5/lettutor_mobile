@@ -7,7 +7,7 @@ class TutorsSample {
       "Viet Nam",
       5,
       "Hi, I am teacher Nhi. I have been teaching English for 3 years now. I used to study abroad in Sydney for 7 years. During my time as an overseas student, I had spoken with people from diverse cultural backgrounds; therefore, I have strong listening and speaking skills. I love teaching English and I will devote to helping you improve your English skills if you book my class. I am also patient and understanding because I know for many people, English is a tough language to master. In my class, I will help you correct your pronunciation and deliver the lessons in a way that is easy for you to understand. If you book my class, you will have many chances to practice your speaking skills and also improve your pronunciation and grammatical knowledge. Besides that, if you need me to, I will share my personal tips to study English more effectively with you and show you the importance of having fun and practice while learning English.",
-      "asset/img/sample/nhi_nguyen.jpg",
+      "asset/img/sample/tutor/nhi_nguyen.jpg",
       <String>["English", "French", "Spanish", "Japanese", "Chinese"],
       <String, String>{
         "Interests": "Teaching English, listening to music, shopping, eating :)",
@@ -20,7 +20,7 @@ class TutorsSample {
       "Philippines (the)",
       5,
       "Hi, My name is Jill I am an experienced English Teacher from Philippine. I would like share my enthusiasm with the learners in this platform. I've been working with diverse learners of all levels for many years. I am greatly passionate about about profession. I love teaching because I can help others improve their skills and it gives me joy and excitement meeting different learners around the world. In my class I worked with wonderful enthusiasm and positivity, and I'm happy t focus on my learner's goal.",
-      "asset/img/sample/sample_1.jpg",
+      "asset/img/sample/tutor/sample_1.jpg",
       <String>["English", "French", "Spanish"],
       <String, String>{
         "Interests":
@@ -35,7 +35,7 @@ class TutorsSample {
       "Philippines (the)",
       5,
       "Hello thank you for visiting my profile I am Silkyza, 26 years old from Philippines. I am a Licensed Professional Teacher with TEFL certificate. I am teaching English, Tagalog and Cebuano. I am can teach students in different levels from A0- B1. I can also handle students in all ages from kids to adults. I already have experience in online teaching. if you have difficulties in your English speaking, reading and writing skills from now on you don't have to worry about it because I am here to help you to improve those skills",
-      "asset/img/sample/sample_2.jpg",
+      "asset/img/sample/tutor/sample_2.jpg",
       <String>["English", "French", "Spanish", "Tagalog"],
       <String, String>{
         "Interests": "I am music enthusiast, my hobbies are playing guitar, singing and dancing.",
@@ -49,7 +49,7 @@ class TutorsSample {
       "Philippines (the)",
       5,
       "Hello there! I am an Industrial Engineer in the profession but chose to do online teaching because I love to meet different learners. I am an outgoing person and I have this passion for dealing with different people and seeing them progress with my help as their teacher. In fact, making friends is one of my best skills. I am very good at adapting to new environments and new situations. I am very friendly and can easily get along well with everyone. I have obtained a 120-Hour TEFL Certificate. I get a variety of teaching techniques. I know that there are fast and not so fast learners. So don't worry, I will be with you every step of the way going at your own pace. Let's practice what you already know and add something new each day. With my skills and experiences, I can assure you that I can provide adequate English learning effectively and efficiently. Together, let's make English learning fun.",
-      "asset/img/sample/sample_3.jpg",
+      "asset/img/sample/tutor/sample_3.jpg",
       <String>["English", "French", "Spanish", "Tagalog"],
       <String, String>{
         "Interests": "Cooking, Mingling with kids, Travelling",
@@ -63,7 +63,7 @@ class TutorsSample {
       "Viet Nam",
       5,
       "I have been teaching English as a second language for kids, teenagers and adults for 5 years. I can help you gain a stronger foundation in English before furthering your studies. I'm patient, will speak slowly and clearly so don't hesitate to ask for good understanding.",
-      "asset/img/sample/sample_4.jpg",
+      "asset/img/sample/tutor/sample_4.jpg",
       <String>["English"],
       <String, String>{
         "Interests": "Finance, gardening, travelling",
@@ -85,7 +85,7 @@ class TutorsSample {
       "Viet Nam",
       5,
       "Hi! My name is Kathy, I have been using English as a second language since I was young, I also have great experience in teaching and communicating with students. As a friendly and energetic person, I am always ready to help and accompany with you in your English learning journey. I can help you gain confidence in using English and enhance your speaking skill. I know that learning a new language can be full of obstacles; however, do not hesitate and come to my class, I will bring you a friendly classroom with slow speak, a good accent that offers you opportunities to speak more, practice more, learn more about English.",
-      "asset/img/sample/sample_5.jpg",
+      "asset/img/sample/tutor/sample_5.jpg",
       <String>["English", "Vietnamese"],
       <String, String>{
         "Interests":
@@ -109,7 +109,7 @@ class TutorsSample {
       "Philippines (the)",
       5,
       "I was a customer service sales executive for 3 years before I become an ESL teacher I am trained to deliver excellent service to my clients so I can help you with business English dealing with customers or in sales-related jobs and a lot more, I also love to teach beginner, intermediate and advance I speak slowly and clearly so that the student can easily follow my instructions and pronunciation. In my class, I want environment-friendly fun and engaging I have many activities designed to help your enthusiasm in learning the language. I'm so excited to meet you in one of my classes let us have fun while learning English. See you there.",
-      "asset/img/sample/sample_6.jfif",
+      "asset/img/sample/tutor/sample_6.jfif",
       <String>["English", "Vietnamese"],
       <String, String>{
         "Interests":
@@ -133,7 +133,7 @@ class TutorsSample {
       "Philippines (the)",
       5,
       "Hi! I am teacher Zaira and I am majoring in English so if you want to know more about grammar, and wants to be fluent in English, I can help you with that. I will help you build your confidence in English communication. Are you preparing for an upcoming exam? I can help you with that! Let's get a score with flying colors!",
-      "asset/img/sample/sample_7.jpg",
+      "asset/img/sample/tutor/sample_7.jpg",
       <String>["English", "Tagalog"],
       <String, String>{
         "Interests":
@@ -157,7 +157,7 @@ class TutorsSample {
       "Philippines (the)",
       5,
       "A teacher for almost a decade with lengthy teaching exposure with Vietnamese students, adult professionals, non -professionals, and executives. Teaching is a skill delivered with own style and creativity focused on YOU. YES, our lessons will be based on what really matters to you, what you want to learn in a short possible time. Take the opportunity to practice speaking English on daily basis with me with an assurance that speaking English will never be that engaging as you will experience now with us here in LetTutor.",
-      "asset/img/sample/sample_8.jpg",
+      "asset/img/sample/tutor/sample_8.jpg",
       <String>["Philippine Vernacular and English", "a litte of Arabic"],
       <String, String>{
         "Interests":
@@ -181,7 +181,7 @@ class TutorsSample {
       "Viet Nam",
       5,
       "I am a teacher of English and a lecturer at a college in HCMC. I can help you to communicate better in English and be more confident to use English. For me, to learn is to you, so you will be given many chances to practice English with you.",
-      "asset/img/sample/sample_9.jpg",
+      "asset/img/sample/tutor/sample_9.jpg",
       <String>["English", "Vietnamese", "Korea"],
       <String, String>{
         "Interests": "Watching English films and talking to friends from different countries",
@@ -204,7 +204,7 @@ class TutorsSample {
       "Philippines (the)",
       5,
       "While I've always longed to be an ESL teacher, the delight I had from assisting students' growth and development definitely encouraged my desire. I feel that my enthusiasm, good approach, and hands-on experience working with youngsters will make me a fantastic educator. I'm looking forward to a career that allows me to mold young minds and make a difference in the lives of the children in my community. Hope you will be one of them and See you soon.",
-      "asset/img/sample/sample_10.jpg",
+      "asset/img/sample/tutor/sample_10.jpg",
       <String>["English"],
       <String, String>{
         "Interests": "Reading books, eating, playing badminton and playing with kids",
@@ -227,7 +227,7 @@ class TutorsSample {
       "Philippines (the)",
       5,
       "I've been teaching English online to students of different languages and cultures for a year now, Chinese, Vietnamese, and Japanese. This makes me more flexible and patient in dealing with my students of different English levels. I can help you with grammar and pronunciation.",
-      "asset/img/sample/sample_11.jpg",
+      "asset/img/sample/tutor/sample_11.jpg",
       <String>["English"],
       <String, String>{
         "Interests":
@@ -251,7 +251,7 @@ class TutorsSample {
       "Philippines (the)",
       5,
       "Hi! I am Teacher Gail. I have been enjoying teaching English for 2 years now. I am an Artist, a Singer, and a Teacher at heart so I always love to share my knowledge and skills to everyone, may be it to kids, teenagers, or adults. Let us learn together and grow together.",
-      "asset/img/sample/sample_12.jpg",
+      "asset/img/sample/tutor/sample_12.jpg",
       <String>["English"],
       <String, String>{
         "Interests":
@@ -275,7 +275,7 @@ class TutorsSample {
       "Philippines (the)",
       5,
       "Hello! My name is Efren. I was born and raised in the Philippines where English is an official language. I am a licensed professional teacher and I've been teaching for thirty years now. I have taught in different schools in the Philippines and I had an opportunity to teach in China for nine years as an International Baccalaureate Diploma Programme (IB DP) Teacher in History and Economics and also for IB Middle Years Pogramme teaching Individuals and Societies - History, Economics, and Geography. I also became an ESL High School Teacher in the Philippines and also in China. I am a dynamic teacher thereby making my classes fun, creative, and interesting. I am providing my students learning with fun. I can teach their beginners vocabulary, grammar, pronunciation, as well as improving their speaking and listening communication skills. I love to engage myself with people of different nationalities and cultures because I want to know and be aware also of their cultures and at the same sharing my own Filipino culture with them. I love seeing my students become successful because I believe that their success is also my success. I would be very happy and honored to be a part of your learning the English language. I will always be your guide until you achieve your personal growth and personal goal, if you would permit me. Thank you very much.",
-      "asset/img/sample/sample_13.jpg",
+      "asset/img/sample/tutor/sample_13.jpg",
       <String>["English", "Mandarin", "Spanish", "Filipino"],
       <String, String>{
         "Interests": "watching/viewing war movies and documentary films on global issues, cooking, biking",

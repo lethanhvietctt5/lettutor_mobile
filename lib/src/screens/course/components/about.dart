@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:lettutor_mobile/src/models/course/course.dart';
 
 class AboutCourse extends StatelessWidget {
-  const AboutCourse({Key? key}) : super(key: key);
+  const AboutCourse({Key? key, required this.course}) : super(key: key);
+
+  final Course course;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +30,9 @@ class AboutCourse extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Text(
-                  "The English you need for your work and career",
-                  style: TextStyle(
+                Text(
+                  course.about,
+                  style: const TextStyle(
                     fontSize: 17,
                     color: Colors.black54,
                   ),
@@ -52,67 +55,47 @@ class AboutCourse extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 10),
-                  child: Column(
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                ListView.builder(
+                  itemCount: course.overview.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    String key = course.overview.keys.elementAt(index);
+                    return Container(
+                      margin: const EdgeInsets.only(bottom: 10),
+                      child: Column(
                         children: [
-                          const Icon(Icons.help_outline),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 70,
-                            margin: const EdgeInsets.only(left: 10, bottom: 10),
-                            child: const Text(
-                              "Why take this course",
-                              style: TextStyle(
-                                fontSize: 17,
-                                color: Colors.black,
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Icon(
+                                Icons.help_outline,
+                                color: Colors.red,
                               ),
+                              Container(
+                                width: MediaQuery.of(context).size.width - 70,
+                                margin: const EdgeInsets.only(left: 10, bottom: 10),
+                                child: Text(
+                                  key,
+                                  style: const TextStyle(
+                                    fontSize: 17,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          Text(
+                            course.overview[key] as String,
+                            style: const TextStyle(
+                              fontSize: 17,
+                              color: Colors.black54,
                             ),
-                          )
+                          ),
                         ],
                       ),
-                      const Text(
-                        "It can be intimidating to speak with a foreigner, no matter how much grammar and vocabulary you've mastered. If you have basic knowledge of English but have not spent much time speaking, this course will help you ease into your first English conversations.",
-                        style: TextStyle(
-                          fontSize: 17,
-                          color: Colors.black54,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 10),
-                  child: Column(
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Icon(Icons.help_outline),
-                          Container(
-                            width: MediaQuery.of(context).size.width - 70,
-                            margin: const EdgeInsets.only(left: 10, bottom: 10),
-                            child: const Text(
-                              "Why take this course",
-                              style: TextStyle(
-                                fontSize: 17,
-                                color: Colors.black,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                      const Text(
-                        "It can be intimidating to speak with a foreigner, no matter how much grammar and vocabulary you've mastered. If you have basic knowledge of English but have not spent much time speaking, this course will help you ease into your first English conversations.",
-                        style: TextStyle(
-                          fontSize: 17,
-                          color: Colors.black54,
-                        ),
-                      ),
-                    ],
-                  ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -132,9 +115,9 @@ class AboutCourse extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Text(
-                  "4",
-                  style: TextStyle(
+                Text(
+                  course.level,
+                  style: const TextStyle(
                     fontSize: 17,
                     color: Colors.black54,
                   ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/data/course_sample.dart';
+import 'package:lettutor_mobile/src/screens/courses_search_page/course_tab.dart';
 
 class CoursesSearchPage extends StatefulWidget {
   const CoursesSearchPage({Key? key}) : super(key: key);
@@ -63,89 +65,7 @@ class _CoursesSearchPageState extends State<CoursesSearchPage> with TickerProvid
             Expanded(
               child: TabBarView(
                 children: [
-                  SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 10, top: 10),
-                          child: TextField(
-                            style: TextStyle(fontSize: 12, color: Colors.grey[900]),
-                            decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.grey.shade200,
-                                prefixIcon: Container(
-                                  padding: const EdgeInsets.all(13),
-                                  child: SvgPicture.asset(
-                                    "asset/svg/ic_search.svg",
-                                    color: Colors.grey[600],
-                                  ),
-                                ),
-                                contentPadding: const EdgeInsets.only(left: 5, right: 5),
-                                border: const OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10),
-                                  ),
-                                ),
-                                hintText: "Search courses..."),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(context, "/course");
-                          },
-                          child: Card(
-                            elevation: 8,
-                            child: SizedBox(
-                              height: 300,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Image.asset(
-                                    "asset/img/course.png",
-                                    alignment: Alignment.center,
-                                    width: MediaQuery.of(context).size.width,
-                                    height: 210,
-                                    fit: BoxFit.cover,
-                                  ),
-                                  Container(
-                                    padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        const Text(
-                                          "Basic conversation Topics",
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                                        ),
-                                        Container(
-                                          margin: const EdgeInsets.only(top: 8),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                "Beginer",
-                                                style: TextStyle(fontSize: 15, color: Colors.grey[800]),
-                                              ),
-                                              Text(
-                                                "10 Lessons",
-                                                style: TextStyle(fontSize: 12, color: Colors.grey[800]),
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  const CourseTab(),
                   SingleChildScrollView(
                     child: Column(
                       children: [

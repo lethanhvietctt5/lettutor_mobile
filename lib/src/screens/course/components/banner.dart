@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile/src/models/course/course.dart';
 
 class BannerCourse extends StatelessWidget {
-  const BannerCourse({Key? key}) : super(key: key);
+  const BannerCourse({Key? key, required this.course}) : super(key: key);
+
+  final Course course;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +16,7 @@ class BannerCourse extends StatelessWidget {
           width: double.infinity,
           height: 200,
           child: Image.asset(
-            "asset/img/course.png",
+            course.image,
             fit: BoxFit.fitWidth,
           ),
         ),
@@ -63,16 +66,16 @@ class BannerCourse extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.only(right: 20),
                   child: Column(
-                    children: const [
+                    children: [
                       Text(
-                        "10",
-                        style: TextStyle(
+                        course.topics.length.toString(),
+                        style: const TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue,
                         ),
                       ),
-                      Text(
+                      const Text(
                         "topics",
                         style: TextStyle(
                           fontSize: 25,
@@ -83,16 +86,16 @@ class BannerCourse extends StatelessWidget {
                   ),
                 ),
                 Column(
-                  children: const [
+                  children: [
                     Text(
-                      "1",
-                      style: TextStyle(
+                      course.tutors.length.toString(),
+                      style: const TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),
                     ),
-                    Text(
+                    const Text(
                       "tutors",
                       style: TextStyle(
                         fontSize: 25,

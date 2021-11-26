@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
+import 'package:lettutor_mobile/src/models/course/course.dart';
 import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
 import 'package:lettutor_mobile/src/navigation.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
@@ -37,7 +38,11 @@ class MyApp extends StatelessWidget {
                 return TutorProfile(tutor: arg["tutor"] as Tutor);
               });
             case "/course":
-              return MaterialPageRoute(builder: (context) => const CoursePage());
+              return MaterialPageRoute(builder: (context) {
+                Map<String, Course> arg = settings.arguments as Map<String, Course>;
+                return CoursePage(course: arg["course"] as Course);
+              });
+
             case "/login":
               return MaterialPageRoute(builder: (context) => const LoginPage());
             case "/register":
