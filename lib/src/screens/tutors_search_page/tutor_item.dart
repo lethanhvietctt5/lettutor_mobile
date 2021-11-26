@@ -77,7 +77,7 @@ class TutorCardInfo extends StatelessWidget {
                             ],
                           ),
                           SizedBox(
-                            height: 35,
+                            height: 33,
                             child: ListView.builder(
                               itemCount: tutor.languages.length,
                               scrollDirection: Axis.horizontal,

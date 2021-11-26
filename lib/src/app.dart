@@ -14,6 +14,7 @@ import 'package:lettutor_mobile/src/screens/setting_page/session_history/session
 import 'package:lettutor_mobile/src/screens/signup_page/signup.dart';
 import 'package:lettutor_mobile/src/screens/tutor_profile/tutor_profile.dart';
 import 'package:provider/provider.dart';
+import 'package:device_preview/device_preview.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => UserProvider(),
       child: MaterialApp(
+        useInheritedMediaQuery: true,
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
         onGenerateRoute: (settings) {
           switch (settings.name) {

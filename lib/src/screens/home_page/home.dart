@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
           Container(
-            height: 200,
+            padding: const EdgeInsets.symmetric(vertical: 30),
             width: MediaQuery.of(context).size.width,
             color: const Color(0xff0040D6),
             child: Column(
@@ -27,6 +27,8 @@ class _HomePageState extends State<HomePage> {
                 const Text(
                   "Total lesson time is 11 hours 45 minutes",
                   style: TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.bold),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 8, bottom: 8),
@@ -66,11 +68,15 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  child: const Text(
-                    "Recommended Tutors",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.only(bottom: 2),
+                    child: const Text(
+                      "Recommended Tutors",
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                 ),
                 Row(

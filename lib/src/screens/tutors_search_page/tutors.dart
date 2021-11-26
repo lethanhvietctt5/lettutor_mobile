@@ -118,7 +118,7 @@ class _TutorsPageState extends State<TutorsPage> {
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-              height: 32,
+              height: 33,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: _generateChips().length,
