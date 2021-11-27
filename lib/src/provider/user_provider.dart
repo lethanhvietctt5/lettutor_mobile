@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:lettutor_mobile/src/data/tutors_sample.dart';
 import 'package:lettutor_mobile/src/models/user/booking.dart';
+import 'package:lettutor_mobile/src/models/user/session.dart';
 import 'package:lettutor_mobile/src/models/user/upcomming.dart';
 import 'package:lettutor_mobile/src/models/user/user.dart';
 import 'package:uuid/uuid.dart';
@@ -35,6 +36,26 @@ class UserProvider extends ChangeNotifier {
             tutor: TutorsSample.tutors[2],
             start: DateTime(2021, 12, 2, 6, 0),
             end: DateTime(2021, 12, 2, 7, 0)),
+      ],
+      sessionHistory: [
+        Session(
+          id: uuid.v4(),
+          tutor: TutorsSample.tutors[0],
+          start: DateTime(2021, 11, 30, 6, 0),
+          duration: 10000,
+        ),
+        Session(
+          id: uuid.v4(),
+          tutor: TutorsSample.tutors[1],
+          start: DateTime(2021, 12, 1, 6, 0),
+          duration: 10000,
+        ),
+        Session(
+          id: uuid.v4(),
+          tutor: TutorsSample.tutors[2],
+          start: DateTime(2021, 12, 2, 6, 0),
+          duration: 10000,
+        ),
       ],
       phone: "0902794731",
     );

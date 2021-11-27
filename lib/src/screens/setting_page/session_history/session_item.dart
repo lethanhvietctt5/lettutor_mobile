@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
+import 'package:lettutor_mobile/src/models/user/session.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 
 class SessionItem extends StatelessWidget {
-  const SessionItem({Key? key}) : super(key: key);
+  const SessionItem({Key? key, required this.session}) : super(key: key);
+
+  final Session session;
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +24,15 @@ class SessionItem extends StatelessWidget {
               children: [
                 Container(
                     margin: const EdgeInsets.only(right: 15),
-                    child: const AvatarCircle(width: 50, height: 50, source: "asset/img/profile.jpg")),
+                    child: AvatarCircle(width: 50, height: 50, source: session.tutor.image)),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       margin: const EdgeInsets.only(bottom: 5),
-                      child: const Text(
-                        "Lê Thành Việt",
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                      child: Text(
+                        session.tutor.fullName,
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                       ),
                     ),
                     Container(
@@ -40,9 +44,9 @@ class SessionItem extends StatelessWidget {
                             width: 20,
                             child: SvgPicture.asset("asset/svg/ic_calendar.svg", width: 15),
                           ),
-                          const Text(
-                            "06:30, 04/20/2021",
-                            style: TextStyle(fontSize: 13),
+                          Text(
+                            DateFormat.yMEd().add_jm().format(session.start),
+                            style: const TextStyle(fontSize: 13),
                           ),
                         ],
                       ),
@@ -56,9 +60,9 @@ class SessionItem extends StatelessWidget {
                             width: 20,
                             child: SvgPicture.asset("asset/svg/ic_clock.svg", width: 20),
                           ),
-                          const Text(
-                            "00:11:37",
-                            style: TextStyle(fontSize: 13),
+                          Text(
+                            Duration(seconds: session.duration).toString().split('.').first.padLeft(8, "0"),
+                            style: const TextStyle(fontSize: 13),
                           ),
                         ],
                       ),

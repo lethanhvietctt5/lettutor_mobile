@@ -1,5 +1,6 @@
 import 'package:lettutor_mobile/src/data/tutors_sample.dart';
 import 'package:lettutor_mobile/src/models/user/booking.dart';
+import 'package:lettutor_mobile/src/models/user/session.dart';
 import 'package:lettutor_mobile/src/models/user/upcomming.dart';
 import 'package:uuid/uuid.dart';
 
@@ -15,6 +16,7 @@ class User {
   List<Upcomming> upcomming = [];
   String topicToLearn;
   List<Booking> bookingHistory = [];
+  List<Session> sessionHistory = [];
 
   User({
     required this.email,
@@ -24,6 +26,7 @@ class User {
     required this.level,
     required this.topicToLearn,
     required this.bookingHistory,
+    required this.sessionHistory,
     this.phone = "",
   }) {
     upcomming.add(Upcomming(

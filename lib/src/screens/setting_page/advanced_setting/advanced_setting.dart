@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/provider/setting.dart';
+import 'package:provider/provider.dart';
 
-class AdvancedSettingPage extends StatefulWidget {
+class AdvancedSettingPage extends StatelessWidget {
   const AdvancedSettingPage({Key? key}) : super(key: key);
 
   @override
-  State<AdvancedSettingPage> createState() => _AdvancedSettingPageState();
-}
-
-class _AdvancedSettingPageState extends State<AdvancedSettingPage> {
-  int _selected = 0;
-
-  @override
   Widget build(BuildContext context) {
+    final setting = Provider.of<SettingProvider>(context);
+    List<String> lans = ["Tiếng Việt", "English"];
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -42,7 +40,7 @@ class _AdvancedSettingPageState extends State<AdvancedSettingPage> {
                   style: TextStyle(fontSize: 17),
                 ),
                 Text(
-                  _selected == 1 ? "English" : "Tiếng Việt",
+                  setting.language,
                   style: const TextStyle(fontSize: 14),
                 )
               ],
@@ -79,9 +77,7 @@ class _AdvancedSettingPageState extends State<AdvancedSettingPage> {
               ),
             ],
             onSelected: (int value) {
-              setState(() {
-                _selected = value;
-              });
+              setting.changeLanguage(lans[value]);
             },
           ),
         ),

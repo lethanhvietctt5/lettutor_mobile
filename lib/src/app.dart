@@ -4,6 +4,7 @@ import 'package:lettutor_mobile/src/models/course/course.dart';
 import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
 import 'package:lettutor_mobile/src/navigation.dart';
 import 'package:lettutor_mobile/src/provider/navigation_index.dart';
+import 'package:lettutor_mobile/src/provider/setting.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/screens/course/course.dart';
 import 'package:lettutor_mobile/src/screens/lesson/lesson.dart';
@@ -32,6 +33,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => NavigationIndex(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => SettingProvider(),
+        )
       ],
       child: MaterialApp(
         useInheritedMediaQuery: true,
