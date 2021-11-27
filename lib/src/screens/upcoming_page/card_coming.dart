@@ -8,17 +8,16 @@ import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class UpComingCard extends StatelessWidget {
-  const UpComingCard({Key? key, required this.upcomming, required this.index}) : super(key: key);
+  const UpComingCard({Key? key, required this.upcomming}) : super(key: key);
 
   final Upcomming upcomming;
-  final int index;
 
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
 
-    void cancelUpcoming(int index) {
-      userProvider.removeUpcomming(index);
+    void cancelUpcoming(String id) {
+      userProvider.removeUpcomming(id);
     }
 
     return Container(
@@ -92,13 +91,15 @@ class UpComingCard extends StatelessWidget {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        cancelUpcoming(index);
+                        cancelUpcoming(upcomming.id);
                         showTopSnackBar(
                           context,
                           const CustomSnackBar.success(
                             message: "Remove upcomming successful.",
                             backgroundColor: Colors.green,
                           ),
+                          showOutAnimationDuration: const Duration(milliseconds: 700),
+                          displayDuration: const Duration(milliseconds: 200),
                         );
                       },
                       child: Container(

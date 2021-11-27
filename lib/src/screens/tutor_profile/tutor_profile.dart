@@ -20,7 +20,7 @@ class TutorProfile extends StatelessWidget {
     final List<Course> courses = [];
     for (Course course in CoursesSample.courses) {
       for (Tutor tutor in course.tutors) {
-        if (tutor.fullName == this.tutor.fullName) {
+        if (tutor.id == this.tutor.id) {
           courses.add(course);
         }
       }

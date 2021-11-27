@@ -150,6 +150,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         showTopSnackBar(
                           context,
                           const CustomSnackBar.error(message: "Phone number is invalid."),
+                          showOutAnimationDuration: const Duration(milliseconds: 700),
+                          displayDuration: const Duration(milliseconds: 200),
                         );
                       } else {
                         userProvider.updateBirthday(_birthday);

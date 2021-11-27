@@ -5,7 +5,7 @@ import 'package:lettutor_mobile/src/models/user/user.dart';
 
 class UserProvider extends ChangeNotifier {
   User? user;
-  List<int> idFavorite = [];
+  List<String> idFavorite = [];
 
   UserProvider([this.user]) {
     user ??= User(
@@ -65,21 +65,21 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeUpcomming(int index) {
-    user!.upcomming.removeAt(index);
+  void removeUpcomming(String id) {
+    user!.upcomming.removeWhere((element) => element.id == id);
     notifyListeners();
   }
 
-  void addFavorite(int index) {
-    if (index < TutorsSample.tutors.length) {
-      idFavorite.add(index);
+  void addFavorite(String id) {
+    if (TutorsSample.tutors.where((tutor) => tutor.id == id).isNotEmpty) {
+      idFavorite.add(id);
       notifyListeners();
     }
   }
 
-  void removeFavorite(int index) {
-    if (index < TutorsSample.tutors.length) {
-      idFavorite.removeWhere((element) => element == index);
+  void removeFavorite(String id) {
+    if (TutorsSample.tutors.where((tutor) => tutor.id == id).isNotEmpty) {
+      idFavorite.removeWhere((element) => element == id);
       notifyListeners();
     }
   }

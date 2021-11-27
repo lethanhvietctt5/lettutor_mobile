@@ -21,7 +21,7 @@ class _UpcomingPageState extends State<UpcomingPage> {
         child: ListView.builder(
             itemCount: userUpcomming?.length ?? 0,
             itemBuilder: (context, index) {
-              return UpComingCard(upcomming: userUpcomming![index], index: index);
+              return UpComingCard(upcomming: userUpcomming![index]);
             },
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics()),

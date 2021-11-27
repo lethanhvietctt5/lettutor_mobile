@@ -1,8 +1,12 @@
 import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
+import 'package:uuid/uuid.dart';
+
+var uuid = const Uuid();
 
 class TutorsSample {
   static List<Tutor> tutors = [
     Tutor(
+      uuid.v4(),
       "Nhi Lam",
       "Viet Nam",
       5,
@@ -16,6 +20,7 @@ class TutorsSample {
       <String>["English for kids", "Conversational", "IELTS", "English for Business", "STARTERS", "MOVERS", "FLYERS"],
     ),
     Tutor(
+      uuid.v4(),
       "Jill Leano",
       "Philippines (the)",
       5,
@@ -31,6 +36,7 @@ class TutorsSample {
       <String>["English for kids", "Conversational", "IELTS", "English for Business"],
     ),
     Tutor(
+      uuid.v4(),
       "Maria Silkyza Galvez",
       "Philippines (the)",
       5,
@@ -45,6 +51,7 @@ class TutorsSample {
       <String>["English for kids", "Conversational", "IELTS", "English for Business", "MOVERS", "STARTERS"],
     ),
     Tutor(
+      uuid.v4(),
       "April Corpuz",
       "Philippines (the)",
       5,
@@ -59,6 +66,7 @@ class TutorsSample {
       <String>["English for kids", "Conversational", "IELTS", "English for Business", "MOVERS", "STARTERS"],
     ),
     Tutor(
+      uuid.v4(),
       "Hannah Nguyen",
       "Viet Nam",
       5,
@@ -81,6 +89,7 @@ class TutorsSample {
       ],
     ),
     Tutor(
+      uuid.v4(),
       "Kathy Huỳnh",
       "Viet Nam",
       5,
@@ -105,6 +114,7 @@ class TutorsSample {
       ],
     ),
     Tutor(
+      uuid.v4(),
       "Joan Gacer",
       "Philippines (the)",
       5,
@@ -129,6 +139,7 @@ class TutorsSample {
       ],
     ),
     Tutor(
+      uuid.v4(),
       "Chrizaira Nodado Senadre",
       "Philippines (the)",
       5,
@@ -153,6 +164,7 @@ class TutorsSample {
       ],
     ),
     Tutor(
+      uuid.v4(),
       "Darlyn Grace Sausa",
       "Philippines (the)",
       5,
@@ -177,6 +189,7 @@ class TutorsSample {
       ],
     ),
     Tutor(
+      uuid.v4(),
       "Giang Nguyen",
       "Viet Nam",
       5,
@@ -200,6 +213,7 @@ class TutorsSample {
       ],
     ),
     Tutor(
+      uuid.v4(),
       "Angelicalabraa",
       "Philippines (the)",
       5,
@@ -223,6 +237,7 @@ class TutorsSample {
       ],
     ),
     Tutor(
+      uuid.v4(),
       "Lora Mae Moreño",
       "Philippines (the)",
       5,
@@ -247,6 +262,7 @@ class TutorsSample {
       ],
     ),
     Tutor(
+      uuid.v4(),
       "Gail Carlos",
       "Philippines (the)",
       5,
@@ -271,6 +287,7 @@ class TutorsSample {
       ],
     ),
     Tutor(
+      uuid.v4(),
       "Basilla Efren Jr Saez",
       "Philippines (the)",
       5,

@@ -1,4 +1,5 @@
 class Tutor {
+  String id;
   String fullName;
   String country;
   int rate;
@@ -9,6 +10,7 @@ class Tutor {
   List<String> specialties;
 
   Tutor(
+    this.id,
     this.fullName,
     this.country,
     this.rate,

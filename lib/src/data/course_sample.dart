@@ -1,9 +1,13 @@
 import 'package:lettutor_mobile/src/data/tutors_sample.dart';
 import 'package:lettutor_mobile/src/models/course/course.dart';
+import 'package:uuid/uuid.dart';
+
+var uuid = const Uuid();
 
 class CoursesSample {
   static List<Course> courses = [
     Course(
+      id: uuid.v4(),
       title: "Basic Conversation Topics",
       image: "asset/img/sample/course/sample_1.png",
       about: "Gain confidence speaking about familiar topics",
@@ -29,6 +33,7 @@ class CoursesSample {
       tutors: [TutorsSample.tutors[0]],
     ),
     Course(
+      id: uuid.v4(),
       title: "Intermediate Conversation Topics",
       image: "asset/img/sample/course/sample_2.png",
       about: "Express your ideas and opinions",
@@ -54,6 +59,7 @@ class CoursesSample {
       tutors: [TutorsSample.tutors[1]],
     ),
     Course(
+      id: uuid.v4(),
       title: "Healthy Mind, Healthy Body",
       image: "asset/img/sample/course/sample_3.png",
       about: "Let's discuss the many aspects of living a long, happy life",
@@ -75,6 +81,7 @@ class CoursesSample {
       tutors: [TutorsSample.tutors[2]],
     ),
     Course(
+      id: uuid.v4(),
       title: "Movies and Television",
       image: "asset/img/sample/course/sample_4.png",
       about: "Let's discuss our preferences and habits surrounding movies and television shows",

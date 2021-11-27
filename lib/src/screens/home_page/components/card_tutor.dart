@@ -13,8 +13,7 @@ class CardTutor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
-    final index = TutorsSample.tutors.indexOf(tutor);
-    final exists = userProvider.idFavorite.where((element) => element == index);
+    final exists = userProvider.idFavorite.where((element) => element == tutor.id);
 
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
@@ -70,9 +69,9 @@ class CardTutor extends StatelessWidget {
                               InkWell(
                                 onTap: () {
                                   if (exists.isNotEmpty) {
-                                    userProvider.removeFavorite(index);
+                                    userProvider.removeFavorite(tutor.id);
                                   } else {
-                                    userProvider.addFavorite(index);
+                                    userProvider.addFavorite(tutor.id);
                                   }
                                 },
                                 child: exists.isEmpty

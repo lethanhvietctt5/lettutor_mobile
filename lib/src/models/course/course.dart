@@ -1,6 +1,7 @@
 import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
 
 class Course {
+  String id;
   List<String> topics;
   String about;
   String title;
@@ -10,6 +11,7 @@ class Course {
   Map<String, String> overview;
 
   Course({
+    required this.id,
     required this.topics,
     required this.about,
     required this.title,
