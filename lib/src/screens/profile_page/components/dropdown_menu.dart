@@ -39,6 +39,7 @@ class DropdownEdit extends StatelessWidget {
               elevation: 8,
               decoration: const InputDecoration(border: InputBorder.none),
               value: selectedItem,
+              isExpanded: true,
               items: items.map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,

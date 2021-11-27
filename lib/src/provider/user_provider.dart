@@ -12,8 +12,9 @@ class UserProvider extends ChangeNotifier {
       "lethanhviet7c@gmail.com",
       "Le Thanh Viet",
       DateTime(2000, 10, 22),
-      "Viet Nam",
+      "Vietnam",
       "Beginner",
+      "TOEIC",
       "0902794731",
     );
     notifyListeners();
@@ -48,6 +49,13 @@ class UserProvider extends ChangeNotifier {
   void updateLevel(String level) {
     if (user != null) {
       user!.level = level;
+      notifyListeners();
+    }
+  }
+
+  void updateTopicToLearn(String topic) {
+    if (user != null) {
+      user!.topicToLearn = topic;
       notifyListeners();
     }
   }

@@ -89,7 +89,7 @@ class _BookTabState extends State<BookTab> {
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, "/course");
+                    //Navigator.pushNamed(context, "/course");
                   },
                   child: Card(
                     elevation: 8,

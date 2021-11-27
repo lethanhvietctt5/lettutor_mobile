@@ -9,8 +9,9 @@ class User {
   String country;
   String level;
   List<Upcomming> upcomming = [];
+  String topicToLearn;
 
-  User(this._email, this._fullName, this.birthDate, this.country, this.level, [this.phone = ""]) {
+  User(this._email, this._fullName, this.birthDate, this.country, this.level, this.topicToLearn, [this.phone = ""]) {
     upcomming.add(Upcomming(
         tutor: TutorsSample.tutors[0],
         timeStart: DateTime(2021, 11, 25, 6, 0, 0),

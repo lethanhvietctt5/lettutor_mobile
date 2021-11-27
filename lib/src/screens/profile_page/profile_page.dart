@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile/src/models/user/countries.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/screens/profile_page/components/birthday.dart';
 import 'package:lettutor_mobile/src/screens/profile_page/components/dropdown_menu.dart';
@@ -20,6 +21,7 @@ class _ProfilePageState extends State<ProfilePage> {
   late String _phone;
   late String _country;
   late String _level;
+  late String _topicToLearn;
   bool isInit = true;
 
   void setBirthday(DateTime birthday) {
@@ -46,6 +48,12 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
+  void setTopicToLearn(String topicToLearn) {
+    setState(() {
+      _topicToLearn = topicToLearn;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
@@ -57,12 +65,14 @@ class _ProfilePageState extends State<ProfilePage> {
         _phone = user.phone;
         _country = user.country;
         _level = user.level;
+        _topicToLearn = user.topicToLearn;
         isInit = false;
       } else if (isInit) {
         _birthday = DateTime.now();
         _phone = "Not found";
         _country = "Afghanistan";
         _level = "Beginner";
+        _topicToLearn = "TOEIC";
         isInit = false;
       }
     });
@@ -117,17 +127,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 DropdownEdit(
                   title: "Country",
                   selectedItem: _country,
-                  items: const [
-                    "Afghanistan",
-                    "Albania",
-                    "Algeria",
-                    "Andorra",
-                    "Angola",
-                    "Antigua and Barbuda",
-                    "Argentina",
-                    "Armenia",
-                    "Australia",
-                  ],
+                  items: AllCountries.countries,
                   onChange: setCountry,
                 ),
                 DropdownEdit(
@@ -138,9 +138,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 DropdownEdit(
                   title: "Want to learn",
-                  selectedItem: "TOEIC",
+                  selectedItem: _topicToLearn,
                   items: const ["TOEIC", "IELTS", "TOEFL"],
-                  onChange: setLevel,
+                  onChange: setTopicToLearn,
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 20),
@@ -156,6 +156,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         userProvider.updatePhone(_phone);
                         userProvider.updateCountry(_country);
                         userProvider.updateLevel(_level);
+                        userProvider.updateTopicToLearn(_topicToLearn);
                         Navigator.pop(context);
                       }
                     },

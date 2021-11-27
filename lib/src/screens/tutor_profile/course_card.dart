@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile/src/models/course/course.dart';
 
 class CourseCard extends StatelessWidget {
-  const CourseCard(
-      {Key? key, required String title, required String source, required String level, required int lesson})
-      : _title = title,
-        _source = source,
-        _lesson = lesson,
-        _level = level,
-        super(key: key);
+  const CourseCard({Key? key, required this.course}) : super(key: key);
 
-  final String _title, _source, _level;
-  final int _lesson;
+  final Course course;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, "/course");
+        Navigator.pushNamed(context, "/course", arguments: {"course": course});
       },
       child: Card(
         elevation: 8,
@@ -27,7 +21,7 @@ class CourseCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset(
-                _source,
+                course.image,
                 height: 130,
               ),
               Container(
@@ -35,7 +29,7 @@ class CourseCard extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      _title,
+                      course.title,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
@@ -46,11 +40,11 @@ class CourseCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            _level,
+                            course.level,
                             style: TextStyle(fontSize: 12, color: Colors.grey[800]),
                           ),
                           Text(
-                            "$_lesson Lessons",
+                            "${course.topics.length} Lessons",
                             style: TextStyle(fontSize: 12, color: Colors.grey[800]),
                           ),
                         ],

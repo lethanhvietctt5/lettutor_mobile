@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/data/course_sample.dart';
+import 'package:lettutor_mobile/src/models/course/course.dart';
 import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
 import 'package:lettutor_mobile/src/screens/tutor_profile/course_card.dart';
 import 'package:lettutor_mobile/src/screens/tutor_profile/infor_chip.dart';
@@ -15,6 +17,15 @@ class TutorProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Course> courses = [];
+    for (Course course in CoursesSample.courses) {
+      for (Tutor tutor in course.tutors) {
+        if (tutor.fullName == this.tutor.fullName) {
+          courses.add(course);
+        }
+      }
+    }
+
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.white,
@@ -154,32 +165,30 @@ class TutorProfile extends StatelessWidget {
               const InforChips(
                   title: "Specialties",
                   chips: ["English for Business", "Conversational", "English for kids", "STARTERS", "MOVERS"]),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 6, top: 10),
-                    child: const Text(
-                      "Courses",
-                      style: TextStyle(fontSize: 17, color: Colors.blue),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 220,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 10,
-                      itemBuilder: (context, index) {
-                        return const CourseCard(
-                            title: "Basic conversation Topics",
-                            source: "asset/img/course.png",
-                            level: "Beginer",
-                            lesson: 10);
-                      },
-                    ),
-                  ),
-                ],
-              ),
+              courses.isNotEmpty
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 6, top: 10),
+                          child: const Text(
+                            "Courses",
+                            style: TextStyle(fontSize: 17, color: Colors.blue),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 220,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: courses.length,
+                            itemBuilder: (context, index) {
+                              return CourseCard(course: courses[index]);
+                            },
+                          ),
+                        ),
+                      ],
+                    )
+                  : const Text(""),
               Container(
                 margin: const EdgeInsets.only(bottom: 6, top: 15),
                 child: const Text(
