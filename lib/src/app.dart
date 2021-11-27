@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:lettutor_mobile/src/models/course/course.dart';
 import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
 import 'package:lettutor_mobile/src/navigation.dart';
+import 'package:lettutor_mobile/src/provider/navigation_index.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/screens/course/course.dart';
 import 'package:lettutor_mobile/src/screens/lesson/lesson.dart';
@@ -23,8 +24,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => UserProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => NavigationIndex(),
+        ),
+      ],
       child: MaterialApp(
         useInheritedMediaQuery: true,
         locale: DevicePreview.locale(context),

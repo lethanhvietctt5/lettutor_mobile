@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
 
-class PhoneEdition extends StatelessWidget {
-  const PhoneEdition({Key? key}) : super(key: key);
+class PhoneEdition extends StatefulWidget {
+  const PhoneEdition({Key? key, required this.changePhone, required this.phone}) : super(key: key);
+  final Function(String) changePhone;
+  final String phone;
+
+  @override
+  State<PhoneEdition> createState() => _PhoneEditionState();
+}
+
+class _PhoneEditionState extends State<PhoneEdition> {
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.text = widget.phone;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,23 +34,26 @@ class PhoneEdition extends StatelessWidget {
           ),
           TextField(
             style: TextStyle(fontSize: 17, color: Colors.grey[900]),
+            controller: _controller,
+            onChanged: (value) => widget.changePhone(value),
             decoration: const InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                contentPadding: EdgeInsets.only(left: 15, right: 15),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black26, width: 0.3),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black26, width: 0.3),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black26, width: 0.3),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-                hintText: "Phone number"),
+              filled: true,
+              fillColor: Colors.white,
+              contentPadding: EdgeInsets.only(left: 15, right: 15),
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black26, width: 0.3),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black26, width: 0.3),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black26, width: 0.3),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              hintText: "Phone number",
+            ),
           )
         ],
       ),

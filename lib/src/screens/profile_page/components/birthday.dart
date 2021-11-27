@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 
 class BirthdayEdition extends StatefulWidget {
-  const BirthdayEdition({Key? key}) : super(key: key);
+  const BirthdayEdition({
+    Key? key,
+    required this.setBirthday,
+    required this.birthday,
+  }) : super(key: key);
+
+  final Function(DateTime) setBirthday;
+  final DateTime birthday;
 
   @override
   State<BirthdayEdition> createState() => _BirthdayEditionState();
 }
 
 class _BirthdayEditionState extends State<BirthdayEdition> {
-  DateTime _birthday = DateTime(2000);
-
   void _selectDate(BuildContext context) async {
     DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: _birthday, // Refer step 1
+      initialDate: widget.birthday, // Refer step 1
       firstDate: DateTime(1900),
       lastDate: DateTime(2022),
     );
-    if (picked != null && picked != _birthday) {
-      setState(() {
-        _birthday = picked;
-      });
+    if (picked != null && picked != widget.birthday) {
+      widget.setBirthday(picked);
     }
   }
 
@@ -51,7 +54,7 @@ class _BirthdayEditionState extends State<BirthdayEdition> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    stringFormatDateTime(_birthday),
+                    stringFormatDateTime(widget.birthday),
                     style: const TextStyle(fontSize: 17),
                   ),
                 ],

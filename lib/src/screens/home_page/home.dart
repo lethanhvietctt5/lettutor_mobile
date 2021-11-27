@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/painting.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/provider/navigation_index.dart';
 import 'package:lettutor_mobile/src/screens/home_page/components/recommend_tutor.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,6 +16,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final navigationIndex = Provider.of<NavigationIndex>(context);
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -79,17 +83,22 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                Row(
-                  children: [
-                    const Text(
-                      "See all",
-                      style: TextStyle(color: Colors.blue),
-                    ),
-                    SvgPicture.asset(
-                      "asset/svg/ic_next.svg",
-                      color: Colors.blue,
-                    )
-                  ],
+                InkWell(
+                  onTap: () {
+                    navigationIndex.index = 3;
+                  },
+                  child: Row(
+                    children: [
+                      const Text(
+                        "See all",
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                      SvgPicture.asset(
+                        "asset/svg/ic_next.svg",
+                        color: Colors.blue,
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),

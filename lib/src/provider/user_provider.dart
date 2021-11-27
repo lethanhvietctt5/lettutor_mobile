@@ -8,14 +8,48 @@ class UserProvider extends ChangeNotifier {
   List<int> idFavorite = [];
 
   UserProvider([this.user]) {
-    user ??=
-        User("lethanhviet7c@gmail.com", "Le Thanh Viet", DateTime(2000, 10, 22), "Viet Nam", "Beginner", "0902794731");
+    user ??= User(
+      "lethanhviet7c@gmail.com",
+      "Le Thanh Viet",
+      DateTime(2000, 10, 22),
+      "Viet Nam",
+      "Beginner",
+      "0902794731",
+    );
     notifyListeners();
   }
 
   void updateUser(User user) {
     this.user = user;
     notifyListeners();
+  }
+
+  void updateBirthday(DateTime birthday) {
+    if (user != null) {
+      user!.birthDate = birthday;
+      notifyListeners();
+    }
+  }
+
+  void updatePhone(String phone) {
+    if (user != null) {
+      user!.phone = phone;
+      notifyListeners();
+    }
+  }
+
+  void updateCountry(String country) {
+    if (user != null) {
+      user!.country = country;
+      notifyListeners();
+    }
+  }
+
+  void updateLevel(String level) {
+    if (user != null) {
+      user!.level = level;
+      notifyListeners();
+    }
   }
 
   void addUpcomming(Upcomming upcomming) {

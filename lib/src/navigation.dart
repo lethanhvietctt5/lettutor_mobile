@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:lettutor_mobile/src/provider/navigation_index.dart';
 import 'package:lettutor_mobile/src/screens/courses_search_page/courses.dart';
 import 'package:lettutor_mobile/src/screens/home_page/home.dart';
 import 'package:lettutor_mobile/src/widgets/menu_item.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/setting.dart';
 import 'package:lettutor_mobile/src/screens/tutors_search_page/tutors.dart';
 import 'package:lettutor_mobile/src/screens/upcoming_page/upcoming.dart';
+import 'package:provider/provider.dart';
 
 class NavigationBar extends StatefulWidget {
   const NavigationBar({Key? key}) : super(key: key);
@@ -25,16 +27,10 @@ class _NavigationBarState extends State<NavigationBar> {
     const SettingPage()
   ];
 
-  int _selectedIndex = 0;
-
-  void _onTap(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final navigationIndex = Provider.of<NavigationIndex>(context);
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -44,10 +40,10 @@ class _NavigationBarState extends State<NavigationBar> {
           backgroundColor: Colors.white,
           iconTheme: const IconThemeData(color: Colors.blue),
           title: Text(
-            titles[_selectedIndex],
+            titles[navigationIndex.index],
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
           ),
-          actions: _selectedIndex == 0
+          actions: navigationIndex.index == 0
               ? [
                   Container(
                     margin: const EdgeInsets.only(right: 20),
@@ -71,14 +67,16 @@ class _NavigationBarState extends State<NavigationBar> {
               : [],
         ),
         backgroundColor: Colors.white,
-        body: pages[_selectedIndex],
+        body: pages[navigationIndex.index],
         bottomNavigationBar: BottomNavigationBar(
           selectedFontSize: 12,
           unselectedFontSize: 12,
           type: BottomNavigationBarType.fixed,
-          onTap: _onTap,
+          onTap: (int value) {
+            navigationIndex.index = value;
+          },
           elevation: 20,
-          currentIndex: _selectedIndex,
+          currentIndex: navigationIndex.index,
           items: [
             const MenuItem(sourceIcon: "asset/svg/ic_home.svg", label: "Home").generateItem(context),
             const MenuItem(sourceIcon: "asset/svg/ic_course.svg", label: "Courses").generateItem(context),

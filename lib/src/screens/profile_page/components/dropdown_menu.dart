@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
 class DropdownEdit extends StatelessWidget {
-  const DropdownEdit({Key? key, required String title, required String selectedItem, required List<String> items})
-      : _title = title,
-        _selectedItem = selectedItem,
-        _items = items,
-        super(key: key);
+  const DropdownEdit({
+    Key? key,
+    required this.title,
+    required this.selectedItem,
+    required this.items,
+    required this.onChange,
+  }) : super(key: key);
 
-  final String _title, _selectedItem;
-  final List<String> _items;
+  final String title, selectedItem;
+  final List<String> items;
+  final Function(String) onChange;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,7 +23,7 @@ class DropdownEdit extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(bottom: 7, left: 5),
             child: Text(
-              _title,
+              title,
               style: const TextStyle(fontSize: 17),
             ),
           ),
@@ -34,14 +38,18 @@ class DropdownEdit extends StatelessWidget {
             child: DropdownButtonFormField<String>(
               elevation: 8,
               decoration: const InputDecoration(border: InputBorder.none),
-              value: _selectedItem,
-              items: _items.map((String value) {
+              value: selectedItem,
+              items: items.map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
                 );
               }).toList(),
-              onChanged: (_) {},
+              onChanged: (String? value) {
+                if (value is String) {
+                  onChange(value);
+                }
+              },
             ),
           ),
         ],

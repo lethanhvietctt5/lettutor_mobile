@@ -1,14 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/screens/profile_page/components/birthday.dart';
 import 'package:lettutor_mobile/src/screens/profile_page/components/dropdown_menu.dart';
 import 'package:lettutor_mobile/src/screens/profile_page/components/phone.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
+import 'package:provider/provider.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  late DateTime _birthday;
+  late String _phone;
+  late String _country;
+  late String _level;
+  bool isInit = true;
+
+  void setBirthday(DateTime birthday) {
+    setState(() {
+      _birthday = birthday;
+    });
+  }
+
+  void setPhone(String phone) {
+    setState(() {
+      _phone = phone;
+    });
+  }
+
+  void setCountry(String country) {
+    setState(() {
+      _country = country;
+    });
+  }
+
+  void setLevel(String level) {
+    setState(() {
+      _level = level;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
+    final user = userProvider.user;
+
+    setState(() {
+      if (user != null && isInit) {
+        _birthday = user.birthDate;
+        _phone = user.phone;
+        _country = user.country;
+        _level = user.level;
+        isInit = false;
+      } else if (isInit) {
+        _birthday = DateTime.now();
+        _phone = "Not found";
+        _country = "Afghanistan";
+        _level = "Beginner";
+        isInit = false;
+      }
+    });
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -38,7 +96,7 @@ class ProfilePage extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.only(bottom: 10),
                   child: Text(
-                    "Lê Thành Việt",
+                    user!.fullName,
                     style: TextStyle(
                       fontSize: 19,
                       color: Colors.grey[800],
@@ -47,19 +105,19 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "lethanhviet7c@gmail.com",
+                  user.email,
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey[800],
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const BirthdayEdition(),
-                const PhoneEdition(),
-                const DropdownEdit(
+                BirthdayEdition(setBirthday: setBirthday, birthday: _birthday),
+                PhoneEdition(changePhone: setPhone, phone: _phone),
+                DropdownEdit(
                   title: "Country",
-                  selectedItem: "Afghanistan",
-                  items: [
+                  selectedItem: _country,
+                  items: const [
                     "Afghanistan",
                     "Albania",
                     "Algeria",
@@ -70,22 +128,36 @@ class ProfilePage extends StatelessWidget {
                     "Armenia",
                     "Australia",
                   ],
+                  onChange: setCountry,
                 ),
-                const DropdownEdit(
+                DropdownEdit(
                   title: "My Level",
-                  selectedItem: "Beginner",
-                  items: ["Beginner", "Immediate", "Advanced"],
+                  selectedItem: _level,
+                  items: const ["Beginner", "Immediate", "Advanced"],
+                  onChange: setLevel,
                 ),
-                const DropdownEdit(
+                DropdownEdit(
                   title: "Want to learn",
                   selectedItem: "TOEIC",
-                  items: ["TOEIC", "IELTS", "TOEFL"],
+                  items: const ["TOEIC", "IELTS", "TOEFL"],
+                  onChange: setLevel,
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 20),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      if (_phone.isEmpty) {
+                        showTopSnackBar(
+                          context,
+                          const CustomSnackBar.error(message: "Phone number is invalid."),
+                        );
+                      } else {
+                        userProvider.updateBirthday(_birthday);
+                        userProvider.updatePhone(_phone);
+                        userProvider.updateCountry(_country);
+                        userProvider.updateLevel(_level);
+                        Navigator.pop(context);
+                      }
                     },
                     child: Container(
                       padding: const EdgeInsets.only(top: 13, bottom: 13),
