@@ -1,20 +1,31 @@
 import 'package:lettutor_mobile/src/data/tutors_sample.dart';
+import 'package:lettutor_mobile/src/models/user/booking.dart';
 import 'package:lettutor_mobile/src/models/user/upcomming.dart';
 import 'package:uuid/uuid.dart';
 
 var uuid = const Uuid();
 
 class User {
-  final String _email;
-  final String _fullName;
-  DateTime birthDate;
+  final String email;
+  final String fullName;
+  DateTime birthDay;
   String phone;
   String country;
   String level;
   List<Upcomming> upcomming = [];
   String topicToLearn;
+  List<Booking> bookingHistory = [];
 
-  User(this._email, this._fullName, this.birthDate, this.country, this.level, this.topicToLearn, [this.phone = ""]) {
+  User({
+    required this.email,
+    required this.fullName,
+    required this.birthDay,
+    required this.country,
+    required this.level,
+    required this.topicToLearn,
+    required this.bookingHistory,
+    this.phone = "",
+  }) {
     upcomming.add(Upcomming(
         id: uuid.v4(),
         tutor: TutorsSample.tutors[0],
@@ -27,7 +38,4 @@ class User {
         timeStart: DateTime(2021, 11, 26, 6, 0, 0),
         timeEnd: DateTime(2021, 11, 26, 7, 0, 0)));
   }
-
-  String get email => _email;
-  String get fullName => _fullName;
 }

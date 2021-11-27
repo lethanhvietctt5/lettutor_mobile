@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:lettutor_mobile/src/data/tutors_sample.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 
 class BookingItem extends StatelessWidget {
-  const BookingItem({Key? key}) : super(key: key);
+  const BookingItem({
+    Key? key,
+    required this.idTutor,
+    required this.start,
+    required this.end,
+  }) : super(key: key);
+  final String idTutor;
+  final DateTime start;
+  final DateTime end;
 
   @override
   Widget build(BuildContext context) {
+    final tutor = TutorsSample.tutors.firstWhere((tutor) => tutor.id == idTutor);
     return Card(
       elevation: 3,
       child: Container(
@@ -16,29 +27,29 @@ class BookingItem extends StatelessWidget {
           children: [
             Container(
                 margin: const EdgeInsets.only(right: 15),
-                child: const AvatarCircle(width: 50, height: 50, source: "asset/img/profile.jpg")),
+                child: AvatarCircle(width: 50, height: 50, source: tutor.image)),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   margin: const EdgeInsets.only(bottom: 5),
-                  child: const Text(
-                    "Le Thanh Viet",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  child: Text(
+                    tutor.fullName,
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                 ),
                 Row(
                   children: <Widget>[
-                    const Text(
-                      "2021-10-07",
-                      style: TextStyle(fontSize: 13),
+                    Text(
+                      DateFormat.yMEd().format(start),
+                      style: const TextStyle(fontSize: 13),
                     ),
                     Container(
                       padding: const EdgeInsets.all(3),
                       margin: const EdgeInsets.only(left: 5, right: 5),
-                      child: const Text(
-                        "22:00",
-                        style: TextStyle(fontSize: 10, color: Colors.blue),
+                      child: Text(
+                        DateFormat.Hm().format(start),
+                        style: const TextStyle(fontSize: 10, color: Colors.blue),
                       ),
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.blue, width: 1),
@@ -49,9 +60,9 @@ class BookingItem extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(3),
                       margin: const EdgeInsets.only(left: 5, right: 5),
-                      child: const Text(
-                        "22:25",
-                        style: TextStyle(fontSize: 10, color: Colors.orange),
+                      child: Text(
+                        DateFormat.Hm().format(end),
+                        style: const TextStyle(fontSize: 10, color: Colors.orange),
                       ),
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.orange, width: 1),

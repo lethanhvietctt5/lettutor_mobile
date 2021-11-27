@@ -1,12 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/booking_history/booking_item.dart';
+import 'package:provider/provider.dart';
 
 class BookingHistoryPage extends StatelessWidget {
   const BookingHistoryPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final bookingHistory = Provider.of<UserProvider>(context).user.bookingHistory;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -25,8 +29,16 @@ class BookingHistoryPage extends StatelessWidget {
           ),
         ),
         body: Container(
-            margin: const EdgeInsets.only(left: 15, right: 15),
-            child: ListView.builder(itemCount: 20, itemBuilder: (context, index) => const BookingItem())),
+          margin: const EdgeInsets.only(left: 15, right: 15),
+          child: ListView.builder(
+            itemCount: bookingHistory.length,
+            itemBuilder: (context, index) => BookingItem(
+              idTutor: bookingHistory[index].tutor.id,
+              start: bookingHistory[index].start,
+              end: bookingHistory[index].end,
+            ),
+          ),
+        ),
       ),
     );
   }

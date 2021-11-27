@@ -13,15 +13,15 @@ class UpcomingPage extends StatefulWidget {
 class _UpcomingPageState extends State<UpcomingPage> {
   @override
   Widget build(BuildContext context) {
-    final userUpcomming = Provider.of<UserProvider>(context).user?.upcomming;
+    final userUpcomming = Provider.of<UserProvider>(context).user.upcomming;
 
     return SingleChildScrollView(
       child: Container(
         margin: const EdgeInsets.fromLTRB(15, 10, 15, 10),
         child: ListView.builder(
-            itemCount: userUpcomming?.length ?? 0,
+            itemCount: userUpcomming.length,
             itemBuilder: (context, index) {
-              return UpComingCard(upcomming: userUpcomming![index]);
+              return UpComingCard(upcomming: userUpcomming[index]);
             },
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics()),

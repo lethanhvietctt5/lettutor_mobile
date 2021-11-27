@@ -60,19 +60,12 @@ class _ProfilePageState extends State<ProfilePage> {
     final user = userProvider.user;
 
     setState(() {
-      if (user != null && isInit) {
-        _birthday = user.birthDate;
+      if (isInit) {
+        _birthday = user.birthDay;
         _phone = user.phone;
         _country = user.country;
         _level = user.level;
         _topicToLearn = user.topicToLearn;
-        isInit = false;
-      } else if (isInit) {
-        _birthday = DateTime.now();
-        _phone = "Not found";
-        _country = "Afghanistan";
-        _level = "Beginner";
-        _topicToLearn = "TOEIC";
         isInit = false;
       }
     });
@@ -106,7 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 Container(
                   margin: const EdgeInsets.only(bottom: 10),
                   child: Text(
-                    user!.fullName,
+                    user.fullName,
                     style: TextStyle(
                       fontSize: 19,
                       color: Colors.grey[800],

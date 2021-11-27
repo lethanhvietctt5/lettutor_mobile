@@ -1,21 +1,42 @@
 import 'package:flutter/cupertino.dart';
 import 'package:lettutor_mobile/src/data/tutors_sample.dart';
+import 'package:lettutor_mobile/src/models/user/booking.dart';
 import 'package:lettutor_mobile/src/models/user/upcomming.dart';
 import 'package:lettutor_mobile/src/models/user/user.dart';
+import 'package:uuid/uuid.dart';
+
+var uuid = const Uuid();
 
 class UserProvider extends ChangeNotifier {
-  User? user;
+  late User user;
   List<String> idFavorite = [];
 
-  UserProvider([this.user]) {
-    user ??= User(
-      "lethanhviet7c@gmail.com",
-      "Le Thanh Viet",
-      DateTime(2000, 10, 22),
-      "Vietnam",
-      "Beginner",
-      "TOEIC",
-      "0902794731",
+  UserProvider() {
+    user = User(
+      email: "lethanhviet7c@gmail.com",
+      fullName: "Le Thanh Viet",
+      birthDay: DateTime(2000, 10, 22),
+      country: "Vietnam",
+      level: "Beginner",
+      topicToLearn: "TOEIC",
+      bookingHistory: [
+        Booking(
+            id: uuid.v4(),
+            tutor: TutorsSample.tutors[0],
+            start: DateTime(2021, 11, 30, 6, 0),
+            end: DateTime(2021, 11, 30, 7, 0)),
+        Booking(
+            id: uuid.v4(),
+            tutor: TutorsSample.tutors[1],
+            start: DateTime(2021, 12, 1, 6, 0),
+            end: DateTime(2021, 12, 1, 7, 0)),
+        Booking(
+            id: uuid.v4(),
+            tutor: TutorsSample.tutors[2],
+            start: DateTime(2021, 12, 2, 6, 0),
+            end: DateTime(2021, 12, 2, 7, 0)),
+      ],
+      phone: "0902794731",
     );
     notifyListeners();
   }
@@ -26,47 +47,37 @@ class UserProvider extends ChangeNotifier {
   }
 
   void updateBirthday(DateTime birthday) {
-    if (user != null) {
-      user!.birthDate = birthday;
-      notifyListeners();
-    }
+    user.birthDay = birthday;
+    notifyListeners();
   }
 
   void updatePhone(String phone) {
-    if (user != null) {
-      user!.phone = phone;
-      notifyListeners();
-    }
+    user.phone = phone;
+    notifyListeners();
   }
 
   void updateCountry(String country) {
-    if (user != null) {
-      user!.country = country;
-      notifyListeners();
-    }
+    user.country = country;
+    notifyListeners();
   }
 
   void updateLevel(String level) {
-    if (user != null) {
-      user!.level = level;
-      notifyListeners();
-    }
+    user.level = level;
+    notifyListeners();
   }
 
   void updateTopicToLearn(String topic) {
-    if (user != null) {
-      user!.topicToLearn = topic;
-      notifyListeners();
-    }
+    user.topicToLearn = topic;
+    notifyListeners();
   }
 
   void addUpcomming(Upcomming upcomming) {
-    user!.upcomming.add(upcomming);
+    user.upcomming.add(upcomming);
     notifyListeners();
   }
 
   void removeUpcomming(String id) {
-    user!.upcomming.removeWhere((element) => element.id == id);
+    user.upcomming.removeWhere((element) => element.id == id);
     notifyListeners();
   }
 
