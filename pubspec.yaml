@@ -21,6 +21,7 @@ dependencies:
   woozy_search: ^2.0.3
   intl: ^0.17.0
   uuid: ^3.0.5
+  flutter_rating_bar: ^4.0.0
 
 dev_dependencies:
   flutter_test:
@@ -38,6 +39,7 @@ flutter:
     - asset/img/sample/tutor/
     - asset/img/sample/course/
     - asset/img/sample/book/
+    - asset/img/sample/user/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor_mobile/src/models/user/session.dart';
+import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
+import 'package:lettutor_mobile/src/routes/route.dart' as routes;
+import 'package:provider/provider.dart';
 
 class SessionItem extends StatelessWidget {
   const SessionItem({Key? key, required this.session}) : super(key: key);
@@ -11,6 +14,13 @@ class SessionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context).user;
+
+    bool checkFeebacked() {
+      if (session.tutor.feedbacks.where((element) => element.userId == user.id).isNotEmpty) return true;
+      return false;
+    }
+
     return Card(
       elevation: 6,
       child: Column(
@@ -76,10 +86,18 @@ class SessionItem extends StatelessWidget {
                             width: 20,
                             child: SvgPicture.asset("asset/svg/ic_star2.svg", width: 20),
                           ),
-                          const Text(
-                            "Not feedback yet",
-                            style: TextStyle(fontSize: 13),
-                          ),
+                          checkFeebacked() == false
+                              ? const Text(
+                                  "Not feedback yet",
+                                  style: TextStyle(fontSize: 13),
+                                )
+                              : Text(
+                                  session.tutor.feedbacks
+                                      .where((element) => element.userId == user.id)
+                                      .first
+                                      .rating
+                                      .toString(),
+                                )
                         ],
                       ),
                     )
@@ -93,21 +111,26 @@ class SessionItem extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: const Color(0xff0070F3)),
-                        color: const Color(0xff0070F3),
-                        borderRadius:
-                            const BorderRadius.only(topLeft: Radius.circular(4), bottomLeft: Radius.circular(4))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const <Widget>[
-                        Text(
-                          "Give Feedback",
-                          style: TextStyle(color: Colors.white),
-                        )
-                      ],
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, routes.feedbackPage, arguments: {"tutor": session.tutor});
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: const Color(0xff0070F3)),
+                          color: const Color(0xff0070F3),
+                          borderRadius:
+                              const BorderRadius.only(topLeft: Radius.circular(4), bottomLeft: Radius.circular(4))),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const <Widget>[
+                          Text(
+                            "Give Feedback",
+                            style: TextStyle(color: Colors.white),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),

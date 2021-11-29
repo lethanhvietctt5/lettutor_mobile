@@ -64,7 +64,7 @@ class CardTutor extends StatelessWidget {
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
-                                    const RateStars(),
+                                    RateStars(count: tutor.getTotalStar()),
                                   ],
                                 ),
                               ),

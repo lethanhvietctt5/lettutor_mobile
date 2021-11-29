@@ -1,3 +1,4 @@
+import 'package:lettutor_mobile/src/models/tutor/feedback.dart';
 import 'package:lettutor_mobile/src/models/tutor/schedule.dart';
 
 class Tutor {
@@ -11,6 +12,7 @@ class Tutor {
   Map<String, String> details;
   List<String> specialties;
   List<Schedule> dateAvailable;
+  List<FeedbackRate> feedbacks = [];
 
   Tutor(
     this.id,
@@ -22,8 +24,9 @@ class Tutor {
     this.languages,
     this.details,
     this.specialties,
-    this.dateAvailable,
-  );
+    this.dateAvailable, [
+    this.feedbacks = const [],
+  ]);
 
   void setReserved(String id, bool reserved) {
     for (var i = 0; i < dateAvailable.length; i++) {
@@ -31,5 +34,17 @@ class Tutor {
         dateAvailable[i].isReserved = reserved;
       }
     }
+  }
+
+  void addFeedback(FeedbackRate feedback) {
+    feedbacks.add(feedback);
+  }
+
+  int getTotalStar() {
+    int total = 0;
+    for (var i = 0; i < feedbacks.length; i++) {
+      total += feedbacks[i].rating;
+    }
+    return (total / feedbacks.length).round();
   }
 }

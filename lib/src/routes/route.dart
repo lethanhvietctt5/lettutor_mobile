@@ -4,13 +4,14 @@ import 'package:lettutor_mobile/src/models/course/course.dart';
 import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
 import 'package:lettutor_mobile/src/navigation.dart';
 import 'package:lettutor_mobile/src/screens/course/course.dart';
+import 'package:lettutor_mobile/src/screens/feedback_page.dart/feedback_page.dart';
 import 'package:lettutor_mobile/src/screens/lesson/lesson.dart';
 import 'package:lettutor_mobile/src/screens/login_page/login.dart';
 import 'package:lettutor_mobile/src/screens/profile_page/profile_page.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/advanced_setting/advanced_setting.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/booking_history/booking_history.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/session_history/session_history.dart';
-import 'package:lettutor_mobile/src/screens/signup_page/signup.dart';
+import 'package:lettutor_mobile/src/screens/register_page/register.dart';
 import 'package:lettutor_mobile/src/screens/tutor_profile/tutor_profile.dart';
 
 const String loginPage = 'login';
@@ -23,6 +24,7 @@ const String lessonPage = 'lesson';
 const String bookingHistoryPage = 'bookingHistory';
 const String sessionHistoryPage = 'sessionHistory';
 const String advancedSettingPage = 'advancedSetting';
+const String feedbackPage = 'feedback';
 
 Route<dynamic> controller(RouteSettings settings) {
   switch (settings.name) {
@@ -31,10 +33,17 @@ Route<dynamic> controller(RouteSettings settings) {
         Map<String, Tutor> arg = settings.arguments as Map<String, Tutor>;
         return TutorProfile(tutor: arg["tutor"] as Tutor);
       });
+
     case coursePage:
       return MaterialPageRoute(builder: (context) {
         Map<String, Course> arg = settings.arguments as Map<String, Course>;
         return CoursePage(course: arg["course"] as Course);
+      });
+
+    case feedbackPage:
+      return MaterialPageRoute(builder: (context) {
+        Map<String, Tutor> arg = settings.arguments as Map<String, Tutor>;
+        return FeedbackPage(tutor: arg["tutor"] as Tutor);
       });
 
     case loginPage:
@@ -53,6 +62,7 @@ Route<dynamic> controller(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const SessionHistoryPage());
     case advancedSettingPage:
       return MaterialPageRoute(builder: (context) => const AdvancedSettingPage());
+
     default:
       return MaterialPageRoute(builder: (context) => const LoginPage());
   }

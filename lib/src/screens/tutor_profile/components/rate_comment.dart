@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:lettutor_mobile/src/data/user_sample.dart';
+import 'package:lettutor_mobile/src/models/tutor/feedback.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 import 'package:lettutor_mobile/src/widgets/rate_stars.dart';
 
 class RateAndComment extends StatelessWidget {
-  const RateAndComment({Key? key, required String source, required String name, required String time, String comment = ""})
-      : _source = source,
-        _name = name,
-        _time = time,
-        _comment = comment,
-        super(key: key);
+  const RateAndComment({Key? key, required this.feedback}) : super(key: key);
 
-  final String _source, _name, _time;
-  final String _comment;
+  final FeedbackRate feedback;
 
   @override
   Widget build(BuildContext context) {
+    final user = UsersSample.users.where((user) => user.id == feedback.userId).first;
+
     return Card(
       elevation: 8,
       child: Container(
@@ -25,27 +24,31 @@ class RateAndComment extends StatelessWidget {
             Row(
               //crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(margin: const EdgeInsets.only(right: 10), child: AvatarCircle(width: 40, height: 40, source: _source)),
+                Container(
+                    margin: const EdgeInsets.only(right: 10),
+                    child: AvatarCircle(width: 40, height: 40, source: user.image)),
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        _name,
+                        user.fullName,
                         style: const TextStyle(fontSize: 14),
                       ),
-                      const RateStars()
+                      RateStars(count: feedback.rating)
                     ],
                   ),
                 ),
               ],
             ),
-            Container(margin: const EdgeInsets.only(top: 10, bottom: 10), child: _comment.isNotEmpty ? Text(_comment) : null),
+            Container(
+                margin: const EdgeInsets.only(top: 10, bottom: 10),
+                child: feedback.content.isNotEmpty ? Text(feedback.content) : null),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  _time,
+                  DateFormat.yMEd().add_jm().format(feedback.createdAt),
                   style: const TextStyle(color: Colors.grey),
                 )
               ],

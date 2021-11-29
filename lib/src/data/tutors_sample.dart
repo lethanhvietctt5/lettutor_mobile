@@ -1,38 +1,68 @@
+import 'package:lettutor_mobile/src/data/user_sample.dart';
+import 'package:lettutor_mobile/src/models/tutor/feedback.dart';
 import 'package:lettutor_mobile/src/models/tutor/schedule.dart';
 import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
 import 'package:uuid/uuid.dart';
 
 var uuid = const Uuid();
 
-List<Schedule> sampleSchedule = [
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 10, 7, 0), end: DateTime(2021, 12, 10, 7, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 10, 8), end: DateTime(2021, 12, 10, 8, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 10, 9), end: DateTime(2021, 12, 10, 9, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 10, 10), end: DateTime(2021, 12, 10, 10, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 10, 11), end: DateTime(2021, 12, 10, 11, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 10, 15), end: DateTime(2021, 12, 10, 15, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 10, 16), end: DateTime(2021, 12, 10, 16, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 10, 17), end: DateTime(2021, 12, 10, 17, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 11, 7), end: DateTime(2021, 12, 11, 7, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 11, 8), end: DateTime(2021, 12, 11, 8, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 11, 9), end: DateTime(2021, 12, 11, 9, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 11, 10), end: DateTime(2021, 12, 11, 10, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 11, 11), end: DateTime(2021, 12, 11, 11, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 11, 15), end: DateTime(2021, 12, 11, 15, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 11, 16), end: DateTime(2021, 12, 11, 16, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 11, 17), end: DateTime(2021, 12, 11, 17, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 12, 7, 0), end: DateTime(2021, 12, 12, 7, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 12, 8), end: DateTime(2021, 12, 12, 8, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 12, 9), end: DateTime(2021, 12, 12, 9, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 13, 7), end: DateTime(2021, 12, 13, 7, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 13, 8), end: DateTime(2021, 12, 13, 8, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 13, 9), end: DateTime(2021, 12, 13, 9, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 14, 9), end: DateTime(2021, 12, 14, 9, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 15, 9), end: DateTime(2021, 12, 15, 9, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 16, 9), end: DateTime(2021, 12, 16, 9, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 17, 9), end: DateTime(2021, 12, 17, 9, 30)),
-  Schedule(id: uuid.v4(), start: DateTime(2021, 12, 18, 9), end: DateTime(2021, 12, 18, 9, 30)),
-];
+List<Schedule> sampleSchedule() {
+  return [
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 10, 7, 0), end: DateTime(2021, 12, 10, 7, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 10, 8), end: DateTime(2021, 12, 10, 8, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 10, 9), end: DateTime(2021, 12, 10, 9, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 10, 10), end: DateTime(2021, 12, 10, 10, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 10, 11), end: DateTime(2021, 12, 10, 11, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 10, 15), end: DateTime(2021, 12, 10, 15, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 10, 16), end: DateTime(2021, 12, 10, 16, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 10, 17), end: DateTime(2021, 12, 10, 17, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 11, 7), end: DateTime(2021, 12, 11, 7, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 11, 8), end: DateTime(2021, 12, 11, 8, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 11, 9), end: DateTime(2021, 12, 11, 9, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 11, 10), end: DateTime(2021, 12, 11, 10, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 11, 11), end: DateTime(2021, 12, 11, 11, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 11, 15), end: DateTime(2021, 12, 11, 15, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 11, 16), end: DateTime(2021, 12, 11, 16, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 11, 17), end: DateTime(2021, 12, 11, 17, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 12, 7, 0), end: DateTime(2021, 12, 12, 7, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 12, 8), end: DateTime(2021, 12, 12, 8, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 12, 9), end: DateTime(2021, 12, 12, 9, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 13, 7), end: DateTime(2021, 12, 13, 7, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 13, 8), end: DateTime(2021, 12, 13, 8, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 13, 9), end: DateTime(2021, 12, 13, 9, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 14, 9), end: DateTime(2021, 12, 14, 9, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 15, 9), end: DateTime(2021, 12, 15, 9, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 16, 9), end: DateTime(2021, 12, 16, 9, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 17, 9), end: DateTime(2021, 12, 17, 9, 30)),
+    Schedule(id: uuid.v4(), start: DateTime(2021, 12, 18, 9), end: DateTime(2021, 12, 18, 9, 30)),
+  ];
+}
+
+List<FeedbackRate> sampleFeedback() {
+  return [
+    FeedbackRate(
+      id: uuid.v4(),
+      userId: UsersSample.users[1].id,
+      content: "Greate!",
+      createdAt: DateTime(2021, 10, 22),
+      rating: 5,
+    ),
+    FeedbackRate(
+      id: uuid.v4(),
+      userId: UsersSample.users[2].id,
+      content: "Thank you!",
+      createdAt: DateTime(2021, 10, 22),
+      rating: 5,
+    ),
+    FeedbackRate(
+      id: uuid.v4(),
+      userId: UsersSample.users[3].id,
+      content: "Very good!",
+      createdAt: DateTime(2021, 10, 22),
+      rating: 5,
+    ),
+  ];
+}
 
 class TutorsSample {
   static List<Tutor> tutors = [
@@ -49,7 +79,8 @@ class TutorsSample {
         "Teaching experience": "3 years",
       },
       <String>["English for kids", "Conversational", "IELTS", "English for Business", "STARTERS", "MOVERS", "FLYERS"],
-      sampleSchedule,
+      sampleSchedule(),
+      sampleFeedback(),
     ),
     Tutor(
       uuid.v4(),
@@ -66,7 +97,8 @@ class TutorsSample {
             "I am a license teacher I worked as an ESL Teacher for a year now, I am tutor for elementary to Senior High School student. I also teach Business English for some Professional Students .",
       },
       <String>["English for kids", "Conversational", "IELTS", "English for Business"],
-      sampleSchedule,
+      sampleSchedule(),
+      sampleFeedback(),
     ),
     Tutor(
       uuid.v4(),
@@ -82,7 +114,8 @@ class TutorsSample {
             "I have experience in online teaching, I teach student's in different levels from kids to adult.",
       },
       <String>["English for kids", "Conversational", "IELTS", "English for Business", "MOVERS", "STARTERS"],
-      sampleSchedule,
+      sampleSchedule(),
+      sampleFeedback(),
     ),
     Tutor(
       uuid.v4(),
@@ -98,7 +131,8 @@ class TutorsSample {
             "I have been teaching English online since 2020 catering to Japanese, Chinese, Russian, and Ukrainian students.",
       },
       <String>["English for kids", "Conversational", "IELTS", "English for Business", "MOVERS", "STARTERS"],
-      sampleSchedule,
+      sampleSchedule(),
+      sampleFeedback(),
     ),
     Tutor(
       uuid.v4(),
@@ -122,7 +156,8 @@ class TutorsSample {
         "MOVERS",
         "STARTERS"
       ],
-      sampleSchedule,
+      sampleSchedule(),
+      sampleFeedback(),
     ),
     Tutor(
       uuid.v4(),
@@ -148,7 +183,8 @@ class TutorsSample {
         "MOVERS",
         "STARTERS"
       ],
-      sampleSchedule,
+      sampleSchedule(),
+      sampleFeedback(),
     ),
     Tutor(
       uuid.v4(),
@@ -174,7 +210,8 @@ class TutorsSample {
         "MOVERS",
         "STARTERS"
       ],
-      sampleSchedule,
+      sampleSchedule(),
+      sampleFeedback(),
     ),
     Tutor(
       uuid.v4(),
@@ -200,7 +237,8 @@ class TutorsSample {
         "MOVERS",
         "STARTERS"
       ],
-      sampleSchedule,
+      sampleSchedule(),
+      sampleFeedback(),
     ),
     Tutor(
       uuid.v4(),
@@ -226,7 +264,8 @@ class TutorsSample {
         "MOVERS",
         "STARTERS"
       ],
-      sampleSchedule,
+      sampleSchedule(),
+      sampleFeedback(),
     ),
     Tutor(
       uuid.v4(),
@@ -251,7 +290,8 @@ class TutorsSample {
         "MOVERS",
         "STARTERS"
       ],
-      sampleSchedule,
+      sampleSchedule(),
+      sampleFeedback(),
     ),
     Tutor(
       uuid.v4(),
@@ -276,7 +316,8 @@ class TutorsSample {
         "MOVERS",
         "STARTERS"
       ],
-      sampleSchedule,
+      sampleSchedule(),
+      sampleFeedback(),
     ),
     Tutor(
       uuid.v4(),
@@ -302,7 +343,8 @@ class TutorsSample {
         "MOVERS",
         "STARTERS"
       ],
-      sampleSchedule,
+      sampleSchedule(),
+      sampleFeedback(),
     ),
     Tutor(
       uuid.v4(),
@@ -328,7 +370,8 @@ class TutorsSample {
         "MOVERS",
         "STARTERS"
       ],
-      sampleSchedule,
+      sampleSchedule(),
+      sampleFeedback(),
     ),
     Tutor(
       uuid.v4(),
@@ -353,7 +396,8 @@ class TutorsSample {
         "MOVERS",
         "STARTERS"
       ],
-      sampleSchedule,
+      sampleSchedule(),
+      sampleFeedback(),
     ),
   ];
 }

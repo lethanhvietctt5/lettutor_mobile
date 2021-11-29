@@ -39,7 +39,7 @@ class MainInfo extends StatelessWidget {
           ],
         ),
         Column(crossAxisAlignment: CrossAxisAlignment.end, children: <Widget>[
-          const RateStars(),
+          RateStars(count: tutor.getTotalStar()),
           Container(
             margin: const EdgeInsets.only(top: 8, right: 8),
             child: SvgPicture.asset(

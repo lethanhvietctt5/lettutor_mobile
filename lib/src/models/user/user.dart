@@ -5,8 +5,10 @@ import 'package:uuid/uuid.dart';
 var uuid = const Uuid();
 
 class User {
+  String id;
   final String email;
   final String fullName;
+  String image;
   DateTime birthDay;
   String phone;
   String country;
@@ -16,8 +18,10 @@ class User {
   List<Session> sessionHistory = [];
 
   User({
+    required this.id,
     required this.email,
     required this.fullName,
+    required this.image,
     required this.birthDay,
     required this.country,
     required this.level,

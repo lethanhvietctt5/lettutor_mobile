@@ -30,7 +30,7 @@ class TutorProfile extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          margin: const EdgeInsets.only(left: 15, right: 15, top: 10),
+          margin: const EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -102,12 +102,14 @@ class TutorProfile extends StatelessWidget {
                   style: TextStyle(fontSize: 17, color: Colors.blue),
                 ),
               ),
-              const RateAndComment(
-                  source: "asset/img/profile.jpg", name: "Nguyễn Minh Triết", time: "20:57:41, 17/10/2021"),
-              const RateAndComment(
-                  source: "asset/img/profile.jpg", name: "Nguyễn Minh Triết", time: "20:57:41, 17/10/2021"),
-              const RateAndComment(
-                  source: "asset/img/profile.jpg", name: "Nguyễn Minh Triết", time: "20:57:41, 17/10/2021"),
+              ListView.builder(
+                itemCount: tutor.feedbacks.length,
+                itemBuilder: (context, index) {
+                  return RateAndComment(feedback: tutor.feedbacks[index]);
+                },
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+              ),
             ],
           ),
         ),
