@@ -82,65 +82,87 @@ class _BookTabState extends State<BookTab> {
           ),
         ),
         Expanded(
-          child: ListView.builder(
-            itemCount: _results.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: InkWell(
-                  onTap: () {
-                    //Navigator.pushNamed(context, "/course");
-                  },
-                  child: Card(
-                    elevation: 8,
-                    child: SizedBox(
-                      height: 300,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            _results[index].img,
-                            alignment: Alignment.center,
-                            width: MediaQuery.of(context).size.width,
-                            height: 170,
-                            fit: BoxFit.cover,
+          child: _controller.text.isNotEmpty && _results.isEmpty
+              ? SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          "asset/svg/ic_notfound.svg",
+                          width: 200,
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(top: 20),
+                          child: Text(
+                            "Not found any match result...",
+                            style: TextStyle(color: Colors.grey[700]),
                           ),
-                          Container(
-                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  _results[index].name,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.only(top: 8, bottom: 15),
-                                  child: Text(
-                                    _results[index].description,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(fontSize: 12, color: Colors.grey[800]),
-                                  ),
-                                ),
-                                Text(
-                                  _results[index].level,
-                                  style: TextStyle(fontSize: 15, color: Colors.grey[800]),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
+                )
+              : ListView.builder(
+                  itemCount: _results.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: InkWell(
+                        onTap: () {
+                          //Navigator.pushNamed(context, "/course");
+                        },
+                        child: Card(
+                          elevation: 8,
+                          child: SizedBox(
+                            height: 300,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Image.asset(
+                                  _results[index].img,
+                                  alignment: Alignment.center,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 170,
+                                  fit: BoxFit.cover,
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        _results[index].name,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                                      ),
+                                      Container(
+                                        margin: const EdgeInsets.only(top: 8, bottom: 15),
+                                        child: Text(
+                                          _results[index].description,
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(fontSize: 12, color: Colors.grey[800]),
+                                        ),
+                                      ),
+                                      Text(
+                                        _results[index].level,
+                                        style: TextStyle(fontSize: 15, color: Colors.grey[800]),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
         ),
       ],
     );

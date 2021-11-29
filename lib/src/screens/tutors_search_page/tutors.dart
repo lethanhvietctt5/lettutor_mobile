@@ -128,15 +128,37 @@ class _TutorsPageState extends State<TutorsPage> {
                 shrinkWrap: true,
               ),
             ),
-            ListView.builder(
-              itemCount: _results.length,
-              itemBuilder: (context, index) {
-                Tutor tutor = _results[index];
-                return TutorCardInfo(tutor: tutor);
-              },
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-            ),
+            _controller.text.isNotEmpty && _results.isEmpty
+                ? SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            "asset/svg/ic_notfound.svg",
+                            width: 200,
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(top: 20),
+                            child: Text(
+                              "Not found any match result...",
+                              style: TextStyle(color: Colors.grey[700]),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                : ListView.builder(
+                    itemCount: _results.length,
+                    itemBuilder: (context, index) {
+                      Tutor tutor = _results[index];
+                      return TutorCardInfo(tutor: tutor);
+                    },
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                  ),
           ],
         ),
       ),

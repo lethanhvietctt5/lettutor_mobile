@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:lettutor_mobile/src/provider/navigation_index.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
@@ -10,6 +11,7 @@ class BannerHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context).user;
+    final navigationIndex = Provider.of<NavigationIndex>(context);
     final upcomming = userProvider.getUpcomming();
 
     if (upcomming.isEmpty) {
@@ -31,10 +33,7 @@ class BannerHomePage extends StatelessWidget {
               margin: const EdgeInsets.only(top: 10),
               child: ElevatedButton(
                 onPressed: () {
-                  // ! NOTICE THIS IS ERROR
-                  // ! ERROR
-                  // ! ERROR
-                  Navigator.pushNamed(context, "/lesson");
+                  navigationIndex.index = 3;
                 },
                 child: Container(
                     padding: const EdgeInsets.only(top: 10, bottom: 10),

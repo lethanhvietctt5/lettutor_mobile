@@ -82,73 +82,96 @@ class _CourseTabState extends State<CourseTab> {
           ),
         ),
         Expanded(
-          child: ListView.builder(
-            itemCount: _results.length,
-            itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: InkWell(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    routes.coursePage,
-                    arguments: {"course": _results[index]},
-                  );
-                },
-                child: Card(
-                  elevation: 5,
-                  shape: const RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.white70, width: 1),
-                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-                  ),
-                  child: SizedBox(
-                    height: 300,
+          child: _controller.text.isNotEmpty && _results.isEmpty
+              ? SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  child: Center(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          _results[index].image,
-                          alignment: Alignment.center,
-                          width: MediaQuery.of(context).size.width,
-                          height: 210,
-                          fit: BoxFit.cover,
+                        SvgPicture.asset(
+                          "asset/svg/ic_notfound.svg",
+                          width: 200,
                         ),
                         Container(
-                          padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
+                          margin: const EdgeInsets.only(top: 20),
+                          child: Text(
+                            "Not found any match result...",
+                            style: TextStyle(color: Colors.grey[700]),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: _results.length,
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          routes.coursePage,
+                          arguments: {"course": _results[index]},
+                        );
+                      },
+                      child: Card(
+                        elevation: 5,
+                        shape: const RoundedRectangleBorder(
+                          side: BorderSide(color: Colors.white70, width: 1),
+                          borderRadius:
+                              BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+                        ),
+                        child: SizedBox(
+                          height: 300,
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                _results[index].title,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                              Image.asset(
+                                _results[index].image,
+                                alignment: Alignment.center,
+                                width: MediaQuery.of(context).size.width,
+                                height: 210,
+                                fit: BoxFit.cover,
                               ),
                               Container(
-                                margin: const EdgeInsets.only(top: 8),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      _results[index].level,
-                                      style: TextStyle(fontSize: 15, color: Colors.grey[800]),
+                                      _results[index].title,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                                     ),
-                                    Text(
-                                      _results[index].topics.length.toString() + " Lessons",
-                                      style: TextStyle(fontSize: 12, color: Colors.grey[800]),
-                                    ),
+                                    Container(
+                                      margin: const EdgeInsets.only(top: 8),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            _results[index].level,
+                                            style: TextStyle(fontSize: 15, color: Colors.grey[800]),
+                                          ),
+                                          Text(
+                                            _results[index].topics.length.toString() + " Lessons",
+                                            style: TextStyle(fontSize: 12, color: Colors.grey[800]),
+                                          ),
+                                        ],
+                                      ),
+                                    )
                                   ],
                                 ),
                               )
                             ],
                           ),
-                        )
-                      ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
-          ),
         )
       ],
     );
