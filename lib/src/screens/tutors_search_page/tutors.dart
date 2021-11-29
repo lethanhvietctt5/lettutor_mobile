@@ -17,9 +17,9 @@ class TutorsPage extends StatefulWidget {
 class _TutorsPageState extends State<TutorsPage> {
   final List<String> _chips = [
     "All",
-    "English for Kids",
-    "Business English",
-    "Conversational English",
+    "English for kids",
+    "English for Business",
+    "Conversational",
     "STARTERS",
     "MOVERS",
     "FLYERS",
@@ -32,28 +32,39 @@ class _TutorsPageState extends State<TutorsPage> {
   final TextEditingController _controller = TextEditingController();
 
   List<Tutor> _results = [];
+  String specialist = "All";
 
   // * Debounce timer for search performance
   Timer? _debounce;
 
   List<Widget> _generateChips() {
     return _chips
-        .map((chip) => Container(
+        .map(
+          (chip) => InkWell(
+            onTap: () {
+              setState(() {
+                specialist = chip;
+              });
+            },
+            child: Container(
               margin: const EdgeInsets.only(top: 5, right: 8),
               padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
               child: Text(
                 chip,
                 style: TextStyle(
                   fontSize: 12,
-                  color: Colors.blue[400],
+                  color: chip == specialist ? Colors.blue[400] : Colors.grey[600],
                   fontWeight: FontWeight.w700,
                 ),
               ),
               decoration: BoxDecoration(
-                  color: Colors.blue[50],
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  border: Border.all(color: Colors.blue[100] as Color)),
-            ))
+                color: chip == specialist ? Colors.blue[50] : Colors.grey[200],
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
+                border: Border.all(color: chip == specialist ? Colors.blue[100] as Color : Colors.grey[400] as Color),
+              ),
+            ),
+          ),
+        )
         .toList();
   }
 
@@ -73,6 +84,10 @@ class _TutorsPageState extends State<TutorsPage> {
       setState(() {
         _results = TutorsSample.tutors;
       });
+    }
+
+    if (specialist != "All") {
+      _results = _results.where((tutor) => tutor.specialties.contains(specialist)).toList();
     }
 
     return SingleChildScrollView(
@@ -98,6 +113,9 @@ class _TutorsPageState extends State<TutorsPage> {
 
                       setState(() {
                         _results = newResults;
+                        if (specialist != "All") {
+                          _results = _results.where((tutor) => tutor.specialties.contains(specialist)).toList();
+                        }
                       });
                     });
                   },

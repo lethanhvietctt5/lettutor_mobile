@@ -78,7 +78,14 @@ class TutorsSample {
         "Interests": "Teaching English, listening to music, shopping, eating :)",
         "Teaching experience": "3 years",
       },
-      <String>["English for kids", "Conversational", "IELTS", "English for Business", "STARTERS", "MOVERS", "FLYERS"],
+      <String>[
+        "IELTS",
+        "English for Business",
+        "STARTERS",
+        "MOVERS",
+        "FLYERS",
+        'TOEIC',
+      ],
       sampleSchedule(),
       sampleFeedback(),
     ),
@@ -96,7 +103,13 @@ class TutorsSample {
         "Teaching experience":
             "I am a license teacher I worked as an ESL Teacher for a year now, I am tutor for elementary to Senior High School student. I also teach Business English for some Professional Students .",
       },
-      <String>["English for kids", "Conversational", "IELTS", "English for Business"],
+      <String>[
+        "English for kids",
+        "Conversational",
+        "IELTS",
+        "English for Business",
+        "TOEFL",
+      ],
       sampleSchedule(),
       sampleFeedback(),
     ),
@@ -113,7 +126,14 @@ class TutorsSample {
         "Teaching experience":
             "I have experience in online teaching, I teach student's in different levels from kids to adult.",
       },
-      <String>["English for kids", "Conversational", "IELTS", "English for Business", "MOVERS", "STARTERS"],
+      <String>[
+        "English for kids",
+        "Conversational",
+        "IELTS",
+        "English for Business",
+        "MOVERS",
+        "STARTERS",
+      ],
       sampleSchedule(),
       sampleFeedback(),
     ),
@@ -130,7 +150,14 @@ class TutorsSample {
         "Teaching experience":
             "I have been teaching English online since 2020 catering to Japanese, Chinese, Russian, and Ukrainian students.",
       },
-      <String>["English for kids", "Conversational", "IELTS", "English for Business", "MOVERS", "STARTERS"],
+      <String>[
+        "English for kids",
+        "Conversational",
+        "IELTS",
+        "English for Business",
+        "MOVERS",
+        "STARTERS",
+      ],
       sampleSchedule(),
       sampleFeedback(),
     ),
@@ -254,16 +281,7 @@ class TutorsSample {
         "Teaching experience":
             "Sales Executive and Financial Advisor ESL online teacher for kids and Adult professionals including but not limited to Business English and conversational English, and MS Office Application Tutor",
       },
-      <String>[
-        "English for kids",
-        'KET',
-        "PET",
-        "Conversational",
-        "IELTS",
-        "English for Business",
-        "MOVERS",
-        "STARTERS"
-      ],
+      <String>['KET', "PET", "IELTS", "English for Business", "MOVERS", "STARTERS"],
       sampleSchedule(),
       sampleFeedback(),
     ),
@@ -280,16 +298,7 @@ class TutorsSample {
         "Teaching experience":
             "I have been teaching as an English teacher for over three years. I have been working for many English centers, including VUS and I am also a lecturer at HCM College of Economics. I have taught English at various levels, including English for Kids, English for Communication, TOEIC and IELTS.",
       },
-      <String>[
-        "English for kids",
-        'KET',
-        "PET",
-        "Conversational",
-        "IELTS",
-        "English for Business",
-        "MOVERS",
-        "STARTERS"
-      ],
+      <String>['KET', "PET", "IELTS", "English for Business", "MOVERS", "STARTERS"],
       sampleSchedule(),
       sampleFeedback(),
     ),
@@ -307,14 +316,11 @@ class TutorsSample {
             "• ESL Teacher (September 12, 2016 -December 2017)) SMEAG Sparta Campus, Talamban, Cebu, Philippines +63 (32) 345 6430 www.smenglish.com • ESL Teacher/Cambridge English (January 2018 – February 2020)) SMEAG Sparta Campus, Mabolo, Cebu, Philippines - Bookmaker for YLE students & A2-B2 • ONLINE TEACHING Home-based (March 2020 – Present) Private students",
       },
       <String>[
-        "English for kids",
         'KET',
         "PET",
-        "Conversational",
         "IELTS",
         "English for Business",
         "MOVERS",
-        "STARTERS"
       ],
       sampleSchedule(),
       sampleFeedback(),
@@ -333,16 +339,7 @@ class TutorsSample {
         "Teaching experience":
             "I've been teaching English online for a year now. I taught Chinese students both kids and adults in my first ESL company and now I'm teaching kids and adults Japanese and Vietnamese.",
       },
-      <String>[
-        "English for kids",
-        'KET',
-        "PET",
-        "Conversational",
-        "IELTS",
-        "English for Business",
-        "MOVERS",
-        "STARTERS"
-      ],
+      <String>['KET', "PET", "Conversational", "IELTS", "MOVERS", "STARTERS"],
       sampleSchedule(),
       sampleFeedback(),
     ),
@@ -360,16 +357,7 @@ class TutorsSample {
         "Teaching experience":
             "I have been teaching English for almost two years now. But even before that, I already loved teaching kids and playing with children.",
       },
-      <String>[
-        "English for kids",
-        'KET',
-        "PET",
-        "Conversational",
-        "IELTS",
-        "English for Business",
-        "MOVERS",
-        "STARTERS"
-      ],
+      <String>['KET', "PET", "IELTS", "English for Business", "MOVERS", "STARTERS"],
       sampleSchedule(),
       sampleFeedback(),
     ),
@@ -386,16 +374,7 @@ class TutorsSample {
         "Teaching experience":
             "I had teaching experience in different schools, public and private) in the Philippines handling grade school/lower school kids as well as high school students, junior and senior. I can teach all subjects in grade school. For high school students, I taught Humanities, History, Economics, Geography, and ESL. I also had teaching experience in China, in the city of Xiamen, Province of Fujian for 9 years in an international school as an International Baccalaureate Middle Years and Diploma Program wherein I handled IB students with History and Economics courses. I also had experience teaching ESL for Middle School for two years.",
       },
-      <String>[
-        "English for kids",
-        'KET',
-        "PET",
-        "Conversational",
-        "IELTS",
-        "English for Business",
-        "MOVERS",
-        "STARTERS"
-      ],
+      <String>['KET', "PET", "IELTS", "English for Business", "MOVERS", "STARTERS"],
       sampleSchedule(),
       sampleFeedback(),
     ),
