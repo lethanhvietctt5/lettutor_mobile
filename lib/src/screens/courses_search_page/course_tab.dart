@@ -1,10 +1,10 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/data/course_sample.dart';
 import 'package:lettutor_mobile/src/models/course/course.dart';
 import 'package:woozy_search/woozy_search.dart';
+import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
 class CourseTab extends StatefulWidget {
   const CourseTab({Key? key}) : super(key: key);
@@ -88,7 +88,11 @@ class _CourseTabState extends State<CourseTab> {
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, "/course", arguments: {"course": _results[index]});
+                  Navigator.pushNamed(
+                    context,
+                    routes.coursePage,
+                    arguments: {"course": _results[index]},
+                  );
                 },
                 child: Card(
                   elevation: 5,

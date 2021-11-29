@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
+import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
 class TutorCardInfo extends StatelessWidget {
   const TutorCardInfo({Key? key, required this.tutor}) : super(key: key);
@@ -14,9 +15,11 @@ class TutorCardInfo extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 10),
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, "/tutorProfile", arguments: {
-            "tutor": tutor,
-          });
+          Navigator.pushNamed(
+            context,
+            routes.tutorProfilePage,
+            arguments: {"tutor": tutor},
+          );
         },
         child: Card(
           shape: RoundedRectangleBorder(

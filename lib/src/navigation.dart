@@ -9,6 +9,7 @@ import 'package:lettutor_mobile/src/screens/setting_page/setting.dart';
 import 'package:lettutor_mobile/src/screens/tutors_search_page/tutors.dart';
 import 'package:lettutor_mobile/src/screens/upcoming_page/upcoming.dart';
 import 'package:provider/provider.dart';
+import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
 class NavigationBar extends StatefulWidget {
   const NavigationBar({Key? key}) : super(key: key);
@@ -49,7 +50,10 @@ class _NavigationBarState extends State<NavigationBar> {
                     margin: const EdgeInsets.only(right: 20),
                     child: InkWell(
                       onTap: () {
-                        Navigator.pushNamed(context, "/profile");
+                        Navigator.pushNamed(
+                          context,
+                          routes.profilePage,
+                        );
                       },
                       child: CircleAvatar(
                         child: ClipOval(

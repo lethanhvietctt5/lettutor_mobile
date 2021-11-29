@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lettutor_mobile/src/screens/signup_page/signup.dart';
 import 'package:lettutor_mobile/src/screens/login_page/login_with.dart';
 import 'package:lettutor_mobile/src/widgets/button_expand.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
+import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -23,11 +23,13 @@ class _LoginPageState extends State<LoginPage> {
     // final user = Provider.of<UserProvider>(context);
     void handleLogin() {
       if (_emailController.text == 'admin' && _passwordController.text == '12345678') {
-        Navigator.popAndPushNamed(context, '/home');
+        Navigator.popAndPushNamed(context, routes.homePage);
       } else {
         showTopSnackBar(
           context,
           const CustomSnackBar.error(message: "Login failed! Email or password is wrong."),
+          showOutAnimationDuration: const Duration(milliseconds: 1000),
+          displayDuration: const Duration(microseconds: 1000),
         );
       }
     }
@@ -148,8 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                             InkWell(
                               child: const Text("Sign up", style: TextStyle(color: Colors.blue, fontSize: 12)),
                               onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpPage()));
-                                Navigator.pushNamed(context, "/register");
+                                Navigator.popAndPushNamed(context, routes.registerPage);
                               },
                             )
                           ],

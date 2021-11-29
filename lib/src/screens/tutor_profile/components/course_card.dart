@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile/src/models/course/course.dart';
+import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
 class CourseCard extends StatelessWidget {
   const CourseCard({Key? key, required this.course}) : super(key: key);
@@ -10,7 +11,11 @@ class CourseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, "/course", arguments: {"course": course});
+        Navigator.pushNamed(
+          context,
+          routes.coursePage,
+          arguments: {"course": course},
+        );
       },
       child: Card(
         elevation: 8,

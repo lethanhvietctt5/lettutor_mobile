@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile/src/provider/navigation_index.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/setting_btn.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
+import 'package:lettutor_mobile/src/routes/route.dart' as routes;
+import 'package:provider/provider.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -13,6 +16,8 @@ class SettingPage extends StatefulWidget {
 class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
+    final naviationIndex = Provider.of<NavigationIndex>(context);
+
     return SingleChildScrollView(
       child: Container(
         margin: const EdgeInsets.only(top: 15, left: 30, right: 30),
@@ -48,26 +53,49 @@ class _SettingPageState extends State<SettingPage> {
             ),
             Column(
               children: const <Widget>[
-                SettingButton(icon: "asset/svg/ic_user.svg", title: "View Feedbacks", routeName: "/feedbacks"),
-                SettingButton(icon: "asset/svg/ic_list.svg", title: "Booking History", routeName: "/bookingHistory"),
-                SettingButton(icon: "asset/svg/ic_history.svg", title: "Session History", routeName: "/sessionHistory"),
                 SettingButton(
-                    icon: "asset/svg/ic_setting2.svg", title: "Advanced Settings", routeName: "/advancedSettings"),
+                  icon: "asset/svg/ic_list.svg",
+                  title: "Booking History",
+                  routeName: routes.bookingHistoryPage,
+                ),
+                SettingButton(
+                  icon: "asset/svg/ic_history.svg",
+                  title: "Session History",
+                  routeName: routes.sessionHistoryPage,
+                ),
+                SettingButton(
+                  icon: "asset/svg/ic_setting2.svg",
+                  title: "Advanced Settings",
+                  routeName: routes.advancedSettingPage,
+                ),
               ],
             ),
             Container(
                 margin: const EdgeInsets.only(top: 30),
                 child: Column(
                   children: const [
-                    SettingButton(icon: "asset/svg/ic_network.svg", title: "Our Website", routeName: "/login"),
-                    SettingButton(icon: "asset/svg/ic_facebook2.svg", title: "Facebook", routeName: "/login"),
+                    SettingButton(
+                      icon: "asset/svg/ic_network.svg",
+                      title: "Our Website",
+                      routeName: routes.loginPage,
+                    ),
+                    SettingButton(
+                      icon: "asset/svg/ic_facebook2.svg",
+                      title: "Facebook",
+                      routeName: routes.loginPage,
+                    ),
                   ],
                 )),
             Container(
               margin: const EdgeInsets.only(top: 40),
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, "/login");
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    routes.loginPage,
+                    (Route<dynamic> route) => false,
+                  );
+                  naviationIndex.index = 0;
                 },
                 child: Container(
                   padding: const EdgeInsets.only(top: 13, bottom: 13),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
 class BannerHomePage extends StatelessWidget {
   const BannerHomePage({Key? key}) : super(key: key);
@@ -30,6 +31,9 @@ class BannerHomePage extends StatelessWidget {
               margin: const EdgeInsets.only(top: 10),
               child: ElevatedButton(
                 onPressed: () {
+                  // ! NOTICE THIS IS ERROR
+                  // ! ERROR
+                  // ! ERROR
                   Navigator.pushNamed(context, "/lesson");
                 },
                 child: Container(
@@ -77,7 +81,7 @@ class BannerHomePage extends StatelessWidget {
             margin: const EdgeInsets.only(top: 10),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, "/lesson");
+                Navigator.pushNamed(context, routes.lessonPage);
               },
               child: Container(
                   padding: const EdgeInsets.only(top: 10, bottom: 10),

@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/widgets/button_expand.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
+import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -26,14 +27,18 @@ class _SignUpPageState extends State<SignUpPage> {
         showTopSnackBar(
           context,
           const CustomSnackBar.error(message: "Signup failed! Please enter all fields."),
+          showOutAnimationDuration: const Duration(milliseconds: 1000),
+          displayDuration: const Duration(microseconds: 1000),
         );
       } else if (_passwordController.text != _repasswordControler.text) {
         showTopSnackBar(
           context,
           const CustomSnackBar.error(message: "Signup failed! Passwords do not match."),
+          showOutAnimationDuration: const Duration(milliseconds: 1000),
+          displayDuration: const Duration(microseconds: 1000),
         );
       } else {
-        Navigator.popAndPushNamed(context, '/login');
+        Navigator.popAndPushNamed(context, routes.loginPage);
       }
     }
 
@@ -182,8 +187,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   color: Colors.blue,
                                 )),
                             onTap: () {
-                              // Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
-                              Navigator.popAndPushNamed(context, '/login');
+                              Navigator.popAndPushNamed(context, routes.loginPage);
                             },
                           )
                         ],
