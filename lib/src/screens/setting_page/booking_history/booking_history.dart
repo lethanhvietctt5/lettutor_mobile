@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile/src/models/user/booking.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/booking_history/booking_item.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +10,8 @@ class BookingHistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bookingHistory = Provider.of<UserProvider>(context).user.bookingHistory;
+    List<Booking> bookingHistory = Provider.of<UserProvider>(context).user.bookingHistory;
+    bookingHistory = bookingHistory.reversed.toList();
 
     return SafeArea(
       child: Scaffold(

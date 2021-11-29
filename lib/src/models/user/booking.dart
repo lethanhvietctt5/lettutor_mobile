@@ -5,11 +5,9 @@ class Booking {
   Tutor tutor;
   DateTime start;
   DateTime end;
+  late bool isCancelled;
 
-  Booking({
-    required this.id,
-    required this.tutor,
-    required this.start,
-    required this.end,
-  });
+  Booking({required this.id, required this.tutor, required this.start, required this.end}) {
+    isCancelled = false;
+  }
 }

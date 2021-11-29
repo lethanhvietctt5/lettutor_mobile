@@ -1,15 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/data/course_sample.dart';
 import 'package:lettutor_mobile/src/models/course/course.dart';
 import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
-import 'package:lettutor_mobile/src/screens/tutor_profile/course_card.dart';
-import 'package:lettutor_mobile/src/screens/tutor_profile/infor_chip.dart';
-import 'package:lettutor_mobile/src/screens/tutor_profile/rate_comment.dart';
-import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
-import 'package:lettutor_mobile/src/widgets/rate_stars.dart';
+import 'package:lettutor_mobile/src/screens/tutor_profile/components/booking_feature.dart';
+import 'package:lettutor_mobile/src/screens/tutor_profile/components/course_card.dart';
+import 'package:lettutor_mobile/src/screens/tutor_profile/components/infor_chip.dart';
+import 'package:lettutor_mobile/src/screens/tutor_profile/components/main_info.dart';
+import 'package:lettutor_mobile/src/screens/tutor_profile/components/rate_comment.dart';
 
 class TutorProfile extends StatelessWidget {
   const TutorProfile({Key? key, required this.tutor}) : super(key: key);
@@ -35,101 +34,8 @@ class TutorProfile extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                          margin: const EdgeInsets.only(right: 15),
-                          child: AvatarCircle(width: 70, height: 70, source: tutor.image)),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(tutor.fullName, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
-                          const Text(
-                            "Teacher",
-                            style: TextStyle(color: Colors.grey, fontSize: 14),
-                          ),
-                          Text(
-                            tutor.country,
-                            style: const TextStyle(fontSize: 15),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                  Column(crossAxisAlignment: CrossAxisAlignment.end, children: <Widget>[
-                    const RateStars(),
-                    Container(
-                      margin: const EdgeInsets.only(top: 8, right: 8),
-                      child: SvgPicture.asset(
-                        "asset/svg/ic_heart.svg",
-                        width: 30,
-                        height: 30,
-                        color: Colors.red,
-                      ),
-                    )
-                  ])
-                ],
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 20),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Container(
-                    padding: const EdgeInsets.only(top: 13, bottom: 13),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
-                          "Booking",
-                          style: TextStyle(color: Colors.white),
-                        )
-                      ],
-                    ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.blue,
-                    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(1000))),
-                  ),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      children: [
-                        SvgPicture.asset(
-                          "asset/svg/ic_message2.svg",
-                          color: Colors.blue,
-                        ),
-                        const Text(
-                          "Message",
-                          style: TextStyle(color: Colors.blue, fontSize: 14),
-                        )
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        SvgPicture.asset(
-                          "asset/svg/ic_report.svg",
-                          color: Colors.blue,
-                        ),
-                        const Text(
-                          "Report",
-                          style: TextStyle(color: Colors.blue, fontSize: 14),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+              MainInfo(tutor: tutor),
+              BookingFeature(tutor: tutor),
               Container(
                 margin: const EdgeInsets.only(top: 10, bottom: 10),
                 child: Text(tutor.intro, style: const TextStyle(fontSize: 13)),

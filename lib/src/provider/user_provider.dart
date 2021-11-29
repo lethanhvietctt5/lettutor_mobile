@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:lettutor_mobile/src/data/tutors_sample.dart';
 import 'package:lettutor_mobile/src/models/user/booking.dart';
 import 'package:lettutor_mobile/src/models/user/session.dart';
-import 'package:lettutor_mobile/src/models/user/upcomming.dart';
 import 'package:lettutor_mobile/src/models/user/user.dart';
 import 'package:uuid/uuid.dart';
 
@@ -20,23 +19,7 @@ class UserProvider extends ChangeNotifier {
       country: "Vietnam",
       level: "Beginner",
       topicToLearn: "TOEIC",
-      bookingHistory: [
-        Booking(
-            id: uuid.v4(),
-            tutor: TutorsSample.tutors[0],
-            start: DateTime(2021, 11, 30, 6, 0),
-            end: DateTime(2021, 11, 30, 7, 0)),
-        Booking(
-            id: uuid.v4(),
-            tutor: TutorsSample.tutors[1],
-            start: DateTime(2021, 12, 1, 6, 0),
-            end: DateTime(2021, 12, 1, 7, 0)),
-        Booking(
-            id: uuid.v4(),
-            tutor: TutorsSample.tutors[2],
-            start: DateTime(2021, 12, 2, 6, 0),
-            end: DateTime(2021, 12, 2, 7, 0)),
-      ],
+      bookingHistory: [],
       sessionHistory: [
         Session(
           id: uuid.v4(),
@@ -92,16 +75,6 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addUpcomming(Upcomming upcomming) {
-    user.upcomming.add(upcomming);
-    notifyListeners();
-  }
-
-  void removeUpcomming(String id) {
-    user.upcomming.removeWhere((element) => element.id == id);
-    notifyListeners();
-  }
-
   void addFavorite(String id) {
     if (TutorsSample.tutors.where((tutor) => tutor.id == id).isNotEmpty) {
       idFavorite.add(id);
@@ -113,6 +86,21 @@ class UserProvider extends ChangeNotifier {
     if (TutorsSample.tutors.where((tutor) => tutor.id == id).isNotEmpty) {
       idFavorite.removeWhere((element) => element == id);
       notifyListeners();
+    }
+  }
+
+  void addBooking(Booking booking) {
+    user.bookingHistory.add(booking);
+    notifyListeners();
+  }
+
+  void cancelBooking(String id) {
+    for (int index = 0; index < user.bookingHistory.length; index++) {
+      if (user.bookingHistory[index].id == id) {
+        user.bookingHistory[index].isCancelled = true;
+        notifyListeners();
+        break;
+      }
     }
   }
 }

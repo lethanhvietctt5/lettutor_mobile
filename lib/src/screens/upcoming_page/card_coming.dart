@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:lettutor_mobile/src/models/user/upcomming.dart';
+import 'package:lettutor_mobile/src/models/user/booking.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 import 'package:provider/provider.dart';
@@ -10,14 +10,14 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 class UpComingCard extends StatelessWidget {
   const UpComingCard({Key? key, required this.upcomming}) : super(key: key);
 
-  final Upcomming upcomming;
+  final Booking upcomming;
 
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
 
     void cancelUpcoming(String id) {
-      userProvider.removeUpcomming(id);
+      userProvider.cancelBooking(id);
     }
 
     return Container(
@@ -49,14 +49,14 @@ class UpComingCard extends StatelessWidget {
                       Row(
                         children: <Widget>[
                           Text(
-                            DateFormat.yMEd().format(upcomming.timeStart),
+                            DateFormat.yMEd().format(upcomming.start),
                             style: const TextStyle(fontSize: 13),
                           ),
                           Container(
                             padding: const EdgeInsets.all(3),
                             margin: const EdgeInsets.only(left: 5, right: 5),
                             child: Text(
-                              DateFormat.Hm().format(upcomming.timeStart),
+                              DateFormat.Hm().format(upcomming.start),
                               style: const TextStyle(fontSize: 10, color: Colors.blue),
                             ),
                             decoration: BoxDecoration(
@@ -69,7 +69,7 @@ class UpComingCard extends StatelessWidget {
                             padding: const EdgeInsets.all(3),
                             margin: const EdgeInsets.only(left: 5, right: 5),
                             child: Text(
-                              DateFormat.Hm().format(upcomming.timeEnd),
+                              DateFormat.Hm().format(upcomming.end),
                               style: const TextStyle(fontSize: 10, color: Colors.orange),
                             ),
                             decoration: BoxDecoration(

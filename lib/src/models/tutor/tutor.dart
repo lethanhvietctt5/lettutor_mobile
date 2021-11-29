@@ -1,3 +1,5 @@
+import 'package:lettutor_mobile/src/models/tutor/schedule.dart';
+
 class Tutor {
   String id;
   String fullName;
@@ -8,6 +10,7 @@ class Tutor {
   List<String> languages;
   Map<String, String> details;
   List<String> specialties;
+  List<Schedule> dateAvailable;
 
   Tutor(
     this.id,
@@ -19,5 +22,6 @@ class Tutor {
     this.languages,
     this.details,
     this.specialties,
+    this.dateAvailable,
   );
 }

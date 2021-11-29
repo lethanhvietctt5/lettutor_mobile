@@ -13,7 +13,8 @@ class UpcomingPage extends StatefulWidget {
 class _UpcomingPageState extends State<UpcomingPage> {
   @override
   Widget build(BuildContext context) {
-    final userUpcomming = Provider.of<UserProvider>(context).user.upcomming;
+    final userUpcomming = Provider.of<UserProvider>(context).user.getUpcomming();
+    userUpcomming.sort((a, b) => a.start.compareTo(b.start));
 
     return SingleChildScrollView(
       child: Container(
