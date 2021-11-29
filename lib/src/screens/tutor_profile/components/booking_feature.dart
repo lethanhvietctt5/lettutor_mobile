@@ -45,44 +45,53 @@ class BookingFeature extends StatelessWidget {
                     horizontal: 40,
                   ),
                   child: ElevatedButton(
-                    onPressed: () {
-                      Booking newBooking = Booking(
-                        id: uuid.v4(),
-                        tutor: tutor,
-                        start: selectedDate[index].start,
-                        end: selectedDate[index].end,
-                      );
+                    onPressed: selectedDate[index].isReserved == false
+                        ? () {
+                            Booking newBooking = Booking(
+                              id: uuid.v4(),
+                              tutor: tutor,
+                              start: selectedDate[index].start,
+                              end: selectedDate[index].end,
+                              idSchedule: selectedDate[index].id,
+                            );
 
-                      userProvider.addBooking(newBooking);
-                      Navigator.pop(context);
-                      Navigator.pop(context);
+                            userProvider.addBooking(newBooking);
+                            tutor.setReserved(selectedDate[index].id, true);
+                            Navigator.pop(context);
+                            Navigator.pop(context);
 
-                      showTopSnackBar(
-                        context,
-                        const CustomSnackBar.success(
-                          message: "Booking successful. ",
-                          backgroundColor: Colors.green,
-                        ),
-                        showOutAnimationDuration: const Duration(milliseconds: 700),
-                        displayDuration: const Duration(milliseconds: 200),
-                      );
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.only(top: 13, bottom: 13),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            DateFormat.Hm().format(selectedDate[index].start),
-                            style: const TextStyle(color: Colors.white),
+                            showTopSnackBar(
+                              context,
+                              const CustomSnackBar.success(
+                                message: "Booking successful. ",
+                                backgroundColor: Colors.green,
+                              ),
+                              showOutAnimationDuration: const Duration(milliseconds: 700),
+                              displayDuration: const Duration(milliseconds: 200),
+                            );
+                          }
+                        : null,
+                    child: selectedDate[index].isReserved == false
+                        ? Container(
+                            padding: const EdgeInsets.only(top: 13, bottom: 13),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  DateFormat.Hm().format(selectedDate[index].start),
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                                Text(
+                                  " - " + DateFormat.Hm().format(selectedDate[index].end),
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          )
+                        : const Text(
+                            "Reserved",
+                            style: TextStyle(color: Colors.white),
                           ),
-                          Text(
-                            " - " + DateFormat.Hm().format(selectedDate[index].end),
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.blue,
                       shape: const RoundedRectangleBorder(

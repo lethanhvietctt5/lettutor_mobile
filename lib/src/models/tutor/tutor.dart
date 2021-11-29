@@ -24,4 +24,12 @@ class Tutor {
     this.specialties,
     this.dateAvailable,
   );
+
+  void setReserved(String id, bool reserved) {
+    for (var i = 0; i < dateAvailable.length; i++) {
+      if (dateAvailable[i].id == id) {
+        dateAvailable[i].isReserved = reserved;
+      }
+    }
+  }
 }
