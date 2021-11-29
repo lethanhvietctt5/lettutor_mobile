@@ -4,6 +4,7 @@ import 'package:lettutor_mobile/src/models/course/course.dart';
 import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
 import 'package:lettutor_mobile/src/navigation.dart';
 import 'package:lettutor_mobile/src/screens/course/course.dart';
+import 'package:lettutor_mobile/src/screens/courses_search_page/book_detail.dart';
 import 'package:lettutor_mobile/src/screens/feedback_page.dart/feedback_page.dart';
 import 'package:lettutor_mobile/src/screens/lesson/lesson.dart';
 import 'package:lettutor_mobile/src/screens/login_page/login.dart';
@@ -25,6 +26,7 @@ const String bookingHistoryPage = 'bookingHistory';
 const String sessionHistoryPage = 'sessionHistory';
 const String advancedSettingPage = 'advancedSetting';
 const String feedbackPage = 'feedback';
+const String bookDetailPage = 'bookDetail';
 
 Route<dynamic> controller(RouteSettings settings) {
   switch (settings.name) {
@@ -62,6 +64,8 @@ Route<dynamic> controller(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const SessionHistoryPage());
     case advancedSettingPage:
       return MaterialPageRoute(builder: (context) => const AdvancedSettingPage());
+    case bookDetailPage:
+      return MaterialPageRoute(builder: (context) => const BookDetail());
 
     default:
       return MaterialPageRoute(builder: (context) => const LoginPage());

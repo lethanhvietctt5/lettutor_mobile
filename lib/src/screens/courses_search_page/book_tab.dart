@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/data/book_sample.dart';
 import 'package:lettutor_mobile/src/models/book/book.dart';
 import 'package:woozy_search/woozy_search.dart';
+import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
 class BookTab extends StatefulWidget {
   const BookTab({Key? key}) : super(key: key);
@@ -111,7 +112,7 @@ class _BookTabState extends State<BookTab> {
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: InkWell(
                         onTap: () {
-                          //Navigator.pushNamed(context, "/course");
+                          Navigator.pushNamed(context, routes.bookDetailPage);
                         },
                         child: Card(
                           elevation: 8,

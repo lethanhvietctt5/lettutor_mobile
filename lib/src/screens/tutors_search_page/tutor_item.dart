@@ -61,7 +61,7 @@ class TutorCardInfo extends StatelessWidget {
                               Row(
                                 children: [
                                   Text(
-                                    tutor.rate.toDouble().toString(),
+                                    tutor.getTotalStar().toString(),
                                     style: const TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w500,
@@ -82,7 +82,7 @@ class TutorCardInfo extends StatelessWidget {
                           SizedBox(
                             height: 33,
                             child: ListView.builder(
-                              itemCount: tutor.specialties.length,
+                              itemCount: tutor.languages.length,
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
@@ -90,7 +90,7 @@ class TutorCardInfo extends StatelessWidget {
                                   margin: const EdgeInsets.only(top: 5, right: 8),
                                   padding: const EdgeInsets.all(5),
                                   child: Text(
-                                    tutor.specialties[index],
+                                    tutor.languages[index],
                                     style: const TextStyle(
                                       fontSize: 12,
                                       color: Colors.blue,
