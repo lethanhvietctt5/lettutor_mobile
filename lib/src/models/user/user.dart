@@ -30,4 +30,21 @@ class User {
   List<Booking> getUpcomming() {
     return bookingHistory.where((booking) => booking.isCancelled == false).toList();
   }
+
+  int getTotalLessonTime() {
+    int total = 0;
+
+    for (Booking b in bookingHistory) {
+      if (b.isCancelled == false) {
+        total += b.end.difference(b.start).inMinutes;
+      }
+    }
+    return total;
+  }
+
+  Booking? getNearestLesson() {
+    List<Booking> upcoming = getUpcomming();
+    upcoming.sort((a, b) => a.start.compareTo(b.start));
+    return upcoming.isNotEmpty ? upcoming.first : null;
+  }
 }
