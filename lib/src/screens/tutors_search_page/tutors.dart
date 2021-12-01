@@ -40,7 +40,7 @@ class _TutorsPageState extends State<TutorsPage> {
   List<Widget> _generateChips() {
     return _chips
         .map(
-          (chip) => InkWell(
+          (chip) => GestureDetector(
             onTap: () {
               setState(() {
                 specialist = chip;
@@ -91,12 +91,12 @@ class _TutorsPageState extends State<TutorsPage> {
     }
 
     return SingleChildScrollView(
-      child: Container(
+      child: Padding(
         padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
         child: Column(
           children: <Widget>[
-            Container(
-              margin: const EdgeInsets.only(bottom: 10),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
               child: TextField(
                   style: TextStyle(fontSize: 12, color: Colors.grey[900]),
                   controller: _controller,

@@ -48,7 +48,7 @@ class _NavigationBarState extends State<NavigationBar> {
               ? [
                   Container(
                     margin: const EdgeInsets.only(right: 20),
-                    child: InkWell(
+                    child: GestureDetector(
                       onTap: () {
                         Navigator.pushNamed(
                           context,

@@ -108,7 +108,7 @@ class _CourseTabState extends State<CourseTab> {
                   itemCount: _results.length,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: InkWell(
+                    child: GestureDetector(
                       onTap: () {
                         Navigator.pushNamed(
                           context,
@@ -135,7 +135,7 @@ class _CourseTabState extends State<CourseTab> {
                                 height: 210,
                                 fit: BoxFit.cover,
                               ),
-                              Container(
+                              Padding(
                                 padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,

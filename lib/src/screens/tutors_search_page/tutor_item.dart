@@ -11,9 +11,9 @@ class TutorCardInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      child: InkWell(
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: GestureDetector(
         onTap: () {
           Navigator.pushNamed(
             context,
@@ -27,7 +27,7 @@ class TutorCardInfo extends StatelessWidget {
             borderRadius: BorderRadius.circular(6),
           ),
           elevation: 5,
-          child: Container(
+          child: Padding(
             padding: const EdgeInsets.fromLTRB(15, 20, 15, 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,8 +36,8 @@ class TutorCardInfo extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      margin: const EdgeInsets.only(right: 15),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15),
                       child: AvatarCircle(width: 70, height: 70, source: tutor.image),
                     ),
                     Expanded(

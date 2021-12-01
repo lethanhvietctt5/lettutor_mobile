@@ -89,7 +89,7 @@ class UpComingCard extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                    child: InkWell(
+                    child: GestureDetector(
                       onTap: () {
                         cancelUpcoming(upcomming.id);
                         showTopSnackBar(

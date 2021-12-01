@@ -17,7 +17,7 @@ class CardTutor extends StatelessWidget {
 
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
-      child: InkWell(
+      child: GestureDetector(
         onTap: () {
           Navigator.pushNamed(
             context,
@@ -40,8 +40,8 @@ class CardTutor extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      margin: const EdgeInsets.only(right: 15),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15),
                       child: AvatarCircle(width: 70, height: 70, source: tutor.image),
                     ),
                     Expanded(
@@ -68,7 +68,7 @@ class CardTutor extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              InkWell(
+                              GestureDetector(
                                 onTap: () {
                                   if (exists.isNotEmpty) {
                                     userProvider.removeFavorite(tutor.id);

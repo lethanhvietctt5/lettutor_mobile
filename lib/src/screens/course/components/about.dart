@@ -15,114 +15,87 @@ class AboutCourse extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: const EdgeInsets.only(bottom: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(bottom: 7),
-                  child: const Text(
-                    "About Course",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Text(
-                  course.about,
-                  style: const TextStyle(
-                    fontSize: 17,
-                    color: Colors.black54,
-                  ),
-                ),
-              ],
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 8),
+            child: Text(
+              "About Course",
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
-          Container(
-            margin: const EdgeInsets.only(bottom: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(bottom: 10),
-                  child: const Text(
-                    "Overview",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                ListView.builder(
-                  itemCount: course.overview.length,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    String key = course.overview.keys.elementAt(index);
-                    return Container(
-                      margin: const EdgeInsets.only(bottom: 10),
-                      child: Column(
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Icon(
-                                Icons.help_outline,
-                                color: Colors.red,
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width - 70,
-                                margin: const EdgeInsets.only(left: 10, bottom: 10),
-                                child: Text(
-                                  key,
-                                  style: const TextStyle(
-                                    fontSize: 17,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          Text(
-                            course.overview[key] as String,
-                            style: const TextStyle(
-                              fontSize: 17,
-                              color: Colors.black54,
-                            ),
-                          ),
-                        ],
+          Text(
+            course.about,
+            style: const TextStyle(
+              fontSize: 17,
+              color: Colors.black54,
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 0, top: 14),
+            child: Text(
+              "Overview",
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          ListView.builder(
+            itemCount: course.overview.length,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              String key = course.overview.keys.elementAt(index);
+              return Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.help_outline,
+                        color: Colors.red,
                       ),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(bottom: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(bottom: 7),
-                  child: const Text(
-                    "Level",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
+                      Container(
+                        width: MediaQuery.of(context).size.width - 70,
+                        margin: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
+                        child: Text(
+                          key,
+                          style: const TextStyle(
+                            fontSize: 17,
+                            color: Colors.black,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Text(
+                    course.overview[key] as String,
+                    style: const TextStyle(
+                      fontSize: 17,
+                      color: Colors.black54,
                     ),
                   ),
-                ),
-                Text(
-                  course.level,
-                  style: const TextStyle(
-                    fontSize: 17,
-                    color: Colors.black54,
-                  ),
-                ),
-              ],
+                ],
+              );
+            },
+          ),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 8.0, top: 14),
+            child: Text(
+              "Level",
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Text(
+            course.level,
+            style: const TextStyle(
+              fontSize: 17,
+              color: Colors.black54,
             ),
           ),
         ],

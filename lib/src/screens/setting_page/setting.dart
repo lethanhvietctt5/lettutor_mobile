@@ -19,30 +19,30 @@ class _SettingPageState extends State<SettingPage> {
     final naviationIndex = Provider.of<NavigationIndex>(context);
 
     return SingleChildScrollView(
-      child: Container(
-        margin: const EdgeInsets.only(top: 15, left: 30, right: 30),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 15, left: 30, right: 30),
         child: Column(
           children: [
-            Container(
-              margin: const EdgeInsets.only(bottom: 20),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                      margin: const EdgeInsets.only(right: 25),
-                      child: const AvatarCircle(width: 70, height: 70, source: "asset/img/profile.jpg")),
+                  const Padding(
+                      padding: EdgeInsets.only(right: 25),
+                      child: AvatarCircle(width: 70, height: 70, source: "asset/img/profile.jpg")),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 5),
-                        child: const Text(
+                    children: const [
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 5),
+                        child: Text(
                           "Le Thanh Viet",
                           style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                         ),
                       ),
-                      const Text(
+                      Text(
                         "lethanhviet7c@gmail.com",
                         style: TextStyle(color: Colors.grey, fontSize: 13),
                       )

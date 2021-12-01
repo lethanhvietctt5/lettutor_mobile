@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
     // final user = Provider.of<UserProvider>(context);
     void handleLogin() {
       if (_emailController.text == 'admin' && _passwordController.text == '12345678') {
-        Navigator.popAndPushNamed(context, routes.homePage);
+        Navigator.pushNamedAndRemoveUntil(context, routes.homePage, (Route<dynamic> route) => false);
       } else {
         showTopSnackBar(
           context,
@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 40, 0, 80),
+                  padding: const EdgeInsets.fromLTRB(0, 40, 0, 40),
                   child: SizedBox(
                     width: 250,
                     child: Image.asset("asset/img/logo.png"),
@@ -147,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
                               "Not a member yet? ",
                               style: TextStyle(fontSize: 12),
                             ),
-                            InkWell(
+                            GestureDetector(
                               child: const Text("Sign up", style: TextStyle(color: Colors.blue, fontSize: 12)),
                               onTap: () {
                                 Navigator.popAndPushNamed(context, routes.registerPage);
@@ -155,7 +155,15 @@ class _LoginPageState extends State<LoginPage> {
                             )
                           ],
                         ),
-                        const Text("Forgot password?", style: TextStyle(color: Colors.blue, fontSize: 12))
+                        GestureDetector(
+                          child: const Text(
+                            "Forgot password?",
+                            style: TextStyle(color: Colors.blue, fontSize: 12),
+                          ),
+                          onTap: () {
+                            Navigator.popAndPushNamed(context, routes.forgotPasswordPage);
+                          },
+                        )
                       ],
                     )),
                 ButtonFullWidth(

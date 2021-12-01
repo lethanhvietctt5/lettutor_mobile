@@ -23,8 +23,8 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
           const BannerHomePage(),
-          Container(
-            margin: const EdgeInsets.only(top: 25, bottom: 10, left: 15, right: 15),
+          Padding(
+            padding: const EdgeInsets.only(top: 25, bottom: 10, left: 15, right: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,

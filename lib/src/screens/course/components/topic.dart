@@ -14,14 +14,11 @@ class TopicCourse extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: const EdgeInsets.only(bottom: 7),
-            child: const Text(
-              "Topic",
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
+          const Text(
+            "Topic",
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
             ),
           ),
           ListView.builder(
@@ -34,7 +31,7 @@ class TopicCourse extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6),
               ),
               elevation: 10,
-              child: Container(
+              child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: Row(
                   children: [

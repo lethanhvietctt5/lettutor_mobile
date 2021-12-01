@@ -38,7 +38,7 @@ class _SignUpPageState extends State<SignUpPage> {
           displayDuration: const Duration(microseconds: 1000),
         );
       } else {
-        Navigator.popAndPushNamed(context, routes.loginPage);
+        Navigator.pushNamedAndRemoveUntil(context, routes.loginPage, (Route<dynamic> route) => false);
       }
     }
 
@@ -181,7 +181,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       Row(
                         children: <Widget>[
                           const Text("Already have an account? "),
-                          InkWell(
+                          GestureDetector(
                             child: const Text("Login",
                                 style: TextStyle(
                                   color: Colors.blue,

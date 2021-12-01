@@ -169,7 +169,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     style: ElevatedButton.styleFrom(
                       primary: const Color(0xff007CFF),
-                      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(1000))),
+                      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
                     ),
                   ),
                 ),

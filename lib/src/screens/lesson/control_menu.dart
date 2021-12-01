@@ -48,7 +48,7 @@ class ControlMenu extends StatelessWidget {
               color: Colors.grey[100],
             ),
           ),
-          InkWell(
+          GestureDetector(
             onTap: () {
               SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
                 statusBarIconBrightness: Brightness.dark,

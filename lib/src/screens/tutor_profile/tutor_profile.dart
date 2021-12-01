@@ -36,8 +36,8 @@ class TutorProfile extends StatelessWidget {
             children: [
               MainInfo(tutor: tutor),
               BookingFeature(tutor: tutor),
-              Container(
-                margin: const EdgeInsets.only(top: 10, bottom: 10),
+              Padding(
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
                 child: Text(tutor.intro, style: const TextStyle(fontSize: 13)),
               ),
               const InforChips(title: "Languages", chips: ["English", "Tagalogs"]),
@@ -47,8 +47,8 @@ class TutorProfile extends StatelessWidget {
                 physics: const ScrollPhysics(),
                 itemBuilder: (context, index) {
                   String key = tutor.details.keys.elementAt(index);
-                  return Container(
-                    margin: const EdgeInsets.only(top: 10, bottom: 10),
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

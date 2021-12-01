@@ -26,27 +26,27 @@ class SessionItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          Padding(
             padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                    margin: const EdgeInsets.only(right: 15),
+                Padding(
+                    padding: const EdgeInsets.only(right: 15),
                     child: AvatarCircle(width: 50, height: 50, source: session.tutor.image)),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 5),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5),
                       child: Text(
                         session.tutor.fullName,
                         style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 5),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5),
                       child: Row(
                         children: <Widget>[
                           Container(
@@ -61,8 +61,8 @@ class SessionItem extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 0),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 0),
                       child: Row(
                         children: <Widget>[
                           Container(
@@ -77,8 +77,8 @@ class SessionItem extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 5),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5),
                       child: Row(
                         children: <Widget>[
                           Container(
@@ -106,12 +106,12 @@ class SessionItem extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            margin: const EdgeInsets.only(top: 14),
+          Padding(
+            padding: const EdgeInsets.only(top: 14),
             child: Row(
               children: [
                 Expanded(
-                  child: InkWell(
+                  child: GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, routes.feedbackPage, arguments: {"tutor": session.tutor});
                     },
