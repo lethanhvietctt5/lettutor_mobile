@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:lettutor_mobile/src/constants/colors_app.dart';
 import 'package:lettutor_mobile/src/provider/navigation_index.dart';
 import 'package:lettutor_mobile/src/screens/courses_search_page/courses.dart';
 import 'package:lettutor_mobile/src/screens/home_page/home.dart';
@@ -39,7 +40,7 @@ class _NavigationBarState extends State<NavigationBar> {
           centerTitle: false,
           elevation: 0,
           backgroundColor: Colors.white,
-          iconTheme: const IconThemeData(color: Colors.blue),
+          iconTheme: IconThemeData(color: AppColors.primary),
           title: Text(
             titles[navigationIndex.index],
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),

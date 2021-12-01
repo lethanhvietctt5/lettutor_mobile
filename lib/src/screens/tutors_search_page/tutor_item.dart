@@ -80,7 +80,7 @@ class TutorCardInfo extends StatelessWidget {
                             ],
                           ),
                           SizedBox(
-                            height: 33,
+                            height: 30,
                             child: ListView.builder(
                               itemCount: tutor.languages.length,
                               scrollDirection: Axis.horizontal,
@@ -94,13 +94,17 @@ class TutorCardInfo extends StatelessWidget {
                                     style: const TextStyle(
                                       fontSize: 12,
                                       color: Colors.blue,
-                                      fontWeight: FontWeight.w700,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                   decoration: BoxDecoration(
-                                      color: Colors.blue[50],
-                                      borderRadius: const BorderRadius.all(Radius.circular(20)),
-                                      border: Border.all(color: Colors.blue)),
+                                    color: Colors.blue[50],
+                                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                                    border: Border.all(
+                                      color: Colors.blue,
+                                      width: 0.2,
+                                    ),
+                                  ),
                                 );
                               },
                             ),

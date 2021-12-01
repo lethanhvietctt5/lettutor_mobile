@@ -136,7 +136,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   onChange: setTopicToLearn,
                 ),
                 Container(
-                  margin: const EdgeInsets.only(top: 20),
+                  margin: const EdgeInsets.only(top: 20, bottom: 20),
                   child: ElevatedButton(
                     onPressed: () {
                       if (_phone.isEmpty) {
@@ -169,7 +169,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     style: ElevatedButton.styleFrom(
                       primary: const Color(0xff007CFF),
-                      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
                     ),
                   ),
                 ),
