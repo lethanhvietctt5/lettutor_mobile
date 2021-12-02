@@ -22,28 +22,37 @@ class MainInfo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Container(
-                margin: const EdgeInsets.only(right: 15),
-                child: AvatarCircle(width: 70, height: 70, source: tutor.image)),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(tutor.fullName, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
-                const Text(
-                  "Teacher",
-                  style: TextStyle(color: Colors.grey, fontSize: 14),
+        Expanded(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                  margin: const EdgeInsets.only(right: 15),
+                  child: AvatarCircle(width: 70, height: 70, source: tutor.image)),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      tutor.fullName,
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const Text(
+                      "Teacher",
+                      style: TextStyle(color: Colors.grey, fontSize: 14),
+                    ),
+                    Text(
+                      tutor.country,
+                      style: const TextStyle(fontSize: 15),
+                    )
+                  ],
                 ),
-                Text(
-                  tutor.country,
-                  style: const TextStyle(fontSize: 15),
-                )
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
         Column(crossAxisAlignment: CrossAxisAlignment.end, children: <Widget>[
           RateStars(count: tutor.getTotalStar()),

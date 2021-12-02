@@ -1,4 +1,7 @@
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/models/user/countries.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/screens/profile_page/components/birthday.dart';
@@ -23,6 +26,9 @@ class _ProfilePageState extends State<ProfilePage> {
   late String _level;
   late String _topicToLearn;
   bool isInit = true;
+
+  File? _image;
+  final ImagePicker _picker = ImagePicker();
 
   void setBirthday(DateTime birthday) {
     setState(() {
@@ -70,6 +76,14 @@ class _ProfilePageState extends State<ProfilePage> {
       }
     });
 
+    void _imgFromGallery() async {
+      var pickedFile = await _picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
+
+      setState(() {
+        _image = File(pickedFile!.path);
+      });
+    }
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -92,9 +106,38 @@ class _ProfilePageState extends State<ProfilePage> {
             margin: const EdgeInsets.only(right: 15, left: 15),
             child: Column(
               children: [
-                Container(
-                  margin: const EdgeInsets.only(bottom: 10),
-                  child: const AvatarCircle(width: 70, height: 70, source: "asset/img/profile.jpg"),
+                Stack(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 10),
+                      height: 100,
+                      width: 100,
+                      child: CircleAvatar(
+                        child: _image != null
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(1000),
+                                child: Image.file(
+                                  _image!,
+                                  width: 200,
+                                  height: 200,
+                                  fit: BoxFit.fitWidth,
+                                ),
+                              )
+                            : const AvatarCircle(width: 200, height: 200, source: "asset/img/profile.jpg"),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 10,
+                      right: 0,
+                      child: GestureDetector(
+                        onTap: _imgFromGallery,
+                        child: SvgPicture.asset(
+                          "asset/svg/ic_camera.svg",
+                          color: Colors.grey[700],
+                        ),
+                      ),
+                    )
+                  ],
                 ),
                 Container(
                   margin: const EdgeInsets.only(bottom: 10),
