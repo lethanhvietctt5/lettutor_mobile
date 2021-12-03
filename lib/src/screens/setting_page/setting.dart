@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile/src/provider/navigation_index.dart';
+import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/setting_btn.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
@@ -17,6 +18,7 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     final naviationIndex = Provider.of<NavigationIndex>(context);
+    final uploadImage = Provider.of<UserProvider>(context).uploadImage;
 
     return SingleChildScrollView(
       child: Padding(
@@ -29,9 +31,24 @@ class _SettingPageState extends State<SettingPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Padding(
-                      padding: EdgeInsets.only(right: 25),
-                      child: AvatarCircle(width: 70, height: 70, source: "asset/img/profile.jpg")),
+                  Container(
+                    margin: const EdgeInsets.only(right: 25),
+                    height: 70,
+                    width: 70,
+                    child: CircleAvatar(
+                      child: uploadImage != null
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(1000),
+                              child: Image.file(
+                                uploadImage,
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.fitWidth,
+                              ),
+                            )
+                          : const AvatarCircle(width: 70, height: 70, source: "asset/img/profile.jpg"),
+                    ),
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [

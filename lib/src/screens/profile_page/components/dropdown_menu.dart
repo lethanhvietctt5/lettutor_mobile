@@ -15,6 +15,15 @@ class DropdownEdit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final listItems = items
+        .map(
+          (item) => DropdownMenuItem(
+            child: Text(item),
+            value: item,
+          ),
+        )
+        .toList();
+
     return Container(
       margin: const EdgeInsets.only(bottom: 10, top: 10),
       child: Column(
@@ -40,12 +49,7 @@ class DropdownEdit extends StatelessWidget {
               decoration: const InputDecoration(border: InputBorder.none),
               value: selectedItem,
               isExpanded: true,
-              items: items.map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
+              items: listItems,
               onChanged: (String? value) {
                 if (value is String) {
                   onChange(value);

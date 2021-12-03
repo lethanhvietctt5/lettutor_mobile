@@ -64,6 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
     final user = userProvider.user;
+    final uploadImage = userProvider.uploadImage;
 
     setState(() {
       if (isInit) {
@@ -79,9 +80,9 @@ class _ProfilePageState extends State<ProfilePage> {
     void _imgFromGallery() async {
       var pickedFile = await _picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
 
-      setState(() {
-        _image = File(pickedFile!.path);
-      });
+      if (pickedFile != null) {
+        userProvider.uploadProfileImage(File(pickedFile.path));
+      }
     }
 
     return SafeArea(
@@ -113,11 +114,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       height: 100,
                       width: 100,
                       child: CircleAvatar(
-                        child: _image != null
+                        child: uploadImage != null
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(1000),
                                 child: Image.file(
-                                  _image!,
+                                  uploadImage,
                                   width: 200,
                                   height: 200,
                                   fit: BoxFit.fitWidth,
@@ -131,9 +132,13 @@ class _ProfilePageState extends State<ProfilePage> {
                       right: 0,
                       child: GestureDetector(
                         onTap: _imgFromGallery,
-                        child: SvgPicture.asset(
-                          "asset/svg/ic_camera.svg",
-                          color: Colors.grey[700],
+                        child: CircleAvatar(
+                          backgroundColor: Colors.grey[300],
+                          radius: 15,
+                          child: SvgPicture.asset(
+                            "asset/svg/ic_camera.svg",
+                            color: Colors.grey[700],
+                          ),
                         ),
                       ),
                     )

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:lettutor_mobile/src/data/tutors_sample.dart';
 import 'package:lettutor_mobile/src/data/user_sample.dart';
@@ -11,6 +13,7 @@ var uuid = const Uuid();
 class UserProvider extends ChangeNotifier {
   late User user;
   List<String> idFavorite = [];
+  File? uploadImage;
 
   UserProvider() {
     user = UsersSample.users[0];
@@ -95,5 +98,10 @@ class UserProvider extends ChangeNotifier {
         break;
       }
     }
+  }
+
+  void uploadProfileImage(File image) {
+    uploadImage = image;
+    notifyListeners();
   }
 }
