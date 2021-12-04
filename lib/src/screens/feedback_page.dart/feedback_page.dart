@@ -61,7 +61,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     errorBorder: InputBorder.none,
                     disabledBorder: InputBorder.none,
                     contentPadding: EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
-                    hintText: "Enter todo here..."),
+                    hintText: "Enter feedbacks here..."),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 15),

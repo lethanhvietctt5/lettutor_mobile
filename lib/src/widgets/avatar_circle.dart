@@ -17,7 +17,10 @@ class AvatarCircle extends StatelessWidget {
       width: _width,
       height: _height,
       decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage(_source)),
+        image: DecorationImage(
+          image: AssetImage(_source),
+          fit: BoxFit.cover,
+        ),
         color: Colors.white,
         borderRadius: const BorderRadius.all(Radius.circular(1000)),
       ),

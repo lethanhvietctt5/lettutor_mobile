@@ -1,12 +1,10 @@
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
-import 'package:lettutor_mobile/src/navigation.dart';
 import 'package:lettutor_mobile/src/provider/navigation_index.dart';
 import 'package:lettutor_mobile/src/provider/setting.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/screens/login_page/login.dart';
 import 'package:provider/provider.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
 class MyApp extends StatelessWidget {
@@ -29,8 +27,8 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         useInheritedMediaQuery: true,
-        locale: DevicePreview.locale(context),
-        builder: DevicePreview.appBuilder,
+        // locale: DevicePreview.locale(context),
+        // builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
         onGenerateRoute: routes.controller,
         // showPerformanceOverlay: true,
@@ -41,7 +39,7 @@ class MyApp extends StatelessWidget {
             statusBarColor: Colors.white,
             statusBarIconBrightness: Brightness.dark,
           ),
-          child: NavigationBar(),
+          child: LoginPage(),
         ),
       ),
     );

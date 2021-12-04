@@ -17,9 +17,6 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _repasswordControler = TextEditingController();
 
-  // bool? _emailError;
-  // bool? _passwordError;
-
   @override
   Widget build(BuildContext context) {
     void handleSignUp() {
@@ -95,7 +92,6 @@ class _SignUpPageState extends State<SignUpPage> {
                     ],
                   ),
                 ),
-                //InvalidMessage(padding: const EdgeInsets.all(8), message: "* Invalid email", isError: _emailError),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(

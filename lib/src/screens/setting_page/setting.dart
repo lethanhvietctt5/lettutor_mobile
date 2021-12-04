@@ -43,7 +43,7 @@ class _SettingPageState extends State<SettingPage> {
                                 uploadImage,
                                 width: 200,
                                 height: 200,
-                                fit: BoxFit.fitWidth,
+                                fit: BoxFit.cover,
                               ),
                             )
                           : const AvatarCircle(width: 70, height: 70, source: "asset/img/profile.jpg"),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:lettutor_mobile/src/helpers/distinct_date.dart';
+import 'package:lettutor_mobile/src/helpers/generate_ratio.dart';
 import 'package:lettutor_mobile/src/models/tutor/schedule.dart';
 import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
 import 'package:lettutor_mobile/src/models/user/booking.dart';
@@ -16,7 +18,7 @@ class BookingFeature extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<DateTime> distinctDates = getDisticntDate(tutor.dateAvailable.map((e) => e.start).toList());
+    List<DateTime> distinctDates = getDistinctDate(tutor.dateAvailable.map((e) => e.start).toList());
     final userProvider = Provider.of<UserProvider>(context);
 
     Future showTutorTimePicker(DateTime date) {
@@ -38,74 +40,93 @@ class BookingFeature extends StatelessWidget {
             child: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) => Container(
                 color: Colors.white,
-                padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
                 height: MediaQuery.of(context).size.height * 0.6,
-                child: GridView.count(
-                  crossAxisCount: generateAsisChildRatio(constraints)[0].toInt(),
-                  childAspectRatio: (1 / generateAsisChildRatio(constraints)[1]),
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  children: List.generate(
-                    selectedDate.length,
-                    (index) => ElevatedButton(
-                      onPressed: selectedDate[index].isReserved == false
-                          ? () {
-                              Booking newBooking = Booking(
-                                id: uuid.v4(),
-                                tutor: tutor,
-                                start: selectedDate[index].start,
-                                end: selectedDate[index].end,
-                                idSchedule: selectedDate[index].id,
-                              );
-
-                              userProvider.addBooking(newBooking);
-                              tutor.setReserved(selectedDate[index].id, true);
-                              Navigator.pop(context);
-                              Navigator.pop(context);
-
-                              showTopSnackBar(
-                                context,
-                                const CustomSnackBar.success(
-                                  message: "Booking successful. ",
-                                  backgroundColor: Colors.green,
-                                ),
-                                showOutAnimationDuration: const Duration(milliseconds: 700),
-                                displayDuration: const Duration(milliseconds: 200),
-                              );
-                            }
-                          : null,
-                      child: selectedDate[index].isReserved == false
-                          ? Container(
-                              padding: const EdgeInsets.only(top: 13, bottom: 13),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    DateFormat.Hm().format(selectedDate[index].start),
-                                    style: const TextStyle(color: Colors.blue),
-                                  ),
-                                  Text(
-                                    " - " + DateFormat.Hm().format(selectedDate[index].end),
-                                    style: const TextStyle(color: Colors.blue),
-                                  ),
-                                ],
-                              ),
-                            )
-                          : const Text(
-                              "Reserved",
-                              style: TextStyle(color: Colors.blue),
+                child: Column(
+                  children: [
+                    Container(
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        margin: const EdgeInsets.only(bottom: 10),
+                        width: double.infinity,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: const <Widget>[
+                            Text(
+                              "Select available schedule",
+                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                             ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
+                          ],
+                        ),
+                        decoration: BoxDecoration(color: Colors.grey[300])),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10, left: 10),
+                      child: GridView.count(
+                        crossAxisCount: generateAsisChildRatio(constraints)[0].toInt(),
+                        childAspectRatio: (1 / generateAsisChildRatio(constraints)[1]),
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        shrinkWrap: true,
+                        children: List.generate(
+                          selectedDate.length,
+                          (index) => ElevatedButton(
+                            onPressed: selectedDate[index].isReserved == false
+                                ? () {
+                                    Booking newBooking = Booking(
+                                      id: uuid.v4(),
+                                      tutor: tutor,
+                                      start: selectedDate[index].start,
+                                      end: selectedDate[index].end,
+                                      idSchedule: selectedDate[index].id,
+                                    );
+
+                                    userProvider.addBooking(newBooking);
+                                    tutor.setReserved(selectedDate[index].id, true);
+                                    Navigator.pop(context);
+                                    Navigator.pop(context);
+
+                                    showTopSnackBar(
+                                      context,
+                                      const CustomSnackBar.success(
+                                        message: "Booking successful. ",
+                                        backgroundColor: Colors.green,
+                                      ),
+                                      showOutAnimationDuration: const Duration(milliseconds: 700),
+                                      displayDuration: const Duration(milliseconds: 200),
+                                    );
+                                  }
+                                : null,
+                            child: selectedDate[index].isReserved == false
+                                ? Container(
+                                    padding: const EdgeInsets.only(top: 13, bottom: 13),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          DateFormat.Hm().format(selectedDate[index].start),
+                                          style: const TextStyle(color: Colors.blue),
+                                        ),
+                                        Text(
+                                          " - " + DateFormat.Hm().format(selectedDate[index].end),
+                                          style: const TextStyle(color: Colors.blue),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                : const Text("Reserved", style: TextStyle(color: Colors.blue)),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                                side: BorderSide(color: Colors.blue, width: 1),
+                              ),
+                            ),
                           ),
-                          side: BorderSide(color: Colors.blue, width: 1),
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),
@@ -129,43 +150,63 @@ class BookingFeature extends StatelessWidget {
             child: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) => Container(
                 color: Colors.white,
-                padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
                 height: MediaQuery.of(context).size.height * 0.6,
                 constraints: const BoxConstraints(maxWidth: 1000),
-                child: GridView.count(
-                  crossAxisCount: generateAsisChildRatio(constraints)[0].toInt(),
-                  childAspectRatio: (1 / generateAsisChildRatio(constraints)[1]),
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  children: List.generate(
-                    distinctDates.length,
-                    (index) => ElevatedButton(
-                      onPressed: () {
-                        showTutorTimePicker(distinctDates[index]);
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.only(top: 13, bottom: 13),
+                child: Column(
+                  children: [
+                    Container(
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        margin: const EdgeInsets.only(bottom: 10),
+                        width: double.infinity,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              DateFormat.yMd().format(distinctDates[index]),
-                              style: const TextStyle(color: Colors.blue),
-                            )
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: const <Widget>[
+                            Text("Select available schedule",
+                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                           ],
                         ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
+                        decoration: BoxDecoration(color: Colors.grey[300])),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10, left: 10),
+                      child: GridView.count(
+                        crossAxisCount: generateAsisChildRatio(constraints)[0].toInt(),
+                        childAspectRatio: (1 / generateAsisChildRatio(constraints)[1]),
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        shrinkWrap: true,
+                        children: List.generate(
+                          distinctDates.length,
+                          (index) => ElevatedButton(
+                            onPressed: () {
+                              showTutorTimePicker(distinctDates[index]);
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.only(top: 13, bottom: 13),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    DateFormat.yMd().format(distinctDates[index]),
+                                    style: const TextStyle(color: Colors.blue),
+                                  )
+                                ],
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                                side: BorderSide(color: Colors.blue, width: 1),
+                              ),
+                            ),
                           ),
-                          side: BorderSide(color: Colors.blue, width: 1),
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),
@@ -186,12 +227,7 @@ class BookingFeature extends StatelessWidget {
               padding: const EdgeInsets.only(top: 13, bottom: 13),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    "Booking",
-                    style: TextStyle(color: Colors.white),
-                  )
-                ],
+                children: const [Text("Booking", style: TextStyle(color: Colors.white))],
               ),
             ),
             style: ElevatedButton.styleFrom(
@@ -207,26 +243,14 @@ class BookingFeature extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  SvgPicture.asset(
-                    "asset/svg/ic_message2.svg",
-                    color: Colors.blue,
-                  ),
-                  const Text(
-                    "Message",
-                    style: TextStyle(color: Colors.blue, fontSize: 14),
-                  )
+                  SvgPicture.asset("asset/svg/ic_message2.svg", color: Colors.blue),
+                  const Text("Message", style: TextStyle(color: Colors.blue, fontSize: 14))
                 ],
               ),
               Column(
                 children: [
-                  SvgPicture.asset(
-                    "asset/svg/ic_report.svg",
-                    color: Colors.blue,
-                  ),
-                  const Text(
-                    "Report",
-                    style: TextStyle(color: Colors.blue, fontSize: 14),
-                  )
+                  SvgPicture.asset("asset/svg/ic_report.svg", color: Colors.blue),
+                  const Text("Report", style: TextStyle(color: Colors.blue, fontSize: 14))
                 ],
               ),
             ],
@@ -234,42 +258,5 @@ class BookingFeature extends StatelessWidget {
         )
       ],
     );
-  }
-}
-
-List<DateTime> getDisticntDate(List<DateTime> dates) {
-  List<DateTime> distinctDates = [];
-  bool isDuplicate = false;
-
-  for (DateTime d1 in dates) {
-    isDuplicate = false;
-    for (DateTime d2 in distinctDates) {
-      if (d1.day == d2.day && d1.month == d2.month && d1.year == d2.year) {
-        isDuplicate = true;
-        break;
-      }
-    }
-
-    if (isDuplicate == false) {
-      distinctDates.add(d1);
-    }
-  }
-
-  return distinctDates;
-}
-
-List<double> generateAsisChildRatio(BoxConstraints constraints) {
-  if (constraints.maxWidth > 1024) {
-    return [8, .3];
-  } else if (constraints.maxWidth > 700) {
-    return [5, .3];
-  } else if (constraints.maxWidth > 600) {
-    return [4, .3];
-  } else if (constraints.maxWidth > 500) {
-    return [3, .3];
-  } else if (constraints.maxWidth > 300) {
-    return [2, .3];
-  } else {
-    return [1, .2];
   }
 }

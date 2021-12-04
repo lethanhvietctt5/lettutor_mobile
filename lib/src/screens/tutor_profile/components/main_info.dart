@@ -58,7 +58,7 @@ class MainInfo extends StatelessWidget {
           RateStars(count: tutor.getTotalStar()),
           Container(
             margin: const EdgeInsets.only(top: 8, right: 8),
-            child: InkWell(
+            child: GestureDetector(
               onTap: () {
                 if (exists.isNotEmpty) {
                   userProvider.removeFavorite(tutor.id);

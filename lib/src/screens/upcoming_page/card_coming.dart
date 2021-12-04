@@ -92,6 +92,7 @@ class UpComingCard extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         cancelUpcoming(upcomming.id);
+                        upcomming.tutor.setReserved(upcomming.idSchedule, false);
                         showTopSnackBar(
                           context,
                           const CustomSnackBar.success(

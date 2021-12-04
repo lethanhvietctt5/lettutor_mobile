@@ -27,7 +27,6 @@ class _ProfilePageState extends State<ProfilePage> {
   late String _topicToLearn;
   bool isInit = true;
 
-  File? _image;
   final ImagePicker _picker = ImagePicker();
 
   void setBirthday(DateTime birthday) {
@@ -121,7 +120,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   uploadImage,
                                   width: 200,
                                   height: 200,
-                                  fit: BoxFit.fitWidth,
+                                  fit: BoxFit.cover,
                                 ),
                               )
                             : const AvatarCircle(width: 200, height: 200, source: "asset/img/profile.jpg"),
