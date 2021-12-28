@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:lettutor_mobile/src/models/user_model/tokens_model.dart';
 import 'package:lettutor_mobile/src/models/user_model/user_model.dart';
@@ -24,7 +23,25 @@ class UserService {
       final user = parseUser(jsonEncode);
       callback(user, tokens);
     } else {
-      throw Exception('Failed to login');
+      final jsonRes = json.decode(response.body);
+      print(jsonRes);
+      throw Exception(jsonRes["message"]);
+    }
+  }
+
+  static registerWithEmailAndPassword(String email, String password, Function() callback) async {
+    final response = await http.post(Uri.parse(url + "/auth/register"), body: {
+      'email': email,
+      'password': password,
+      "source": "null",
+    });
+
+    if (response.statusCode == 201) {
+      callback();
+    } else {
+      final jsonRes = json.decode(response.body);
+      print(jsonRes);
+      throw Exception(jsonRes["message"]);
     }
   }
 }

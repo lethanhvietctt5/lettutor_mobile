@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/models/user_model/tokens_model.dart';
+import 'package:lettutor_mobile/src/models/user_model/user_model.dart';
+import 'package:lettutor_mobile/src/services/user_service.dart';
 import 'package:lettutor_mobile/src/widgets/button_expand.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -19,7 +22,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    void handleSignUp() {
+    void handleSignUp() async {
       if (_emailController.text.isEmpty || _passwordController.text.isEmpty || _repasswordControler.text.isEmpty) {
         showTopSnackBar(
           context,
@@ -35,7 +38,22 @@ class _SignUpPageState extends State<SignUpPage> {
           displayDuration: const Duration(microseconds: 1000),
         );
       } else {
-        Navigator.pushNamedAndRemoveUntil(context, routes.loginPage, (Route<dynamic> route) => false);
+        try {
+          await UserService.registerWithEmailAndPassword(
+            _emailController.text,
+            _passwordController.text,
+            () {
+              Navigator.pushNamedAndRemoveUntil(context, routes.loginPage, (Route<dynamic> route) => false);
+            },
+          );
+        } catch (e) {
+          showTopSnackBar(
+            context,
+            CustomSnackBar.error(message: "Signup failed!. ${e.toString()}"),
+            showOutAnimationDuration: const Duration(milliseconds: 5000),
+            displayDuration: const Duration(microseconds: 5000),
+          );
+        }
       }
     }
 

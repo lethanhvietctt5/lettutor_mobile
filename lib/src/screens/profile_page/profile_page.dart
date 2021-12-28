@@ -3,6 +3,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/models/user/countries.dart';
+import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/screens/profile_page/components/birthday.dart';
 import 'package:lettutor_mobile/src/screens/profile_page/components/dropdown_menu.dart';
@@ -64,6 +65,7 @@ class _ProfilePageState extends State<ProfilePage> {
     final userProvider = Provider.of<UserProvider>(context);
     final user = userProvider.user;
     final uploadImage = userProvider.uploadImage;
+    final authProvider = Provider.of<AuthProvider>(context);
 
     setState(() {
       if (isInit) {
@@ -113,18 +115,17 @@ class _ProfilePageState extends State<ProfilePage> {
                       height: 100,
                       width: 100,
                       child: CircleAvatar(
-                        child: uploadImage != null
-                            ? ClipRRect(
-                                borderRadius: BorderRadius.circular(1000),
-                                child: Image.file(
-                                  uploadImage,
-                                  width: 200,
-                                  height: 200,
-                                  fit: BoxFit.cover,
-                                ),
-                              )
-                            : const AvatarCircle(width: 200, height: 200, source: "asset/img/profile.jpg"),
-                      ),
+                          child: authProvider.userLoggedIn != null && authProvider.userLoggedIn?.avatar != null
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(1000),
+                                  child: Image.network(
+                                    authProvider.userLoggedIn?.avatar as String,
+                                    width: 200,
+                                    height: 200,
+                                    fit: BoxFit.cover,
+                                  ),
+                                )
+                              : const AvatarCircle(width: 200, height: 200, source: "asset/img/profile.jpg")),
                     ),
                     Positioned(
                       bottom: 10,
