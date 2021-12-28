@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
+import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/provider/navigation_index.dart';
 import 'package:lettutor_mobile/src/provider/setting.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => SettingProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AuthProvider(),
         )
       ],
       child: MaterialApp(

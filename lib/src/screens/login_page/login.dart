@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/models/user_model/tokens_model.dart';
+import 'package:lettutor_mobile/src/models/user_model/user_model.dart';
+import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/screens/login_page/login_with.dart';
+import 'package:lettutor_mobile/src/services/user_service.dart';
 import 'package:lettutor_mobile/src/widgets/button_expand.dart';
+import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
@@ -20,11 +25,23 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final user = Provider.of<UserProvider>(context);
-    void handleLogin() {
-      if (_emailController.text == 'admin' && _passwordController.text == '12345678') {
-        Navigator.pushNamedAndRemoveUntil(context, routes.homePage, (Route<dynamic> route) => false);
-      } else {
+    final authProvider = Provider.of<AuthProvider>(context);
+    _emailController.text = "student@lettutor.com";
+    _passwordController.text = "123456";
+    void handleLogin() async {
+      try {
+        await UserService.loginByEmailAndPassword(
+          _emailController.text,
+          _passwordController.text,
+          (User user, Tokens tokens) {
+            authProvider.logIn(user, tokens);
+          },
+        );
+
+        if (authProvider.userLoggedIn != null) {
+          Navigator.pushNamedAndRemoveUntil(context, routes.homePage, (Route<dynamic> route) => false);
+        }
+      } catch (e) {
         showTopSnackBar(
           context,
           const CustomSnackBar.error(message: "Login failed! Email or password is wrong."),
