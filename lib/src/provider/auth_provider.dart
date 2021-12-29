@@ -7,9 +7,9 @@ class AuthProvider extends ChangeNotifier {
   Tokens? tokens;
 
 
-  void logIn(User user, Tokens tokens) {
+  void logIn(User user, Tokens _tokens) {
     userLoggedIn = user;
-    tokens = tokens;
+    tokens = _tokens;
     notifyListeners();
   }
 

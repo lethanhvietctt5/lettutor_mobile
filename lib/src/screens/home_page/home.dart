@@ -2,9 +2,13 @@ import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/painting.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/models/tutor_model/tutor_info_model.dart';
+import 'package:lettutor_mobile/src/models/tutor_model/tutor_model.dart';
+import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/provider/navigation_index.dart';
 import 'package:lettutor_mobile/src/screens/home_page/components/banner.dart';
-import 'package:lettutor_mobile/src/screens/home_page/components/recommend_tutor.dart';
+import 'package:lettutor_mobile/src/screens/home_page/components/card_tutor.dart';
+import 'package:lettutor_mobile/src/services/tutor_service.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,9 +19,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<TutorInfo> _tutors = [];
+  bool _isLoading = true;
+
+  void fetchRecommendTutors(String token) async {
+    final result = await TutorService.getListTutorWithPagination(1, 9, token);
+    setState(() {
+      _tutors = result;
+      _isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final navigationIndex = Provider.of<NavigationIndex>(context);
+    final authProvider = Provider.of<AuthProvider>(context);
+
+    if (authProvider.tokens != null && _isLoading) {
+      fetchRecommendTutors(authProvider.tokens?.access.token as String);
+    }
 
     return SingleChildScrollView(
       child: Column(
@@ -63,8 +83,8 @@ class _HomePageState extends State<HomePage> {
           Container(
             margin: const EdgeInsets.only(left: 15, right: 15),
             child: ListView.builder(
-              itemCount: RecommendTutors().tutors.length,
-              itemBuilder: (context, index) => RecommendTutors().tutors[index],
+              itemCount: _tutors.length,
+              itemBuilder: (context, index) => CardTutor(tutor: _tutors[index]),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
             ),

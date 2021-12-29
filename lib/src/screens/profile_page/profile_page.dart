@@ -209,7 +209,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 BirthdayEdition(setBirthday: setBirthday, birthday: _birthday),
                 PhoneEdition(
-                    changePhone: setPhone, phone: _phone, isPhoneActivated: authProvider.userLoggedIn.isPhoneActivated),
+                    changePhone: setPhone,
+                    phone: _phone,
+                    isPhoneActivated: authProvider.userLoggedIn.isPhoneActivated ?? false),
                 DropdownEdit(
                   title: "Country",
                   selectedItem: countryList[_country] ?? "Viet Nam",

@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
-    _emailController.text = "bexef71167@wiicheat.com";
+    _emailController.text = "student@lettutor.com";
     _passwordController.text = "123456";
     void handleLogin() async {
       try {

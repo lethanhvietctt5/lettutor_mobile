@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
+import 'package:lettutor_mobile/src/models/tutor_model/tutor_info_model.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
-import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 import 'package:lettutor_mobile/src/widgets/rate_stars.dart';
 import 'package:provider/provider.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
 class CardTutor extends StatelessWidget {
   const CardTutor({Key? key, required this.tutor}) : super(key: key);
-  final Tutor tutor;
+  final TutorInfo tutor;
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
@@ -38,11 +37,22 @@ class CardTutor extends StatelessWidget {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 15),
-                      child: AvatarCircle(width: 70, height: 70, source: tutor.image),
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 10, right: 10),
+                      height: 60,
+                      width: 60,
+                      child: CircleAvatar(
+                          child: ClipRRect(
+                        borderRadius: BorderRadius.circular(1000),
+                        child: Image.network(
+                          tutor.avatar as String,
+                          width: 70,
+                          height: 70,
+                          fit: BoxFit.cover,
+                        ),
+                      )),
                     ),
                     Expanded(
                       child: Column(
@@ -58,13 +68,13 @@ class CardTutor extends StatelessWidget {
                                     Container(
                                       margin: const EdgeInsets.only(bottom: 5),
                                       child: Text(
-                                        tutor.fullName,
+                                        tutor.name,
                                         style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
-                                    RateStars(count: tutor.getTotalStar()),
+                                    const RateStars(count: 5),
                                   ],
                                 ),
                               ),
@@ -95,7 +105,7 @@ class CardTutor extends StatelessWidget {
                           SizedBox(
                             height: 30,
                             child: ListView.builder(
-                              itemCount: tutor.languages.length,
+                              itemCount: tutor.specialties.split(",").length,
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
@@ -103,7 +113,7 @@ class CardTutor extends StatelessWidget {
                                   margin: const EdgeInsets.only(top: 5, right: 8),
                                   padding: const EdgeInsets.all(5),
                                   child: Text(
-                                    tutor.languages[index],
+                                    tutor.specialties.split(",")[index],
                                     style: const TextStyle(
                                       fontSize: 12,
                                       color: Colors.blue,
@@ -130,7 +140,7 @@ class CardTutor extends StatelessWidget {
                 Container(
                     margin: const EdgeInsets.only(top: 10),
                     child: Text(
-                      tutor.intro,
+                      tutor.bio,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 4,
                     ))
