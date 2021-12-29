@@ -27,8 +27,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
-    // _emailController.text = "bexef71167@wiicheat.com";
-    // _passwordController.text = "123456";
+    _emailController.text = "bexef71167@wiicheat.com";
+    _passwordController.text = "123456";
     void handleLogin() async {
       try {
         await UserService.loginByEmailAndPassword(_emailController.text, _passwordController.text,
@@ -64,21 +64,33 @@ class _LoginPageState extends State<LoginPage> {
                           padding: const EdgeInsets.only(bottom: 4),
                           child: Text(!isLoginWithPhone ? "Email" : "Phone",
                               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey[800]))),
-                      TextField(
-                          style: TextStyle(fontSize: 15, color: Colors.grey[900]),
-                          controller: _emailController,
-                          keyboardType: isLoginWithPhone ? TextInputType.phone : TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.grey.shade200,
-                              prefixIcon: Container(
-                                  padding: const EdgeInsets.all(13),
-                                  child: SvgPicture.asset(
-                                      isLoginWithPhone ? "asset/svg/ic_numberphone.svg" : "asset/svg/ic_email.svg",
-                                      color: Colors.grey[600])),
-                              border: const OutlineInputBorder(
-                                  borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
-                              hintText: isLoginWithPhone ? "+84902794731" : "abc@gmail.com"))
+                      isLoginWithPhone
+                          ? TextField(
+                              style: TextStyle(fontSize: 15, color: Colors.grey[900]),
+                              controller: _emailController,
+                              keyboardType: TextInputType.phone,
+                              decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.grey.shade200,
+                                  prefixIcon: Container(
+                                      padding: const EdgeInsets.all(13),
+                                      child: SvgPicture.asset("asset/svg/ic_numberphone.svg", color: Colors.grey[600])),
+                                  border: const OutlineInputBorder(
+                                      borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
+                                  hintText: "+84902794731"))
+                          : TextField(
+                              style: TextStyle(fontSize: 15, color: Colors.grey[900]),
+                              controller: _emailController,
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.grey.shade200,
+                                  prefixIcon: Container(
+                                      padding: const EdgeInsets.all(13),
+                                      child: SvgPicture.asset("asset/svg/ic_email.svg", color: Colors.grey[600])),
+                                  border: const OutlineInputBorder(
+                                      borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
+                                  hintText: "abc@gmail.com"))
                     ],
                   ),
                 ),
@@ -164,6 +176,8 @@ class _LoginPageState extends State<LoginPage> {
                             setState(() {
                               isLoginWithPhone = !isLoginWithPhone;
                             });
+                            FocusScope.of(context).unfocus();
+                            _emailController.clear();
                           },
                           child: SvgPicture.asset("asset/svg/ic_phone_login.svg", width: 30, height: 30),
                           style: ElevatedButton.styleFrom(

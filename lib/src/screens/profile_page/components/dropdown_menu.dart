@@ -10,12 +10,13 @@ class DropdownEdit extends StatelessWidget {
   }) : super(key: key);
 
   final String title, selectedItem;
-  final List<String> items;
+  final Map<String, String> items;
   final Function(String) onChange;
 
   @override
   Widget build(BuildContext context) {
-    final listItems = items
+    final listItems = items.values
+        .toList()
         .map(
           (item) => DropdownMenuItem(
             child: Text(item),

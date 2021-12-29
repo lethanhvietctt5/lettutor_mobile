@@ -2,6 +2,10 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
+import 'package:lettutor_mobile/src/constants/learning_topics.dart';
+import 'package:lettutor_mobile/src/constants/list_contries.dart';
+import 'package:lettutor_mobile/src/constants/list_level.dart';
 import 'package:lettutor_mobile/src/models/user/countries.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
@@ -21,7 +25,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  late DateTime _birthday;
+  late DateTime? _birthday;
   late String _phone;
   late String _country;
   late String _level;
@@ -64,16 +68,20 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
     final user = userProvider.user;
-    final uploadImage = userProvider.uploadImage;
     final authProvider = Provider.of<AuthProvider>(context);
+
+    final _nameController = TextEditingController();
 
     setState(() {
       if (isInit) {
-        _birthday = user.birthDay;
-        _phone = user.phone;
-        _country = user.country;
-        _level = user.level;
-        _topicToLearn = user.topicToLearn;
+        _birthday = authProvider.userLoggedIn.birthday != null
+            ? DateFormat("yyyy-MM-dd").parse(authProvider.userLoggedIn.birthday as String)
+            : null;
+        _phone = authProvider.userLoggedIn.phone;
+        _country = authProvider.userLoggedIn.country != null ? (authProvider.userLoggedIn.country as String) : "";
+        _level = authProvider.userLoggedIn.level != null ? (authProvider.userLoggedIn.level as String) : "";
+        _topicToLearn = "BEGINNER";
+        _nameController.text = authProvider.userLoggedIn.name;
         isInit = false;
       }
     });
@@ -115,17 +123,15 @@ class _ProfilePageState extends State<ProfilePage> {
                       height: 100,
                       width: 100,
                       child: CircleAvatar(
-                          child: authProvider.userLoggedIn != null && authProvider.userLoggedIn?.avatar != null
-                              ? ClipRRect(
-                                  borderRadius: BorderRadius.circular(1000),
-                                  child: Image.network(
-                                    authProvider.userLoggedIn?.avatar as String,
-                                    width: 200,
-                                    height: 200,
-                                    fit: BoxFit.cover,
-                                  ),
-                                )
-                              : const AvatarCircle(width: 200, height: 200, source: "asset/img/profile.jpg")),
+                          child: ClipRRect(
+                        borderRadius: BorderRadius.circular(1000),
+                        child: Image.network(
+                          authProvider.userLoggedIn.avatar,
+                          width: 200,
+                          height: 200,
+                          fit: BoxFit.cover,
+                        ),
+                      )),
                     ),
                     Positioned(
                       bottom: 10,
@@ -156,33 +162,72 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
                 Text(
-                  user.email,
+                  authProvider.userLoggedIn.email,
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey[800],
                     fontWeight: FontWeight.w500,
                   ),
                 ),
+                Container(
+                  margin: const EdgeInsets.only(bottom: 10, top: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(bottom: 7, left: 5),
+                        child: const Text(
+                          "Name",
+                          style: TextStyle(fontSize: 17),
+                        ),
+                      ),
+                      TextField(
+                        style: TextStyle(fontSize: 17, color: Colors.grey[900]),
+                        controller: _nameController,
+                        onChanged: (value) {},
+                        decoration: const InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: EdgeInsets.only(left: 15, right: 15),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black26, width: 0.3),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black26, width: 0.3),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black26, width: 0.3),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          hintText: "Full name",
+                        ),
+                      )
+                    ],
+                  ),
+                ),
                 BirthdayEdition(setBirthday: setBirthday, birthday: _birthday),
-                PhoneEdition(changePhone: setPhone, phone: _phone),
+                PhoneEdition(
+                    changePhone: setPhone, phone: _phone, isPhoneActivated: authProvider.userLoggedIn.isPhoneActivated),
                 DropdownEdit(
                   title: "Country",
-                  selectedItem: _country,
-                  items: AllCountries.countries,
+                  selectedItem: countryList[_country] ?? "Viet Nam",
+                  items: countryList,
                   onChange: setCountry,
                 ),
                 DropdownEdit(
                   title: "My Level",
-                  selectedItem: _level,
-                  items: const ["Beginner", "Immediate", "Advanced"],
+                  selectedItem: listLevel[_level] ?? "BEGINNER",
+                  items: listLevel,
                   onChange: setLevel,
                 ),
-                DropdownEdit(
-                  title: "Want to learn",
-                  selectedItem: _topicToLearn,
-                  items: const ["TOEIC", "IELTS", "TOEFL"],
-                  onChange: setTopicToLearn,
-                ),
+                // DropdownEdit(
+                //   title: "Want to learn",
+                //   selectedItem: _topicToLearn,
+                //   items: listLearningTopics,
+                //   onChange: setTopicToLearn,
+                // ),
                 Container(
                   margin: const EdgeInsets.only(top: 20, bottom: 20),
                   child: ElevatedButton(
@@ -195,7 +240,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           displayDuration: const Duration(milliseconds: 200),
                         );
                       } else {
-                        userProvider.updateBirthday(_birthday);
+                        if (_birthday != null) {
+                          userProvider.updateBirthday(_birthday as DateTime);
+                        }
                         userProvider.updatePhone(_phone);
                         userProvider.updateCountry(_country);
                         userProvider.updateLevel(_level);

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class PhoneEdition extends StatefulWidget {
-  const PhoneEdition({Key? key, required this.changePhone, required this.phone}) : super(key: key);
+  const PhoneEdition({Key? key, required this.changePhone, required this.phone, required this.isPhoneActivated})
+      : super(key: key);
   final Function(String) changePhone;
   final String phone;
+  final bool isPhoneActivated;
 
   @override
   State<PhoneEdition> createState() => _PhoneEditionState();
@@ -35,20 +37,21 @@ class _PhoneEditionState extends State<PhoneEdition> {
           TextField(
             style: TextStyle(fontSize: 17, color: Colors.grey[900]),
             controller: _controller,
+            enabled: !widget.isPhoneActivated,
             onChanged: (value) => widget.changePhone(value),
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               filled: true,
-              fillColor: Colors.white,
-              contentPadding: EdgeInsets.only(left: 15, right: 15),
-              border: OutlineInputBorder(
+              fillColor: Colors.grey[200],
+              contentPadding: const EdgeInsets.only(left: 15, right: 15),
+              border: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.black26, width: 0.3),
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
-              enabledBorder: OutlineInputBorder(
+              enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.black26, width: 0.3),
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.black26, width: 0.3),
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
