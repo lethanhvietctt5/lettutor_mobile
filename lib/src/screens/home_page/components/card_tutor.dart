@@ -1,24 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/constants/learning_topics.dart';
-import 'package:lettutor_mobile/src/models/tutor_model/tutor_info_model.dart';
-import 'package:lettutor_mobile/src/provider/user_provider.dart';
+import 'package:lettutor_mobile/src/models/tutor_model/tutor_model.dart';
+import 'package:lettutor_mobile/src/provider/auth_provider.dart';
+import 'package:lettutor_mobile/src/services/user_service.dart';
 import 'package:lettutor_mobile/src/widgets/rate_stars.dart';
 import 'package:provider/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
-class CardTutor extends StatelessWidget {
+class CardTutor extends StatefulWidget {
   const CardTutor({Key? key, required this.tutor}) : super(key: key);
-  final TutorInfo tutor;
+  final Tutor tutor;
+
+  @override
+  State<CardTutor> createState() => _CardTutorState();
+}
+
+class _CardTutorState extends State<CardTutor> {
+  late Tutor _tutor;
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      _tutor = widget.tutor;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context);
-    final exists = userProvider.idFavorite.where((element) => element == tutor.id);
     final _specialties = listLearningTopics.entries
-        .where((element) => tutor.specialties.split(",").contains(element.key))
+        .where((element) => _tutor.specialties.split(",").contains(element.key))
         .map((e) => e.value)
         .toList();
+
+    final authProvider = Provider.of<AuthProvider>(context);
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       child: GestureDetector(
@@ -26,7 +43,7 @@ class CardTutor extends StatelessWidget {
           Navigator.pushNamed(
             context,
             routes.tutorProfilePage,
-            arguments: {"tutorID": tutor.userId},
+            arguments: {"tutorID": _tutor.userId},
           );
         },
         child: Card(
@@ -49,15 +66,16 @@ class CardTutor extends StatelessWidget {
                       height: 60,
                       width: 60,
                       child: CircleAvatar(
+                          backgroundColor: Colors.white,
                           child: ClipRRect(
-                        borderRadius: BorderRadius.circular(1000),
-                        child: Image.network(
-                          tutor.avatar as String,
-                          width: 70,
-                          height: 70,
-                          fit: BoxFit.cover,
-                        ),
-                      )),
+                            borderRadius: BorderRadius.circular(1000),
+                            child: CachedNetworkImage(
+                              imageUrl: _tutor.user.avatar,
+                              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                  CircularProgressIndicator(value: downloadProgress.progress),
+                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                            ),
+                          )),
                     ),
                     Expanded(
                       child: Column(
@@ -73,25 +91,28 @@ class CardTutor extends StatelessWidget {
                                     Container(
                                       margin: const EdgeInsets.only(bottom: 5),
                                       child: Text(
-                                        tutor.name,
+                                        _tutor.user.name,
                                         style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
-                                    const RateStars(count: 5),
+                                    RateStars(count: _tutor.avgRating ?? 5),
                                   ],
                                 ),
                               ),
                               GestureDetector(
-                                onTap: () {
-                                  if (exists.isNotEmpty) {
-                                    userProvider.removeFavorite(tutor.id);
-                                  } else {
-                                    userProvider.addFavorite(tutor.id);
+                                onTap: () async {
+                                  final res = await UserService.addAndRemoveTutorFavorite(
+                                      _tutor.userId, authProvider.tokens!.access.token);
+
+                                  if (res) {
+                                    setState(() {
+                                      _tutor.isFavorite = !(_tutor.isFavorite ?? false);
+                                    });
                                   }
                                 },
-                                child: exists.isEmpty
+                                child: _tutor.isFavorite != null && !(_tutor.isFavorite as bool)
                                     ? SvgPicture.asset(
                                         "asset/svg/ic_heart.svg",
                                         width: 35,
@@ -145,7 +166,7 @@ class CardTutor extends StatelessWidget {
                 Container(
                     margin: const EdgeInsets.only(top: 10),
                     child: Text(
-                      tutor.bio,
+                      _tutor.bio,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 4,
                     ))

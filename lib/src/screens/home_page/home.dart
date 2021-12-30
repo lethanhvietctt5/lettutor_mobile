@@ -19,14 +19,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<TutorInfo> _tutors = [];
+  List<Tutor> _tutors = [];
   bool _isLoading = true;
 
   void fetchRecommendTutors(String token) async {
     final result = await TutorService.getListTutorWithPagination(1, 9, token);
+    final List<Tutor> listTutors = [];
+
+    for (int i = 0; i < result.length; i++) {
+      final tutorDetail = await TutorService.getTutor(result[i].userId, token);
+      listTutors.add(tutorDetail);
+    }
+
     if (mounted) {
       setState(() {
-        _tutors = result;
+        _tutors = listTutors;
         _isLoading = false;
       });
     }

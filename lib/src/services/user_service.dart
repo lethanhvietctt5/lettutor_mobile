@@ -44,4 +44,22 @@ class UserService {
       throw Exception(jsonRes["message"]);
     }
   }
+
+  static addAndRemoveTutorFavorite(String tutorId, String token) async {
+    final response = await http.post(
+      Uri.parse(url + '/user/manageFavoriteTutor'),
+      headers: {
+        'Authorization': 'Bearer $token',
+      },
+      body: {
+        'tutorId': tutorId,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

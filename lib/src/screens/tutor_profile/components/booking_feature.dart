@@ -78,58 +78,60 @@ class _BookingFeatureState extends State<BookingFeature> {
                           ],
                         ),
                         decoration: BoxDecoration(color: Colors.grey[300])),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10, left: 10),
-                      child: GridView.count(
-                        crossAxisCount: generateAsisChildRatio(constraints)[0].toInt(),
-                        childAspectRatio: (1 / generateAsisChildRatio(constraints)[1]),
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        shrinkWrap: true,
-                        children: List.generate(
-                          scheduleDetails.length,
-                          (index) => ElevatedButton(
-                            onPressed: !scheduleDetails[index].isBooked
-                                ? () {
-                                    Navigator.pop(context);
-                                    Navigator.pop(context);
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 10, left: 10, bottom: 10),
+                        child: GridView.count(
+                          crossAxisCount: generateAsisChildRatio(constraints)[0].toInt(),
+                          childAspectRatio: (1 / generateAsisChildRatio(constraints)[1]),
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          shrinkWrap: true,
+                          children: List.generate(
+                            scheduleDetails.length,
+                            (index) => ElevatedButton(
+                              onPressed: !scheduleDetails[index].isBooked
+                                  ? () {
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
 
-                                    showTopSnackBar(
-                                      context,
-                                      const CustomSnackBar.success(
-                                        message: "Booking successful. ",
-                                        backgroundColor: Colors.green,
+                                      showTopSnackBar(
+                                        context,
+                                        const CustomSnackBar.success(
+                                          message: "Booking successful. ",
+                                          backgroundColor: Colors.green,
+                                        ),
+                                        showOutAnimationDuration: const Duration(milliseconds: 700),
+                                        displayDuration: const Duration(milliseconds: 200),
+                                      );
+                                    }
+                                  : null,
+                              child: !scheduleDetails[index].isBooked
+                                  ? Container(
+                                      padding: const EdgeInsets.only(top: 13, bottom: 13),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            scheduleDetails[index].startPeriod + " - ",
+                                            style: const TextStyle(color: Colors.blue),
+                                          ),
+                                          Text(
+                                            scheduleDetails[index].endPeriod,
+                                            style: const TextStyle(color: Colors.blue),
+                                          ),
+                                        ],
                                       ),
-                                      showOutAnimationDuration: const Duration(milliseconds: 700),
-                                      displayDuration: const Duration(milliseconds: 200),
-                                    );
-                                  }
-                                : null,
-                            child: !scheduleDetails[index].isBooked
-                                ? Container(
-                                    padding: const EdgeInsets.only(top: 13, bottom: 13),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          scheduleDetails[index].startPeriod + " - ",
-                                          style: const TextStyle(color: Colors.blue),
-                                        ),
-                                        Text(
-                                          scheduleDetails[index].endPeriod,
-                                          style: const TextStyle(color: Colors.blue),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                : const Text("Reserved", style: TextStyle(color: Colors.blue)),
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
+                                    )
+                                  : const Text("Reserved", style: TextStyle(color: Colors.blue)),
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.white,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                  side: BorderSide(color: Colors.blue, width: 1),
                                 ),
-                                side: BorderSide(color: Colors.blue, width: 1),
                               ),
                             ),
                           ),
@@ -177,41 +179,43 @@ class _BookingFeatureState extends State<BookingFeature> {
                           ],
                         ),
                         decoration: BoxDecoration(color: Colors.grey[300])),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10, left: 10),
-                      child: GridView.count(
-                        crossAxisCount: generateAsisChildRatio(constraints)[0].toInt(),
-                        childAspectRatio: (1 / generateAsisChildRatio(constraints)[1]),
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        shrinkWrap: true,
-                        children: List.generate(
-                          _schedules.length,
-                          (index) => ElevatedButton(
-                            onPressed: () {
-                              showTutorTimePicker(_schedules[index]);
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.only(top: 13, bottom: 13),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    DateFormat.yMd().format(
-                                      DateTime.fromMillisecondsSinceEpoch(_schedules[index].startTimestamp),
-                                    ),
-                                    style: const TextStyle(color: Colors.blue),
-                                  )
-                                ],
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 10, left: 10, bottom: 10),
+                        child: GridView.count(
+                          crossAxisCount: generateAsisChildRatio(constraints)[0].toInt(),
+                          childAspectRatio: (1 / generateAsisChildRatio(constraints)[1]),
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          shrinkWrap: true,
+                          children: List.generate(
+                            _schedules.length,
+                            (index) => ElevatedButton(
+                              onPressed: () {
+                                showTutorTimePicker(_schedules[index]);
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.only(top: 13, bottom: 13),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      DateFormat.yMd().format(
+                                        DateTime.fromMillisecondsSinceEpoch(_schedules[index].startTimestamp),
+                                      ),
+                                      style: const TextStyle(color: Colors.blue),
+                                    )
+                                  ],
                                 ),
-                                side: BorderSide(color: Colors.blue, width: 1),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.white,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                  side: BorderSide(color: Colors.blue, width: 1),
+                                ),
                               ),
                             ),
                           ),
