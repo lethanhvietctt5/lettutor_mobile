@@ -55,8 +55,8 @@ Route<dynamic> controller(RouteSettings settings) {
 
     case tutorProfilePage:
       return MaterialPageRoute(builder: (context) {
-        Map<String, Tutor> arg = settings.arguments as Map<String, Tutor>;
-        return TutorProfile(tutor: arg["tutor"] as Tutor);
+        Map<String, String> arg = settings.arguments as Map<String, String>;
+        return TutorProfile(tutorID: arg['tutorID'] as String);
       });
 
     case coursePage:

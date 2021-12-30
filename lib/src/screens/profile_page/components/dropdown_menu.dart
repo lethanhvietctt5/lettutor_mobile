@@ -48,7 +48,7 @@ class DropdownEdit extends StatelessWidget {
             child: DropdownButtonFormField<String>(
               elevation: 8,
               decoration: const InputDecoration(border: InputBorder.none),
-              value: selectedItem,
+              value: items[selectedItem],
               isExpanded: true,
               items: listItems,
               onChanged: (String? value) {

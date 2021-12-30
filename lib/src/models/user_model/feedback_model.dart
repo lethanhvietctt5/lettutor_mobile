@@ -1,4 +1,4 @@
-class Feedback {
+class FeedBack {
   late String id;
   String? bookingId;
   late String firstId;
@@ -9,7 +9,7 @@ class Feedback {
   late String updatedAt;
   late FirstInfo firstInfo;
 
-  Feedback(
+  FeedBack(
       {required this.id,
       this.bookingId,
       required this.firstId,
@@ -20,7 +20,7 @@ class Feedback {
       required this.updatedAt,
       required this.firstInfo});
 
-  Feedback.fromJson(Map<String, dynamic> json) {
+  FeedBack.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     bookingId = json['bookingId'];
     firstId = json['firstId'];

@@ -24,10 +24,12 @@ class _HomePageState extends State<HomePage> {
 
   void fetchRecommendTutors(String token) async {
     final result = await TutorService.getListTutorWithPagination(1, 9, token);
-    setState(() {
-      _tutors = result;
-      _isLoading = false;
-    });
+    if (mounted) {
+      setState(() {
+        _tutors = result;
+        _isLoading = false;
+      });
+    }
   }
 
   @override

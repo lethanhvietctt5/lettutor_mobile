@@ -26,10 +26,10 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   late DateTime? _birthday;
-  late String _phone;
-  late String _country;
-  late String _level;
-  late String _topicToLearn;
+  String? _phone;
+  String? _country;
+  String? _level;
+  String? _topicToLearn;
   bool isInit = true;
 
   final ImagePicker _picker = ImagePicker();
@@ -79,7 +79,7 @@ class _ProfilePageState extends State<ProfilePage> {
             : null;
         _phone = authProvider.userLoggedIn.phone;
         _country = authProvider.userLoggedIn.country != null ? (authProvider.userLoggedIn.country as String) : "";
-        _level = authProvider.userLoggedIn.level != null ? (authProvider.userLoggedIn.level as String) : "";
+        _level = authProvider.userLoggedIn.level;
         _topicToLearn = "BEGINNER";
         _nameController.text = authProvider.userLoggedIn.name;
         isInit = false;
@@ -210,17 +210,17 @@ class _ProfilePageState extends State<ProfilePage> {
                 BirthdayEdition(setBirthday: setBirthday, birthday: _birthday),
                 PhoneEdition(
                     changePhone: setPhone,
-                    phone: _phone,
+                    phone: _phone ?? "",
                     isPhoneActivated: authProvider.userLoggedIn.isPhoneActivated ?? false),
                 DropdownEdit(
                   title: "Country",
-                  selectedItem: countryList[_country] ?? "Viet Nam",
+                  selectedItem: _country != null ? _country as String : "VN",
                   items: countryList,
                   onChange: setCountry,
                 ),
                 DropdownEdit(
                   title: "My Level",
-                  selectedItem: listLevel[_level] ?? "BEGINNER",
+                  selectedItem: _level != null ? _level as String : "BEGINNER",
                   items: listLevel,
                   onChange: setLevel,
                 ),
@@ -234,7 +234,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   margin: const EdgeInsets.only(top: 20, bottom: 20),
                   child: ElevatedButton(
                     onPressed: () {
-                      if (_phone.isEmpty) {
+                      if (_phone != null && _phone?.isEmpty as bool) {
                         showTopSnackBar(
                           context,
                           const CustomSnackBar.error(message: "Phone number is invalid."),
@@ -245,10 +245,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         if (_birthday != null) {
                           userProvider.updateBirthday(_birthday as DateTime);
                         }
-                        userProvider.updatePhone(_phone);
-                        userProvider.updateCountry(_country);
-                        userProvider.updateLevel(_level);
-                        userProvider.updateTopicToLearn(_topicToLearn);
                         Navigator.pop(context);
                       }
                     },

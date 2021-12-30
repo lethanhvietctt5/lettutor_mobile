@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:lettutor_mobile/src/models/user_model/user_model.dart';
 
 class Tutor {
@@ -68,7 +70,7 @@ class Tutor {
     isFavorite = json['isFavorite'];
     avgRating = json['avgRating'];
     price = json['price'];
-    user = User.fromJson(json['user']);
+    user = User.fromJson(json['User']);
   }
 
   Map<String, dynamic> toJson() {

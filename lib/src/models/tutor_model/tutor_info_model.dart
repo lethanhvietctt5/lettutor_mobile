@@ -22,7 +22,7 @@ class TutorInfo {
   late String createdAt;
   late String updatedAt;
   String? deletedAt;
-  late List<Feedback> feedbacks;
+  late List<FeedBack> feedbacks;
   late String id;
   late String userId;
   late String video;
@@ -106,7 +106,7 @@ class TutorInfo {
     if (json['feedbacks'] != null) {
       feedbacks = [];
       json['feedbacks'].forEach((v) {
-        feedbacks.add(Feedback.fromJson(v));
+        feedbacks.add(FeedBack.fromJson(v));
       });
     }
     id = json['id'];

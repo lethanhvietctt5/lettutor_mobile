@@ -13,20 +13,20 @@ class User {
   late String name;
   late String avatar;
   String? country;
-  late String phone;
+  String? phone;
   List<String>? roles;
   String? language;
   String? birthday;
   late bool isActivated;
   Wallet? walletInfo;
   late List<String> courses;
-  late String? requireNote;
-  late String? level;
+  String? requireNote;
+  String? level;
   List<LearnTopic>? learnTopics;
   List<String>? testPreparations;
-  late bool? isPhoneActivated;
-  late int? timezone;
-  List<Feedback>? feedbacks;
+  bool? isPhoneActivated;
+  int? timezone;
+  List<FeedBack>? feedbacks;
 
   User({
     required this.id,
@@ -37,7 +37,7 @@ class User {
     required this.name,
     required this.avatar,
     this.country,
-    required this.phone,
+    this.phone,
     this.roles,
     this.language,
     this.birthday,
@@ -64,21 +64,14 @@ class User {
       language = json['language'];
       birthday = json['birthday'];
       isActivated = json['isActivated'];
+      google = json['google'];
+      facebook = json['facebook'];
+      apple = json['apple'];
 
-      if (json["google"] != null) {
-        google = json['google'];
+      roles = json['roles'];
+      if (json['walletInfo'] != null) {
+        walletInfo = Wallet.fromJson(json['walletInfo']);
       }
-
-      if (json["facebook"] != null) {
-        facebook = json['facebook'];
-      }
-
-      if (json["apple"] != null) {
-        apple = json['apple'];
-      }
-
-      roles = json['roles'].cast<String>();
-      walletInfo = Wallet.fromJson(json['walletInfo']);
 
       if (json['courses'] != null) {
         courses = [];
@@ -108,8 +101,9 @@ class User {
       timezone = json['timezone'];
 
       if (json['feedbacks'] != null) {
+        feedbacks = [];
         json['feedbacks'].forEach((v) {
-          feedbacks?.add(Feedback.fromJson(v));
+          feedbacks!.add(FeedBack.fromJson(v));
         });
       }
     } catch (e) {

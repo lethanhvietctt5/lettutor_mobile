@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
+import 'package:lettutor_mobile/src/constants/list_contries.dart';
+import 'package:lettutor_mobile/src/models/tutor_model/tutor_model.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 import 'package:lettutor_mobile/src/widgets/rate_stars.dart';
@@ -27,25 +28,37 @@ class MainInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
-                  margin: const EdgeInsets.only(right: 15),
-                  child: AvatarCircle(width: 70, height: 70, source: tutor.image)),
+                margin: const EdgeInsets.only(bottom: 10, right: 15),
+                height: 60,
+                width: 60,
+                child: CircleAvatar(
+                    child: ClipRRect(
+                  borderRadius: BorderRadius.circular(1000),
+                  child: Image.network(
+                    tutor.user.avatar,
+                    width: 70,
+                    height: 70,
+                    fit: BoxFit.cover,
+                  ),
+                )),
+              ),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      tutor.fullName,
+                      tutor.user.name,
                       style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const Text(
-                      "Teacher",
-                      style: TextStyle(color: Colors.grey, fontSize: 14),
+                    Text(
+                      tutor.profession,
+                      style: const TextStyle(color: Colors.grey, fontSize: 14),
                     ),
                     Text(
-                      tutor.country,
+                      countryList[tutor.user.country] as String,
                       style: const TextStyle(fontSize: 15),
                     )
                   ],
@@ -55,7 +68,7 @@ class MainInfo extends StatelessWidget {
           ),
         ),
         Column(crossAxisAlignment: CrossAxisAlignment.end, children: <Widget>[
-          RateStars(count: tutor.getTotalStar()),
+          RateStars(count: tutor.avgRating ?? 5),
           Container(
             margin: const EdgeInsets.only(top: 8, right: 8),
             child: GestureDetector(

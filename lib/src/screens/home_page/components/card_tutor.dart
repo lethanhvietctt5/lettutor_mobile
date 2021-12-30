@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/constants/learning_topics.dart';
 import 'package:lettutor_mobile/src/models/tutor_model/tutor_info_model.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/widgets/rate_stars.dart';
@@ -9,11 +10,15 @@ import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 class CardTutor extends StatelessWidget {
   const CardTutor({Key? key, required this.tutor}) : super(key: key);
   final TutorInfo tutor;
+
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
     final exists = userProvider.idFavorite.where((element) => element == tutor.id);
-
+    final _specialties = listLearningTopics.entries
+        .where((element) => tutor.specialties.split(",").contains(element.key))
+        .map((e) => e.value)
+        .toList();
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       child: GestureDetector(
@@ -21,7 +26,7 @@ class CardTutor extends StatelessWidget {
           Navigator.pushNamed(
             context,
             routes.tutorProfilePage,
-            arguments: {"tutor": tutor},
+            arguments: {"tutorID": "86248137-6f7d-4cf5-ad2e-34da42722b28"},
           );
         },
         child: Card(
@@ -105,7 +110,7 @@ class CardTutor extends StatelessWidget {
                           SizedBox(
                             height: 30,
                             child: ListView.builder(
-                              itemCount: tutor.specialties.split(",").length,
+                              itemCount: _specialties.length,
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
@@ -113,7 +118,7 @@ class CardTutor extends StatelessWidget {
                                   margin: const EdgeInsets.only(top: 5, right: 8),
                                   padding: const EdgeInsets.all(5),
                                   child: Text(
-                                    tutor.specialties.split(",")[index],
+                                    _specialties[index],
                                     style: const TextStyle(
                                       fontSize: 12,
                                       color: Colors.blue,

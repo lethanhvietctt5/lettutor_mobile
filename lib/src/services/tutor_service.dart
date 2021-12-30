@@ -32,4 +32,23 @@ class TutorService {
       throw Exception(jsonDecode['message']);
     }
   }
+
+  static getTutor(String id, String token) async {
+    final response = await http.get(
+      Uri.parse(url + '/tutor/$id'),
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final jsonDecode = json.decode(response.body);
+      return Tutor.fromJson(jsonDecode);
+    } else {
+      final jsonDecode = json.decode(response.body);
+      print(jsonDecode);
+      throw Exception(jsonDecode['message']);
+    }
+  }
 }
