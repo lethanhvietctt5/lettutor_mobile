@@ -26,7 +26,7 @@ class CardTutor extends StatelessWidget {
           Navigator.pushNamed(
             context,
             routes.tutorProfilePage,
-            arguments: {"tutorID": "86248137-6f7d-4cf5-ad2e-34da42722b28"},
+            arguments: {"tutorID": tutor.userId},
           );
         },
         child: Card(

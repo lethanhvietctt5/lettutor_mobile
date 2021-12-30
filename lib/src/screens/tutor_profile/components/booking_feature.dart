@@ -1,30 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-import 'package:lettutor_mobile/src/helpers/distinct_date.dart';
 import 'package:lettutor_mobile/src/helpers/generate_ratio.dart';
-import 'package:lettutor_mobile/src/models/tutor/schedule.dart';
-import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
+import 'package:lettutor_mobile/src/models/schedule_model/schedule_detail_model.dart';
+import 'package:lettutor_mobile/src/models/schedule_model/schedule_model.dart';
 import 'package:lettutor_mobile/src/models/user/booking.dart';
+import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
+import 'package:lettutor_mobile/src/services/schedule_service.dart';
 import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-class BookingFeature extends StatelessWidget {
-  const BookingFeature({Key? key, required this.tutor}) : super(key: key);
+class BookingFeature extends StatefulWidget {
+  const BookingFeature({Key? key, required this.tutorId}) : super(key: key);
 
-  final Tutor tutor;
+  final String tutorId;
+
+  @override
+  State<BookingFeature> createState() => _BookingFeatureState();
+}
+
+class _BookingFeatureState extends State<BookingFeature> {
+  List<Schedule> _schedules = [];
+  bool isLoading = true;
+
+  void fetchSchedules(String token) async {
+    final res = await ScheduleService.getTutorSchedule(widget.tutorId, token);
+    setState(() {
+      _schedules = res;
+      isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    List<DateTime> distinctDates = getDistinctDate(tutor.dateAvailable.map((e) => e.start).toList());
     final userProvider = Provider.of<UserProvider>(context);
+    final authProvider = Provider.of<AuthProvider>(context);
 
-    Future showTutorTimePicker(DateTime date) {
-      List<Schedule> selectedDate = tutor.dateAvailable
-          .where((d) => d.start.day == date.day && d.start.month == date.month && d.start.day == date.day)
-          .toList();
+    if (mounted && isLoading) {
+      fetchSchedules(authProvider.tokens!.access.token);
+      isLoading = false;
+    }
+
+    Future showTutorTimePicker(Schedule schedules) {
+      List<ScheduleDetails> scheduleDetails = schedules.scheduleDetails;
 
       return showModalBottomSheet(
         context: context,
@@ -67,20 +87,10 @@ class BookingFeature extends StatelessWidget {
                         mainAxisSpacing: 10,
                         shrinkWrap: true,
                         children: List.generate(
-                          selectedDate.length,
+                          scheduleDetails.length,
                           (index) => ElevatedButton(
-                            onPressed: selectedDate[index].isReserved == false
+                            onPressed: !scheduleDetails[index].isBooked
                                 ? () {
-                                    Booking newBooking = Booking(
-                                      id: uuid.v4(),
-                                      tutor: tutor,
-                                      start: selectedDate[index].start,
-                                      end: selectedDate[index].end,
-                                      idSchedule: selectedDate[index].id,
-                                    );
-
-                                    userProvider.addBooking(newBooking);
-                                    tutor.setReserved(selectedDate[index].id, true);
                                     Navigator.pop(context);
                                     Navigator.pop(context);
 
@@ -95,18 +105,18 @@ class BookingFeature extends StatelessWidget {
                                     );
                                   }
                                 : null,
-                            child: selectedDate[index].isReserved == false
+                            child: !scheduleDetails[index].isBooked
                                 ? Container(
                                     padding: const EdgeInsets.only(top: 13, bottom: 13),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          DateFormat.Hm().format(selectedDate[index].start),
+                                          scheduleDetails[index].startPeriod + " - ",
                                           style: const TextStyle(color: Colors.blue),
                                         ),
                                         Text(
-                                          " - " + DateFormat.Hm().format(selectedDate[index].end),
+                                          scheduleDetails[index].endPeriod,
                                           style: const TextStyle(color: Colors.blue),
                                         ),
                                       ],
@@ -176,10 +186,10 @@ class BookingFeature extends StatelessWidget {
                         mainAxisSpacing: 10,
                         shrinkWrap: true,
                         children: List.generate(
-                          distinctDates.length,
+                          _schedules.length,
                           (index) => ElevatedButton(
                             onPressed: () {
-                              showTutorTimePicker(distinctDates[index]);
+                              showTutorTimePicker(_schedules[index]);
                             },
                             child: Container(
                               padding: const EdgeInsets.only(top: 13, bottom: 13),
@@ -187,7 +197,9 @@ class BookingFeature extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    DateFormat.yMd().format(distinctDates[index]),
+                                    DateFormat.yMd().format(
+                                      DateTime.fromMillisecondsSinceEpoch(_schedules[index].startTimestamp),
+                                    ),
                                     style: const TextStyle(color: Colors.blue),
                                   )
                                 ],

@@ -74,7 +74,7 @@ class _TutorProfileState extends State<TutorProfile> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               MainInfo(tutor: tutor as Tutor),
-              //BookingFeature(tutor: tutor as Tutor),
+              BookingFeature(tutorId: tutor!.userId),
               Padding(
                 padding: const EdgeInsets.only(top: 10, bottom: 10),
                 child: Text(tutor!.bio, style: const TextStyle(fontSize: 13)),
