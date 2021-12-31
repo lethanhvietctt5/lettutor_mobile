@@ -62,4 +62,20 @@ class UserService {
       return false;
     }
   }
+
+  static getTotalHourLesson(String token) async {
+    final response = await http.get(
+      Uri.parse(url + '/call/total'),
+      headers: {
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final jsonRes = json.decode(response.body);
+      return jsonRes["total"];
+    } else {
+      return null;
+    }
+  }
 }
