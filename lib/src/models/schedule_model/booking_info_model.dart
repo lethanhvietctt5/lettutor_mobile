@@ -1,3 +1,5 @@
+import 'package:lettutor_mobile/src/models/schedule_model/schedule_detail_model.dart';
+
 class BookingInfo {
   late int createdAtTimeStamp;
   late int updatedAtTimeStamp;
@@ -13,6 +15,9 @@ class BookingInfo {
   late String updatedAt;
   String? recordUrl;
   late bool isDeleted;
+  bool showRecordUrl = true;
+  List<String> studentMaterials = [];
+  ScheduleDetails? scheduleDetailInfo;
 
   BookingInfo({
     required this.createdAtTimeStamp,
@@ -29,6 +34,9 @@ class BookingInfo {
     required this.updatedAt,
     this.recordUrl,
     required this.isDeleted,
+    required this.showRecordUrl,
+    required this.studentMaterials,
+    this.scheduleDetailInfo,
   });
 
   BookingInfo.fromJson(Map<String, dynamic> json) {
@@ -46,6 +54,10 @@ class BookingInfo {
     updatedAt = json['updatedAt'];
     recordUrl = json['recordUrl'];
     isDeleted = json['isDeleted'];
+    showRecordUrl = json["showRecordUrl"] ?? true;
+    studentMaterials = json["studentMaterials"] != null ? json["studentMaterials"].cast<String>() : [];
+    scheduleDetailInfo =
+        json["scheduleDetailInfo"] != null ? ScheduleDetails.fromJson(json["scheduleDetailInfo"]) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -64,6 +76,9 @@ class BookingInfo {
     data['updatedAt'] = updatedAt;
     data['recordUrl'] = recordUrl;
     data['isDeleted'] = isDeleted;
+    data['showRecordUrl'] = showRecordUrl;
+    data['studentMaterials'] = studentMaterials;
+    data['scheduleDetailInfo'] = scheduleDetailInfo != null ? scheduleDetailInfo!.toJson() : null;
     return data;
   }
 }

@@ -35,7 +35,7 @@ class MainInfo extends StatelessWidget {
                     child: ClipRRect(
                   borderRadius: BorderRadius.circular(1000),
                   child: Image.network(
-                    tutor.user.avatar,
+                    tutor.user!.avatar,
                     width: 70,
                     height: 70,
                     fit: BoxFit.cover,
@@ -48,7 +48,7 @@ class MainInfo extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      tutor.user.name,
+                      tutor.user!.name,
                       style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -58,7 +58,7 @@ class MainInfo extends StatelessWidget {
                       style: const TextStyle(color: Colors.grey, fontSize: 14),
                     ),
                     Text(
-                      countryList[tutor.user.country] as String,
+                      countryList[tutor.user!.country] as String,
                       style: const TextStyle(fontSize: 15),
                     )
                   ],

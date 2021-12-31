@@ -5,14 +5,14 @@ import 'package:lettutor_mobile/src/models/user_model/user_model.dart';
 class Tutor {
   late String id;
   late String userId;
-  late String video;
+  String? video;
   late String bio;
   late String education;
   late String experience;
   late String profession;
-  late User user;
+  User? user;
   String? accent;
-  late String targetStudent;
+  String? targetStudent;
   late String interests;
   late String languages;
   late String specialties;
@@ -24,18 +24,20 @@ class Tutor {
   bool? isFavorite;
   int? avgRating;
   late int price;
+  String? name;
+  String? avatar;
 
   Tutor({
     required this.id,
     required this.userId,
-    required this.video,
+    this.video,
     required this.bio,
     required this.education,
     required this.experience,
     required this.profession,
     required this.user,
     this.accent,
-    required this.targetStudent,
+    this.targetStudent,
     required this.interests,
     required this.languages,
     required this.specialties,
@@ -51,17 +53,17 @@ class Tutor {
 
   Tutor.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    userId = json['userId'];
+    userId = json['userId'] ?? "";
     video = json['video'];
-    bio = json['bio'];
-    education = json['education'];
-    experience = json['experience'];
-    profession = json['profession'];
+    bio = json['bio'] ?? "";
+    education = json['education'] ?? "";
+    experience = json['experience'] ?? "";
+    profession = json['profession'] ?? "";
     accent = json['accent'];
     targetStudent = json['targetStudent'];
-    interests = json['interests'];
-    languages = json['languages'];
-    specialties = json['specialties'];
+    interests = json['interests'] ?? "";
+    languages = json['languages'] ?? "";
+    specialties = json['specialties'] ?? "";
     resume = json['resume'];
     isActivated = json['isActivated'];
     isNative = json['isNative'];
@@ -69,8 +71,10 @@ class Tutor {
     updatedAt = json['updatedAt'];
     isFavorite = json['isFavorite'];
     avgRating = json['avgRating'];
-    price = json['price'];
-    user = User.fromJson(json['User']);
+    price = json['price'] ?? 0;
+    user = json["User"] != null ? User.fromJson(json['User']) : null;
+    name = json['name'];
+    avatar = json['avatar'];
   }
 
   Map<String, dynamic> toJson() {
@@ -95,7 +99,9 @@ class Tutor {
     data['isFavorite'] = isFavorite;
     data['avgRating'] = avgRating;
     data['price'] = price;
-    data['user'] = user.toJson();
+    data['user'] = user?.toJson();
+    data['name'] = name;
+    data['avatar'] = avatar;
     return data;
   }
 }

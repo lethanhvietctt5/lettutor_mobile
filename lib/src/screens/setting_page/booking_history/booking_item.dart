@@ -1,22 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor_mobile/src/data/tutors_sample.dart';
+import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
 import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 
 class BookingItem extends StatelessWidget {
-  const BookingItem({
-    Key? key,
-    required this.idTutor,
-    required this.start,
-    required this.end,
-  }) : super(key: key);
-  final String idTutor;
-  final DateTime start;
-  final DateTime end;
+  const BookingItem({Key? key, required this.bookingInfo}) : super(key: key);
+  final BookingInfo bookingInfo;
 
   @override
   Widget build(BuildContext context) {
-    final tutor = TutorsSample.tutors.firstWhere((tutor) => tutor.id == idTutor);
     return Card(
       elevation: 3,
       child: Container(
@@ -27,28 +21,44 @@ class BookingItem extends StatelessWidget {
           children: [
             Container(
                 margin: const EdgeInsets.only(right: 15),
-                child: AvatarCircle(width: 50, height: 50, source: tutor.image)),
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 10, right: 10),
+                  height: 60,
+                  width: 60,
+                  child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(1000),
+                        child: CachedNetworkImage(
+                          imageUrl: bookingInfo.scheduleDetailInfo!.scheduleInfo!.tutorInfo!.avatar as String,
+                          progressIndicatorBuilder: (context, url, downloadProgress) =>
+                              CircularProgressIndicator(value: downloadProgress.progress),
+                          errorWidget: (context, url, error) => const Icon(Icons.error),
+                        ),
+                      )),
+                )),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   margin: const EdgeInsets.only(bottom: 5),
                   child: Text(
-                    tutor.fullName,
+                    bookingInfo.scheduleDetailInfo!.scheduleInfo!.tutorInfo!.name as String,
                     style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                 ),
                 Row(
                   children: <Widget>[
                     Text(
-                      DateFormat.yMEd().format(start),
+                      DateFormat.yMEd().format(
+                          DateFormat("yyyy-MM-dd").parse(bookingInfo.scheduleDetailInfo!.scheduleInfo!.createdAt)),
                       style: const TextStyle(fontSize: 13),
                     ),
                     Container(
                       padding: const EdgeInsets.all(3),
                       margin: const EdgeInsets.only(left: 5, right: 5),
                       child: Text(
-                        DateFormat.Hm().format(start),
+                        bookingInfo.scheduleDetailInfo!.startPeriod,
                         style: const TextStyle(fontSize: 10, color: Colors.blue),
                       ),
                       decoration: BoxDecoration(
@@ -61,7 +71,7 @@ class BookingItem extends StatelessWidget {
                       padding: const EdgeInsets.all(3),
                       margin: const EdgeInsets.only(left: 5, right: 5),
                       child: Text(
-                        DateFormat.Hm().format(end),
+                        bookingInfo.scheduleDetailInfo!.endPeriod,
                         style: const TextStyle(fontSize: 10, color: Colors.orange),
                       ),
                       decoration: BoxDecoration(

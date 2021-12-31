@@ -1,18 +1,40 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
 import 'package:lettutor_mobile/src/models/user/booking.dart';
+import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/booking_history/booking_item.dart';
+import 'package:lettutor_mobile/src/services/schedule_service.dart';
 import 'package:provider/provider.dart';
 
-class BookingHistoryPage extends StatelessWidget {
+class BookingHistoryPage extends StatefulWidget {
   const BookingHistoryPage({Key? key}) : super(key: key);
 
   @override
+  State<BookingHistoryPage> createState() => _BookingHistoryPageState();
+}
+
+class _BookingHistoryPageState extends State<BookingHistoryPage> {
+  List<BookingInfo> _bookedList = [];
+  bool isLoading = true;
+
+  void fetchBookedList(String userId, String token) async {
+    final res = await ScheduleService.getStudentBookedClass(userId, token);
+    setState(() {
+      _bookedList = res;
+      isLoading = false;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    List<Booking> bookingHistory = Provider.of<UserProvider>(context).user.bookingHistory;
-    bookingHistory = bookingHistory.reversed.toList();
+    final authProvider = Provider.of<AuthProvider>(context);
+
+    if (isLoading) {
+      fetchBookedList(authProvider.userLoggedIn.id, authProvider.tokens!.access.token);
+    }
 
     return SafeArea(
       child: Scaffold(
@@ -31,16 +53,12 @@ class BookingHistoryPage extends StatelessWidget {
             ),
           ),
         ),
-        body: bookingHistory.isNotEmpty
+        body: _bookedList.isNotEmpty
             ? Container(
                 margin: const EdgeInsets.only(left: 15, right: 15),
                 child: ListView.builder(
-                  itemCount: bookingHistory.length,
-                  itemBuilder: (context, index) => BookingItem(
-                    idTutor: bookingHistory[index].tutor.id,
-                    start: bookingHistory[index].start,
-                    end: bookingHistory[index].end,
-                  ),
+                  itemCount: _bookedList.length,
+                  itemBuilder: (context, index) => BookingItem(bookingInfo: _bookedList[index]),
                 ),
               )
             : SizedBox(

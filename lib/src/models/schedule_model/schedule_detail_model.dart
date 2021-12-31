@@ -1,4 +1,5 @@
 import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
+import 'package:lettutor_mobile/src/models/schedule_model/schedule_model.dart';
 
 class ScheduleDetails {
   late int startPeriodTimestamp;
@@ -9,8 +10,9 @@ class ScheduleDetails {
   late String endPeriod;
   late String createdAt;
   late String updatedAt;
-  late List<BookingInfo> bookingInfo;
-  late bool isBooked;
+  List<BookingInfo> bookingInfo = [];
+  bool isBooked = false;
+  Schedule? scheduleInfo;
 
   ScheduleDetails({
     required this.startPeriodTimestamp,
@@ -23,6 +25,7 @@ class ScheduleDetails {
     required this.updatedAt,
     required this.bookingInfo,
     required this.isBooked,
+    this.scheduleInfo,
   });
 
   ScheduleDetails.fromJson(Map<String, dynamic> json) {
@@ -40,7 +43,8 @@ class ScheduleDetails {
         bookingInfo.add(BookingInfo.fromJson(v));
       });
     }
-    isBooked = json['isBooked'];
+    isBooked = json['isBooked'] ?? false;
+    scheduleInfo = json['scheduleInfo'] != null ? Schedule.fromJson(json['scheduleInfo']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -55,6 +59,11 @@ class ScheduleDetails {
     data['updatedAt'] = updatedAt;
     data['bookingInfo'] = bookingInfo.map((v) => v.toJson()).toList();
     data['isBooked'] = isBooked;
+    if (scheduleInfo != null) {
+      data['scheduleInfo'] = scheduleInfo!.toJson();
+    } else {
+      data['scheduleInfo'] = null;
+    }
     return data;
   }
 }

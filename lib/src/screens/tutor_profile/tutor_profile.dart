@@ -37,11 +37,11 @@ class _TutorProfileState extends State<TutorProfile> {
   }
 
   renderFeedbacks() {
-    if (tutor!.user.feedbacks != null) {
+    if (tutor!.user!.feedbacks != null) {
       return ListView.builder(
-        itemCount: tutor!.user.feedbacks?.length,
+        itemCount: tutor!.user!.feedbacks?.length,
         itemBuilder: (context, index) {
-          return RateAndComment(feedback: tutor!.user.feedbacks?[index] as FeedBack);
+          return RateAndComment(feedback: tutor!.user!.feedbacks?[index] as FeedBack);
         },
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),

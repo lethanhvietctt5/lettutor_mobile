@@ -70,7 +70,7 @@ class _CardTutorState extends State<CardTutor> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(1000),
                             child: CachedNetworkImage(
-                              imageUrl: _tutor.user.avatar,
+                              imageUrl: _tutor.user!.avatar,
                               progressIndicatorBuilder: (context, url, downloadProgress) =>
                                   CircularProgressIndicator(value: downloadProgress.progress),
                               errorWidget: (context, url, error) => const Icon(Icons.error),
@@ -91,7 +91,7 @@ class _CardTutorState extends State<CardTutor> {
                                     Container(
                                       margin: const EdgeInsets.only(bottom: 5),
                                       child: Text(
-                                        _tutor.user.name,
+                                        _tutor.user!.name,
                                         style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,

@@ -1,4 +1,5 @@
 import 'package:lettutor_mobile/src/models/schedule_model/schedule_detail_model.dart';
+import 'package:lettutor_mobile/src/models/tutor_model/tutor_model.dart';
 
 class Schedule {
   late String id;
@@ -8,8 +9,9 @@ class Schedule {
   late int startTimestamp;
   late int endTimestamp;
   late String createdAt;
-  late bool isBooked;
-  late List<ScheduleDetails> scheduleDetails;
+  bool isBooked = false;
+  List<ScheduleDetails> scheduleDetails = [];
+  Tutor? tutorInfo;
 
   Schedule({
     required this.id,
@@ -21,6 +23,7 @@ class Schedule {
     required this.createdAt,
     required this.isBooked,
     required this.scheduleDetails,
+    this.tutorInfo,
   });
 
   Schedule.fromJson(Map<String, dynamic> json) {
@@ -31,13 +34,15 @@ class Schedule {
     startTimestamp = json['startTimestamp'];
     endTimestamp = json['endTimestamp'];
     createdAt = json['createdAt'];
-    isBooked = json['isBooked'];
+    isBooked = json['isBooked'] ?? false;
     if (json['scheduleDetails'] != null) {
       scheduleDetails = [];
       json['scheduleDetails'].forEach((v) {
         scheduleDetails.add(ScheduleDetails.fromJson(v));
       });
     }
+
+    tutorInfo = json['tutorInfo'] != null ? Tutor.fromJson(json['tutorInfo']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -51,6 +56,7 @@ class Schedule {
     data['createdAt'] = createdAt;
     data['isBooked'] = isBooked;
     data['scheduleDetails'] = scheduleDetails.map((v) => v.toJson()).toList();
+    data['tutorInfo'] = tutorInfo?.toJson();
     return data;
   }
 }
