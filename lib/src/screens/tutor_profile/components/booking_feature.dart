@@ -24,9 +24,30 @@ class _BookingFeatureState extends State<BookingFeature> {
   bool isLoading = true;
 
   void fetchSchedules(String token) async {
-    final res = await ScheduleService.getTutorSchedule(widget.tutorId, token);
+    List<Schedule> res = await ScheduleService.getTutorSchedule(widget.tutorId, token);
+    res = res.where((schedule) => schedule.startTimestamp > DateTime.now().millisecondsSinceEpoch).toList();
+    res.sort((s1, s2) => s1.startTimestamp.compareTo(s2.startTimestamp));
+
+    List<Schedule> tempRes = [];
+
+    for (int index = 0; index < res.length; index++) {
+      bool isExist = false;
+      for (int index_2 = 0; index_2 < tempRes.length; index_2++) {
+        final DateTime first = DateTime.fromMillisecondsSinceEpoch(res[index].startTimestamp);
+        final DateTime second = DateTime.fromMillisecondsSinceEpoch(tempRes[index_2].startTimestamp);
+        if (first.day == second.day && first.month == second.month && first.year == second.year) {
+          tempRes[index_2].scheduleDetails.addAll(res[index].scheduleDetails);
+          isExist = true;
+          break;
+        }
+      }
+
+      if (!isExist) {
+        tempRes.add(res[index]);
+      }
+    }
     setState(() {
-      _schedules = res;
+      _schedules = tempRes;
       isLoading = false;
     });
   }
