@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/constants/list_contries.dart';
 import 'package:lettutor_mobile/src/models/tutor_model/tutor_model.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
-import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 import 'package:lettutor_mobile/src/widgets/rate_stars.dart';
 import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';

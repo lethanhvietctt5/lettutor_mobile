@@ -36,7 +36,6 @@ class _BannerHomePageState extends State<BannerHomePage> {
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context).user;
     final navigationIndex = Provider.of<NavigationIndex>(context);
-    final upcomming = userProvider.getUpcomming();
 
     final authProvider = Provider.of<AuthProvider>(context);
 

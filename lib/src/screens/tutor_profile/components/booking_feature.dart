@@ -4,9 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:lettutor_mobile/src/helpers/generate_ratio.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/schedule_detail_model.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/schedule_model.dart';
-import 'package:lettutor_mobile/src/models/user/booking.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
-import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/services/schedule_service.dart';
 import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -35,7 +33,6 @@ class _BookingFeatureState extends State<BookingFeature> {
 
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context);
     final authProvider = Provider.of<AuthProvider>(context);
 
     if (mounted && isLoading) {

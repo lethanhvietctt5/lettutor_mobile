@@ -1,9 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:lettutor_mobile/src/data/tutors_sample.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
-import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 
 class BookingItem extends StatelessWidget {
   const BookingItem({Key? key, required this.bookingInfo}) : super(key: key);

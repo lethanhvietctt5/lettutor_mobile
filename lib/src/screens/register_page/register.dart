@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lettutor_mobile/src/models/user_model/tokens_model.dart';
-import 'package:lettutor_mobile/src/models/user_model/user_model.dart';
 import 'package:lettutor_mobile/src/services/user_service.dart';
 import 'package:lettutor_mobile/src/widgets/button_expand.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';

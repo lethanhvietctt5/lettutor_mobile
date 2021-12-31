@@ -4,7 +4,6 @@ import 'package:flutter/rendering.dart';
 import 'package:lettutor_mobile/src/constants/colors_app.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/provider/navigation_index.dart';
-import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/screens/courses_search_page/courses.dart';
 import 'package:lettutor_mobile/src/screens/home_page/home.dart';
 import 'package:lettutor_mobile/src/widgets/menu_item.dart';
@@ -34,7 +33,6 @@ class _NavigationBarState extends State<NavigationBar> {
   @override
   Widget build(BuildContext context) {
     final navigationIndex = Provider.of<NavigationIndex>(context);
-    final uploadImage = Provider.of<UserProvider>(context).uploadImage;
     final authUser = Provider.of<AuthProvider>(context).userLoggedIn;
 
     return SafeArea(
@@ -60,28 +58,17 @@ class _NavigationBarState extends State<NavigationBar> {
                           routes.profilePage,
                         );
                       },
-                      child: authUser != null
-                          ? CircleAvatar(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(1000),
-                                child: Image.network(
-                                  authUser.avatar,
-                                  width: 40,
-                                  height: 40,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            )
-                          : CircleAvatar(
-                              child: ClipOval(
-                                child: Image.asset(
-                                  "asset/img/profile.jpg",
-                                  fit: BoxFit.cover,
-                                  width: 40,
-                                  height: 40,
-                                ),
-                              ),
-                            ),
+                      child: CircleAvatar(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(1000),
+                          child: Image.network(
+                            authUser.avatar,
+                            width: 40,
+                            height: 40,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
                     ),
                   )
                 ]

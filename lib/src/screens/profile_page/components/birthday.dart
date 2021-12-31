@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class BirthdayEdition extends StatefulWidget {
-  BirthdayEdition({
+  const BirthdayEdition({
     Key? key,
     required this.setBirthday,
-    this.birthday,
+    required this.birthday,
   }) : super(key: key);
 
   final Function(DateTime) setBirthday;
-  DateTime? birthday;
+  final DateTime? birthday;
 
   @override
   State<BirthdayEdition> createState() => _BirthdayEditionState();
