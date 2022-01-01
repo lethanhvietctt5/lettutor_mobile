@@ -41,4 +41,27 @@ class ScheduleService {
       throw Exception('Failed to load post');
     }
   }
+
+  static bookAClass(String scheduleDetailIds, String token) async {
+    final List<String> list = [scheduleDetailIds];
+    final Map<String, dynamic> args = {
+      "scheduleDetailIds": list,
+    };
+
+    final response = await http.post(
+      Uri.parse("$url/booking"),
+      headers: {
+        "Authorization": "Bearer $token",
+        "Content-type": "application/json;encoding=utf-8",
+      },
+      body: json.encode(args),
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      final jsonRes = json.decode(response.body);
+      throw Exception(jsonRes["message"]);
+    }
+  }
 }

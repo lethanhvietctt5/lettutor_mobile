@@ -25,7 +25,9 @@ class _BookingFeatureState extends State<BookingFeature> {
 
   void fetchSchedules(String token) async {
     List<Schedule> res = await ScheduleService.getTutorSchedule(widget.tutorId, token);
-    res = res.where((schedule) => schedule.startTimestamp > DateTime.now().millisecondsSinceEpoch).toList();
+    res = res
+        .where((schedule) => DateTime.fromMillisecondsSinceEpoch(schedule.startTimestamp).compareTo(DateTime.now()) > 0)
+        .toList();
     res.sort((s1, s2) => s1.startTimestamp.compareTo(s2.startTimestamp));
 
     List<Schedule> tempRes = [];
@@ -46,6 +48,12 @@ class _BookingFeatureState extends State<BookingFeature> {
         tempRes.add(res[index]);
       }
     }
+
+    for (int index = 0; index < tempRes.length; index++) {
+      tempRes[index].scheduleDetails.sort((s1, s2) => DateTime.fromMillisecondsSinceEpoch(s1.startPeriodTimestamp)
+          .compareTo(DateTime.fromMillisecondsSinceEpoch(s2.startPeriodTimestamp)));
+    }
+
     setState(() {
       _schedules = tempRes;
       isLoading = false;
@@ -58,7 +66,6 @@ class _BookingFeatureState extends State<BookingFeature> {
 
     if (mounted && isLoading) {
       fetchSchedules(authProvider.tokens!.access.token);
-      isLoading = false;
     }
 
     Future showTutorTimePicker(Schedule schedules) {
@@ -108,42 +115,48 @@ class _BookingFeatureState extends State<BookingFeature> {
                           children: List.generate(
                             scheduleDetails.length,
                             (index) => ElevatedButton(
-                              onPressed: !scheduleDetails[index].isBooked
-                                  ? () {
-                                      Navigator.pop(context);
-                                      Navigator.pop(context);
+                              onPressed: () async {
+                                if (!scheduleDetails[index].isBooked) {
+                                  final res = await ScheduleService.bookAClass(
+                                      scheduleDetails[index].id, authProvider.tokens!.access.token);
+                                  if (res) {
+                                    scheduleDetails[index].isBooked = true;
+                                    Navigator.pop(context);
+                                    Navigator.pop(context);
 
-                                      showTopSnackBar(
-                                        context,
-                                        const CustomSnackBar.success(
-                                          message: "Booking successful. ",
-                                          backgroundColor: Colors.green,
-                                        ),
-                                        showOutAnimationDuration: const Duration(milliseconds: 700),
-                                        displayDuration: const Duration(milliseconds: 200),
-                                      );
-                                    }
-                                  : null,
-                              child: !scheduleDetails[index].isBooked
-                                  ? Container(
-                                      padding: const EdgeInsets.only(top: 13, bottom: 13),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            scheduleDetails[index].startPeriod + " - ",
-                                            style: const TextStyle(color: Colors.blue),
-                                          ),
-                                          Text(
-                                            scheduleDetails[index].endPeriod,
-                                            style: const TextStyle(color: Colors.blue),
-                                          ),
-                                        ],
+                                    showTopSnackBar(
+                                      context,
+                                      const CustomSnackBar.success(
+                                        message: "Booking successful. ",
+                                        backgroundColor: Colors.green,
                                       ),
-                                    )
-                                  : const Text("Reserved", style: TextStyle(color: Colors.blue)),
+                                      showOutAnimationDuration: const Duration(milliseconds: 700),
+                                      displayDuration: const Duration(milliseconds: 200),
+                                    );
+                                  }
+                                }
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.only(top: 13, bottom: 13),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(
+                                              scheduleDetails[index].startPeriodTimestamp)) +
+                                          " - ",
+                                      style: const TextStyle(color: Colors.blue),
+                                    ),
+                                    Text(
+                                      DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(
+                                          scheduleDetails[index].endPeriodTimestamp)),
+                                      style: const TextStyle(color: Colors.blue),
+                                    ),
+                                  ],
+                                ),
+                              ),
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.white,
+                                primary: scheduleDetails[index].isBooked ? Colors.grey[200] : Colors.white,
                                 shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(10),
@@ -218,9 +231,8 @@ class _BookingFeatureState extends State<BookingFeature> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      DateFormat.yMd().format(
-                                        DateTime.fromMillisecondsSinceEpoch(_schedules[index].startTimestamp),
-                                      ),
+                                      DateFormat.MMMEd().format(
+                                          DateTime.fromMillisecondsSinceEpoch(_schedules[index].startTimestamp)),
                                       style: const TextStyle(color: Colors.blue),
                                     )
                                   ],
@@ -246,6 +258,12 @@ class _BookingFeatureState extends State<BookingFeature> {
             ),
           );
         },
+      );
+    }
+
+    if (isLoading) {
+      return const Center(
+        child: CircularProgressIndicator(),
       );
     }
 
