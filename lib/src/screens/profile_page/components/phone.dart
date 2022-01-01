@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 class PhoneEdition extends StatefulWidget {
-  const PhoneEdition({Key? key, required this.changePhone, required this.phone, required this.isPhoneActivated})
-      : super(key: key);
-  final Function(String) changePhone;
+  const PhoneEdition({Key? key, required this.changePhone, required this.phone, required this.isPhoneActivated}) : super(key: key);
+  final Function({DateTime? birthday, String phone, String country, String level}) changePhone;
   final String phone;
   final bool isPhoneActivated;
 
@@ -38,7 +37,7 @@ class _PhoneEditionState extends State<PhoneEdition> {
             style: TextStyle(fontSize: 17, color: Colors.grey[900]),
             controller: _controller,
             enabled: !widget.isPhoneActivated,
-            onChanged: (value) => widget.changePhone(value),
+            onChanged: (value) => widget.changePhone(phone: value),
             decoration: InputDecoration(
               filled: true,
               fillColor: Colors.grey[200],

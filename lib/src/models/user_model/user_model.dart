@@ -55,60 +55,56 @@ class User {
   });
 
   User.fromJson(Map<String, dynamic> json) {
-    try {
-      id = json['id'];
-      email = json['email'];
-      name = json['name'];
-      avatar = json['avatar'];
-      country = json['country'];
-      phone = json['phone'];
-      language = json['language'];
-      birthday = json['birthday'];
-      isActivated = json['isActivated'];
-      google = json['google'];
-      facebook = json['facebook'];
-      apple = json['apple'];
+    id = json['id'];
+    email = json['email'];
+    name = json['name'];
+    avatar = json['avatar'];
+    country = json['country'];
+    phone = json['phone'];
+    language = json['language'];
+    birthday = json['birthday'];
+    isActivated = json['isActivated'];
+    google = json['google'];
+    facebook = json['facebook'];
+    apple = json['apple'];
 
-      roles = json['roles'];
-      if (json['walletInfo'] != null) {
-        walletInfo = Wallet.fromJson(json['walletInfo']);
-      }
+    roles = json['roles']?.cast<String>();
+    if (json['walletInfo'] != null) {
+      walletInfo = Wallet.fromJson(json['walletInfo']);
+    }
 
-      if (json['courses'] != null) {
-        courses = [];
-        json['courses'].forEach((v) {
-          //courses.add(new Null.fromJson(v));
-        });
-      }
+    if (json['courses'] != null) {
+      courses = [];
+      json['courses'].forEach((v) {
+        //courses.add(new Null.fromJson(v));
+      });
+    }
 
-      requireNote = json['requireNote'];
-      level = json['level'];
+    requireNote = json['requireNote'];
+    level = json['level'];
 
-      if (json['learnTopics'] != null) {
-        learnTopics = [];
-        json['learnTopics'].forEach((v) {
-          learnTopics?.add(LearnTopic.fromJson(v));
-        });
-      }
+    if (json['learnTopics'] != null) {
+      learnTopics = [];
+      json['learnTopics'].forEach((v) {
+        learnTopics?.add(LearnTopic.fromJson(v));
+      });
+    }
 
-      if (json['testPreparations'] != null) {
-        testPreparations = [];
-        json['testPreparations'].forEach((v) {
-          testPreparations?.add(TestPreparation.fromJson(v));
-        });
-      }
+    if (json['testPreparations'] != null) {
+      testPreparations = [];
+      json['testPreparations'].forEach((v) {
+        testPreparations?.add(TestPreparation.fromJson(v));
+      });
+    }
 
-      isPhoneActivated = json['isPhoneActivated'];
-      timezone = json['timezone'];
+    isPhoneActivated = json['isPhoneActivated'];
+    timezone = json['timezone'];
 
-      if (json['feedbacks'] != null) {
-        feedbacks = [];
-        json['feedbacks'].forEach((v) {
-          feedbacks!.add(FeedBack.fromJson(v));
-        });
-      }
-    } catch (e) {
-      print(e);
+    if (json['feedbacks'] != null) {
+      feedbacks = [];
+      json['feedbacks'].forEach((v) {
+        feedbacks!.add(FeedBack.fromJson(v));
+      });
     }
   }
 

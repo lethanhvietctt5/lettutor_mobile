@@ -7,7 +7,7 @@ class BirthdayEdition extends StatefulWidget {
     required this.birthday,
   }) : super(key: key);
 
-  final Function(DateTime) setBirthday;
+  final Function({DateTime? birthday, String phone, String country, String level}) setBirthday;
   final DateTime? birthday;
 
   @override
@@ -23,7 +23,7 @@ class _BirthdayEditionState extends State<BirthdayEdition> {
       lastDate: DateTime(2022),
     );
     if (picked != null && picked != widget.birthday) {
-      widget.setBirthday(picked);
+      widget.setBirthday(birthday: picked);
     }
   }
 

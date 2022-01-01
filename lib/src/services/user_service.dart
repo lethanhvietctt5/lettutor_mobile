@@ -10,7 +10,7 @@ import 'package:lettutor_mobile/src/models/user_model/user_model.dart';
 
 class UserService {
   static const String url = 'https://sandbox.api.lettutor.com';
-  static Tokens? tokens;
+  //static Tokens? tokens;
 
   static User parseUser(String responseBody) {
     final parsed = json.decode(responseBody);
@@ -57,9 +57,9 @@ class UserService {
     final response = await http.post(Uri.parse(url + "/auth/login"), body: {'email': email, 'password': password});
     if (response.statusCode == 200) {
       final jsonDecode = json.decode(response.body);
-      final jsonEncode = json.encode(jsonDecode["user"]);
+      // final jsonEncode = json.encode(jsonDecode["user"]);
       final tokens = Tokens.fromJson(jsonDecode["tokens"]);
-      final user = parseUser(jsonEncode);
+      final user = User.fromJson(jsonDecode["user"]);
       callback(user, tokens);
     } else {
       final jsonRes = json.decode(response.body);
@@ -142,6 +142,33 @@ class UserService {
       }
     } else {
       throw Exception(json.decode(response.body)["message"]);
+    }
+  }
+
+  static Future<User?> updateInfo(String token, String name, String country, String birthday, String level, List<String> learnTopics, List<String> testPreparations) async {
+    Map<String, dynamic> args = {
+      'name': name,
+      'country': country,
+      'birthday': birthday,
+      'level': level,
+      'learnTopics': learnTopics,
+      'testPreparations': testPreparations,
+    };
+    final response = await http.put(
+      Uri.parse(url + '/user/info'),
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json;encoding=utf-8',
+      },
+      body: json.encode(args),
+    );
+
+    if (response.statusCode == 200) {
+      final jsonRes = json.decode(response.body);
+      final user = User.fromJson(jsonRes["user"]);
+      return user;
+    } else {
+      return null;
     }
   }
 }
