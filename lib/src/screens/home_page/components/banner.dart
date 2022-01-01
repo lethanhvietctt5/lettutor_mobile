@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/provider/navigation_index.dart';
-import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/services/user_service.dart';
 import 'package:provider/provider.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
@@ -16,14 +16,17 @@ class BannerHomePage extends StatefulWidget {
 
 class _BannerHomePageState extends State<BannerHomePage> {
   Duration? totalLessonTime;
+  BookingInfo? nextlesson;
   int? timeStamp;
   bool isLoading = true;
 
   void fetchTotalLessonTime(String token) async {
     final res = await UserService.getTotalHourLesson(token);
+    final next = await UserService.fetchNextLesson(token);
     if (res != null && mounted) {
       setState(() {
         timeStamp = res;
+        nextlesson = next;
         totalLessonTime = Duration(minutes: res);
         isLoading = false;
       });
@@ -34,13 +37,16 @@ class _BannerHomePageState extends State<BannerHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context).user;
     final navigationIndex = Provider.of<NavigationIndex>(context);
 
     final authProvider = Provider.of<AuthProvider>(context);
 
     if (isLoading) {
       fetchTotalLessonTime(authProvider.tokens!.access.token);
+
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
     }
 
     return Container(
@@ -58,15 +64,26 @@ class _BannerHomePageState extends State<BannerHomePage> {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          Container(
-            margin: const EdgeInsets.only(top: 8, bottom: 8),
-            child: const Text(
-              "Upcomming lession",
-              style: TextStyle(fontSize: 13, color: Colors.white),
-            ),
-          ),
+          nextlesson != null
+              ? Container(
+                  margin: const EdgeInsets.only(top: 8, bottom: 8),
+                  child: const Text(
+                    "Upcomming lession",
+                    style: TextStyle(fontSize: 13, color: Colors.white),
+                  ),
+                )
+              : Container(),
           Text(
-            stringFormatUpcomming(userProvider.getNearestLesson()?.start, userProvider.getNearestLesson()?.end),
+            nextlesson != null
+                ? DateFormat.yMEd().format(
+                        DateTime.fromMillisecondsSinceEpoch(nextlesson!.scheduleDetailInfo!.startPeriodTimestamp)) +
+                    " " +
+                    DateFormat('HH:mm').format(
+                        DateTime.fromMillisecondsSinceEpoch(nextlesson!.scheduleDetailInfo!.startPeriodTimestamp)) +
+                    " - " +
+                    DateFormat('HH:mm')
+                        .format(DateTime.fromMillisecondsSinceEpoch(nextlesson!.scheduleDetailInfo!.endPeriodTimestamp))
+                : "",
             style: const TextStyle(fontSize: 13, color: Colors.white),
           ),
           Container(
@@ -77,9 +94,9 @@ class _BannerHomePageState extends State<BannerHomePage> {
               },
               child: Container(
                   padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: const Text(
-                    "Enter lesson room",
-                    style: TextStyle(color: Colors.blue, fontSize: 14, fontWeight: FontWeight.bold),
+                  child: Text(
+                    nextlesson != null ? "Enter lesson room" : "Book a lesson",
+                    style: const TextStyle(color: Colors.blue, fontSize: 14, fontWeight: FontWeight.bold),
                   )),
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
@@ -91,13 +108,6 @@ class _BannerHomePageState extends State<BannerHomePage> {
       ),
     );
   }
-}
-
-String stringFormatUpcomming(DateTime? s, DateTime? e) {
-  if (s == null || e == null) {
-    return "";
-  }
-  return DateFormat.yMEd().format(s) + " " + DateFormat.jm().format(s) + " - " + DateFormat.jm().format(e);
 }
 
 String covertTotalTime(Duration d) {

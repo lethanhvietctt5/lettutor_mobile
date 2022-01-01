@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
 import 'package:lettutor_mobile/src/models/user_model/tokens_model.dart';
 import 'package:lettutor_mobile/src/models/user_model/user_model.dart';
 
@@ -76,6 +77,28 @@ class UserService {
       return jsonRes["total"];
     } else {
       return null;
+    }
+  }
+
+  static Future<BookingInfo> fetchNextLesson(String token) async {
+    final dateTime = DateTime.now().millisecondsSinceEpoch;
+    final response = await http.get(
+      Uri.parse(url + '/booking/next?dateTime=$dateTime'),
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final jsonRes = json.decode(response.body);
+      final listData = jsonRes["data"] as List;
+      final arrLesson = listData.map((e) => BookingInfo.fromJson(e)).toList();
+      arrLesson.sort(
+          (a, b) => a.scheduleDetailInfo!.startPeriodTimestamp.compareTo(b.scheduleDetailInfo!.startPeriodTimestamp));
+      return arrLesson[0];
+    } else {
+      throw Exception(json.decode(response.body)["message"]);
     }
   }
 }

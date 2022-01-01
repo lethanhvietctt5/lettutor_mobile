@@ -54,10 +54,12 @@ class _BookingFeatureState extends State<BookingFeature> {
           .compareTo(DateTime.fromMillisecondsSinceEpoch(s2.startPeriodTimestamp)));
     }
 
-    setState(() {
-      _schedules = tempRes;
-      isLoading = false;
-    });
+    if (mounted) {
+      setState(() {
+        _schedules = tempRes;
+        isLoading = false;
+      });
+    }
   }
 
   @override
