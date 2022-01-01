@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/models/user_model/tokens_model.dart';
 import 'package:lettutor_mobile/src/models/user_model/user_model.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/services/user_service.dart';
 import 'package:lettutor_mobile/src/widgets/button_expand.dart';
@@ -27,19 +28,23 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
+    final appProvider = Provider.of<AppProvider>(context);
+
     _emailController.text = "student@lettutor.com";
     _passwordController.text = "123456";
+
     void handleLogin() async {
       try {
-        await UserService.loginByEmailAndPassword(_emailController.text, _passwordController.text,
-            (User user, Tokens tokens) {
+        await UserService.loginByEmailAndPassword(_emailController.text, _passwordController.text, (User user, Tokens tokens) async {
           authProvider.logIn(user, tokens);
+          final allTopics = await UserService.fetchAllLearningTopic(authProvider.tokens!.access.token);
+          final allTestPreparation = await UserService.fetchAllTestPreparation(authProvider.tokens!.access.token);
+          appProvider.load(allTopics, allTestPreparation);
           Navigator.pushNamedAndRemoveUntil(context, routes.homePage, (Route<dynamic> route) => false);
         });
       } catch (e) {
         showTopSnackBar(context, CustomSnackBar.error(message: "Login failed! ${e.toString()}"),
-            showOutAnimationDuration: const Duration(milliseconds: 5000),
-            displayDuration: const Duration(microseconds: 1000));
+            showOutAnimationDuration: const Duration(milliseconds: 5000), displayDuration: const Duration(microseconds: 1000));
       }
     }
 
@@ -52,9 +57,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 40, 0, 40),
-                    child: SizedBox(width: 250, child: Image.asset("asset/img/logo.png"))),
+                Padding(padding: const EdgeInsets.fromLTRB(0, 40, 0, 40), child: SizedBox(width: 250, child: Image.asset("asset/img/logo.png"))),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -62,8 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                     children: <Widget>[
                       Padding(
                           padding: const EdgeInsets.only(bottom: 4),
-                          child: Text(!isLoginWithPhone ? "Email" : "Phone",
-                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey[800]))),
+                          child: Text(!isLoginWithPhone ? "Email" : "Phone", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey[800]))),
                       isLoginWithPhone
                           ? TextField(
                               style: TextStyle(fontSize: 15, color: Colors.grey[900]),
@@ -72,11 +74,8 @@ class _LoginPageState extends State<LoginPage> {
                               decoration: InputDecoration(
                                   filled: true,
                                   fillColor: Colors.grey.shade200,
-                                  prefixIcon: Container(
-                                      padding: const EdgeInsets.all(13),
-                                      child: SvgPicture.asset("asset/svg/ic_numberphone.svg", color: Colors.grey[600])),
-                                  border: const OutlineInputBorder(
-                                      borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
+                                  prefixIcon: Container(padding: const EdgeInsets.all(13), child: SvgPicture.asset("asset/svg/ic_numberphone.svg", color: Colors.grey[600])),
+                                  border: const OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
                                   hintText: "+84902794731"))
                           : TextField(
                               style: TextStyle(fontSize: 15, color: Colors.grey[900]),
@@ -85,11 +84,8 @@ class _LoginPageState extends State<LoginPage> {
                               decoration: InputDecoration(
                                   filled: true,
                                   fillColor: Colors.grey.shade200,
-                                  prefixIcon: Container(
-                                      padding: const EdgeInsets.all(13),
-                                      child: SvgPicture.asset("asset/svg/ic_email.svg", color: Colors.grey[600])),
-                                  border: const OutlineInputBorder(
-                                      borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
+                                  prefixIcon: Container(padding: const EdgeInsets.all(13), child: SvgPicture.asset("asset/svg/ic_email.svg", color: Colors.grey[600])),
+                                  border: const OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
                                   hintText: "abc@gmail.com"))
                     ],
                   ),
@@ -100,9 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Padding(
-                          padding: const EdgeInsets.only(bottom: 4),
-                          child: Text("Password",
-                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey[800]))),
+                          padding: const EdgeInsets.only(bottom: 4), child: Text("Password", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey[800]))),
                       TextField(
                           style: TextStyle(fontSize: 15, color: Colors.grey[900]),
                           controller: _passwordController,
@@ -114,8 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                                 padding: const EdgeInsets.all(13),
                                 child: SvgPicture.asset("asset/svg/ic_password.svg", color: Colors.grey[600]),
                               ),
-                              border: const OutlineInputBorder(
-                                  borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
+                              border: const OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
                               hintText: "**************")),
                     ],
                   ),
@@ -142,11 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                             })
                       ],
                     )),
-                ButtonFullWidth(
-                    padding: const EdgeInsets.all(8.0),
-                    text: "Sign in",
-                    backgroundColor: const Color(0xff007CFF),
-                    onPress: handleLogin),
+                ButtonFullWidth(padding: const EdgeInsets.all(8.0), text: "Sign in", backgroundColor: const Color(0xff007CFF), onPress: handleLogin),
                 Container(
                   margin: const EdgeInsets.only(top: 10),
                   child: Row(mainAxisAlignment: MainAxisAlignment.center, children: const [Text("Or continue with")]),
@@ -158,19 +147,14 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       ElevatedButton(
                           onPressed: () {},
-                          child: SvgPicture.asset("asset/svg/ic_facebook.svg",
-                              width: 30, height: 30, color: const Color(0xff007CFF)),
+                          child: SvgPicture.asset("asset/svg/ic_facebook.svg", width: 30, height: 30, color: const Color(0xff007CFF)),
                           style: ElevatedButton.styleFrom(
-                              shape: const CircleBorder(side: BorderSide(width: 1, color: Color(0xff007CFF))),
-                              padding: const EdgeInsets.all(5),
-                              primary: Colors.white)),
+                              shape: const CircleBorder(side: BorderSide(width: 1, color: Color(0xff007CFF))), padding: const EdgeInsets.all(5), primary: Colors.white)),
                       ElevatedButton(
                           onPressed: () {},
                           child: SvgPicture.asset("asset/svg/ic_google.svg", width: 30, height: 30),
                           style: ElevatedButton.styleFrom(
-                              shape: const CircleBorder(side: BorderSide(width: 1, color: Color(0xff007CFF))),
-                              padding: const EdgeInsets.all(5),
-                              primary: Colors.white)),
+                              shape: const CircleBorder(side: BorderSide(width: 1, color: Color(0xff007CFF))), padding: const EdgeInsets.all(5), primary: Colors.white)),
                       ElevatedButton(
                           onPressed: () {
                             setState(() {
@@ -181,9 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           child: SvgPicture.asset("asset/svg/ic_phone_login.svg", width: 30, height: 30),
                           style: ElevatedButton.styleFrom(
-                              shape: const CircleBorder(side: BorderSide(width: 1, color: Color(0xff007CFF))),
-                              padding: const EdgeInsets.all(5),
-                              primary: Colors.white))
+                              shape: const CircleBorder(side: BorderSide(width: 1, color: Color(0xff007CFF))), padding: const EdgeInsets.all(5), primary: Colors.white))
                     ],
                   ),
                 )

@@ -2,6 +2,7 @@
 
 import 'package:lettutor_mobile/src/models/user_model/feedback_model.dart';
 import 'package:lettutor_mobile/src/models/user_model/learning_topic_model.dart';
+import 'package:lettutor_mobile/src/models/user_model/test_preparation_model.dart';
 import 'package:lettutor_mobile/src/models/user_model/wallet_model.dart';
 
 class User {
@@ -23,7 +24,7 @@ class User {
   String? requireNote;
   String? level;
   List<LearnTopic>? learnTopics;
-  List<String>? testPreparations;
+  List<TestPreparation>? testPreparations;
   bool? isPhoneActivated;
   int? timezone;
   List<FeedBack>? feedbacks;
@@ -93,7 +94,7 @@ class User {
       if (json['testPreparations'] != null) {
         testPreparations = [];
         json['testPreparations'].forEach((v) {
-          //testPreparations.add(new Null.fromJson(v));
+          testPreparations?.add(TestPreparation.fromJson(v));
         });
       }
 
@@ -131,7 +132,7 @@ class User {
     data['requireNote'] = requireNote;
     data['level'] = level;
     data['learnTopics'] = learnTopics?.map((v) => v.toJson()).toList();
-    data['testPreparations'] = testPreparations; //.map((v) => v.toJson()).toList();
+    data['testPreparations'] = testPreparations?.map((v) => v.toJson()).toList();
     data['isPhoneActivated'] = isPhoneActivated;
     data['timezone'] = timezone;
     data['feedbacks'] = feedbacks?.map((v) => v.toJson()).toList();

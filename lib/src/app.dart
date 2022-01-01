@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/provider/navigation_index.dart';
 import 'package:lettutor_mobile/src/provider/setting.dart';
@@ -27,7 +28,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => AuthProvider(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AppProvider(),
+        ),
       ],
       child: MaterialApp(
         useInheritedMediaQuery: true,
