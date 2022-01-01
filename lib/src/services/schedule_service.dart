@@ -38,7 +38,48 @@ class ScheduleService {
       final arr = listBooked.map((schedule) => BookingInfo.fromJson(schedule)).toList();
       return arr;
     } else {
-      throw Exception('Failed to load post');
+      throw Exception('Failed to load booking history');
+    }
+  }
+
+  static Future<List<BookingInfo>> getUpcomming(String token) async {
+    final current = DateTime.now().millisecondsSinceEpoch;
+    final response = await http.get(
+      Uri.parse("$url/booking/list/student?page=1&perPage=20&dateTimeGte=$current&orderBy=meeting&sortBy=asc"),
+      headers: {
+        "Authorization": "Bearer $token",
+        "Content-type": "application/json",
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final res = json.decode(response.body);
+      final listBooked = res["data"]["rows"] as List;
+      final arr = listBooked.map((schedule) => BookingInfo.fromJson(schedule)).toList();
+      return arr;
+    } else {
+      throw Exception('Failed to load upcomming lesson');
+    }
+  }
+
+  static Future<bool> cancelClass(String token, String scheduleDetailIds) async {
+    Map<String, List<String>> args = {
+      "scheduleDetailIds": [scheduleDetailIds],
+    };
+
+    final response = await http.delete(
+      Uri.parse("$url/booking"),
+      headers: {
+        "Authorization": "Bearer $token",
+        "Content-type": "application/json;encoding=utf-8",
+      },
+      body: json.encode(args),
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      throw Exception('Failed to cancel class');
     }
   }
 

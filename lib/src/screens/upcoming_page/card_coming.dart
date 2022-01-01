@@ -1,24 +1,22 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:lettutor_mobile/src/models/user/booking.dart';
-import 'package:lettutor_mobile/src/provider/user_provider.dart';
-import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
+import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
+import 'package:lettutor_mobile/src/provider/auth_provider.dart';
+import 'package:lettutor_mobile/src/services/schedule_service.dart';
 import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class UpComingCard extends StatelessWidget {
-  const UpComingCard({Key? key, required this.upcomming}) : super(key: key);
+  const UpComingCard({Key? key, required this.upcomming, required this.refetch}) : super(key: key);
 
-  final Booking upcomming;
+  final BookingInfo upcomming;
+  final Function(String) refetch;
 
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context);
-
-    void cancelUpcoming(String id) {
-      userProvider.cancelBooking(id);
-    }
+    final authProvider = Provider.of<AuthProvider>(context);
 
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
@@ -34,48 +32,54 @@ class UpComingCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                      margin: const EdgeInsets.only(right: 15),
-                      child: AvatarCircle(width: 50, height: 50, source: upcomming.tutor.image)),
+                    margin: const EdgeInsets.only(right: 10),
+                    height: 70,
+                    width: 70,
+                    child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10000),
+                          child: CachedNetworkImage(
+                            imageUrl: upcomming.scheduleDetailInfo!.scheduleInfo!.tutorInfo!.avatar as String,
+                            progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                          ),
+                        )),
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                         margin: const EdgeInsets.only(bottom: 5),
                         child: Text(
-                          upcomming.tutor.fullName,
+                          upcomming.scheduleDetailInfo!.scheduleInfo!.tutorInfo!.name as String,
                           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                         ),
                       ),
                       Row(
                         children: <Widget>[
                           Text(
-                            DateFormat.yMEd().format(upcomming.start),
+                            DateFormat.yMEd().format(DateTime.fromMillisecondsSinceEpoch(upcomming.scheduleDetailInfo!.startPeriodTimestamp)),
                             style: const TextStyle(fontSize: 13),
                           ),
                           Container(
                             padding: const EdgeInsets.all(3),
                             margin: const EdgeInsets.only(left: 5, right: 5),
                             child: Text(
-                              DateFormat.Hm().format(upcomming.start),
+                              DateFormat.Hm().format(DateTime.fromMillisecondsSinceEpoch(upcomming.scheduleDetailInfo!.startPeriodTimestamp)),
                               style: const TextStyle(fontSize: 10, color: Colors.blue),
                             ),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blue, width: 1),
-                                color: Colors.blue[50],
-                                borderRadius: BorderRadius.circular(4)),
+                            decoration: BoxDecoration(border: Border.all(color: Colors.blue, width: 1), color: Colors.blue[50], borderRadius: BorderRadius.circular(4)),
                           ),
                           const Text("-"),
                           Container(
                             padding: const EdgeInsets.all(3),
                             margin: const EdgeInsets.only(left: 5, right: 5),
                             child: Text(
-                              DateFormat.Hm().format(upcomming.end),
+                              DateFormat.Hm().format(DateTime.fromMillisecondsSinceEpoch(upcomming.scheduleDetailInfo!.endPeriodTimestamp)),
                               style: const TextStyle(fontSize: 10, color: Colors.orange),
                             ),
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.orange, width: 1),
-                                color: Colors.orange[50],
-                                borderRadius: BorderRadius.circular(4)),
+                            decoration: BoxDecoration(border: Border.all(color: Colors.orange, width: 1), color: Colors.orange[50], borderRadius: BorderRadius.circular(4)),
                           )
                         ],
                       )
@@ -90,28 +94,34 @@ class UpComingCard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: GestureDetector(
-                      onTap: () {
-                        cancelUpcoming(upcomming.id);
-                        upcomming.tutor.setReserved(upcomming.idSchedule, false);
-                        showTopSnackBar(
-                          context,
-                          const CustomSnackBar.success(
-                            message: "Remove upcomming successful.",
-                            backgroundColor: Colors.green,
-                          ),
-                          showOutAnimationDuration: const Duration(milliseconds: 700),
-                          displayDuration: const Duration(milliseconds: 200),
-                        );
+                      onTap: () async {
+                        final res = await ScheduleService.cancelClass(authProvider.tokens!.access.token, upcomming.scheduleDetailId);
+                        if (res) {
+                          refetch(authProvider.tokens!.access.token);
+                          showTopSnackBar(
+                            context,
+                            const CustomSnackBar.success(
+                              message: "Remove upcomming successful.",
+                              backgroundColor: Colors.green,
+                            ),
+                            showOutAnimationDuration: const Duration(milliseconds: 700),
+                            displayDuration: const Duration(milliseconds: 200),
+                          );
+                        }
                       },
                       child: Container(
                         padding: const EdgeInsets.only(top: 10, bottom: 10),
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey[300] as Color),
-                            borderRadius:
-                                const BorderRadius.only(topLeft: Radius.circular(4), bottomLeft: Radius.circular(4))),
+                            border: Border.all(color: Colors.red),
+                            borderRadius: const BorderRadius.only(topLeft: Radius.circular(4), bottomLeft: Radius.circular(4))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const <Widget>[Text("Cancel")],
+                          children: const <Widget>[
+                            Text(
+                              "Cancel",
+                              style: TextStyle(color: Colors.red),
+                            )
+                          ],
                         ),
                       ),
                     ),
@@ -120,10 +130,9 @@ class UpComingCard extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey[400] as Color),
-                          color: Colors.grey[400],
-                          borderRadius:
-                              const BorderRadius.only(topRight: Radius.circular(4), bottomRight: Radius.circular(4))),
+                          border: Border.all(color: const Color(0xff0040D6)),
+                          color: const Color(0xff0040D6),
+                          borderRadius: const BorderRadius.only(topRight: Radius.circular(4), bottomRight: Radius.circular(4))),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const <Widget>[
