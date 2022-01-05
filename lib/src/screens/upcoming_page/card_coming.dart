@@ -41,6 +41,9 @@ class UpComingCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10000),
                           child: CachedNetworkImage(
                             imageUrl: upcomming.scheduleDetailInfo!.scheduleInfo!.tutorInfo!.avatar as String,
+                            width: 70,
+                            height: 70,
+                            fit: BoxFit.cover,
                             progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
                             errorWidget: (context, url, error) => const Icon(Icons.error),
                           ),
@@ -112,7 +115,7 @@ class UpComingCard extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.only(top: 10, bottom: 10),
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.red),
+                            border: Border.all(color: Colors.grey[200] as Color),
                             borderRadius: const BorderRadius.only(topLeft: Radius.circular(4), bottomLeft: Radius.circular(4))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -130,8 +133,8 @@ class UpComingCard extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       decoration: BoxDecoration(
-                          border: Border.all(color: const Color(0xff0040D6)),
-                          color: const Color(0xff0040D6),
+                          border: Border.all(color: Colors.blue),
+                          color: Colors.blue,
                           borderRadius: const BorderRadius.only(topRight: Radius.circular(4), bottomRight: Radius.circular(4))),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

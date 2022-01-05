@@ -30,10 +30,7 @@ class _CardTutorState extends State<CardTutor> {
 
   @override
   Widget build(BuildContext context) {
-    final _specialties = listLearningTopics.entries
-        .where((element) => _tutor.specialties.split(",").contains(element.key))
-        .map((e) => e.value)
-        .toList();
+    final _specialties = listLearningTopics.entries.where((element) => _tutor.specialties.split(",").contains(element.key)).map((e) => e.value).toList();
 
     final authProvider = Provider.of<AuthProvider>(context);
     return Container(
@@ -71,8 +68,10 @@ class _CardTutorState extends State<CardTutor> {
                             borderRadius: BorderRadius.circular(1000),
                             child: CachedNetworkImage(
                               imageUrl: _tutor.user!.avatar,
-                              progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                  CircularProgressIndicator(value: downloadProgress.progress),
+                              fit: BoxFit.cover,
+                              width: 70,
+                              height: 70,
+                              progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
                               errorWidget: (context, url, error) => const Icon(Icons.error),
                             ),
                           )),
@@ -103,8 +102,7 @@ class _CardTutorState extends State<CardTutor> {
                               ),
                               GestureDetector(
                                 onTap: () async {
-                                  final res = await UserService.addAndRemoveTutorFavorite(
-                                      _tutor.userId, authProvider.tokens!.access.token);
+                                  final res = await UserService.addAndRemoveTutorFavorite(_tutor.userId, authProvider.tokens!.access.token);
 
                                   if (res) {
                                     setState(() {

@@ -20,7 +20,7 @@ class _BirthdayEditionState extends State<BirthdayEdition> {
       context: context,
       initialDate: widget.birthday ?? DateTime.now(), // Refer step 1
       firstDate: DateTime(1900),
-      lastDate: DateTime(2022),
+      lastDate: DateTime(2030),
     );
     if (picked != null && picked != widget.birthday) {
       widget.setBirthday(birthday: picked);

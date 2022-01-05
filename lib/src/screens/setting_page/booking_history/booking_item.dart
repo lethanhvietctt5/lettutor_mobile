@@ -29,8 +29,10 @@ class BookingItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(1000),
                         child: CachedNetworkImage(
                           imageUrl: bookingInfo.scheduleDetailInfo!.scheduleInfo!.tutorInfo!.avatar as String,
-                          progressIndicatorBuilder: (context, url, downloadProgress) =>
-                              CircularProgressIndicator(value: downloadProgress.progress),
+                          width: 70,
+                          height: 70,
+                          fit: BoxFit.cover,
+                          progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
                           errorWidget: (context, url, error) => const Icon(Icons.error),
                         ),
                       )),
@@ -48,8 +50,7 @@ class BookingItem extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     Text(
-                      DateFormat.yMEd().format(
-                          DateFormat("yyyy-MM-dd").parse(bookingInfo.scheduleDetailInfo!.scheduleInfo!.createdAt)),
+                      DateFormat.yMEd().format(DateFormat("yyyy-MM-dd").parse(bookingInfo.scheduleDetailInfo!.scheduleInfo!.createdAt)),
                       style: const TextStyle(fontSize: 13),
                     ),
                     Container(
@@ -59,10 +60,7 @@ class BookingItem extends StatelessWidget {
                         bookingInfo.scheduleDetailInfo!.startPeriod,
                         style: const TextStyle(fontSize: 10, color: Colors.blue),
                       ),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blue, width: 1),
-                          color: Colors.blue[50],
-                          borderRadius: BorderRadius.circular(4)),
+                      decoration: BoxDecoration(border: Border.all(color: Colors.blue, width: 1), color: Colors.blue[50], borderRadius: BorderRadius.circular(4)),
                     ),
                     const Text("-"),
                     Container(
@@ -72,10 +70,7 @@ class BookingItem extends StatelessWidget {
                         bookingInfo.scheduleDetailInfo!.endPeriod,
                         style: const TextStyle(fontSize: 10, color: Colors.orange),
                       ),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.orange, width: 1),
-                          color: Colors.orange[50],
-                          borderRadius: BorderRadius.circular(4)),
+                      decoration: BoxDecoration(border: Border.all(color: Colors.orange, width: 1), color: Colors.orange[50], borderRadius: BorderRadius.circular(4)),
                     )
                   ],
                 )

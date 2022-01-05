@@ -70,7 +70,7 @@ class Tutor {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     isFavorite = json['isFavorite'];
-    avgRating = json['avgRating'];
+    avgRating = json['avgRating'] != null ? json['avgRating'].toInt() : 0;
     price = json['price'] ?? 0;
     user = json["User"] != null ? User.fromJson(json['User']) : null;
     name = json['name'];
