@@ -32,12 +32,12 @@ class _CoursesSearchPageState extends State<CoursesSearchPage> {
     final authProvider = Provider.of<AuthProvider>(context);
     final appProvider = Provider.of<AppProvider>(context);
 
-    if (appProvider.allCourseCategories.isEmpty && categories.isNotEmpty) {
-      appProvider.loadCourseCategories(categories);
-    }
-
     if (appProvider.allCourseCategories.isEmpty) {
       fetchCategories(authProvider.tokens!.access.token);
+    }
+
+    if (categories.isNotEmpty && appProvider.allCourseCategories.isEmpty) {
+      appProvider.loadCourseCategories(categories);
     }
 
     return DefaultTabController(

@@ -7,9 +7,24 @@ import 'package:lettutor_mobile/src/models/course_model/course_model.dart';
 class CourseService {
   static const String url = "https://sandbox.api.lettutor.com";
 
-  static Future<List<Course>> getListCourseWithPagination(int page, int size, String token) async {
+  static Future<List<Course>> getListCourseWithPagination(
+    int page,
+    int size,
+    String token, {
+    String q = "",
+    String categoryId = "",
+  }) async {
+    String baseUrl = CourseService.url + "/course?page=$page&size=$size";
+    if (q.isNotEmpty) {
+      baseUrl += "&q=$q";
+    }
+
+    if (categoryId.isNotEmpty) {
+      baseUrl += "&categoryId[]=$categoryId";
+    }
+
     final response = await http.get(
-      Uri.parse("$url/course?page=$page&size=$size"),
+      Uri.parse(baseUrl),
       headers: {
         "Authorization": "Bearer $token",
         "Content-type": "application/json",

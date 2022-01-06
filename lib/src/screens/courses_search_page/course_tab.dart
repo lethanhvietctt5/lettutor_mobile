@@ -31,6 +31,7 @@ class _CourseTabState extends State<CourseTab> {
   };
   Timer? _debounce;
   String category = "";
+  String search = "";
 
   List<Widget> _generateChips(List<CourseCategory> categories) {
     return categories
@@ -61,7 +62,10 @@ class _CourseTabState extends State<CourseTab> {
               decoration: BoxDecoration(
                 color: chip.id == category ? Colors.blue[50] : Colors.grey[200],
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
-                border: Border.all(color: chip.id == category ? Colors.blue[100] as Color : Colors.grey[400] as Color),
+                border: Border.all(
+                    color: chip.id == category
+                        ? Colors.blue[100] as Color
+                        : Colors.grey[400] as Color),
               ),
             ),
           ),
@@ -76,12 +80,10 @@ class _CourseTabState extends State<CourseTab> {
   }
 
   void fetchListCourse(int page, int size, String token) async {
-    List<Course> response = await CourseService.getListCourseWithPagination(page, size, token);
+    List<Course> response = await CourseService.getListCourseWithPagination(page, size, token,
+        categoryId: category, q: search);
     if (mounted) {
       setState(() {
-        if (category.isNotEmpty) {
-          response = response.where((element) => element.categories.where((e) => e.id == category).isNotEmpty).toList();
-        }
         _results = response;
       });
     }
@@ -100,20 +102,12 @@ class _CourseTabState extends State<CourseTab> {
           child: TextField(
             style: TextStyle(fontSize: 12, color: Colors.grey[900]),
             controller: _controller,
-            onChanged: (value) {
+            onChanged: (value) async {
               if (_debounce?.isActive ?? false) _debounce?.cancel();
               _debounce = Timer(const Duration(milliseconds: 500), () {
-                // final res = woozy.search(value);
-                // List<Course> newResults = [];
-                // for (int i = 0; i < res.length; i++) {
-                //   if (res[i].score >= 0.3) {
-                //     newResults.add(CoursesSample.courses.firstWhere((course) => course.title == res[i].text));
-                //   }
-                // }
-
-                // setState(() {
-                //   _results = newResults;
-                // });
+                setState(() {
+                  search = value;
+                });
               });
             },
             decoration: InputDecoration(
@@ -149,7 +143,7 @@ class _CourseTabState extends State<CourseTab> {
           ),
         ),
         Expanded(
-          child: _controller.text.isNotEmpty && _results.isEmpty
+          child: _results.isEmpty
               ? SizedBox(
                   height: MediaQuery.of(context).size.height * 0.5,
                   child: Center(
@@ -187,7 +181,8 @@ class _CourseTabState extends State<CourseTab> {
                         elevation: 5,
                         shape: const RoundedRectangleBorder(
                           side: BorderSide(color: Colors.white70, width: 1),
-                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
                         ),
                         child: SizedBox(
                           // height: 300,
@@ -198,7 +193,8 @@ class _CourseTabState extends State<CourseTab> {
                                 imageUrl: _results[index].imageUrl,
                                 // height: 210,
                                 fit: BoxFit.cover,
-                                progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                    CircularProgressIndicator(value: downloadProgress.progress),
                                 errorWidget: (context, url, error) => const Icon(Icons.error),
                               ),
                               Padding(
@@ -210,7 +206,8 @@ class _CourseTabState extends State<CourseTab> {
                                       _results[index].name,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                                      style: const TextStyle(
+                                          fontSize: 17, fontWeight: FontWeight.bold),
                                     ),
                                     Container(
                                       margin: const EdgeInsets.only(top: 8),
