@@ -1,14 +1,17 @@
 import 'dart:async';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lettutor_mobile/src/data/course_sample.dart';
-import 'package:lettutor_mobile/src/models/course/course.dart';
-import 'package:woozy_search/woozy_search.dart';
+import 'package:lettutor_mobile/src/models/course_model/course_category.dart';
+import 'package:lettutor_mobile/src/models/course_model/course_model.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
+import 'package:lettutor_mobile/src/provider/auth_provider.dart';
+import 'package:lettutor_mobile/src/services/course_service.dart';
+import 'package:provider/provider.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
 class CourseTab extends StatefulWidget {
   const CourseTab({Key? key}) : super(key: key);
-
   @override
   State<CourseTab> createState() => _CourseTabState();
 }
@@ -16,9 +19,55 @@ class CourseTab extends StatefulWidget {
 class _CourseTabState extends State<CourseTab> {
   List<Course> _results = [];
   final TextEditingController _controller = TextEditingController();
-
-  // * Debounce timer for search performance
+  final listLevels = {
+    "0": "Any level",
+    "1": "Beginner",
+    "2": "High Beginner",
+    "3": "Pre-Intermediate",
+    "4": "Intermediate",
+    "5": "Upper-Intermediate",
+    "6": "Advanced",
+    "7": "Proficiency"
+  };
   Timer? _debounce;
+  String category = "";
+
+  List<Widget> _generateChips(List<CourseCategory> categories) {
+    return categories
+        .map(
+          (chip) => GestureDetector(
+            onTap: () {
+              if (category == chip.id) {
+                setState(() {
+                  category = "";
+                });
+              } else {
+                setState(() {
+                  category = chip.id;
+                });
+              }
+            },
+            child: Container(
+              margin: const EdgeInsets.only(top: 5, right: 8),
+              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+              child: Text(
+                chip.title,
+                style: TextStyle(
+                  fontSize: 12,
+                  color: chip.id == category ? Colors.blue[400] : Colors.grey[600],
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              decoration: BoxDecoration(
+                color: chip.id == category ? Colors.blue[50] : Colors.grey[200],
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
+                border: Border.all(color: chip.id == category ? Colors.blue[100] as Color : Colors.grey[400] as Color),
+              ),
+            ),
+          ),
+        )
+        .toList();
+  }
 
   @override
   void dispose() {
@@ -26,17 +75,23 @@ class _CourseTabState extends State<CourseTab> {
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final woozy = Woozy();
-    List<String> names = CoursesSample.courses.map((course) => course.title).toList();
-    woozy.setEntries(names);
-
-    if (_controller.text.isEmpty) {
+  void fetchListCourse(int page, int size, String token) async {
+    List<Course> response = await CourseService.getListCourseWithPagination(page, size, token);
+    if (mounted) {
       setState(() {
-        _results = CoursesSample.courses;
+        if (category.isNotEmpty) {
+          response = response.where((element) => element.categories.where((e) => e.id == category).isNotEmpty).toList();
+        }
+        _results = response;
       });
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+    fetchListCourse(1, 10, authProvider.tokens!.access.token);
+    final appProvider = Provider.of<AppProvider>(context);
 
     return Column(
       children: [
@@ -48,17 +103,17 @@ class _CourseTabState extends State<CourseTab> {
             onChanged: (value) {
               if (_debounce?.isActive ?? false) _debounce?.cancel();
               _debounce = Timer(const Duration(milliseconds: 500), () {
-                final res = woozy.search(value);
-                List<Course> newResults = [];
-                for (int i = 0; i < res.length; i++) {
-                  if (res[i].score >= 0.3) {
-                    newResults.add(CoursesSample.courses.firstWhere((course) => course.title == res[i].text));
-                  }
-                }
+                // final res = woozy.search(value);
+                // List<Course> newResults = [];
+                // for (int i = 0; i < res.length; i++) {
+                //   if (res[i].score >= 0.3) {
+                //     newResults.add(CoursesSample.courses.firstWhere((course) => course.title == res[i].text));
+                //   }
+                // }
 
-                setState(() {
-                  _results = newResults;
-                });
+                // setState(() {
+                //   _results = newResults;
+                // });
               });
             },
             decoration: InputDecoration(
@@ -79,6 +134,18 @@ class _CourseTabState extends State<CourseTab> {
                   ),
                 ),
                 hintText: "Search courses..."),
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+          height: 33,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: _generateChips(appProvider.allCourseCategories).length,
+            itemBuilder: (context, index) {
+              return _generateChips(appProvider.allCourseCategories)[index];
+            },
+            shrinkWrap: true,
           ),
         ),
         Expanded(
@@ -120,20 +187,19 @@ class _CourseTabState extends State<CourseTab> {
                         elevation: 5,
                         shape: const RoundedRectangleBorder(
                           side: BorderSide(color: Colors.white70, width: 1),
-                          borderRadius:
-                              BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
                         ),
                         child: SizedBox(
-                          height: 300,
+                          // height: 300,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Image.asset(
-                                _results[index].image,
-                                alignment: Alignment.center,
-                                width: MediaQuery.of(context).size.width,
-                                height: 210,
+                              CachedNetworkImage(
+                                imageUrl: _results[index].imageUrl,
+                                // height: 210,
                                 fit: BoxFit.cover,
+                                progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                                errorWidget: (context, url, error) => const Icon(Icons.error),
                               ),
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
@@ -141,7 +207,7 @@ class _CourseTabState extends State<CourseTab> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      _results[index].title,
+                                      _results[index].name,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
@@ -152,7 +218,7 @@ class _CourseTabState extends State<CourseTab> {
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            _results[index].level,
+                                            listLevels[_results[index].level] as String,
                                             style: TextStyle(fontSize: 15, color: Colors.grey[800]),
                                           ),
                                           Text(

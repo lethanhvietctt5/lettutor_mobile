@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lettutor_mobile/src/data/book_sample.dart';
 import 'package:lettutor_mobile/src/models/book/book.dart';
-import 'package:woozy_search/woozy_search.dart';
+import 'package:lettutor_mobile/src/models/course_model/course_category.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
 class BookTab extends StatefulWidget {
@@ -15,11 +16,38 @@ class BookTab extends StatefulWidget {
 }
 
 class _BookTabState extends State<BookTab> {
-  List<Book> _results = [];
+  final List<Book> _results = [];
   final TextEditingController _controller = TextEditingController();
 
   // * Debounce timer for search performance
   Timer? _debounce;
+
+  List<Widget> _generateChips(List<CourseCategory> categories) {
+    return categories
+        .map(
+          (chip) => GestureDetector(
+            onTap: () {},
+            child: Container(
+              margin: const EdgeInsets.only(top: 5, right: 8),
+              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+              child: Text(
+                chip.title,
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey[600],
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
+                border: Border.all(color: Colors.grey[400] as Color),
+              ),
+            ),
+          ),
+        )
+        .toList();
+  }
 
   @override
   void dispose() {
@@ -29,14 +57,11 @@ class _BookTabState extends State<BookTab> {
 
   @override
   Widget build(BuildContext context) {
-    final woozy = Woozy();
-    List<String> names = BooksSample.books.map((book) => book.name).toList();
-    woozy.setEntries(names);
-
+    final appProvider = Provider.of<AppProvider>(context);
     if (_controller.text.isEmpty) {
-      setState(() {
-        _results = BooksSample.books;
-      });
+      // setState(() {
+      //   _results = BooksSample.books;
+      // });
     }
 
     return Column(
@@ -49,17 +74,17 @@ class _BookTabState extends State<BookTab> {
             onChanged: (value) {
               if (_debounce?.isActive ?? false) _debounce?.cancel();
               _debounce = Timer(const Duration(milliseconds: 500), () {
-                final res = woozy.search(value);
-                List<Book> newResults = [];
-                for (int i = 0; i < res.length; i++) {
-                  if (res[i].score >= 0.3) {
-                    newResults.add(BooksSample.books.firstWhere((book) => book.name == res[i].text));
-                  }
-                }
+                // final res = woozy.search(value);
+                // List<Book> newResults = [];
+                // for (int i = 0; i < res.length; i++) {
+                //   if (res[i].score >= 0.3) {
+                //     newResults.add(BooksSample.books.firstWhere((book) => book.name == res[i].text));
+                //   }
+                // }
 
-                setState(() {
-                  _results = newResults;
-                });
+                // setState(() {
+                //   _results = newResults;
+                // });
               });
             },
             decoration: InputDecoration(
@@ -80,6 +105,18 @@ class _BookTabState extends State<BookTab> {
                   ),
                 ),
                 hintText: "Search books..."),
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+          height: 33,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: _generateChips(appProvider.allCourseCategories).length,
+            itemBuilder: (context, index) {
+              return _generateChips(appProvider.allCourseCategories)[index];
+            },
+            shrinkWrap: true,
           ),
         ),
         Expanded(

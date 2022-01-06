@@ -133,15 +133,15 @@ class UpComingCard extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blue),
-                          color: Colors.blue,
+                          border: Border.all(color: isVisibleMeetingBtn(upcomming) ? Colors.blue : Colors.grey[200] as Color),
+                          color: isVisibleMeetingBtn(upcomming) ? Colors.blue : Colors.grey[200] as Color,
                           borderRadius: const BorderRadius.only(topRight: Radius.circular(4), bottomRight: Radius.circular(4))),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const <Widget>[
+                        children: <Widget>[
                           Text(
                             "Go to meeting",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: isVisibleMeetingBtn(upcomming) ? Colors.white : Colors.grey[500] as Color),
                           )
                         ],
                       ),
@@ -155,4 +155,10 @@ class UpComingCard extends StatelessWidget {
       ),
     );
   }
+}
+
+bool isVisibleMeetingBtn(BookingInfo bookingInfo) {
+  final now = DateTime.now();
+  final start = DateTime.fromMillisecondsSinceEpoch(bookingInfo.scheduleDetailInfo!.startPeriodTimestamp);
+  return (now.day == start.day && now.month == start.month && now.year == start.year);
 }

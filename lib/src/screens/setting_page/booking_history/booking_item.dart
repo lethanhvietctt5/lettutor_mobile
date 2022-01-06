@@ -50,14 +50,14 @@ class BookingItem extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     Text(
-                      DateFormat.yMEd().format(DateFormat("yyyy-MM-dd").parse(bookingInfo.scheduleDetailInfo!.scheduleInfo!.createdAt)),
+                      DateFormat.yMEd().format(DateFormat("yyyy-MM-dd").parse(bookingInfo.createdAt)),
                       style: const TextStyle(fontSize: 13),
                     ),
                     Container(
                       padding: const EdgeInsets.all(3),
                       margin: const EdgeInsets.only(left: 5, right: 5),
                       child: Text(
-                        bookingInfo.scheduleDetailInfo!.startPeriod,
+                        DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(bookingInfo.scheduleDetailInfo!.startPeriodTimestamp)),
                         style: const TextStyle(fontSize: 10, color: Colors.blue),
                       ),
                       decoration: BoxDecoration(border: Border.all(color: Colors.blue, width: 1), color: Colors.blue[50], borderRadius: BorderRadius.circular(4)),
@@ -67,7 +67,7 @@ class BookingItem extends StatelessWidget {
                       padding: const EdgeInsets.all(3),
                       margin: const EdgeInsets.only(left: 5, right: 5),
                       child: Text(
-                        bookingInfo.scheduleDetailInfo!.endPeriod,
+                        DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(bookingInfo.scheduleDetailInfo!.endPeriodTimestamp)),
                         style: const TextStyle(fontSize: 10, color: Colors.orange),
                       ),
                       decoration: BoxDecoration(border: Border.all(color: Colors.orange, width: 1), color: Colors.orange[50], borderRadius: BorderRadius.circular(4)),

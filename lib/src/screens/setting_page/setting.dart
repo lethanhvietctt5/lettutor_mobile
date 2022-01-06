@@ -1,9 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/provider/navigation_index.dart';
-import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/setting_btn.dart';
-import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 import 'package:provider/provider.dart';
 
@@ -18,7 +18,8 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     final naviationIndex = Provider.of<NavigationIndex>(context);
-    final uploadImage = Provider.of<UserProvider>(context).uploadImage;
+    final authProvider = Provider.of<AuthProvider>(context);
+    final userAuth = authProvider.userLoggedIn;
 
     return SingleChildScrollView(
       child: Padding(
@@ -36,32 +37,32 @@ class _SettingPageState extends State<SettingPage> {
                     height: 70,
                     width: 70,
                     child: CircleAvatar(
-                      child: uploadImage != null
-                          ? ClipRRect(
-                              borderRadius: BorderRadius.circular(1000),
-                              child: Image.file(
-                                uploadImage,
-                                width: 200,
-                                height: 200,
-                                fit: BoxFit.cover,
-                              ),
-                            )
-                          : const AvatarCircle(width: 70, height: 70, source: "asset/img/profile.jpg"),
-                    ),
+                        backgroundColor: Colors.white,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(1000),
+                          child: CachedNetworkImage(
+                            imageUrl: userAuth.avatar,
+                            width: 70,
+                            height: 70,
+                            fit: BoxFit.cover,
+                            progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                          ),
+                        )),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Padding(
-                        padding: EdgeInsets.only(bottom: 5),
+                        padding: const EdgeInsets.only(bottom: 5),
                         child: Text(
-                          "Le Thanh Viet",
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                          userAuth.name,
+                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                         ),
                       ),
                       Text(
-                        "lethanhviet7c@gmail.com",
-                        style: TextStyle(color: Colors.grey, fontSize: 13),
+                        userAuth.email,
+                        style: const TextStyle(color: Colors.grey, fontSize: 13),
                       )
                     ],
                   ),
