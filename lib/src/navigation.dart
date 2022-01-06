@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -61,11 +62,14 @@ class _NavigationBarState extends State<NavigationBar> {
                       child: CircleAvatar(
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(1000),
-                          child: Image.network(
-                            authUser.avatar,
+                          child: CachedNetworkImage(
+                            imageUrl: authUser.avatar,
+                            fit: BoxFit.cover,
                             width: 40,
                             height: 40,
-                            fit: BoxFit.cover,
+                            progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                CircularProgressIndicator(value: downloadProgress.progress),
+                            errorWidget: (context, url, error) => const Icon(Icons.error),
                           ),
                         ),
                       ),
@@ -86,11 +90,16 @@ class _NavigationBarState extends State<NavigationBar> {
           elevation: 20,
           currentIndex: navigationIndex.index,
           items: [
-            const MenuItem(sourceIcon: "asset/svg/ic_home.svg", label: "Home").generateItem(context),
-            const MenuItem(sourceIcon: "asset/svg/ic_course.svg", label: "Courses").generateItem(context),
-            const MenuItem(sourceIcon: "asset/svg/ic_upcoming.svg", label: "Upcoming").generateItem(context),
-            const MenuItem(sourceIcon: "asset/svg/ic_tutor.svg", label: "Tutors").generateItem(context),
-            const MenuItem(sourceIcon: "asset/svg/ic_setting.svg", label: "Setting").generateItem(context),
+            const MenuItem(sourceIcon: "asset/svg/ic_home.svg", label: "Home")
+                .generateItem(context),
+            const MenuItem(sourceIcon: "asset/svg/ic_course.svg", label: "Courses")
+                .generateItem(context),
+            const MenuItem(sourceIcon: "asset/svg/ic_upcoming.svg", label: "Upcoming")
+                .generateItem(context),
+            const MenuItem(sourceIcon: "asset/svg/ic_tutor.svg", label: "Tutors")
+                .generateItem(context),
+            const MenuItem(sourceIcon: "asset/svg/ic_setting.svg", label: "Setting")
+                .generateItem(context),
           ],
         ),
       ),

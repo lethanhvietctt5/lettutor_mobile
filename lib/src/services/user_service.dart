@@ -57,7 +57,6 @@ class UserService {
     final response = await http.post(Uri.parse(url + "/auth/login"), body: {'email': email, 'password': password});
     if (response.statusCode == 200) {
       final jsonDecode = json.decode(response.body);
-      // final jsonEncode = json.encode(jsonDecode["user"]);
       final tokens = Tokens.fromJson(jsonDecode["tokens"]);
       final user = User.fromJson(jsonDecode["user"]);
       callback(user, tokens);

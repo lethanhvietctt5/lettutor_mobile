@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -72,9 +73,13 @@ class _ProfilePageState extends State<ProfilePage> {
 
     setState(() {
       if (isInit) {
-        _birthday = authProvider.userLoggedIn.birthday != null ? DateFormat("yyyy-MM-dd").parse(authProvider.userLoggedIn.birthday as String) : null;
+        _birthday = authProvider.userLoggedIn.birthday != null
+            ? DateFormat("yyyy-MM-dd").parse(authProvider.userLoggedIn.birthday as String)
+            : null;
         _phone = authProvider.userLoggedIn.phone;
-        _country = authProvider.userLoggedIn.country != null ? (authProvider.userLoggedIn.country as String) : "";
+        _country = authProvider.userLoggedIn.country != null
+            ? (authProvider.userLoggedIn.country as String)
+            : "VN";
         _level = authProvider.userLoggedIn.level;
         _nameController.text = authProvider.userLoggedIn.name;
         _topics = authProvider.userLoggedIn.learnTopics ?? [];
@@ -121,13 +126,17 @@ class _ProfilePageState extends State<ProfilePage> {
                       width: 100,
                       child: CircleAvatar(
                           child: ClipRRect(
-                              borderRadius: BorderRadius.circular(1000),
-                              child: Image.network(
-                                authProvider.userLoggedIn.avatar,
-                                width: 200,
-                                height: 200,
-                                fit: BoxFit.cover,
-                              ))),
+                        borderRadius: BorderRadius.circular(1000),
+                        child: CachedNetworkImage(
+                          imageUrl: authProvider.userLoggedIn.avatar,
+                          fit: BoxFit.cover,
+                          width: 70,
+                          height: 70,
+                          progressIndicatorBuilder: (context, url, downloadProgress) =>
+                              CircularProgressIndicator(value: downloadProgress.progress),
+                          errorWidget: (context, url, error) => const Icon(Icons.error),
+                        ),
+                      )),
                     ),
                     Positioned(
                       bottom: 10,
@@ -137,13 +146,16 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: CircleAvatar(
                           backgroundColor: Colors.grey[300],
                           radius: 15,
-                          child: SvgPicture.asset("asset/svg/ic_camera.svg", color: Colors.grey[700]),
+                          child:
+                              SvgPicture.asset("asset/svg/ic_camera.svg", color: Colors.grey[700]),
                         ),
                       ),
                     )
                   ],
                 ),
-                Text(authProvider.userLoggedIn.email, style: TextStyle(fontSize: 14, color: Colors.grey[800], fontWeight: FontWeight.w500)),
+                Text(authProvider.userLoggedIn.email,
+                    style: TextStyle(
+                        fontSize: 14, color: Colors.grey[800], fontWeight: FontWeight.w500)),
                 Container(
                   margin: const EdgeInsets.only(bottom: 10, top: 10),
                   child: Column(
@@ -160,9 +172,15 @@ class _ProfilePageState extends State<ProfilePage> {
                           filled: true,
                           fillColor: Colors.white,
                           contentPadding: EdgeInsets.only(left: 15, right: 15),
-                          border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black26, width: 0.3), borderRadius: BorderRadius.all(Radius.circular(10))),
-                          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black26, width: 0.3), borderRadius: BorderRadius.all(Radius.circular(10))),
-                          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black26, width: 0.3), borderRadius: BorderRadius.all(Radius.circular(10))),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black26, width: 0.3),
+                              borderRadius: BorderRadius.all(Radius.circular(10))),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black26, width: 0.3),
+                              borderRadius: BorderRadius.all(Radius.circular(10))),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black26, width: 0.3),
+                              borderRadius: BorderRadius.all(Radius.circular(10))),
                           hintText: "Full name",
                         ),
                       )
@@ -170,9 +188,20 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
                 BirthdayEdition(setBirthday: setForm, birthday: _birthday),
-                PhoneEdition(changePhone: setForm, phone: _phone ?? "", isPhoneActivated: authProvider.userLoggedIn.isPhoneActivated ?? false),
-                DropdownEdit(title: "Country", selectedItem: _country != null ? _country as String : "VN", items: countryList, onChange: setForm),
-                DropdownEdit(title: "My Level", selectedItem: _level != null ? _level as String : "BEGINNER", items: listLevel, onChange: setForm),
+                PhoneEdition(
+                    changePhone: setForm,
+                    phone: _phone ?? "",
+                    isPhoneActivated: authProvider.userLoggedIn.isPhoneActivated ?? false),
+                DropdownEdit(
+                    title: "Country",
+                    selectedItem: _country != null ? _country as String : "VN",
+                    items: countryList,
+                    onChange: setForm),
+                DropdownEdit(
+                    title: "My Level",
+                    selectedItem: _level != null ? _level as String : "BEGINNER",
+                    items: listLevel,
+                    onChange: setForm),
                 Container(
                   margin: const EdgeInsets.only(bottom: 2, left: 5),
                   child: Row(
@@ -184,7 +213,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   ),
                 ),
-                WantToLearn(userTopics: _topics, editTopics: editTopics, userTestPreparations: _tests, editTestPreparations: editTests),
+                WantToLearn(
+                    userTopics: _topics,
+                    editTopics: editTopics,
+                    userTestPreparations: _tests,
+                    editTestPreparations: editTests),
                 Container(
                   margin: const EdgeInsets.only(top: 20, bottom: 20),
                   child: ElevatedButton(
@@ -203,7 +236,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           showOutAnimationDuration: const Duration(milliseconds: 700),
                           displayDuration: const Duration(milliseconds: 200),
                         );
-                      } else if (_birthday != null && _birthday!.millisecondsSinceEpoch > DateTime.now().millisecondsSinceEpoch) {
+                      } else if (_birthday != null &&
+                          _birthday!.millisecondsSinceEpoch >
+                              DateTime.now().millisecondsSinceEpoch) {
                         showTopSnackBar(
                           context,
                           const CustomSnackBar.error(message: "Birthday is invalid."),
@@ -211,7 +246,8 @@ class _ProfilePageState extends State<ProfilePage> {
                           displayDuration: const Duration(milliseconds: 200),
                         );
                       } else {
-                        String _bdArg = "${_birthday!.year.toString()}-${_birthday!.month.toString().padLeft(2, "0")}-${_birthday!.day..toString().padLeft(2, "0")}";
+                        String _bdArg =
+                            "${_birthday!.year.toString()}-${_birthday!.month.toString().padLeft(2, "0")}-${_birthday!.day..toString().padLeft(2, "0")}";
 
                         final res = await UserService.updateInfo(
                           authProvider.tokens!.access.token,
@@ -253,7 +289,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     style: ElevatedButton.styleFrom(
                       primary: const Color(0xff007CFF),
-                      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
                     ),
                   ),
                 ),
