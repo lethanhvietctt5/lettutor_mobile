@@ -1,10 +1,14 @@
 import 'dart:async';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lettutor_mobile/src/models/book/book.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:lettutor_mobile/src/models/course_model/course_category.dart';
+import 'package:lettutor_mobile/src/models/ebook_model/ebook_model.dart';
 import 'package:lettutor_mobile/src/provider/app_provider.dart';
+import 'package:lettutor_mobile/src/provider/auth_provider.dart';
+import 'package:lettutor_mobile/src/services/ebook_service.dart';
 import 'package:provider/provider.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
@@ -16,17 +20,37 @@ class BookTab extends StatefulWidget {
 }
 
 class _BookTabState extends State<BookTab> {
-  final List<Book> _results = [];
+  List<Ebook> _results = [];
   final TextEditingController _controller = TextEditingController();
-
-  // * Debounce timer for search performance
+  final listLevels = {
+    "0": "Any level",
+    "1": "Beginner",
+    "2": "High Beginner",
+    "3": "Pre-Intermediate",
+    "4": "Intermediate",
+    "5": "Upper-Intermediate",
+    "6": "Advanced",
+    "7": "Proficiency"
+  };
   Timer? _debounce;
+  String category = "";
+  String search = "";
 
   List<Widget> _generateChips(List<CourseCategory> categories) {
     return categories
         .map(
           (chip) => GestureDetector(
-            onTap: () {},
+            onTap: () {
+              if (category == chip.id) {
+                setState(() {
+                  category = "";
+                });
+              } else {
+                setState(() {
+                  category = chip.id;
+                });
+              }
+            },
             child: Container(
               margin: const EdgeInsets.only(top: 5, right: 8),
               padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
@@ -34,14 +58,17 @@ class _BookTabState extends State<BookTab> {
                 chip.title,
                 style: TextStyle(
                   fontSize: 12,
-                  color: Colors.grey[600],
+                  color: chip.id == category ? Colors.blue[400] : Colors.grey[600],
                   fontWeight: FontWeight.w700,
                 ),
               ),
               decoration: BoxDecoration(
-                color: Colors.grey[200],
+                color: chip.id == category ? Colors.blue[50] : Colors.grey[200],
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
-                border: Border.all(color: Colors.grey[400] as Color),
+                border: Border.all(
+                    color: chip.id == category
+                        ? Colors.blue[100] as Color
+                        : Colors.grey[400] as Color),
               ),
             ),
           ),
@@ -55,14 +82,21 @@ class _BookTabState extends State<BookTab> {
     super.dispose();
   }
 
+  void fetchListEbook(int page, int size, String token) async {
+    final response = await EbookService.getListEbookWithPagination(page, size, token,
+        categoryId: category, q: search);
+    if (mounted) {
+      setState(() {
+        _results = response;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+    fetchListEbook(1, 10, authProvider.tokens!.access.token);
     final appProvider = Provider.of<AppProvider>(context);
-    if (_controller.text.isEmpty) {
-      // setState(() {
-      //   _results = BooksSample.books;
-      // });
-    }
 
     return Column(
       children: [
@@ -74,17 +108,9 @@ class _BookTabState extends State<BookTab> {
             onChanged: (value) {
               if (_debounce?.isActive ?? false) _debounce?.cancel();
               _debounce = Timer(const Duration(milliseconds: 500), () {
-                // final res = woozy.search(value);
-                // List<Book> newResults = [];
-                // for (int i = 0; i < res.length; i++) {
-                //   if (res[i].score >= 0.3) {
-                //     newResults.add(BooksSample.books.firstWhere((book) => book.name == res[i].text));
-                //   }
-                // }
-
-                // setState(() {
-                //   _results = newResults;
-                // });
+                setState(() {
+                  search = value;
+                });
               });
             },
             decoration: InputDecoration(
@@ -120,7 +146,7 @@ class _BookTabState extends State<BookTab> {
           ),
         ),
         Expanded(
-          child: _controller.text.isNotEmpty && _results.isEmpty
+          child: _results.isEmpty
               ? SizedBox(
                   height: MediaQuery.of(context).size.height * 0.5,
                   child: Center(
@@ -147,24 +173,25 @@ class _BookTabState extends State<BookTab> {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, routes.bookDetailPage);
+                      child: GestureDetector(
+                        onTap: () async {
+                          if (await canLaunch(_results[index].fileUrl)) {
+                            await launch(_results[index].fileUrl);
+                          }
                         },
                         child: Card(
                           elevation: 8,
                           child: SizedBox(
-                            height: 300,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Image.asset(
-                                  _results[index].img,
-                                  alignment: Alignment.center,
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 170,
+                                CachedNetworkImage(
+                                  imageUrl: _results[index].imageUrl,
                                   fit: BoxFit.cover,
+                                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                      CircularProgressIndicator(value: downloadProgress.progress),
+                                  errorWidget: (context, url, error) => const Icon(Icons.error),
                                 ),
                                 Container(
                                   padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
@@ -175,7 +202,8 @@ class _BookTabState extends State<BookTab> {
                                         _results[index].name,
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
-                                        style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                                        style: const TextStyle(
+                                            fontSize: 17, fontWeight: FontWeight.bold),
                                       ),
                                       Container(
                                         margin: const EdgeInsets.only(top: 8, bottom: 15),
@@ -187,7 +215,7 @@ class _BookTabState extends State<BookTab> {
                                         ),
                                       ),
                                       Text(
-                                        _results[index].level,
+                                        listLevels[_results[index].level] ?? "Any level",
                                         style: TextStyle(fontSize: 15, color: Colors.grey[800]),
                                       ),
                                     ],
