@@ -1,16 +1,21 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
-import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
+import 'package:lettutor_mobile/src/models/tutor_model/tutor_info_model.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
+import 'package:lettutor_mobile/src/constants/learning_topics.dart';
 
 class TutorCardInfo extends StatelessWidget {
   const TutorCardInfo({Key? key, required this.tutor}) : super(key: key);
 
-  final Tutor tutor;
+  final TutorInfo tutor;
 
   @override
   Widget build(BuildContext context) {
+    final specialist = listLearningTopics.entries
+        .where((element) => tutor.specialties.split(",").contains(element.key))
+        .map((e) => e.value)
+        .toList();
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: GestureDetector(
@@ -18,7 +23,7 @@ class TutorCardInfo extends StatelessWidget {
           Navigator.pushNamed(
             context,
             routes.tutorProfilePage,
-            arguments: {"tutor": tutor},
+            arguments: {"tutorID": tutor.userId},
           );
         },
         child: Card(
@@ -36,9 +41,24 @@ class TutorCardInfo extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 15),
-                      child: AvatarCircle(width: 70, height: 70, source: tutor.image),
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 10, right: 10),
+                      height: 60,
+                      width: 60,
+                      child: CircleAvatar(
+                          backgroundColor: Colors.white,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(1000),
+                            child: CachedNetworkImage(
+                              imageUrl: tutor.avatar as String,
+                              fit: BoxFit.cover,
+                              width: 70,
+                              height: 70,
+                              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                  CircularProgressIndicator(value: downloadProgress.progress),
+                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                            ),
+                          )),
                     ),
                     Expanded(
                       child: Column(
@@ -51,46 +71,28 @@ class TutorCardInfo extends StatelessWidget {
                                 child: Container(
                                   margin: const EdgeInsets.only(bottom: 5),
                                   child: Text(
-                                    tutor.fullName,
-                                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                                    tutor.name,
+                                    style:
+                                        const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    tutor.getTotalStar().toString(),
-                                    style: const TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.pink,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 5),
-                                  SvgPicture.asset(
-                                    "asset/svg/ic_star.svg",
-                                    color: Colors.yellow,
-                                    height: 20,
-                                    width: 20,
-                                  ),
-                                ],
                               ),
                             ],
                           ),
                           SizedBox(
                             height: 30,
                             child: ListView.builder(
-                              itemCount: tutor.languages.length,
+                              itemCount: specialist.length,
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
                                 return Container(
                                   margin: const EdgeInsets.only(top: 5, right: 8),
-                                  padding: const EdgeInsets.all(5),
+                                  padding: const EdgeInsets.fromLTRB(8, 5, 8, 0),
                                   child: Text(
-                                    tutor.languages[index],
+                                    specialist[index],
                                     style: const TextStyle(
                                       fontSize: 12,
                                       color: Colors.blue,
@@ -117,7 +119,7 @@ class TutorCardInfo extends StatelessWidget {
                 Container(
                     margin: const EdgeInsets.only(top: 10),
                     child: Text(
-                      tutor.intro,
+                      tutor.bio,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 4,
                     ))

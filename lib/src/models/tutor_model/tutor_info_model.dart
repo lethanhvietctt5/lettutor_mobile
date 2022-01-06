@@ -38,7 +38,7 @@ class TutorInfo {
   String? resume;
   bool? isNative;
   late int price;
-  late bool isOnline;
+  bool? isOnline;
 
   TutorInfo({
     required this.level,
@@ -78,7 +78,7 @@ class TutorInfo {
     this.resume,
     this.isNative,
     required this.price,
-    required this.isOnline,
+    this.isOnline,
   });
 
   TutorInfo.fromJson(Map<String, dynamic> json) {

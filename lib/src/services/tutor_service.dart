@@ -13,7 +13,8 @@ class TutorService {
     return Tutor.fromJson(parsed);
   }
 
-  static Future<List<TutorInfo>> getListTutorWithPagination(int page, int perPage, String token) async {
+  static Future<List<TutorInfo>> getListTutorWithPagination(
+      int page, int perPage, String token) async {
     final response = await http.get(
       Uri.parse(url + '/tutor/more?perPage=$perPage&page=$page'),
       headers: {
@@ -49,6 +50,41 @@ class TutorService {
       final jsonDecode = json.decode(response.body);
       print(jsonDecode);
       throw Exception(jsonDecode['message']);
+    }
+  }
+
+  static Future<List<TutorInfo>>searchTutor(
+    int page,
+    int perPage,
+    String token, {
+    String search = "",
+    List<String> specialties = const [],
+  }) async {
+    final Map<String, dynamic> args = {
+      "page": page,
+      "perPage": perPage,
+      "search": search,
+      "filters": {
+        "specialties": specialties,
+      },
+    };
+
+    final response = await http.post(
+      Uri.parse("$url/tutor/search"),
+      headers: {
+        "Authorization": "Bearer $token",
+        "Content-type": "application/json;encoding=utf-8",
+      },
+      body: json.encode(args),
+    );
+
+    if (response.statusCode == 200) {
+      final jsonRes = json.decode(response.body);
+      final List<dynamic> tutors = jsonRes["rows"];
+      return tutors.map((tutor) => TutorInfo.fromJson(tutor)).toList();
+    } else {
+      final jsonRes = json.decode(response.body);
+      throw Exception(jsonRes["message"]);
     }
   }
 }
