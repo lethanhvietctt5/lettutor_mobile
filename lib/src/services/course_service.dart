@@ -56,7 +56,25 @@ class CourseService {
       final arr = courses.map((e) => CourseCategory.fromJson(e)).toList();
       return arr;
     } else {
-      throw Exception('Cannot get list course');
+      throw Exception('Cannot get list courses');
+    }
+  }
+
+  static getCourseById(String courseId, String token) async {
+    final response = await http.get(
+      Uri.parse("$url/course/$courseId"),
+      headers: {
+        "Authorization": "Bearer $token",
+        "Content-type": "application/json",
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final res = json.decode(response.body);
+      final course = Course.fromJson(res["data"]);
+      return course;
+    } else {
+      throw Exception('Cannot get course');
     }
   }
 }

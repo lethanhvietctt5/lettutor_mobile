@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:lettutor_mobile/src/models/course/course.dart';
+import 'package:lettutor_mobile/src/models/course_model/course_model.dart';
 
 class AboutCourse extends StatelessWidget {
-  const AboutCourse({Key? key, required this.course}) : super(key: key);
+  AboutCourse({Key? key, required this.course}) : super(key: key);
 
   final Course course;
+  final listLevels = {
+    "0": "Any level",
+    "1": "Beginner",
+    "2": "High Beginner",
+    "3": "Pre-Intermediate",
+    "4": "Intermediate",
+    "5": "Upper-Intermediate",
+    "6": "Advanced",
+    "7": "Proficiency"
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +36,7 @@ class AboutCourse extends StatelessWidget {
             ),
           ),
           Text(
-            course.about,
+            course.description,
             style: const TextStyle(
               fontSize: 17,
               color: Colors.black54,
@@ -42,44 +52,67 @@ class AboutCourse extends StatelessWidget {
               ),
             ),
           ),
-          ListView.builder(
-            itemCount: course.overview.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              String key = course.overview.keys.elementAt(index);
-              return Column(
+          Column(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.help_outline,
-                        color: Colors.red,
+                  const Icon(
+                    Icons.help_outline,
+                    color: Colors.red,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width - 70,
+                    margin: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
+                    child: const Text(
+                      "Why take this course?",
+                      style: TextStyle(
+                        fontSize: 17,
+                        color: Colors.black,
                       ),
-                      Container(
-                        width: MediaQuery.of(context).size.width - 70,
-                        margin: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
-                        child: Text(
-                          key,
-                          style: const TextStyle(
-                            fontSize: 17,
-                            color: Colors.black,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  Text(
-                    course.overview[key] as String,
-                    style: const TextStyle(
-                      fontSize: 17,
-                      color: Colors.black54,
                     ),
-                  ),
+                  )
                 ],
-              );
-            },
+              ),
+              Text(
+                course.reason,
+                style: const TextStyle(
+                  fontSize: 17,
+                  color: Colors.black54,
+                ),
+              ),
+            ],
+          ),
+          Column(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.help_outline,
+                    color: Colors.red,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width - 70,
+                    margin: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
+                    child: const Text(
+                      "What will you be able to do?",
+                      style: TextStyle(
+                        fontSize: 17,
+                        color: Colors.black,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Text(
+                course.purpose,
+                style: const TextStyle(
+                  fontSize: 17,
+                  color: Colors.black54,
+                ),
+              ),
+            ],
           ),
           const Padding(
             padding: EdgeInsets.only(bottom: 8.0, top: 14),
@@ -92,7 +125,7 @@ class AboutCourse extends StatelessWidget {
             ),
           ),
           Text(
-            course.level,
+            listLevels[course.level] ?? "Any level",
             style: const TextStyle(
               fontSize: 17,
               color: Colors.black54,

@@ -174,7 +174,7 @@ class _CourseTabState extends State<CourseTab> {
                         Navigator.pushNamed(
                           context,
                           routes.coursePage,
-                          arguments: {"course": _results[index]},
+                          arguments: {"courseId": _results[index].id},
                         );
                       },
                       child: Card(
@@ -185,13 +185,11 @@ class _CourseTabState extends State<CourseTab> {
                               bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
                         ),
                         child: SizedBox(
-                          // height: 300,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               CachedNetworkImage(
                                 imageUrl: _results[index].imageUrl,
-                                // height: 210,
                                 fit: BoxFit.cover,
                                 progressIndicatorBuilder: (context, url, downloadProgress) =>
                                     CircularProgressIndicator(value: downloadProgress.progress),

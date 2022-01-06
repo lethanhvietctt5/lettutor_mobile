@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile/src/models/course/course.dart';
+import 'package:lettutor_mobile/src/models/course_model/course_model.dart';
 
 class TopicCourse extends StatelessWidget {
   const TopicCourse({Key? key, required this.course}) : super(key: key);
@@ -56,7 +56,7 @@ class TopicCourse extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        course.topics[index],
+                        course.topics[index].name,
                         style: const TextStyle(
                           fontSize: 20,
                           color: Colors.black,

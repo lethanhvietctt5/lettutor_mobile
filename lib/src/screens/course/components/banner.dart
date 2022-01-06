@@ -1,5 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile/src/models/course/course.dart';
+import 'package:lettutor_mobile/src/models/course_model/course_model.dart';
 
 class BannerCourse extends StatelessWidget {
   const BannerCourse({Key? key, required this.course}) : super(key: key);
@@ -15,9 +16,12 @@ class BannerCourse extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 50),
           width: double.infinity,
           height: 200,
-          child: Image.asset(
-            course.image,
-            fit: BoxFit.fitWidth,
+          child: CachedNetworkImage(
+            imageUrl: course.imageUrl,
+            fit: BoxFit.cover,
+            progressIndicatorBuilder: (context, url, downloadProgress) =>
+                CircularProgressIndicator(value: downloadProgress.progress),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
         ),
         Positioned(
@@ -86,16 +90,16 @@ class BannerCourse extends StatelessWidget {
                   ),
                 ),
                 Column(
-                  children: [
+                  children: const [
                     Text(
-                      course.tutors.length.toString(),
-                      style: const TextStyle(
+                      "1",
+                      style:  TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),
                     ),
-                    const Text(
+                    Text(
                       "tutors",
                       style: TextStyle(
                         fontSize: 25,
