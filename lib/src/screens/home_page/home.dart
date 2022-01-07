@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                InkWell(
+                GestureDetector(
                   onTap: () {
                     navigationIndex.index = 3;
                   },

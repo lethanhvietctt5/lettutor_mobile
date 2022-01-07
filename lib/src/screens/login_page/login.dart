@@ -6,6 +6,7 @@ import 'package:lettutor_mobile/src/models/user_model/tokens_model.dart';
 import 'package:lettutor_mobile/src/models/user_model/user_model.dart';
 import 'package:lettutor_mobile/src/provider/app_provider.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
+import 'package:lettutor_mobile/src/services/auth_service.dart';
 import 'package:lettutor_mobile/src/services/user_service.dart';
 import 'package:lettutor_mobile/src/widgets/button_expand.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
 
     void handleLogin() async {
       try {
-        await UserService.loginByEmailAndPassword(_emailController.text, _passwordController.text,
+        await AuthService.loginByEmailAndPassword(_emailController.text, _passwordController.text,
             (User user, Tokens tokens) async {
           authProvider.logIn(user, tokens);
           final allTopics =

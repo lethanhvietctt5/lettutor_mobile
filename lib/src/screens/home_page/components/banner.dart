@@ -75,14 +75,14 @@ class _BannerHomePageState extends State<BannerHomePage> {
               : Container(),
           Text(
             nextlesson != null
-                ? DateFormat.yMEd().format(
-                        DateTime.fromMillisecondsSinceEpoch(nextlesson!.scheduleDetailInfo!.startPeriodTimestamp)) +
+                ? DateFormat.yMEd().format(DateTime.fromMillisecondsSinceEpoch(
+                        nextlesson!.scheduleDetailInfo!.startPeriodTimestamp)) +
                     " " +
-                    DateFormat('HH:mm').format(
-                        DateTime.fromMillisecondsSinceEpoch(nextlesson!.scheduleDetailInfo!.startPeriodTimestamp)) +
+                    DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(
+                        nextlesson!.scheduleDetailInfo!.startPeriodTimestamp)) +
                     " - " +
-                    DateFormat('HH:mm')
-                        .format(DateTime.fromMillisecondsSinceEpoch(nextlesson!.scheduleDetailInfo!.endPeriodTimestamp))
+                    DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(
+                        nextlesson!.scheduleDetailInfo!.endPeriodTimestamp))
                 : "",
             style: const TextStyle(fontSize: 13, color: Colors.white),
           ),
@@ -90,17 +90,23 @@ class _BannerHomePageState extends State<BannerHomePage> {
             margin: const EdgeInsets.only(top: 10),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, routes.lessonPage);
+                if (nextlesson != null) {
+                  Navigator.pushNamed(context, routes.lessonPage);
+                } else {
+                  navigationIndex.index = 3;
+                }
               },
               child: Container(
                   padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Text(
                     nextlesson != null ? "Enter lesson room" : "Book a lesson",
-                    style: const TextStyle(color: Colors.blue, fontSize: 14, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        color: Colors.blue, fontSize: 14, fontWeight: FontWeight.bold),
                   )),
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
-                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(1000))),
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(1000))),
               ),
             ),
           )

@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
 import 'package:lettutor_mobile/src/models/user_model/learning_topic_model.dart';
 import 'package:lettutor_mobile/src/models/user_model/test_preparation_model.dart';
-import 'package:lettutor_mobile/src/models/user_model/tokens_model.dart';
 import 'package:lettutor_mobile/src/models/user_model/user_model.dart';
 
 class UserService {
@@ -50,36 +49,6 @@ class UserService {
       return allTestPreparation;
     } else {
       throw Exception(json.decode(response.body)["message"]);
-    }
-  }
-
-  static loginByEmailAndPassword(String email, String password, Function(User, Tokens) callback) async {
-    final response = await http.post(Uri.parse(url + "/auth/login"), body: {'email': email, 'password': password});
-    if (response.statusCode == 200) {
-      final jsonDecode = json.decode(response.body);
-      final tokens = Tokens.fromJson(jsonDecode["tokens"]);
-      final user = User.fromJson(jsonDecode["user"]);
-      callback(user, tokens);
-    } else {
-      final jsonRes = json.decode(response.body);
-      print(jsonRes);
-      throw Exception(jsonRes["message"]);
-    }
-  }
-
-  static registerWithEmailAndPassword(String email, String password, Function() callback) async {
-    final response = await http.post(Uri.parse(url + "/auth/register"), body: {
-      'email': email,
-      'password': password,
-      "source": "null",
-    });
-
-    if (response.statusCode == 201) {
-      callback();
-    } else {
-      final jsonRes = json.decode(response.body);
-      print(jsonRes);
-      throw Exception(jsonRes["message"]);
     }
   }
 
@@ -131,9 +100,12 @@ class UserService {
       final jsonRes = json.decode(response.body);
       final listData = jsonRes["data"] as List;
       List<BookingInfo> arrLesson = listData.map((e) => BookingInfo.fromJson(e)).toList();
-      arrLesson.sort((a, b) => a.scheduleDetailInfo!.startPeriodTimestamp.compareTo(b.scheduleDetailInfo!.startPeriodTimestamp));
+      arrLesson.sort((a, b) => a.scheduleDetailInfo!.startPeriodTimestamp
+          .compareTo(b.scheduleDetailInfo!.startPeriodTimestamp));
 
-      arrLesson = arrLesson.where((element) => element.scheduleDetailInfo!.startPeriodTimestamp > dateTime).toList();
+      arrLesson = arrLesson
+          .where((element) => element.scheduleDetailInfo!.startPeriodTimestamp > dateTime)
+          .toList();
       if (arrLesson.isEmpty) {
         return null;
       } else {
@@ -144,7 +116,8 @@ class UserService {
     }
   }
 
-  static Future<User?> updateInfo(String token, String name, String country, String birthday, String level, List<String> learnTopics, List<String> testPreparations) async {
+  static Future<User?> updateInfo(String token, String name, String country, String birthday,
+      String level, List<String> learnTopics, List<String> testPreparations) async {
     Map<String, dynamic> args = {
       'name': name,
       'country': country,
@@ -168,6 +141,27 @@ class UserService {
       return user;
     } else {
       return null;
+    }
+  }
+
+  static changePassword(String token, String password, String newPassword) async {
+    final response = await http.post(
+      Uri.parse(url + '/auth/change-password'),
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      },
+      body: json.encode({
+        'password': password,
+        'newPassword': newPassword,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      final jsonRes = json.decode(response.body);
+      throw Exception(jsonRes["message"]);
     }
   }
 }

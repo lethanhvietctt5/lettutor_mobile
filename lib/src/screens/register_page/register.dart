@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lettutor_mobile/src/services/user_service.dart';
+import 'package:lettutor_mobile/src/services/auth_service.dart';
 import 'package:lettutor_mobile/src/widgets/button_expand.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -37,7 +37,7 @@ class _SignUpPageState extends State<SignUpPage> {
         );
       } else {
         try {
-          await UserService.registerWithEmailAndPassword(
+          await AuthService.registerWithEmailAndPassword(
             _emailController.text,
             _passwordController.text,
             () {

@@ -10,7 +10,6 @@ import 'package:lettutor_mobile/src/provider/app_provider.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/services/ebook_service.dart';
 import 'package:provider/provider.dart';
-import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
 class BookTab extends StatefulWidget {
   const BookTab({Key? key}) : super(key: key);

@@ -45,7 +45,8 @@ class _SettingPageState extends State<SettingPage> {
                             width: 70,
                             height: 70,
                             fit: BoxFit.cover,
-                            progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                            progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                CircularProgressIndicator(value: downloadProgress.progress),
                             errorWidget: (context, url, error) => const Icon(Icons.error),
                           ),
                         )),
@@ -75,6 +76,11 @@ class _SettingPageState extends State<SettingPage> {
                   icon: "asset/svg/ic_list.svg",
                   title: "Booking History",
                   routeName: routes.bookingHistoryPage,
+                ),
+                SettingButton(
+                  icon: "asset/svg/ic_password2.svg",
+                  title: "Change password",
+                  routeName: routes.changePasswordPage,
                 ),
                 SettingButton(
                   icon: "asset/svg/ic_history.svg",
@@ -129,7 +135,8 @@ class _SettingPageState extends State<SettingPage> {
                 ),
                 style: ElevatedButton.styleFrom(
                   primary: const Color(0xff007CFF),
-                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(1000))),
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(1000))),
                 ),
               ),
             )
