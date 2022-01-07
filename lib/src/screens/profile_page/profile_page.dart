@@ -125,18 +125,19 @@ class _ProfilePageState extends State<ProfilePage> {
                       height: 100,
                       width: 100,
                       child: CircleAvatar(
+                          backgroundColor: Colors.white,
                           child: ClipRRect(
-                        borderRadius: BorderRadius.circular(1000),
-                        child: CachedNetworkImage(
-                          imageUrl: authProvider.userLoggedIn.avatar,
-                          fit: BoxFit.cover,
-                          width: 70,
-                          height: 70,
-                          progressIndicatorBuilder: (context, url, downloadProgress) =>
-                              CircularProgressIndicator(value: downloadProgress.progress),
-                          errorWidget: (context, url, error) => const Icon(Icons.error),
-                        ),
-                      )),
+                            borderRadius: BorderRadius.circular(1000),
+                            child: CachedNetworkImage(
+                              imageUrl: authProvider.userLoggedIn.avatar,
+                              fit: BoxFit.cover,
+                              width: 100,
+                              height: 100,
+                              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                  CircularProgressIndicator(value: downloadProgress.progress),
+                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                            ),
+                          )),
                     ),
                     Positioned(
                       bottom: 10,

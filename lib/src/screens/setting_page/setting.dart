@@ -73,11 +73,6 @@ class _SettingPageState extends State<SettingPage> {
             Column(
               children: const <Widget>[
                 SettingButton(
-                  icon: "asset/svg/ic_list.svg",
-                  title: "Booking History",
-                  routeName: routes.bookingHistoryPage,
-                ),
-                SettingButton(
                   icon: "asset/svg/ic_password2.svg",
                   title: "Change password",
                   routeName: routes.changePasswordPage,

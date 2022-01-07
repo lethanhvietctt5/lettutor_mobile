@@ -1,14 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
+import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/session_history/session_item.dart';
+import 'package:lettutor_mobile/src/services/schedule_service.dart';
 import 'package:provider/provider.dart';
 
-class SessionHistoryPage extends StatelessWidget {
+class SessionHistoryPage extends StatefulWidget {
   const SessionHistoryPage({Key? key}) : super(key: key);
 
   @override
+  State<SessionHistoryPage> createState() => _SessionHistoryPageState();
+}
+
+class _SessionHistoryPageState extends State<SessionHistoryPage> {
+  List<BookingInfo> _bookedList = [];
+  bool isLoading = true;
+
+  void fetchBookedList(String userId, String token) async {
+    final res = await ScheduleService.getStudentBookedClass(userId, token);
+    setState(() {
+      _bookedList = res;
+      isLoading = false;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final sessionHistory = Provider.of<UserProvider>(context).user.sessionHistory;
+    final authProvider = Provider.of<AuthProvider>(context);
+
+    if (isLoading) {
+      fetchBookedList(authProvider.userLoggedIn.id, authProvider.tokens!.access.token);
+    }
 
     return SafeArea(
       child: Scaffold(
@@ -30,9 +53,9 @@ class SessionHistoryPage extends StatelessWidget {
         body: Container(
           margin: const EdgeInsets.only(left: 15, right: 15),
           child: ListView.builder(
-            itemCount: sessionHistory.length,
+            itemCount: _bookedList.length,
             itemBuilder: (context, index) => SessionItem(
-              session: sessionHistory[index],
+              session: _bookedList[index],
             ),
           ),
         ),

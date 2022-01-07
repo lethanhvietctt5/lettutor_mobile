@@ -10,7 +10,6 @@ import 'package:lettutor_mobile/src/screens/login_page/forgot_pass.dart';
 import 'package:lettutor_mobile/src/screens/login_page/login.dart';
 import 'package:lettutor_mobile/src/screens/profile_page/profile_page.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/advanced_setting/advanced_setting.dart';
-import 'package:lettutor_mobile/src/screens/setting_page/booking_history/booking_history.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/change_password/change_password.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/session_history/session_history.dart';
 import 'package:lettutor_mobile/src/screens/register_page/register.dart';
@@ -24,7 +23,6 @@ const String profilePage = 'profile';
 const String tutorProfilePage = 'tutorProfile';
 const String coursePage = 'course';
 const String lessonPage = 'lesson';
-const String bookingHistoryPage = 'bookingHistory';
 const String sessionHistoryPage = 'sessionHistory';
 const String advancedSettingPage = 'advancedSetting';
 const String feedbackPage = 'feedback';
@@ -45,8 +43,6 @@ Route<dynamic> controller(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const ProfilePage());
     case lessonPage:
       return MaterialPageRoute(builder: (context) => const LessonPage());
-    case bookingHistoryPage:
-      return MaterialPageRoute(builder: (context) => const BookingHistoryPage());
     case sessionHistoryPage:
       return MaterialPageRoute(builder: (context) => const SessionHistoryPage());
     case advancedSettingPage:

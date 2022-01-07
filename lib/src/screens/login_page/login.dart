@@ -31,8 +31,8 @@ class _LoginPageState extends State<LoginPage> {
     final authProvider = Provider.of<AuthProvider>(context);
     final appProvider = Provider.of<AppProvider>(context);
 
-    _emailController.text = "lethanhviet7c@gmail.com";
-    _passwordController.text = "22102000";
+    _emailController.text = "student@lettutor.com";
+    _passwordController.text = "123456";
 
     void handleLogin() async {
       try {
