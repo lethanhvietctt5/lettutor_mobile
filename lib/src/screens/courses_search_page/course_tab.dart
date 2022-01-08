@@ -32,6 +32,12 @@ class _CourseTabState extends State<CourseTab> {
   Timer? _debounce;
   String category = "";
   String search = "";
+  bool isLoading = true;
+  bool isLoadMore = false;
+  int page = 1;
+  int perPage = 10;
+  late ScrollController _scrollController;
+  String? token;
 
   List<Widget> _generateChips(List<CourseCategory> categories) {
     return categories
@@ -41,10 +47,16 @@ class _CourseTabState extends State<CourseTab> {
               if (category == chip.id) {
                 setState(() {
                   category = "";
+                  _results = [];
+                  page = 1;
+                  isLoading = true;
                 });
               } else {
                 setState(() {
                   category = chip.id;
+                  _results = [];
+                  page = 1;
+                  isLoading = true;
                 });
               }
             },
@@ -62,10 +74,7 @@ class _CourseTabState extends State<CourseTab> {
               decoration: BoxDecoration(
                 color: chip.id == category ? Colors.blue[50] : Colors.grey[200],
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
-                border: Border.all(
-                    color: chip.id == category
-                        ? Colors.blue[100] as Color
-                        : Colors.grey[400] as Color),
+                border: Border.all(color: chip.id == category ? Colors.blue[100] as Color : Colors.grey[400] as Color),
               ),
             ),
           ),
@@ -74,26 +83,59 @@ class _CourseTabState extends State<CourseTab> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController()..addListener(loadMore);
+  }
+
+  @override
   void dispose() {
     _debounce?.cancel();
+    _scrollController.removeListener(loadMore);
     super.dispose();
   }
 
   void fetchListCourse(int page, int size, String token) async {
-    List<Course> response = await CourseService.getListCourseWithPagination(page, size, token,
-        categoryId: category, q: search);
+    List<Course> response =
+        await CourseService.getListCourseWithPagination(page, size, token, categoryId: category, q: search);
     if (mounted) {
       setState(() {
-        _results = response;
+        _results.addAll(response);
+        isLoading = false;
       });
+    }
+  }
+
+  void loadMore() async {
+    if (_scrollController.position.extentAfter < page * perPage) {
+      setState(() {
+        isLoadMore = true;
+        page++;
+      });
+
+      try {
+        List<Course> response = await CourseService.getListCourseWithPagination(page, perPage, token as String,
+            categoryId: category, q: search);
+        if (mounted) {
+          setState(() {
+            _results.addAll(response);
+            isLoadMore = false;
+          });
+        }
+      } catch (e) {}
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
-    fetchListCourse(1, 10, authProvider.tokens!.access.token);
     final appProvider = Provider.of<AppProvider>(context);
+    setState(() {
+      token = authProvider.tokens!.access.token;
+    });
+    if (isLoading) {
+      fetchListCourse(page, perPage, authProvider.tokens!.access.token);
+    }
 
     return Column(
       children: [
@@ -107,6 +149,9 @@ class _CourseTabState extends State<CourseTab> {
               _debounce = Timer(const Duration(milliseconds: 500), () {
                 setState(() {
                   search = value;
+                  _results = [];
+                  page = 1;
+                  isLoading = true;
                 });
               });
             },
@@ -142,98 +187,109 @@ class _CourseTabState extends State<CourseTab> {
             shrinkWrap: true,
           ),
         ),
-        Expanded(
-          child: _results.isEmpty
-              ? SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.5,
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          "asset/svg/ic_notfound.svg",
-                          width: 200,
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(top: 20),
-                          child: Text(
-                            "Not found any match result...",
-                            style: TextStyle(color: Colors.grey[700]),
+        isLoading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : Expanded(
+                child: _results.isEmpty
+                    ? SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.5,
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(
+                                "asset/svg/ic_notfound.svg",
+                                width: 200,
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(top: 20),
+                                child: Text(
+                                  "Not found any match result...",
+                                  style: TextStyle(color: Colors.grey[700]),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                )
-              : ListView.builder(
-                  itemCount: _results.length,
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          routes.coursePage,
-                          arguments: {"courseId": _results[index].id},
-                        );
-                      },
-                      child: Card(
-                        elevation: 5,
-                        shape: const RoundedRectangleBorder(
-                          side: BorderSide(color: Colors.white70, width: 1),
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
-                        ),
-                        child: SizedBox(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CachedNetworkImage(
-                                imageUrl: _results[index].imageUrl,
-                                fit: BoxFit.cover,
-                                progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                    CircularProgressIndicator(value: downloadProgress.progress),
-                                errorWidget: (context, url, error) => const Icon(Icons.error),
+                      )
+                    : ListView.builder(
+                        itemCount: _results.length,
+                        controller: _scrollController,
+                        itemBuilder: (context, index) => Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                routes.coursePage,
+                                arguments: {"courseId": _results[index].id},
+                              );
+                            },
+                            child: Card(
+                              elevation: 5,
+                              shape: const RoundedRectangleBorder(
+                                side: BorderSide(color: Colors.white70, width: 1),
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
+                              child: SizedBox(
                                 child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      _results[index].name,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(
-                                          fontSize: 17, fontWeight: FontWeight.bold),
+                                    CachedNetworkImage(
+                                      imageUrl: _results[index].imageUrl,
+                                      fit: BoxFit.cover,
+                                      progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                          CircularProgressIndicator(value: downloadProgress.progress),
+                                      errorWidget: (context, url, error) => const Icon(Icons.error),
                                     ),
-                                    Container(
-                                      margin: const EdgeInsets.only(top: 8),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            listLevels[_results[index].level] as String,
-                                            style: TextStyle(fontSize: 15, color: Colors.grey[800]),
+                                            _results[index].name,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                                           ),
-                                          Text(
-                                            _results[index].topics.length.toString() + " Lessons",
-                                            style: TextStyle(fontSize: 12, color: Colors.grey[800]),
-                                          ),
+                                          Container(
+                                            margin: const EdgeInsets.only(top: 8),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text(
+                                                  listLevels[_results[index].level] as String,
+                                                  style: TextStyle(fontSize: 15, color: Colors.grey[800]),
+                                                ),
+                                                Text(
+                                                  _results[index].topics.length.toString() + " Lessons",
+                                                  style: TextStyle(fontSize: 12, color: Colors.grey[800]),
+                                                ),
+                                              ],
+                                            ),
+                                          )
                                         ],
                                       ),
                                     )
                                   ],
                                 ),
-                              )
-                            ],
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                ),
-        )
+              ),
+        if (isLoadMore)
+          const SizedBox(
+            height: 50,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
       ],
     );
   }

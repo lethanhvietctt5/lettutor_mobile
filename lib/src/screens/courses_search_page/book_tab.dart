@@ -34,6 +34,12 @@ class _BookTabState extends State<BookTab> {
   Timer? _debounce;
   String category = "";
   String search = "";
+  bool isLoading = true;
+  bool isLoadMore = false;
+  int page = 1;
+  int perPage = 10;
+  late ScrollController _scrollController;
+  String? token;
 
   List<Widget> _generateChips(List<CourseCategory> categories) {
     return categories
@@ -43,10 +49,16 @@ class _BookTabState extends State<BookTab> {
               if (category == chip.id) {
                 setState(() {
                   category = "";
+                  _results = [];
+                  page = 1;
+                  isLoading = true;
                 });
               } else {
                 setState(() {
                   category = chip.id;
+                  _results = [];
+                  page = 1;
+                  isLoading = true;
                 });
               }
             },
@@ -64,10 +76,7 @@ class _BookTabState extends State<BookTab> {
               decoration: BoxDecoration(
                 color: chip.id == category ? Colors.blue[50] : Colors.grey[200],
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
-                border: Border.all(
-                    color: chip.id == category
-                        ? Colors.blue[100] as Color
-                        : Colors.grey[400] as Color),
+                border: Border.all(color: chip.id == category ? Colors.blue[100] as Color : Colors.grey[400] as Color),
               ),
             ),
           ),
@@ -76,26 +85,59 @@ class _BookTabState extends State<BookTab> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController()..addListener(loadMore);
+  }
+
+  @override
   void dispose() {
     _debounce?.cancel();
+    _scrollController.removeListener(loadMore);
     super.dispose();
   }
 
   void fetchListEbook(int page, int size, String token) async {
-    final response = await EbookService.getListEbookWithPagination(page, size, token,
-        categoryId: category, q: search);
+    final response = await EbookService.getListEbookWithPagination(page, size, token, categoryId: category, q: search);
     if (mounted) {
       setState(() {
-        _results = response;
+        _results.addAll(response);
+        isLoading = false;
       });
+    }
+  }
+
+  void loadMore() async {
+    if (_scrollController.position.extentAfter < page * perPage) {
+      setState(() {
+        isLoadMore = true;
+        page++;
+      });
+
+      try {
+        List<Ebook> response = await EbookService.getListEbookWithPagination(page, perPage, token as String,
+            categoryId: category, q: search);
+        if (mounted) {
+          setState(() {
+            _results.addAll(response);
+            isLoadMore = false;
+          });
+        }
+      } catch (e) {}
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
-    fetchListEbook(1, 10, authProvider.tokens!.access.token);
     final appProvider = Provider.of<AppProvider>(context);
+    setState(() {
+      token = authProvider.tokens!.access.token;
+    });
+
+    if (isLoading) {
+      fetchListEbook(1, 10, authProvider.tokens!.access.token);
+    }
 
     return Column(
       children: [
@@ -109,6 +151,9 @@ class _BookTabState extends State<BookTab> {
               _debounce = Timer(const Duration(milliseconds: 500), () {
                 setState(() {
                   search = value;
+                  _results = [];
+                  page = 1;
+                  isLoading = true;
                 });
               });
             },
@@ -144,91 +189,102 @@ class _BookTabState extends State<BookTab> {
             shrinkWrap: true,
           ),
         ),
-        Expanded(
-          child: _results.isEmpty
-              ? SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.5,
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          "asset/svg/ic_notfound.svg",
-                          width: 200,
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(top: 20),
-                          child: Text(
-                            "Not found any match result...",
-                            style: TextStyle(color: Colors.grey[700]),
+        isLoading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : Expanded(
+                child: _results.isEmpty
+                    ? SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.5,
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(
+                                "asset/svg/ic_notfound.svg",
+                                width: 200,
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(top: 20),
+                                child: Text(
+                                  "Not found any match result...",
+                                  style: TextStyle(color: Colors.grey[700]),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                )
-              : ListView.builder(
-                  itemCount: _results.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: GestureDetector(
-                        onTap: () async {
-                          if (await canLaunch(_results[index].fileUrl)) {
-                            await launch(_results[index].fileUrl);
-                          }
-                        },
-                        child: Card(
-                          elevation: 8,
-                          child: SizedBox(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CachedNetworkImage(
-                                  imageUrl: _results[index].imageUrl,
-                                  fit: BoxFit.cover,
-                                  progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                      CircularProgressIndicator(value: downloadProgress.progress),
-                                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
+                      )
+                    : ListView.builder(
+                        itemCount: _results.length,
+                        controller: _scrollController,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: GestureDetector(
+                              onTap: () async {
+                                if (await canLaunch(_results[index].fileUrl)) {
+                                  await launch(_results[index].fileUrl);
+                                }
+                              },
+                              child: Card(
+                                elevation: 8,
+                                child: SizedBox(
                                   child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        _results[index].name,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: const TextStyle(
-                                            fontSize: 17, fontWeight: FontWeight.bold),
+                                      CachedNetworkImage(
+                                        imageUrl: _results[index].imageUrl,
+                                        fit: BoxFit.cover,
+                                        progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                            CircularProgressIndicator(value: downloadProgress.progress),
+                                        errorWidget: (context, url, error) => const Icon(Icons.error),
                                       ),
                                       Container(
-                                        margin: const EdgeInsets.only(top: 8, bottom: 15),
-                                        child: Text(
-                                          _results[index].description,
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(fontSize: 12, color: Colors.grey[800]),
+                                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              _results[index].name,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                                            ),
+                                            Container(
+                                              margin: const EdgeInsets.only(top: 8, bottom: 15),
+                                              child: Text(
+                                                _results[index].description,
+                                                maxLines: 2,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: TextStyle(fontSize: 12, color: Colors.grey[800]),
+                                              ),
+                                            ),
+                                            Text(
+                                              listLevels[_results[index].level] ?? "Any level",
+                                              style: TextStyle(fontSize: 15, color: Colors.grey[800]),
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                      Text(
-                                        listLevels[_results[index].level] ?? "Any level",
-                                        style: TextStyle(fontSize: 15, color: Colors.grey[800]),
-                                      ),
+                                      )
                                     ],
                                   ),
-                                )
-                              ],
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
-        ),
+              ),
+        if (isLoadMore)
+          const SizedBox(
+            height: 50,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
       ],
     );
   }

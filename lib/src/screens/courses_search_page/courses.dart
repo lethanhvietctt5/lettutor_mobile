@@ -30,14 +30,14 @@ class _CoursesSearchPageState extends State<CoursesSearchPage> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
-    final appProvider = Provider.of<AppProvider>(context);
+    final appProvider = Provider.of<AppProvider>(context, listen: false);
 
     if (appProvider.allCourseCategories.isEmpty) {
       fetchCategories(authProvider.tokens!.access.token);
     }
 
     if (categories.isNotEmpty && appProvider.allCourseCategories.isEmpty) {
-      appProvider.loadCourseCategories(categories);
+      appProvider.allCourseCategories = categories;
     }
 
     return DefaultTabController(
