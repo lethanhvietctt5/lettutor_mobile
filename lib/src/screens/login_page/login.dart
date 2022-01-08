@@ -24,7 +24,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  bool isLoginWithPhone = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +38,10 @@ class _LoginPageState extends State<LoginPage> {
         await AuthService.loginByEmailAndPassword(_emailController.text, _passwordController.text,
             (User user, Tokens tokens) async {
           authProvider.logIn(user, tokens);
-          final allTopics =
-              await UserService.fetchAllLearningTopic(authProvider.tokens!.access.token);
-          final allTestPreparation =
-              await UserService.fetchAllTestPreparation(authProvider.tokens!.access.token);
+          final allTopics = await UserService.fetchAllLearningTopic(authProvider.tokens!.access.token);
+          final allTestPreparation = await UserService.fetchAllTestPreparation(authProvider.tokens!.access.token);
           appProvider.load(allTopics, allTestPreparation);
-          Navigator.pushNamedAndRemoveUntil(
-              context, routes.homePage, (Route<dynamic> route) => false);
+          Navigator.pushNamedAndRemoveUntil(context, routes.homePage, (Route<dynamic> route) => false);
         });
       } catch (e) {
         showTopSnackBar(context, CustomSnackBar.error(message: "Login failed! ${e.toString()}"),
@@ -72,43 +68,35 @@ class _LoginPageState extends State<LoginPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Padding(
-                          padding: const EdgeInsets.only(bottom: 4),
-                          child: Text(!isLoginWithPhone ? "Email" : "Phone",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.grey[800]))),
-                      isLoginWithPhone
-                          ? TextField(
-                              style: TextStyle(fontSize: 15, color: Colors.grey[900]),
-                              controller: _emailController,
-                              keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: Colors.grey.shade200,
-                                  prefixIcon: Container(
-                                      padding: const EdgeInsets.all(13),
-                                      child: SvgPicture.asset("asset/svg/ic_numberphone.svg",
-                                          color: Colors.grey[600])),
-                                  border: const OutlineInputBorder(
-                                      borderSide: BorderSide.none,
-                                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                                  hintText: "+84902794731"))
-                          : TextField(
-                              style: TextStyle(fontSize: 15, color: Colors.grey[900]),
-                              controller: _emailController,
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: Colors.grey.shade200,
-                                  prefixIcon: Container(
-                                      padding: const EdgeInsets.all(13),
-                                      child: SvgPicture.asset("asset/svg/ic_email.svg",
-                                          color: Colors.grey[600])),
-                                  border: const OutlineInputBorder(
-                                      borderSide: BorderSide.none,
-                                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                                  hintText: "abc@gmail.com"))
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: Text(
+                          "Email",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                      ),
+                      TextField(
+                        style: TextStyle(fontSize: 15, color: Colors.grey[900]),
+                        controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey.shade200,
+                            prefixIcon: Container(
+                              padding: const EdgeInsets.all(13),
+                              child: SvgPicture.asset("asset/svg/ic_email.svg", color: Colors.grey[600]),
+                            ),
+                            border: const OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                            ),
+                            hintText: "abc@gmail.com"),
+                      )
                     ],
                   ),
                 ),
@@ -118,28 +106,35 @@ class _LoginPageState extends State<LoginPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Padding(
-                          padding: const EdgeInsets.only(bottom: 4),
-                          child: Text("Password",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.grey[800]))),
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: Text(
+                          "Password",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                      ),
                       TextField(
-                          style: TextStyle(fontSize: 15, color: Colors.grey[900]),
-                          controller: _passwordController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.grey.shade200,
-                              prefixIcon: Container(
-                                padding: const EdgeInsets.all(13),
-                                child: SvgPicture.asset("asset/svg/ic_password.svg",
-                                    color: Colors.grey[600]),
+                        style: TextStyle(fontSize: 15, color: Colors.grey[900]),
+                        controller: _passwordController,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey.shade200,
+                            prefixIcon: Container(
+                              padding: const EdgeInsets.all(13),
+                              child: SvgPicture.asset("asset/svg/ic_password.svg", color: Colors.grey[600]),
+                            ),
+                            border: const OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
                               ),
-                              border: const OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.all(Radius.circular(10))),
-                              hintText: "**************")),
+                            ),
+                            hintText: "**************"),
+                      ),
                     ],
                   ),
                 ),
@@ -152,16 +147,14 @@ class _LoginPageState extends State<LoginPage> {
                           children: <Widget>[
                             const Text("Not a member yet? ", style: TextStyle(fontSize: 12)),
                             GestureDetector(
-                                child: const Text("Sign up",
-                                    style: TextStyle(color: Colors.blue, fontSize: 12)),
+                                child: const Text("Sign up", style: TextStyle(color: Colors.blue, fontSize: 12)),
                                 onTap: () {
                                   Navigator.popAndPushNamed(context, routes.registerPage);
                                 })
                           ],
                         ),
                         GestureDetector(
-                            child: const Text("Forgot password?",
-                                style: TextStyle(color: Colors.blue, fontSize: 12)),
+                            child: const Text("Forgot password?", style: TextStyle(color: Colors.blue, fontSize: 12)),
                             onTap: () {
                               Navigator.popAndPushNamed(context, routes.forgotPasswordPage);
                             })
@@ -174,9 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPress: handleLogin),
                 Container(
                   margin: const EdgeInsets.only(top: 10),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [Text("Or continue with")]),
+                  child: Row(mainAxisAlignment: MainAxisAlignment.center, children: const [Text("Or continue with")]),
                 ),
                 Container(
                   padding: const EdgeInsets.only(top: 15),
@@ -188,33 +179,16 @@ class _LoginPageState extends State<LoginPage> {
                           child: SvgPicture.asset("asset/svg/ic_facebook.svg",
                               width: 30, height: 30, color: const Color(0xff007CFF)),
                           style: ElevatedButton.styleFrom(
-                              shape: const CircleBorder(
-                                  side: BorderSide(width: 1, color: Color(0xff007CFF))),
+                              shape: const CircleBorder(side: BorderSide(width: 1, color: Color(0xff007CFF))),
                               padding: const EdgeInsets.all(5),
                               primary: Colors.white)),
                       ElevatedButton(
                           onPressed: () {},
                           child: SvgPicture.asset("asset/svg/ic_google.svg", width: 30, height: 30),
                           style: ElevatedButton.styleFrom(
-                              shape: const CircleBorder(
-                                  side: BorderSide(width: 1, color: Color(0xff007CFF))),
+                              shape: const CircleBorder(side: BorderSide(width: 1, color: Color(0xff007CFF))),
                               padding: const EdgeInsets.all(5),
                               primary: Colors.white)),
-                      ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              isLoginWithPhone = !isLoginWithPhone;
-                            });
-                            FocusScope.of(context).unfocus();
-                            _emailController.clear();
-                          },
-                          child: SvgPicture.asset("asset/svg/ic_phone_login.svg",
-                              width: 30, height: 30),
-                          style: ElevatedButton.styleFrom(
-                              shape: const CircleBorder(
-                                  side: BorderSide(width: 1, color: Color(0xff007CFF))),
-                              padding: const EdgeInsets.all(5),
-                              primary: Colors.white))
                     ],
                   ),
                 )

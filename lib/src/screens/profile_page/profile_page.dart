@@ -10,7 +10,6 @@ import 'package:lettutor_mobile/src/models/user_model/learning_topic_model.dart'
 import 'package:lettutor_mobile/src/models/user_model/test_preparation_model.dart';
 import 'package:lettutor_mobile/src/models/user_model/tokens_model.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
-import 'package:lettutor_mobile/src/provider/user_provider.dart';
 import 'package:lettutor_mobile/src/screens/profile_page/components/birthday.dart';
 import 'package:lettutor_mobile/src/screens/profile_page/components/dropdown_menu.dart';
 import 'package:lettutor_mobile/src/screens/profile_page/components/phone.dart';
@@ -68,7 +67,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context);
     final authProvider = Provider.of<AuthProvider>(context);
 
     setState(() {
@@ -92,7 +90,7 @@ class _ProfilePageState extends State<ProfilePage> {
       var pickedFile = await _picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
 
       if (pickedFile != null) {
-        userProvider.uploadProfileImage(File(pickedFile.path));
+        //userProvider.uploadProfileImage(File(pickedFile.path));
       }
     }
 

@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:lettutor_mobile/src/constants/learning_topics.dart';
 import 'package:lettutor_mobile/src/constants/list_languages.dart';
-import 'package:lettutor_mobile/src/models/course/course.dart';
 import 'package:lettutor_mobile/src/models/tutor_model/tutor_model.dart';
 import 'package:lettutor_mobile/src/models/user_model/feedback_model.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/screens/tutor_profile/components/booking_feature.dart';
-import 'package:lettutor_mobile/src/screens/tutor_profile/components/course_card.dart';
 import 'package:lettutor_mobile/src/screens/tutor_profile/components/infor_chip.dart';
 import 'package:lettutor_mobile/src/screens/tutor_profile/components/main_info.dart';
 import 'package:lettutor_mobile/src/screens/tutor_profile/components/rate_comment.dart';
@@ -58,7 +56,6 @@ class _TutorProfileState extends State<TutorProfile> {
     if (authProvider.tokens != null && isLoading) {
       fetchTutor(authProvider.tokens?.access.token as String);
     }
-    final List<Course> courses = [];
 
     if (tutor == null) {
       return const SafeArea(child: Scaffold(body: Center(child: CircularProgressIndicator())));
@@ -110,30 +107,6 @@ class _TutorProfileState extends State<TutorProfile> {
                       .where((element) => tutor!.specialties.split(",").contains(element.key))
                       .map((e) => e.value)
                       .toList()),
-              courses.isNotEmpty
-                  ? Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 6, top: 10),
-                          child: const Text(
-                            "Courses",
-                            style: TextStyle(fontSize: 17, color: Colors.blue),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 220,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: courses.length,
-                            itemBuilder: (context, index) {
-                              return CourseCard(course: courses[index]);
-                            },
-                          ),
-                        ),
-                      ],
-                    )
-                  : const Text(""),
               Container(
                 margin: const EdgeInsets.only(bottom: 6, top: 15),
                 child: const Text(
