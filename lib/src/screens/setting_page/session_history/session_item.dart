@@ -32,8 +32,7 @@ class SessionItem extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(1000),
                         child: CachedNetworkImage(
-                          imageUrl:
-                              session.scheduleDetailInfo!.scheduleInfo!.tutorInfo!.avatar as String,
+                          imageUrl: session.scheduleDetailInfo!.scheduleInfo!.tutorInfo!.avatar as String,
                           width: 70,
                           height: 70,
                           fit: BoxFit.cover,
@@ -63,8 +62,8 @@ class SessionItem extends StatelessWidget {
                             child: SvgPicture.asset("asset/svg/ic_calendar.svg", width: 15),
                           ),
                           Text(
-                            DateFormat.yMEd().add_jm().format(DateTime.fromMillisecondsSinceEpoch(
-                                session.scheduleDetailInfo!.startPeriodTimestamp)),
+                            DateFormat.yMEd().add_jm().format(
+                                DateTime.fromMillisecondsSinceEpoch(session.scheduleDetailInfo!.startPeriodTimestamp)),
                             style: const TextStyle(fontSize: 13),
                           ),
                         ],
@@ -101,9 +100,7 @@ class SessionItem extends StatelessWidget {
                           ),
                           Text(
                             "Mark: " +
-                                (session.scoreByTutor != null
-                                    ? session.scoreByTutor.toString()
-                                    : "Tutor not mark yet"),
+                                (session.scoreByTutor != null ? session.scoreByTutor.toString() : "Tutor not mark yet"),
                             style: const TextStyle(fontSize: 13),
                           ),
                         ],
@@ -121,16 +118,18 @@ class SessionItem extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, routes.feedbackPage,
-                          arguments: {"bookingInfo": session});
+                      Navigator.pushNamed(context, routes.feedbackPage, arguments: {"bookingInfo": session});
                     },
                     child: Container(
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       decoration: BoxDecoration(
-                          border: Border.all(color: const Color(0xff0070F3)),
-                          color: const Color(0xff0070F3),
-                          borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(4), bottomLeft: Radius.circular(4))),
+                        border: Border.all(color: const Color(0xff0070F3)),
+                        color: const Color(0xff0070F3),
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(4),
+                          bottomLeft: Radius.circular(4),
+                        ),
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const <Widget>[
@@ -144,24 +143,29 @@ class SessionItem extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: session.showRecordUrl ? Colors.blue : Colors.grey[200] as Color),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, routes.recordVideoPage, arguments: {"url": session.recordUrl ?? ""});
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.only(top: 10, bottom: 10),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: session.showRecordUrl ? Colors.blue : Colors.grey[200] as Color),
                         color: session.showRecordUrl ? Colors.white : Colors.grey[200] as Color,
                         borderRadius: const BorderRadius.only(
-                            topRight: Radius.circular(4), bottomRight: Radius.circular(4))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          "Watch Record",
-                          style: TextStyle(
-                              color:
-                                  session.showRecordUrl ? Colors.blue : Colors.grey[500] as Color),
-                        )
-                      ],
+                          topRight: Radius.circular(4),
+                          bottomRight: Radius.circular(4),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            "Watch Record",
+                            style: TextStyle(color: session.showRecordUrl ? Colors.blue : Colors.grey[500] as Color),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 )

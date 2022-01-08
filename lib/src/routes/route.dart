@@ -11,6 +11,7 @@ import 'package:lettutor_mobile/src/screens/login_page/login.dart';
 import 'package:lettutor_mobile/src/screens/profile_page/profile_page.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/advanced_setting/advanced_setting.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/change_password/change_password.dart';
+import 'package:lettutor_mobile/src/screens/setting_page/session_history/record_video.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/session_history/session_history.dart';
 import 'package:lettutor_mobile/src/screens/register_page/register.dart';
 import 'package:lettutor_mobile/src/screens/tutor_profile/tutor_profile.dart';
@@ -28,6 +29,7 @@ const String advancedSettingPage = 'advancedSetting';
 const String feedbackPage = 'feedback';
 const String bookDetailPage = 'bookDetail';
 const String changePasswordPage = 'changePassword';
+const String recordVideoPage = 'recordVideo';
 
 Route<dynamic> controller(RouteSettings settings) {
   switch (settings.name) {
@@ -51,6 +53,11 @@ Route<dynamic> controller(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const BookDetail());
     case changePasswordPage:
       return MaterialPageRoute(builder: (context) => const ChangePasswordPage());
+    case recordVideoPage:
+      return MaterialPageRoute(builder: (context) {
+        Map<String, String> arg = settings.arguments as Map<String, String>;
+        return RecordVideo(url: arg['url'] as String);
+      });
 
     case tutorProfilePage:
       return MaterialPageRoute(builder: (context) {

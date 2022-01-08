@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         onGenerateRoute: routes.controller,
         // showPerformanceOverlay: true,
-        title: 'Flutter Demo',
+        title: 'Lettutor',
         theme: ThemeData(primarySwatch: Colors.blue, primaryColor: const Color(0xff007CFF)),
         home: const AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle(
