@@ -1,3 +1,4 @@
+import 'package:chewie/chewie.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -12,6 +13,7 @@ import 'package:lettutor_mobile/src/screens/tutor_profile/components/main_info.d
 import 'package:lettutor_mobile/src/screens/tutor_profile/components/rate_comment.dart';
 import 'package:lettutor_mobile/src/services/tutor_service.dart';
 import 'package:provider/provider.dart';
+import 'package:video_player/video_player.dart';
 
 class TutorProfile extends StatefulWidget {
   const TutorProfile({Key? key, required this.tutorID}) : super(key: key);
@@ -24,6 +26,8 @@ class TutorProfile extends StatefulWidget {
 class _TutorProfileState extends State<TutorProfile> {
   bool isLoading = true;
   Tutor? tutor;
+  VideoPlayerController? _controller;
+  ChewieController? _chewieController;
 
   void fetchTutor(String token) async {
     final tutor = await TutorService.getTutor(widget.tutorID, token);
@@ -31,6 +35,13 @@ class _TutorProfileState extends State<TutorProfile> {
     setState(() {
       this.tutor = tutor;
       isLoading = false;
+      _controller = VideoPlayerController.network(this.tutor!.video as String);
+      _chewieController = ChewieController(
+        aspectRatio: 3 / 2,
+        videoPlayerController: _controller as VideoPlayerController,
+        autoPlay: true,
+        looping: true,
+      );
     });
   }
 
@@ -47,6 +58,13 @@ class _TutorProfileState extends State<TutorProfile> {
     } else {
       return Container();
     }
+  }
+
+  @override
+  void dispose() {
+    _controller?.dispose();
+    _chewieController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -70,6 +88,13 @@ class _TutorProfileState extends State<TutorProfile> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Container(
+                color: Colors.black,
+                height: 200,
+                margin: const EdgeInsets.only(bottom: 10),
+                child:
+                    _chewieController != null ? Chewie(controller: _chewieController as ChewieController) : Container(),
+              ),
               MainInfo(tutor: tutor as Tutor),
               BookingFeature(tutorId: tutor!.userId),
               Padding(
