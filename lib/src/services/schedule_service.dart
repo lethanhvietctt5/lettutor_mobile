@@ -22,10 +22,11 @@ class ScheduleService {
     }
   }
 
-  static Future<List<BookingInfo>> getStudentBookedClass(String studentId, String token) async {
+  static Future<List<BookingInfo>> getStudentBookedClass(int page, int perPage, String studentId, String token) async {
     final current = DateTime.now().millisecondsSinceEpoch;
     final response = await http.get(
-      Uri.parse("$url/booking/list/student?page=1&perPage=20&dateTimeLte=$current&orderBy=meeting&sortBy=desc"),
+      Uri.parse(
+          "$url/booking/list/student?page=$page&perPage=$perPage&dateTimeLte=$current&orderBy=meeting&sortBy=desc"),
       headers: {
         "Authorization": "Bearer $token",
         "Content-type": "application/json",
@@ -42,10 +43,11 @@ class ScheduleService {
     }
   }
 
-  static Future<List<BookingInfo>> getUpcomming(String token) async {
+  static Future<List<BookingInfo>> getUpcomming(int page, int perPage, String token) async {
     final current = DateTime.now().millisecondsSinceEpoch;
     final response = await http.get(
-      Uri.parse("$url/booking/list/student?page=1&perPage=20&dateTimeGte=$current&orderBy=meeting&sortBy=asc"),
+      Uri.parse(
+          "$url/booking/list/student?page=$page&perPage=$perPage&dateTimeGte=$current&orderBy=meeting&sortBy=asc"),
       headers: {
         "Authorization": "Bearer $token",
         "Content-type": "application/json",

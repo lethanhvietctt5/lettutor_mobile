@@ -24,7 +24,12 @@ class _TutorsPageState extends State<TutorsPage> {
   String specialist = "";
   Timer? _debounce;
   String search = "";
-  bool isFetching = true;
+  bool isLoading = true;
+  bool isLoadMore = false;
+  int page = 1;
+  int perPage = 10;
+  late ScrollController _scrollController;
+  String? token;
 
   List<Widget> _generateChips(List<dynamic> chips) {
     return chips
@@ -33,7 +38,9 @@ class _TutorsPageState extends State<TutorsPage> {
             onTap: () {
               setState(() {
                 specialist = chip.key;
-                isFetching = true;
+                isLoading = true;
+                _results = [];
+                page = 1;
               });
             },
             child: Container(
@@ -50,10 +57,8 @@ class _TutorsPageState extends State<TutorsPage> {
               decoration: BoxDecoration(
                 color: chip.key == specialist ? Colors.blue[50] : Colors.grey[200],
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
-                border: Border.all(
-                    color: chip.key == specialist
-                        ? Colors.blue[100] as Color
-                        : Colors.grey[400] as Color),
+                border:
+                    Border.all(color: chip.key == specialist ? Colors.blue[100] as Color : Colors.grey[400] as Color),
               ),
             ),
           ),
@@ -62,32 +67,46 @@ class _TutorsPageState extends State<TutorsPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController()..addListener(loadMore);
+  }
+
+  @override
   void dispose() {
     _debounce?.cancel();
+    _scrollController.removeListener(loadMore);
     super.dispose();
   }
 
   void fetchTutors(int page, int size, String token) async {
-    final response = await TutorService.searchTutor(
-      page,
-      size,
-      token,
-      search: search,
-      specialties: [specialist],
-    );
+    final response = await TutorService.searchTutor(page, size, token, search: search, specialties: [specialist]);
     if (mounted) {
       setState(() {
-        _results = response;
-        isFetching = false;
+        _results.addAll(response);
+        isLoading = false;
       });
     }
   }
 
-  checkFetching(String token) {
-    fetchTutors(1, 10, token);
-    return const Center(
-      child: CircularProgressIndicator(),
-    );
+  void loadMore() async {
+    if (_scrollController.position.extentAfter < page * perPage) {
+      setState(() {
+        isLoadMore = true;
+        page++;
+      });
+
+      try {
+        final response =
+            await TutorService.searchTutor(page, perPage, token as String, search: search, specialties: [specialist]);
+        if (mounted) {
+          setState(() {
+            _results.addAll(response);
+            isLoadMore = false;
+          });
+        }
+      } catch (e) {}
+    }
   }
 
   @override
@@ -95,61 +114,70 @@ class _TutorsPageState extends State<TutorsPage> {
     final authProvider = Provider.of<AuthProvider>(context);
     final appProvider = Provider.of<AppProvider>(context);
 
+    setState(() {
+      token = authProvider.tokens!.access.token;
+    });
+
     List<dynamic> chips = [];
     chips.add(LearnTopic(id: 1, key: "", name: "All"));
     chips.addAll(appProvider.allLearningTopics);
     chips.addAll(appProvider.allTestPreparations);
 
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: TextField(
-                  style: TextStyle(fontSize: 12, color: Colors.grey[900]),
-                  controller: _controller,
-                  onChanged: (value) {
-                    if (_debounce?.isActive ?? false) _debounce?.cancel();
-                    _debounce = Timer(const Duration(milliseconds: 1000), () {
-                      setState(() {
-                        search = value;
-                        isFetching = true;
-                      });
-                    });
-                  },
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.grey.shade200,
-                      prefixIcon: Container(
-                        padding: const EdgeInsets.all(13),
-                        child: SvgPicture.asset(
-                          "asset/svg/ic_search.svg",
-                          color: Colors.grey[600],
-                        ),
-                      ),
-                      contentPadding: const EdgeInsets.only(left: 5, right: 5),
-                      border: const OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      hintText: "Search Tutors")),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-              height: 33,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: _generateChips(chips).length,
-                itemBuilder: (context, index) {
-                  return _generateChips(chips)[index];
-                },
-                shrinkWrap: true,
-              ),
-            ),
-            isFetching
-                ? checkFetching(authProvider.tokens!.access.token)
-                : _results.isEmpty
+    if (isLoading) {
+      fetchTutors(1, 10, token as String);
+    }
+
+    return Column(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10, right: 10, left: 10),
+          child: TextField(
+              style: TextStyle(fontSize: 12, color: Colors.grey[900]),
+              controller: _controller,
+              onChanged: (value) {
+                if (_debounce?.isActive ?? false) _debounce?.cancel();
+                _debounce = Timer(const Duration(milliseconds: 1000), () {
+                  setState(() {
+                    search = value;
+                    _results = [];
+                    page = 1;
+                    isLoading = true;
+                  });
+                });
+              },
+              decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey.shade200,
+                  prefixIcon: Container(
+                    padding: const EdgeInsets.all(13),
+                    child: SvgPicture.asset(
+                      "asset/svg/ic_search.svg",
+                      color: Colors.grey[600],
+                    ),
+                  ),
+                  contentPadding: const EdgeInsets.only(left: 5, right: 5),
+                  border: const OutlineInputBorder(
+                      borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
+                  hintText: "Search Tutors")),
+        ),
+        Container(
+          margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+          height: 33,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: _generateChips(chips).length,
+            itemBuilder: (context, index) {
+              return _generateChips(chips)[index];
+            },
+            shrinkWrap: true,
+          ),
+        ),
+        isLoading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : Expanded(
+                child: _results.isEmpty
                     ? SizedBox(
                         height: MediaQuery.of(context).size.height * 0.5,
                         child: Center(
@@ -173,15 +201,23 @@ class _TutorsPageState extends State<TutorsPage> {
                       )
                     : ListView.builder(
                         itemCount: _results.length,
+                        controller: _scrollController,
                         itemBuilder: (context, index) {
-                          return TutorCardInfo(tutor: _results[index]);
+                          return Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 10),
+                            child: TutorCardInfo(tutor: _results[index]),
+                          );
                         },
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
                       ),
-          ],
-        ),
-      ),
+              ),
+        if (isLoadMore)
+          const SizedBox(
+            height: 50,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
+      ],
     );
   }
 }
