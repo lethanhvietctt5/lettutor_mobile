@@ -6,6 +6,7 @@ import 'package:lettutor_mobile/src/models/user_model/tokens_model.dart';
 import 'package:lettutor_mobile/src/models/user_model/user_model.dart';
 import 'package:lettutor_mobile/src/provider/app_provider.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
+import 'package:lettutor_mobile/src/screens/login_page/login_with.dart';
 import 'package:lettutor_mobile/src/services/auth_service.dart';
 import 'package:lettutor_mobile/src/services/user_service.dart';
 import 'package:lettutor_mobile/src/widgets/button_expand.dart';
@@ -33,16 +34,17 @@ class _LoginPageState extends State<LoginPage> {
     _emailController.text = "student@lettutor.com";
     _passwordController.text = "123456";
 
+    callback(User user, Tokens tokens) async {
+      authProvider.logIn(user, tokens);
+      final allTopics = await UserService.fetchAllLearningTopic(authProvider.tokens!.access.token);
+      final allTestPreparation = await UserService.fetchAllTestPreparation(authProvider.tokens!.access.token);
+      appProvider.load(allTopics, allTestPreparation);
+      Navigator.pushNamedAndRemoveUntil(context, routes.homePage, (Route<dynamic> route) => false);
+    }
+
     void handleLogin() async {
       try {
-        await AuthService.loginByEmailAndPassword(_emailController.text, _passwordController.text,
-            (User user, Tokens tokens) async {
-          authProvider.logIn(user, tokens);
-          final allTopics = await UserService.fetchAllLearningTopic(authProvider.tokens!.access.token);
-          final allTestPreparation = await UserService.fetchAllTestPreparation(authProvider.tokens!.access.token);
-          appProvider.load(allTopics, allTestPreparation);
-          Navigator.pushNamedAndRemoveUntil(context, routes.homePage, (Route<dynamic> route) => false);
-        });
+        await AuthService.loginByEmailAndPassword(_emailController.text, _passwordController.text, callback);
       } catch (e) {
         showTopSnackBar(context, CustomSnackBar.error(message: "Login failed! ${e.toString()}"),
             showOutAnimationDuration: const Duration(milliseconds: 1000),
@@ -169,29 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                   margin: const EdgeInsets.only(top: 10),
                   child: Row(mainAxisAlignment: MainAxisAlignment.center, children: const [Text("Or continue with")]),
                 ),
-                Container(
-                  padding: const EdgeInsets.only(top: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                          onPressed: () {},
-                          child: SvgPicture.asset("asset/svg/ic_facebook.svg",
-                              width: 30, height: 30, color: const Color(0xff007CFF)),
-                          style: ElevatedButton.styleFrom(
-                              shape: const CircleBorder(side: BorderSide(width: 1, color: Color(0xff007CFF))),
-                              padding: const EdgeInsets.all(5),
-                              primary: Colors.white)),
-                      ElevatedButton(
-                          onPressed: () {},
-                          child: SvgPicture.asset("asset/svg/ic_google.svg", width: 30, height: 30),
-                          style: ElevatedButton.styleFrom(
-                              shape: const CircleBorder(side: BorderSide(width: 1, color: Color(0xff007CFF))),
-                              padding: const EdgeInsets.all(5),
-                              primary: Colors.white)),
-                    ],
-                  ),
-                )
+                LoginWith(callback: callback),
               ],
             ),
           ),

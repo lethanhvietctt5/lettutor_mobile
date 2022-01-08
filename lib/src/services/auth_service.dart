@@ -25,6 +25,19 @@ class AuthService {
     }
   }
 
+  static loginWithGoogle(String access_token, Function(User, Tokens) callback) async {
+    final response = await http.post(Uri.parse(url + "/auth/google"), body: {'access_token': access_token});
+    if (response.statusCode == 200) {
+      final jsonDecode = json.decode(response.body);
+      final tokens = Tokens.fromJson(jsonDecode["tokens"]);
+      final user = User.fromJson(jsonDecode["user"]);
+      callback(user, tokens);
+    } else {
+      final jsonRes = json.decode(response.body);
+      throw Exception(jsonRes["message"]);
+    }
+  }
+
   static registerWithEmailAndPassword(String email, String password, Function() callback) async {
     final response = await http.post(Uri.parse(url + "/auth/register"), body: {
       'email': email,

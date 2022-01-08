@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => SettingProvider(),
-        ),
+        ),  
         ChangeNotifierProvider(
           create: (_) => AuthProvider(),
         ),
