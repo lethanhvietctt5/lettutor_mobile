@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:lettutor_mobile/src/models/course_model/course_category.dart';
 import 'package:lettutor_mobile/src/models/ebook_model/ebook_model.dart';
@@ -123,7 +125,11 @@ class _BookTabState extends State<BookTab> {
             isLoadMore = false;
           });
         }
-      } catch (e) {}
+      } catch (e) {
+        showTopSnackBar(context, const CustomSnackBar.error(message: "Cannot load more"),
+            showOutAnimationDuration: const Duration(milliseconds: 1000),
+            displayDuration: const Duration(microseconds: 4000));
+      }
     }
   }
 

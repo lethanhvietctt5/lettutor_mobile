@@ -9,6 +9,8 @@ import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/services/course_service.dart';
 import 'package:provider/provider.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class CourseTab extends StatefulWidget {
   const CourseTab({Key? key}) : super(key: key);
@@ -122,7 +124,11 @@ class _CourseTabState extends State<CourseTab> {
             isLoadMore = false;
           });
         }
-      } catch (e) {}
+      } catch (e) {
+        showTopSnackBar(context, const CustomSnackBar.error(message: "Cannot load more"),
+            showOutAnimationDuration: const Duration(milliseconds: 1000),
+            displayDuration: const Duration(microseconds: 4000));
+      }
     }
   }
 

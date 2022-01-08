@@ -5,6 +5,8 @@ import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/screens/upcoming_page/card_coming.dart';
 import 'package:lettutor_mobile/src/services/schedule_service.dart';
 import 'package:provider/provider.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class UpcomingPage extends StatefulWidget {
   const UpcomingPage({Key? key}) : super(key: key);
@@ -63,7 +65,9 @@ class _UpcomingPageState extends State<UpcomingPage> {
           });
         }
       } catch (e) {
-        print(e);
+        showTopSnackBar(context, const CustomSnackBar.error(message: "Cannot load more"),
+            showOutAnimationDuration: const Duration(milliseconds: 1000),
+            displayDuration: const Duration(microseconds: 4000));
       }
     }
   }

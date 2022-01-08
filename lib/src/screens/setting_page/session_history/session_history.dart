@@ -4,6 +4,8 @@ import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/session_history/session_item.dart';
 import 'package:lettutor_mobile/src/services/schedule_service.dart';
 import 'package:provider/provider.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class SessionHistoryPage extends StatefulWidget {
   const SessionHistoryPage({Key? key}) : super(key: key);
@@ -13,7 +15,7 @@ class SessionHistoryPage extends StatefulWidget {
 }
 
 class _SessionHistoryPageState extends State<SessionHistoryPage> {
-  List<BookingInfo> _bookedList = [];
+  final List<BookingInfo> _bookedList = [];
   bool isLoading = true;
   bool isLoadMore = false;
   int page = 1;
@@ -58,7 +60,9 @@ class _SessionHistoryPageState extends State<SessionHistoryPage> {
           });
         }
       } catch (e) {
-        print(e);
+        showTopSnackBar(context, const CustomSnackBar.error(message: "Cannot load more"),
+            showOutAnimationDuration: const Duration(milliseconds: 1000),
+            displayDuration: const Duration(microseconds: 4000));
       }
     }
   }
