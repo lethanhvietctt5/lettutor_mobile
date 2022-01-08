@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
+import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
 import 'package:lettutor_mobile/src/navigation.dart';
 import 'package:lettutor_mobile/src/screens/course/course.dart';
 import 'package:lettutor_mobile/src/screens/courses_search_page/book_detail.dart';
@@ -66,8 +66,8 @@ Route<dynamic> controller(RouteSettings settings) {
 
     case feedbackPage:
       return MaterialPageRoute(builder: (context) {
-        Map<String, Tutor> arg = settings.arguments as Map<String, Tutor>;
-        return FeedbackPage(tutor: arg["tutor"] as Tutor);
+        Map<String, BookingInfo> arg = settings.arguments as Map<String, BookingInfo>;
+        return FeedbackPage(bookingInfo: arg["bookingInfo"] as BookingInfo);
       });
 
     default:

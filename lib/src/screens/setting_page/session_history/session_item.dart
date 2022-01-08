@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
-import 'package:lettutor_mobile/src/widgets/avatar_circle.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
-import 'package:provider/provider.dart';
 
 class SessionItem extends StatelessWidget {
   const SessionItem({Key? key, required this.session}) : super(key: key);
@@ -123,8 +121,8 @@ class SessionItem extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      // Navigator.pushNamed(context, routes.feedbackPage,
-                      //     arguments: {"tutor": session.tutor});
+                      Navigator.pushNamed(context, routes.feedbackPage,
+                          arguments: {"bookingInfo": session});
                     },
                     child: Container(
                       padding: const EdgeInsets.only(top: 10, bottom: 10),

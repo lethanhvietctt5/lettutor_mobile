@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:lettutor_mobile/src/data/tutors_sample.dart';
-import 'package:lettutor_mobile/src/models/tutor/feedback.dart';
-import 'package:lettutor_mobile/src/models/tutor/tutor.dart';
-import 'package:lettutor_mobile/src/provider/user_provider.dart';
+import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
+import 'package:lettutor_mobile/src/provider/auth_provider.dart';
+import 'package:lettutor_mobile/src/services/tutor_service.dart';
 import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -13,8 +12,8 @@ import 'package:uuid/uuid.dart';
 Uuid uuid = const Uuid();
 
 class FeedbackPage extends StatefulWidget {
-  const FeedbackPage({Key? key, required this.tutor}) : super(key: key);
-  final Tutor tutor;
+  const FeedbackPage({Key? key, required this.bookingInfo}) : super(key: key);
+  final BookingInfo bookingInfo;
 
   @override
   State<FeedbackPage> createState() => _FeedbackPageState();
@@ -26,7 +25,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context).user;
+    final authProvider = Provider.of<AuthProvider>(context);
 
     return SafeArea(
       child: Scaffold(
@@ -88,7 +87,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       },
                     ),
                     ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (_controller.text.isEmpty) {
                           showTopSnackBar(
                             context,
@@ -96,36 +95,32 @@ class _FeedbackPageState extends State<FeedbackPage> {
                             showOutAnimationDuration: const Duration(milliseconds: 1000),
                             displayDuration: const Duration(microseconds: 1000),
                           );
-                        } else if (_controller.text.split(" ").length < 5) {
+                        } else if (_controller.text.split(" ").length < 3) {
                           showTopSnackBar(
                             context,
-                            const CustomSnackBar.error(message: "Feedback content must has 5 words at least."),
+                            const CustomSnackBar.error(message: "Feedback content must has 3 words at least."),
                             showOutAnimationDuration: const Duration(milliseconds: 1000),
                             displayDuration: const Duration(microseconds: 1000),
                           );
                         } else {
-                          FeedbackRate newFeedback = FeedbackRate(
-                            userId: user.id,
-                            id: uuid.v4(),
-                            content: _controller.text,
-                            rating: rating,
-                            createdAt: DateTime.now(),
-                          );
-
-                          for (int index = 0; index < TutorsSample.tutors.length; index++) {
-                            if (TutorsSample.tutors[index].id == widget.tutor.id) {
-                              TutorsSample.tutors[index].feedbacks.add(newFeedback);
-                              break;
-                            }
+                          final res = await TutorService.witeFeedback(
+                              _controller.text,
+                              widget.bookingInfo.id,
+                              widget.bookingInfo.scheduleDetailInfo!.scheduleInfo!.tutorId,
+                              rating,
+                              authProvider.tokens!.access.token);
+                          if (res) {
+                            showTopSnackBar(
+                              context,
+                              const CustomSnackBar.success(
+                                message: "Feedback successfully.",
+                                backgroundColor: Colors.green,
+                              ),
+                              showOutAnimationDuration: const Duration(milliseconds: 1000),
+                              displayDuration: const Duration(microseconds: 1000),
+                            );
+                            Navigator.pop(context);
                           }
-
-                          // TutorsSample.tutors
-                          //     .where((element) => element.id == widget.tutor.id)
-                          //     .first
-                          //     .feedbacks
-                          //     .add(newFeedback);
-
-                          Navigator.pop(context);
                         }
                       },
                       child: Row(
