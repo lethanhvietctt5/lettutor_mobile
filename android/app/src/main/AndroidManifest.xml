@@ -1,7 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.lettutor_mobile">
+    package="com.example.lettutor_mobile"
+    xmlns:tools="http://schemas.android.com/tools">
    <application
-        android:label="Tutor"
+        tools:replace="android:label"
+        android:label="lettutor_mobile"
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <activity

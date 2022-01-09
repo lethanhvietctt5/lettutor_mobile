@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:lettutor_mobile/src/screens/lesson/control_menu.dart';
-
 class LessonPage extends StatefulWidget {
-  const LessonPage({Key? key}) : super(key: key);
+  const LessonPage({Key? key, required this.domainUrl, required this.roomId, required this.tokenMeeting})
+      : super(key: key);
+  final String roomId, domainUrl, tokenMeeting;
 
   @override
   State<LessonPage> createState() => _LessonPageState();
@@ -15,6 +17,7 @@ class LessonPage extends StatefulWidget {
 class _LessonPageState extends State<LessonPage> {
   Timer? _timerInRoom;
   Timer? _timerToStart;
+  bool isLoading = true;
 
   int _countTimeInRoom = 0;
   int _countTimeToStart = 15 * 60 * 60;
@@ -52,12 +55,32 @@ class _LessonPageState extends State<LessonPage> {
     _timerToStart?.cancel();
   }
 
+  _joinMeeting() async {
+    setState(() {
+      isLoading = false;
+    });
+    var options = JitsiMeetingOptions(room: widget.roomId)
+      ..serverURL = "https://meet.lettutor.com"
+      ..userDisplayName = "Le Thanh Viet"
+      ..audioOnly = true
+      ..audioMuted = true
+      ..token = widget.tokenMeeting
+      ..videoMuted = true;
+
+    await JitsiMeet.joinMeeting(options);
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
       statusBarIconBrightness: Brightness.light,
       statusBarColor: Colors.black,
     ));
+
+    if (isLoading) {
+      _joinMeeting();
+    }
+
     return SafeArea(
         child: Scaffold(
       body: Column(

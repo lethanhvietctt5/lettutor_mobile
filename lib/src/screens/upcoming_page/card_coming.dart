@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -7,6 +9,7 @@ import 'package:lettutor_mobile/src/services/schedule_service.dart';
 import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
+import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
 class UpComingCard extends StatelessWidget {
   const UpComingCard({Key? key, required this.upcomming, required this.refetch}) : super(key: key);
@@ -17,6 +20,13 @@ class UpComingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
+    final base64Decoded =
+        base64.decode(base64.normalize(upcomming.studentMeetingLink.split("token=")[1].split(".")[1]));
+    final urlObject = utf8.decode(base64Decoded);
+    final jsonRes = json.decode(urlObject);
+    final String roomId = jsonRes['room'];
+    final String domainUrl = jsonRes["sub"];
+    final String tokenMeeting = upcomming.studentMeetingLink.split("token=")[1];
 
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
@@ -44,7 +54,8 @@ class UpComingCard extends StatelessWidget {
                             width: 70,
                             height: 70,
                             fit: BoxFit.cover,
-                            progressIndicatorBuilder: (context, url, downloadProgress) => CircularProgressIndicator(value: downloadProgress.progress),
+                            progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                CircularProgressIndicator(value: downloadProgress.progress),
                             errorWidget: (context, url, error) => const Icon(Icons.error),
                           ),
                         )),
@@ -62,27 +73,36 @@ class UpComingCard extends StatelessWidget {
                       Row(
                         children: <Widget>[
                           Text(
-                            DateFormat.yMEd().format(DateTime.fromMillisecondsSinceEpoch(upcomming.scheduleDetailInfo!.startPeriodTimestamp)),
+                            DateFormat.yMEd().format(DateTime.fromMillisecondsSinceEpoch(
+                                upcomming.scheduleDetailInfo!.startPeriodTimestamp)),
                             style: const TextStyle(fontSize: 13),
                           ),
                           Container(
                             padding: const EdgeInsets.all(3),
                             margin: const EdgeInsets.only(left: 5, right: 5),
                             child: Text(
-                              DateFormat.Hm().format(DateTime.fromMillisecondsSinceEpoch(upcomming.scheduleDetailInfo!.startPeriodTimestamp)),
+                              DateFormat.Hm().format(DateTime.fromMillisecondsSinceEpoch(
+                                  upcomming.scheduleDetailInfo!.startPeriodTimestamp)),
                               style: const TextStyle(fontSize: 10, color: Colors.blue),
                             ),
-                            decoration: BoxDecoration(border: Border.all(color: Colors.blue, width: 1), color: Colors.blue[50], borderRadius: BorderRadius.circular(4)),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blue, width: 1),
+                                color: Colors.blue[50],
+                                borderRadius: BorderRadius.circular(4)),
                           ),
                           const Text("-"),
                           Container(
                             padding: const EdgeInsets.all(3),
                             margin: const EdgeInsets.only(left: 5, right: 5),
                             child: Text(
-                              DateFormat.Hm().format(DateTime.fromMillisecondsSinceEpoch(upcomming.scheduleDetailInfo!.endPeriodTimestamp)),
+                              DateFormat.Hm().format(DateTime.fromMillisecondsSinceEpoch(
+                                  upcomming.scheduleDetailInfo!.endPeriodTimestamp)),
                               style: const TextStyle(fontSize: 10, color: Colors.orange),
                             ),
-                            decoration: BoxDecoration(border: Border.all(color: Colors.orange, width: 1), color: Colors.orange[50], borderRadius: BorderRadius.circular(4)),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.orange, width: 1),
+                                color: Colors.orange[50],
+                                borderRadius: BorderRadius.circular(4)),
                           )
                         ],
                       )
@@ -98,7 +118,8 @@ class UpComingCard extends StatelessWidget {
                   Expanded(
                     child: GestureDetector(
                       onTap: () async {
-                        final res = await ScheduleService.cancelClass(authProvider.tokens!.access.token, upcomming.scheduleDetailId);
+                        final res = await ScheduleService.cancelClass(
+                            authProvider.tokens!.access.token, upcomming.scheduleDetailId);
                         if (res) {
                           refetch(authProvider.tokens!.access.token);
                           showTopSnackBar(
@@ -116,7 +137,8 @@ class UpComingCard extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 10, bottom: 10),
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.grey[200] as Color),
-                            borderRadius: const BorderRadius.only(topLeft: Radius.circular(4), bottomLeft: Radius.circular(4))),
+                            borderRadius:
+                                const BorderRadius.only(topLeft: Radius.circular(4), bottomLeft: Radius.circular(4))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const <Widget>[
@@ -133,17 +155,33 @@ class UpComingCard extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.only(top: 10, bottom: 10),
                       decoration: BoxDecoration(
-                          border: Border.all(color: isVisibleMeetingBtn(upcomming) ? Colors.blue : Colors.grey[200] as Color),
+                          border: Border.all(
+                              color: isVisibleMeetingBtn(upcomming) ? Colors.blue : Colors.grey[200] as Color),
                           color: isVisibleMeetingBtn(upcomming) ? Colors.blue : Colors.grey[200] as Color,
-                          borderRadius: const BorderRadius.only(topRight: Radius.circular(4), bottomRight: Radius.circular(4))),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            "Go to meeting",
-                            style: TextStyle(color: isVisibleMeetingBtn(upcomming) ? Colors.white : Colors.grey[500] as Color),
-                          )
-                        ],
+                          borderRadius:
+                              const BorderRadius.only(topRight: Radius.circular(4), bottomRight: Radius.circular(4))),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            routes.lessonPage,
+                            arguments: {
+                              "roomId": roomId,
+                              "domainUrl": domainUrl,
+                              "tokenMeeting": tokenMeeting,
+                            },
+                          );
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              "Go to meeting",
+                              style: TextStyle(
+                                  color: isVisibleMeetingBtn(upcomming) ? Colors.white : Colors.grey[500] as Color),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   )

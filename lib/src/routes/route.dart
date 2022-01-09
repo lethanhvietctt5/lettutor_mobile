@@ -43,8 +43,6 @@ Route<dynamic> controller(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const NavigationBar());
     case profilePage:
       return MaterialPageRoute(builder: (context) => const ProfilePage());
-    case lessonPage:
-      return MaterialPageRoute(builder: (context) => const LessonPage());
     case sessionHistoryPage:
       return MaterialPageRoute(builder: (context) => const SessionHistoryPage());
     case advancedSettingPage:
@@ -57,6 +55,16 @@ Route<dynamic> controller(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) {
         Map<String, String> arg = settings.arguments as Map<String, String>;
         return RecordVideo(url: arg['url'] as String);
+      });
+
+    case lessonPage:
+      return MaterialPageRoute(builder: (context) {
+        Map<String, String> arg = settings.arguments as Map<String, String>;
+        return LessonPage(
+          roomId: arg['roomId'] as String,
+          domainUrl: arg['domainUrl'] as String,
+          tokenMeeting: arg['tokenMeeting'] as String,
+        );
       });
 
     case tutorProfilePage:
