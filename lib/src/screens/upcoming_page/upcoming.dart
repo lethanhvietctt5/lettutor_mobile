@@ -17,7 +17,7 @@ class UpcomingPage extends StatefulWidget {
 
 class _UpcomingPageState extends State<UpcomingPage> {
   bool _isLoading = true;
-  final List<BookingInfo> _upcomming = [];
+  List<BookingInfo> _upcomming = [];
   bool isLoadMore = false;
   int page = 1;
   int perPage = 10;
@@ -43,7 +43,7 @@ class _UpcomingPageState extends State<UpcomingPage> {
     final res = await ScheduleService.getUpcomming(page, perPage, token);
     if (mounted && _isLoading) {
       setState(() {
-        _upcomming.addAll(res);
+        _upcomming = res;
         _isLoading = false;
       });
     }

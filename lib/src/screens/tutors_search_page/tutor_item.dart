@@ -1,20 +1,45 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile/src/models/tutor_model/tutor_info_model.dart';
+import 'package:lettutor_mobile/src/models/tutor_model/tutor_model.dart';
+import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 import 'package:lettutor_mobile/src/constants/learning_topics.dart';
+import 'package:lettutor_mobile/src/services/tutor_service.dart';
+import 'package:provider/provider.dart';
 
-class TutorCardInfo extends StatelessWidget {
+class TutorCardInfo extends StatefulWidget {
   const TutorCardInfo({Key? key, required this.tutor}) : super(key: key);
 
   final TutorInfo tutor;
 
   @override
+  State<TutorCardInfo> createState() => _TutorCardInfoState();
+}
+
+class _TutorCardInfoState extends State<TutorCardInfo> {
+  Tutor? tutorDetail;
+  bool isLoading = true;
+
+  fetchTutorDetail(String token) async {
+    final tutorDetail = await TutorService.getTutor(widget.tutor.userId, token);
+    setState(() {
+      this.tutorDetail = tutorDetail;
+      isLoading = false;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final specialist = listLearningTopics.entries
-        .where((element) => tutor.specialties.split(",").contains(element.key))
+        .where((element) => widget.tutor.specialties.split(",").contains(element.key))
         .map((e) => e.value)
         .toList();
+
+    final authProvider = Provider.of<AuthProvider>(context);
+    if (isLoading) {
+      fetchTutorDetail(authProvider.tokens!.access.token);
+    }
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
@@ -23,7 +48,7 @@ class TutorCardInfo extends StatelessWidget {
           Navigator.pushNamed(
             context,
             routes.tutorProfilePage,
-            arguments: {"tutorID": tutor.userId},
+            arguments: {"tutorID": widget.tutor.userId},
           );
         },
         child: Card(
@@ -50,7 +75,7 @@ class TutorCardInfo extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(1000),
                             child: CachedNetworkImage(
-                              imageUrl: tutor.avatar as String,
+                              imageUrl: widget.tutor.avatar as String,
                               fit: BoxFit.cover,
                               width: 70,
                               height: 70,
@@ -71,14 +96,26 @@ class TutorCardInfo extends StatelessWidget {
                                 child: Container(
                                   margin: const EdgeInsets.only(bottom: 5),
                                   child: Text(
-                                    tutor.name,
-                                    style:
-                                        const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                                    widget.tutor.name,
+                                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
                               ),
+                              Row(
+                                children: [
+                                  Text(
+                                    tutorDetail?.avgRating != null ? tutorDetail!.avgRating.toString() : "0",
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.pink,
+                                    ),
+                                  ),
+                                  const Icon(Icons.star, color: Colors.yellow),
+                                ],
+                              )
                             ],
                           ),
                           SizedBox(
@@ -119,7 +156,7 @@ class TutorCardInfo extends StatelessWidget {
                 Container(
                     margin: const EdgeInsets.only(top: 10),
                     child: Text(
-                      tutor.bio,
+                      widget.tutor.bio,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 4,
                     ))

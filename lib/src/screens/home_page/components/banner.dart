@@ -1,11 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/provider/navigation_index.dart';
 import 'package:lettutor_mobile/src/services/user_service.dart';
 import 'package:provider/provider.dart';
-import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
 class BannerHomePage extends StatefulWidget {
   const BannerHomePage({Key? key}) : super(key: key);
@@ -75,23 +77,38 @@ class _BannerHomePageState extends State<BannerHomePage> {
               : Container(),
           Text(
             nextlesson != null
-                ? DateFormat.yMEd().format(DateTime.fromMillisecondsSinceEpoch(
-                        nextlesson!.scheduleDetailInfo!.startPeriodTimestamp)) +
+                ? DateFormat.yMEd().format(
+                        DateTime.fromMillisecondsSinceEpoch(nextlesson!.scheduleDetailInfo!.startPeriodTimestamp)) +
                     " " +
-                    DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(
-                        nextlesson!.scheduleDetailInfo!.startPeriodTimestamp)) +
+                    DateFormat('HH:mm').format(
+                        DateTime.fromMillisecondsSinceEpoch(nextlesson!.scheduleDetailInfo!.startPeriodTimestamp)) +
                     " - " +
-                    DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(
-                        nextlesson!.scheduleDetailInfo!.endPeriodTimestamp))
+                    DateFormat('HH:mm')
+                        .format(DateTime.fromMillisecondsSinceEpoch(nextlesson!.scheduleDetailInfo!.endPeriodTimestamp))
                 : "",
             style: const TextStyle(fontSize: 13, color: Colors.white),
           ),
           Container(
             margin: const EdgeInsets.only(top: 10),
             child: ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 if (nextlesson != null) {
-                  Navigator.pushNamed(context, routes.lessonPage);
+                  final base64Decoded =
+                      base64.decode(base64.normalize(nextlesson!.studentMeetingLink.split("token=")[1].split(".")[1]));
+                  final urlObject = utf8.decode(base64Decoded);
+                  final jsonRes = json.decode(urlObject);
+                  final String roomId = jsonRes['room'];
+                  final String domainUrl = jsonRes["sub"];
+                  final String tokenMeeting = nextlesson!.studentMeetingLink.split("token=")[1];
+
+                  final options = JitsiMeetingOptions(room: roomId)
+                    ..serverURL = "https://meet.lettutor.com"
+                    ..audioOnly = true
+                    ..audioMuted = true
+                    ..token = tokenMeeting
+                    ..videoMuted = true;
+
+                  await JitsiMeet.joinMeeting(options);
                 } else {
                   navigationIndex.index = 3;
                 }
@@ -100,13 +117,11 @@ class _BannerHomePageState extends State<BannerHomePage> {
                   padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Text(
                     nextlesson != null ? "Enter lesson room" : "Book a lesson",
-                    style: const TextStyle(
-                        color: Colors.blue, fontSize: 14, fontWeight: FontWeight.bold),
+                    style: const TextStyle(color: Colors.blue, fontSize: 14, fontWeight: FontWeight.bold),
                   )),
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(1000))),
+                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(1000))),
               ),
             ),
           )

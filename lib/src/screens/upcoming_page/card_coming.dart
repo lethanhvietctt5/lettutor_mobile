@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/services/schedule_service.dart';
 import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
-import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
 class UpComingCard extends StatelessWidget {
   const UpComingCard({Key? key, required this.upcomming, required this.refetch}) : super(key: key);
@@ -161,16 +161,15 @@ class UpComingCard extends StatelessWidget {
                           borderRadius:
                               const BorderRadius.only(topRight: Radius.circular(4), bottomRight: Radius.circular(4))),
                       child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            routes.lessonPage,
-                            arguments: {
-                              "roomId": roomId,
-                              "domainUrl": domainUrl,
-                              "tokenMeeting": tokenMeeting,
-                            },
-                          );
+                        onTap: () async {
+                          final options = JitsiMeetingOptions(room: roomId)
+                            ..serverURL = "https://meet.lettutor.com"
+                            ..audioOnly = true
+                            ..audioMuted = true
+                            ..token = tokenMeeting
+                            ..videoMuted = true;
+
+                          await JitsiMeet.joinMeeting(options);
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
