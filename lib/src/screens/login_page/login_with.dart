@@ -45,8 +45,6 @@ class _LoginWithState extends State<LoginWith> {
 
     handleSingInFacebook() async {
       final LoginResult result = await FacebookAuth.instance.login();
-      final credential = firebase_auth.FacebookAuthProvider.credential(result.accessToken!.token);
-      await firebase_auth.FirebaseAuth.instance.signInWithCredential(credential);
 
       if (result.status == LoginStatus.success) {
         final String? accessToken = result.accessToken!.token;
@@ -60,7 +58,9 @@ class _LoginWithState extends State<LoginWith> {
           }
         }
       } else {
-        print(result.status);
+        showTopSnackBar(context, const CustomSnackBar.error(message: "Something went wrong!"),
+            showOutAnimationDuration: const Duration(milliseconds: 1000),
+            displayDuration: const Duration(microseconds: 4000));
       }
     }
 

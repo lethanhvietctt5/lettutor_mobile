@@ -6,6 +6,7 @@ import 'package:lettutor_mobile/src/provider/navigation_index.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/setting_btn.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -108,7 +109,10 @@ class _SettingPageState extends State<SettingPage> {
             Container(
               margin: const EdgeInsets.only(top: 40),
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  SharedPreferences prefs = await SharedPreferences.getInstance();
+                  prefs.remove("refresh_token");
+                  authProvider.tokens = null;
                   Navigator.pushNamedAndRemoveUntil(
                     context,
                     routes.loginPage,
@@ -130,8 +134,7 @@ class _SettingPageState extends State<SettingPage> {
                 ),
                 style: ElevatedButton.styleFrom(
                   primary: const Color(0xff007CFF),
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(1000))),
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(1000))),
                 ),
               ),
             )

@@ -47,6 +47,10 @@ class _HomePageState extends State<HomePage> {
       fetchRecommendTutors(authProvider.tokens?.access.token as String);
     }
 
+    if (authProvider.tokens == null) {
+      return Container();
+    }
+
     return SingleChildScrollView(
       child: Column(
         children: [
