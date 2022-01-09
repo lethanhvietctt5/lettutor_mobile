@@ -30,6 +30,7 @@ const String feedbackPage = 'feedback';
 const String bookDetailPage = 'bookDetail';
 const String changePasswordPage = 'changePassword';
 const String recordVideoPage = 'recordVideo';
+const String favoriteTutorPage = 'favoriteTutor';
 
 Route<dynamic> controller(RouteSettings settings) {
   switch (settings.name) {
@@ -51,6 +52,9 @@ Route<dynamic> controller(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const BookDetail());
     case changePasswordPage:
       return MaterialPageRoute(builder: (context) => const ChangePasswordPage());
+    case favoriteTutorPage:
+      return MaterialPageRoute(builder: (context) => const ChangePasswordPage());
+
     case recordVideoPage:
       return MaterialPageRoute(builder: (context) {
         Map<String, String> arg = settings.arguments as Map<String, String>;

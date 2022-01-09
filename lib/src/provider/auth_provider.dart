@@ -6,10 +6,14 @@ class AuthProvider extends ChangeNotifier {
   late User userLoggedIn;
   Tokens? tokens;
 
-
   void logIn(User user, Tokens _tokens) {
     userLoggedIn = user;
     tokens = _tokens;
+    notifyListeners();
+  }
+
+  void setUser(User user) {
+    userLoggedIn = user;
     notifyListeners();
   }
 

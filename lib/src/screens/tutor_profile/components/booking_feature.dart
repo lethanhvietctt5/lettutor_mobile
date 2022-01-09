@@ -119,19 +119,28 @@ class _BookingFeatureState extends State<BookingFeature> {
                             (index) => ElevatedButton(
                               onPressed: () async {
                                 if (!scheduleDetails[index].isBooked) {
-                                  final res = await ScheduleService.bookAClass(
-                                      scheduleDetails[index].id, authProvider.tokens!.access.token);
-                                  if (res) {
-                                    scheduleDetails[index].isBooked = true;
-                                    Navigator.pop(context);
-                                    Navigator.pop(context);
+                                  try {
+                                    final res = await ScheduleService.bookAClass(
+                                        scheduleDetails[index].id, authProvider.tokens!.access.token);
+                                    if (res) {
+                                      scheduleDetails[index].isBooked = true;
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
 
+                                      showTopSnackBar(
+                                        context,
+                                        const CustomSnackBar.success(
+                                          message: "Booking successful. ",
+                                          backgroundColor: Colors.green,
+                                        ),
+                                        showOutAnimationDuration: const Duration(milliseconds: 700),
+                                        displayDuration: const Duration(milliseconds: 200),
+                                      );
+                                    }
+                                  } catch (e) {
                                     showTopSnackBar(
                                       context,
-                                      const CustomSnackBar.success(
-                                        message: "Booking successful. ",
-                                        backgroundColor: Colors.green,
-                                      ),
+                                      CustomSnackBar.error(message: e.toString()),
                                       showOutAnimationDuration: const Duration(milliseconds: 700),
                                       displayDuration: const Duration(milliseconds: 200),
                                     );

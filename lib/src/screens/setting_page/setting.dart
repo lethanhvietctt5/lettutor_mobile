@@ -72,18 +72,25 @@ class _SettingPageState extends State<SettingPage> {
               ),
             ),
             Column(
-              children: const <Widget>[
-                SettingButton(
-                  icon: "asset/svg/ic_password2.svg",
-                  title: "Change password",
-                  routeName: routes.changePasswordPage,
-                ),
-                SettingButton(
+              children: <Widget>[
+                userAuth.roles != null && userAuth.roles!.contains("CHANGE_PASSWORD")
+                    ? const SettingButton(
+                        icon: "asset/svg/ic_password2.svg",
+                        title: "Change password",
+                        routeName: routes.changePasswordPage,
+                      )
+                    : Container(),
+                const SettingButton(
                   icon: "asset/svg/ic_history.svg",
                   title: "Session History",
                   routeName: routes.sessionHistoryPage,
                 ),
-                SettingButton(
+                const SettingButton(
+                  icon: "asset/svg/ic_heart_fill.svg",
+                  title: "Favorite Tutors",
+                  routeName: routes.sessionHistoryPage,
+                ),
+                const SettingButton(
                   icon: "asset/svg/ic_setting2.svg",
                   title: "Advanced Settings",
                   routeName: routes.advancedSettingPage,

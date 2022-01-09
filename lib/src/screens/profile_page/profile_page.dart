@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
@@ -75,9 +74,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ? DateFormat("yyyy-MM-dd").parse(authProvider.userLoggedIn.birthday as String)
             : null;
         _phone = authProvider.userLoggedIn.phone;
-        _country = authProvider.userLoggedIn.country != null
-            ? (authProvider.userLoggedIn.country as String)
-            : "VN";
+        _country = authProvider.userLoggedIn.country != null ? (authProvider.userLoggedIn.country as String) : "VN";
         _level = authProvider.userLoggedIn.level;
         _nameController.text = authProvider.userLoggedIn.name;
         _topics = authProvider.userLoggedIn.learnTopics ?? [];
@@ -90,7 +87,31 @@ class _ProfilePageState extends State<ProfilePage> {
       var pickedFile = await _picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
 
       if (pickedFile != null) {
-        //userProvider.uploadProfileImage(File(pickedFile.path));
+        final bool res = await UserService.uploadAvatar(pickedFile.path, authProvider.tokens!.access.token);
+        if (res) {
+          final newInfo = await UserService.getUserInfo(authProvider.tokens!.access.token);
+
+          if (newInfo != null) {
+            authProvider.setUser(newInfo);
+          } else {
+            showTopSnackBar(context, const CustomSnackBar.error(message: "Cannot get new infomation"),
+                showOutAnimationDuration: const Duration(milliseconds: 1000),
+                displayDuration: const Duration(microseconds: 4000));
+          }
+
+          showTopSnackBar(
+              context,
+              const CustomSnackBar.success(
+                message: "Upload new avatar successfully",
+                backgroundColor: Colors.green,
+              ),
+              showOutAnimationDuration: const Duration(milliseconds: 1000),
+              displayDuration: const Duration(microseconds: 4000));
+        } else {
+          showTopSnackBar(context, const CustomSnackBar.error(message: "Cannot upload new avatar"),
+              showOutAnimationDuration: const Duration(milliseconds: 1000),
+              displayDuration: const Duration(microseconds: 4000));
+        }
       }
     }
 
@@ -145,16 +166,14 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: CircleAvatar(
                           backgroundColor: Colors.grey[300],
                           radius: 15,
-                          child:
-                              SvgPicture.asset("asset/svg/ic_camera.svg", color: Colors.grey[700]),
+                          child: SvgPicture.asset("asset/svg/ic_camera.svg", color: Colors.grey[700]),
                         ),
                       ),
                     )
                   ],
                 ),
                 Text(authProvider.userLoggedIn.email,
-                    style: TextStyle(
-                        fontSize: 14, color: Colors.grey[800], fontWeight: FontWeight.w500)),
+                    style: TextStyle(fontSize: 14, color: Colors.grey[800], fontWeight: FontWeight.w500)),
                 Container(
                   margin: const EdgeInsets.only(bottom: 10, top: 10),
                   child: Column(
@@ -236,8 +255,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           displayDuration: const Duration(milliseconds: 200),
                         );
                       } else if (_birthday != null &&
-                          _birthday!.millisecondsSinceEpoch >
-                              DateTime.now().millisecondsSinceEpoch) {
+                          _birthday!.millisecondsSinceEpoch > DateTime.now().millisecondsSinceEpoch) {
                         showTopSnackBar(
                           context,
                           const CustomSnackBar.error(message: "Birthday is invalid."),
@@ -288,8 +306,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     style: ElevatedButton.styleFrom(
                       primary: const Color(0xff007CFF),
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
                     ),
                   ),
                 ),
