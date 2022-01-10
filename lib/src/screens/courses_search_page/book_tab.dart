@@ -8,8 +8,8 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:lettutor_mobile/src/models/course_model/course_category.dart';
 import 'package:lettutor_mobile/src/models/ebook_model/ebook_model.dart';
-import 'package:lettutor_mobile/src/provider/app_provider.dart';
-import 'package:lettutor_mobile/src/provider/auth_provider.dart';
+import 'package:lettutor_mobile/src/global_state/app_provider.dart';
+import 'package:lettutor_mobile/src/global_state/auth_provider.dart';
 import 'package:lettutor_mobile/src/services/ebook_service.dart';
 import 'package:provider/provider.dart';
 

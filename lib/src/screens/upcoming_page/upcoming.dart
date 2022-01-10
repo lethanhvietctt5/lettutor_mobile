@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
-import 'package:lettutor_mobile/src/provider/auth_provider.dart';
+import 'package:lettutor_mobile/src/global_state/auth_provider.dart';
 import 'package:lettutor_mobile/src/screens/upcoming_page/card_coming.dart';
 import 'package:lettutor_mobile/src/services/schedule_service.dart';
 import 'package:provider/provider.dart';

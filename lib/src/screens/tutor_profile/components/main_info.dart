@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/constants/list_contries.dart';
 import 'package:lettutor_mobile/src/models/tutor_model/tutor_model.dart';
-import 'package:lettutor_mobile/src/provider/auth_provider.dart';
+import 'package:lettutor_mobile/src/global_state/auth_provider.dart';
 import 'package:lettutor_mobile/src/services/user_service.dart';
 import 'package:lettutor_mobile/src/widgets/rate_stars.dart';
 import 'package:provider/provider.dart';

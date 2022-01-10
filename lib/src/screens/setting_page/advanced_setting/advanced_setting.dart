@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/models/language_model/language_en.dart';
 import 'package:lettutor_mobile/src/models/language_model/language_vi.dart';
-import 'package:lettutor_mobile/src/provider/app_provider.dart';
+import 'package:lettutor_mobile/src/global_state/app_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

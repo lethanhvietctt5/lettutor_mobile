@@ -5,9 +5,9 @@ import 'package:intl/intl.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:lettutor_mobile/src/models/language_model/language.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
-import 'package:lettutor_mobile/src/provider/app_provider.dart';
-import 'package:lettutor_mobile/src/provider/auth_provider.dart';
-import 'package:lettutor_mobile/src/provider/navigation_index.dart';
+import 'package:lettutor_mobile/src/global_state/app_provider.dart';
+import 'package:lettutor_mobile/src/global_state/auth_provider.dart';
+import 'package:lettutor_mobile/src/global_state/navigation_index.dart';
 import 'package:lettutor_mobile/src/services/user_service.dart';
 import 'package:provider/provider.dart';
 

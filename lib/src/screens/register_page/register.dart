@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lettutor_mobile/src/provider/app_provider.dart';
+import 'package:lettutor_mobile/src/global_state/app_provider.dart';
 import 'package:lettutor_mobile/src/services/auth_service.dart';
 import 'package:lettutor_mobile/src/widgets/button_expand.dart';
 import 'package:provider/provider.dart';

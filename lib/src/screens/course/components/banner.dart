@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile/src/models/course_model/course_model.dart';
-import 'package:lettutor_mobile/src/provider/app_provider.dart';
+import 'package:lettutor_mobile/src/global_state/app_provider.dart';
 import 'package:provider/provider.dart';
 
 class BannerCourse extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lettutor_mobile/src/provider/app_provider.dart';
-import 'package:lettutor_mobile/src/provider/auth_provider.dart';
+import 'package:lettutor_mobile/src/global_state/app_provider.dart';
+import 'package:lettutor_mobile/src/global_state/auth_provider.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/change_password/input_password.dart';
 import 'package:lettutor_mobile/src/services/user_service.dart';
 import 'package:provider/provider.dart';

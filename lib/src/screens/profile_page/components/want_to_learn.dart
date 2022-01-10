@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile/src/models/user_model/learning_topic_model.dart';
 import 'package:lettutor_mobile/src/models/user_model/test_preparation_model.dart';
-import 'package:lettutor_mobile/src/provider/app_provider.dart';
+import 'package:lettutor_mobile/src/global_state/app_provider.dart';
 import 'package:provider/provider.dart';
 
 class WantToLearn extends StatefulWidget {

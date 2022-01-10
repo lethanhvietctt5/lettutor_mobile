@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile/src/models/tutor_model/tutor_info_model.dart';
 import 'package:lettutor_mobile/src/models/tutor_model/tutor_model.dart';
-import 'package:lettutor_mobile/src/provider/auth_provider.dart';
+import 'package:lettutor_mobile/src/global_state/auth_provider.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 import 'package:lettutor_mobile/src/constants/learning_topics.dart';
 import 'package:lettutor_mobile/src/services/tutor_service.dart';

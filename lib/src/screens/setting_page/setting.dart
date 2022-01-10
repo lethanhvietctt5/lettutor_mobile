@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor_mobile/src/provider/app_provider.dart';
-import 'package:lettutor_mobile/src/provider/auth_provider.dart';
-import 'package:lettutor_mobile/src/provider/navigation_index.dart';
+import 'package:lettutor_mobile/src/global_state/app_provider.dart';
+import 'package:lettutor_mobile/src/global_state/auth_provider.dart';
+import 'package:lettutor_mobile/src/global_state/navigation_index.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/setting_btn.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 import 'package:provider/provider.dart';
