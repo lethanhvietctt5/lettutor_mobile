@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
+import 'package:provider/provider.dart';
 
 class SessionItem extends StatelessWidget {
   const SessionItem({Key? key, required this.session}) : super(key: key);
@@ -12,6 +14,8 @@ class SessionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lang = Provider.of<AppProvider>(context).language;
+
     return Card(
       elevation: 6,
       child: Column(
@@ -99,7 +103,7 @@ class SessionItem extends StatelessWidget {
                             child: SvgPicture.asset("asset/svg/ic_score.svg", width: 15),
                           ),
                           Text(
-                            "Mark: " +
+                            lang.mark +
                                 (session.scoreByTutor != null ? session.scoreByTutor.toString() : "Tutor not mark yet"),
                             style: const TextStyle(fontSize: 13),
                           ),
@@ -132,10 +136,10 @@ class SessionItem extends StatelessWidget {
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const <Widget>[
+                        children: <Widget>[
                           Text(
-                            "Give Feedback",
-                            style: TextStyle(color: Colors.white),
+                            lang.giveFeedback,
+                            style: const TextStyle(color: Colors.white),
                           )
                         ],
                       ),
@@ -161,7 +165,7 @@ class SessionItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            "Watch Record",
+                            lang.watchRecord,
                             style: TextStyle(color: session.showRecordUrl ? Colors.blue : Colors.grey[500] as Color),
                           )
                         ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/change_password/input_password.dart';
 import 'package:lettutor_mobile/src/services/user_service.dart';
@@ -23,6 +24,7 @@ class _ChagePasswordPageState extends State<ChangePasswordPage> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
+    final lang = Provider.of<AppProvider>(context).language;
 
     return SafeArea(
         child: Scaffold(
@@ -36,7 +38,7 @@ class _ChagePasswordPageState extends State<ChangePasswordPage> {
         title: Container(
           margin: const EdgeInsets.only(left: 10),
           child: Text(
-            "Change Password",
+            lang.changePassword,
             style: TextStyle(color: Colors.grey[800]),
           ),
         ),
@@ -47,9 +49,9 @@ class _ChagePasswordPageState extends State<ChangePasswordPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              InputPassword(controller: passwordController, title: "Password"),
-              InputPassword(controller: newPasswordController, title: "New password"),
-              InputPassword(controller: confirmPasswordController, title: "Confirm new password"),
+              InputPassword(controller: passwordController, title: lang.password),
+              InputPassword(controller: newPasswordController, title: lang.newPassword),
+              InputPassword(controller: confirmPasswordController, title: lang.confirmNewPassword),
               Container(
                 margin: const EdgeInsets.only(top: 20),
                 child: ElevatedButton(
@@ -66,7 +68,7 @@ class _ChagePasswordPageState extends State<ChangePasswordPage> {
                             width: 20,
                           ),
                         ),
-                        const Text("Change password", style: TextStyle(fontSize: 17)),
+                        Text(lang.changePassword, style: const TextStyle(fontSize: 17)),
                       ],
                     ),
                   ),
@@ -77,25 +79,21 @@ class _ChagePasswordPageState extends State<ChangePasswordPage> {
                         confirmPasswordController.text.length < 8) {
                       showTopSnackBar(
                         context,
-                        const CustomSnackBar.error(
-                            message: "Password must be at least 8 characters"),
+                        const CustomSnackBar.error(message: "Password must be at least 8 characters"),
                         showOutAnimationDuration: const Duration(milliseconds: 1000),
                         displayDuration: const Duration(microseconds: 4000),
                       );
                     } else if (newPasswordController.text != confirmPasswordController.text) {
                       showTopSnackBar(
                         context,
-                        const CustomSnackBar.error(
-                            message: "New password and confirm password must be the same"),
+                        const CustomSnackBar.error(message: "New password and confirm password must be the same"),
                         showOutAnimationDuration: const Duration(milliseconds: 1000),
                         displayDuration: const Duration(microseconds: 4000),
                       );
                     } else {
                       try {
                         final res = await UserService.changePassword(
-                            authProvider.tokens!.access.token,
-                            passwordController.text,
-                            newPasswordController.text);
+                            authProvider.tokens!.access.token, passwordController.text, newPasswordController.text);
                         if (res) {
                           showTopSnackBar(
                             context,

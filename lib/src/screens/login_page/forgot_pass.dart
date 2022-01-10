@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
 import 'package:lettutor_mobile/src/widgets/button_expand.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
+import 'package:provider/provider.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);
@@ -15,6 +17,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<AppProvider>(context);
+    final lang = appProvider.language;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -70,16 +75,16 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 ),
                 ButtonFullWidth(
                   padding: const EdgeInsets.all(8.0),
-                  text: "Reset Password",
+                  text: lang.resetPassword,
                   backgroundColor: const Color(0xff007CFF),
                   onPress: () {},
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: GestureDetector(
-                    child: const Text(
-                      "Go back to Login ?",
-                      style: TextStyle(
+                    child: Text(
+                      lang.gobackLogin,
+                      style: const TextStyle(
                         color: Colors.blue,
                       ),
                     ),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
+import 'package:provider/provider.dart';
 
 class PhoneEdition extends StatefulWidget {
-  const PhoneEdition({Key? key, required this.changePhone, required this.phone, required this.isPhoneActivated}) : super(key: key);
+  const PhoneEdition({Key? key, required this.changePhone, required this.phone, required this.isPhoneActivated})
+      : super(key: key);
   final Function({DateTime? birthday, String phone, String country, String level}) changePhone;
   final String phone;
   final bool isPhoneActivated;
@@ -21,6 +24,8 @@ class _PhoneEditionState extends State<PhoneEdition> {
 
   @override
   Widget build(BuildContext context) {
+    final lang = Provider.of<AppProvider>(context).language;
+
     return Container(
       margin: const EdgeInsets.only(bottom: 10, top: 10),
       child: Column(
@@ -28,9 +33,9 @@ class _PhoneEditionState extends State<PhoneEdition> {
         children: [
           Container(
             margin: const EdgeInsets.only(bottom: 7, left: 5),
-            child: const Text(
-              "Phone number",
-              style: TextStyle(fontSize: 17),
+            child: Text(
+              lang.phone,
+              style: const TextStyle(fontSize: 17),
             ),
           ),
           TextField(

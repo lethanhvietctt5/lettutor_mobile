@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/services/tutor_service.dart';
 import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
-import 'package:uuid/uuid.dart';
-
-Uuid uuid = const Uuid();
 
 class FeedbackPage extends StatefulWidget {
   const FeedbackPage({Key? key, required this.bookingInfo}) : super(key: key);
@@ -26,6 +24,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
+    final lang = Provider.of<AppProvider>(context).language;
 
     return SafeArea(
       child: Scaffold(
@@ -39,7 +38,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
           title: Container(
             margin: const EdgeInsets.only(left: 10),
             child: Text(
-              "Give feedback",
+              lang.giveFeedback,
               style: TextStyle(color: Colors.grey[800]),
             ),
           ),
@@ -53,14 +52,14 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 autofocus: true,
                 maxLines: 3,
                 style: const TextStyle(fontSize: 15),
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                     border: InputBorder.none,
                     focusedBorder: InputBorder.none,
                     enabledBorder: InputBorder.none,
                     errorBorder: InputBorder.none,
                     disabledBorder: InputBorder.none,
-                    contentPadding: EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
-                    hintText: "Enter feedbacks here..."),
+                    contentPadding: const EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
+                    hintText: lang.hintFeedback),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -132,9 +131,9 @@ class _FeedbackPageState extends State<FeedbackPage> {
                             color: Colors.white,
                           ),
                           const SizedBox(width: 10),
-                          const Text(
-                            "Feedback",
-                            style: TextStyle(fontSize: 15),
+                          Text(
+                            lang.feedback,
+                            style: const TextStyle(fontSize: 15),
                           ),
                         ],
                       ),

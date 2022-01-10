@@ -136,6 +136,8 @@ class _CourseTabState extends State<CourseTab> {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     final appProvider = Provider.of<AppProvider>(context);
+    final lang = appProvider.language;
+
     setState(() {
       token = authProvider.tokens!.access.token;
     });
@@ -178,7 +180,7 @@ class _CourseTabState extends State<CourseTab> {
                     Radius.circular(10),
                   ),
                 ),
-                hintText: "Search courses..."),
+                hintText: lang.searchCourse),
           ),
         ),
         Container(
@@ -272,7 +274,7 @@ class _CourseTabState extends State<CourseTab> {
                                                   style: TextStyle(fontSize: 15, color: Colors.grey[800]),
                                                 ),
                                                 Text(
-                                                  _results[index].topics.length.toString() + " Lessons",
+                                                  _results[index].topics.length.toString() + lang.lesson,
                                                   style: TextStyle(fontSize: 12, color: Colors.grey[800]),
                                                 ),
                                               ],

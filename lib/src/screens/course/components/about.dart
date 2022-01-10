@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:lettutor_mobile/src/models/course_model/course_model.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
+import 'package:provider/provider.dart';
 
 class AboutCourse extends StatelessWidget {
   AboutCourse({Key? key, required this.course}) : super(key: key);
@@ -19,17 +21,19 @@ class AboutCourse extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lang = Provider.of<AppProvider>(context).language;
+
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 8),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
             child: Text(
-              "About Course",
-              style: TextStyle(
+              lang.aboutCourse,
+              style: const TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
@@ -42,11 +46,11 @@ class AboutCourse extends StatelessWidget {
               color: Colors.black54,
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(bottom: 0, top: 14),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 0, top: 14),
             child: Text(
-              "Overview",
-              style: TextStyle(
+              lang.overview,
+              style: const TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
@@ -64,9 +68,9 @@ class AboutCourse extends StatelessWidget {
                   Container(
                     width: MediaQuery.of(context).size.width - 70,
                     margin: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
-                    child: const Text(
-                      "Why take this course?",
-                      style: TextStyle(
+                    child: Text(
+                      lang.why,
+                      style: const TextStyle(
                         fontSize: 17,
                         color: Colors.black,
                       ),
@@ -95,9 +99,9 @@ class AboutCourse extends StatelessWidget {
                   Container(
                     width: MediaQuery.of(context).size.width - 70,
                     margin: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
-                    child: const Text(
-                      "What will you be able to do?",
-                      style: TextStyle(
+                    child: Text(
+                      lang.what,
+                      style: const TextStyle(
                         fontSize: 17,
                         color: Colors.black,
                       ),
@@ -114,11 +118,11 @@ class AboutCourse extends StatelessWidget {
               ),
             ],
           ),
-          const Padding(
-            padding: EdgeInsets.only(bottom: 8.0, top: 14),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0, top: 14),
             child: Text(
-              "Level",
-              style: TextStyle(
+              lang.level,
+              style: const TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),

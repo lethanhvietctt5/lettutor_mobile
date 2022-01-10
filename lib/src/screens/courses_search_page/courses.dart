@@ -31,6 +31,7 @@ class _CoursesSearchPageState extends State<CoursesSearchPage> {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     final appProvider = Provider.of<AppProvider>(context, listen: false);
+    final lang = appProvider.language;
 
     if (appProvider.allCourseCategories.isEmpty) {
       fetchCategories(authProvider.tokens!.access.token);
@@ -62,7 +63,7 @@ class _CoursesSearchPageState extends State<CoursesSearchPage> {
                         ),
                       ),
                       Text(
-                        "Courses",
+                        lang.course,
                         style: TextStyle(color: Colors.grey[700]),
                       ),
                     ],
@@ -81,7 +82,7 @@ class _CoursesSearchPageState extends State<CoursesSearchPage> {
                         ),
                       ),
                       Text(
-                        "Books",
+                        lang.ebook,
                         style: TextStyle(color: Colors.grey[700]),
                       ),
                     ],

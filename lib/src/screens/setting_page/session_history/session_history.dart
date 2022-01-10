@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/session_history/session_item.dart';
 import 'package:lettutor_mobile/src/services/schedule_service.dart';
@@ -70,6 +71,7 @@ class _SessionHistoryPageState extends State<SessionHistoryPage> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
+    final lang = Provider.of<AppProvider>(context).language;
 
     setState(() {
       token = authProvider.tokens!.access.token;
@@ -92,7 +94,7 @@ class _SessionHistoryPageState extends State<SessionHistoryPage> {
           title: Container(
             margin: const EdgeInsets.only(left: 10),
             child: Text(
-              "Session History",
+              lang.sessionHistory,
               style: TextStyle(color: Colors.grey[800]),
             ),
           ),

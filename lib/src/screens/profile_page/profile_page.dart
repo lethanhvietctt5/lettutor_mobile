@@ -8,6 +8,7 @@ import 'package:lettutor_mobile/src/constants/list_level.dart';
 import 'package:lettutor_mobile/src/models/user_model/learning_topic_model.dart';
 import 'package:lettutor_mobile/src/models/user_model/test_preparation_model.dart';
 import 'package:lettutor_mobile/src/models/user_model/tokens_model.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/screens/profile_page/components/birthday.dart';
 import 'package:lettutor_mobile/src/screens/profile_page/components/dropdown_menu.dart';
@@ -67,6 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
+    final lang = Provider.of<AppProvider>(context).language;
 
     setState(() {
       if (isInit) {
@@ -127,7 +129,7 @@ class _ProfilePageState extends State<ProfilePage> {
           title: Container(
             margin: const EdgeInsets.only(left: 10),
             child: Text(
-              "Profile",
+              lang.profile,
               style: TextStyle(color: Colors.grey[800]),
             ),
           ),
@@ -181,25 +183,25 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Container(
                         margin: const EdgeInsets.only(bottom: 7, left: 5),
-                        child: const Text("Name", style: TextStyle(fontSize: 17)),
+                        child: Text(lang.fullName, style: const TextStyle(fontSize: 17)),
                       ),
                       TextField(
                         style: TextStyle(fontSize: 17, color: Colors.grey[900]),
                         controller: _nameController,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          contentPadding: EdgeInsets.only(left: 15, right: 15),
-                          border: OutlineInputBorder(
+                          contentPadding: const EdgeInsets.only(left: 15, right: 15),
+                          border: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.black26, width: 0.3),
                               borderRadius: BorderRadius.all(Radius.circular(10))),
-                          enabledBorder: OutlineInputBorder(
+                          enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.black26, width: 0.3),
                               borderRadius: BorderRadius.all(Radius.circular(10))),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.black26, width: 0.3),
                               borderRadius: BorderRadius.all(Radius.circular(10))),
-                          hintText: "Full name",
+                          hintText: lang.fullName,
                         ),
                       )
                     ],
@@ -211,22 +213,22 @@ class _ProfilePageState extends State<ProfilePage> {
                     phone: _phone ?? "",
                     isPhoneActivated: authProvider.userLoggedIn.isPhoneActivated ?? false),
                 DropdownEdit(
-                    title: "Country",
+                    title: lang.country,
                     selectedItem: _country != null ? _country as String : "VN",
                     items: countryList,
                     onChange: setForm),
                 DropdownEdit(
-                    title: "My Level",
+                    title: lang.level,
                     selectedItem: _level != null ? _level as String : "BEGINNER",
                     items: listLevel,
                     onChange: setForm),
                 Container(
                   margin: const EdgeInsets.only(bottom: 2, left: 5),
                   child: Row(
-                    children: const [
+                    children: [
                       Text(
-                        "Want to learn",
-                        style: TextStyle(fontSize: 17),
+                        lang.wantToLearn,
+                        style: const TextStyle(fontSize: 17),
                       ),
                     ],
                   ),
@@ -301,7 +303,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       padding: const EdgeInsets.only(top: 13, bottom: 13),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [Text("Save", style: TextStyle(color: Colors.white))],
+                        children: [Text(lang.save, style: const TextStyle(color: Colors.white))],
                       ),
                     ),
                     style: ElevatedButton.styleFrom(

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/provider/navigation_index.dart';
 import 'package:lettutor_mobile/src/screens/setting_page/setting_btn.dart';
@@ -21,6 +22,7 @@ class _SettingPageState extends State<SettingPage> {
     final naviationIndex = Provider.of<NavigationIndex>(context);
     final authProvider = Provider.of<AuthProvider>(context);
     final userAuth = authProvider.userLoggedIn;
+    final lang = Provider.of<AppProvider>(context).language;
 
     return SingleChildScrollView(
       child: Padding(
@@ -74,25 +76,20 @@ class _SettingPageState extends State<SettingPage> {
             Column(
               children: <Widget>[
                 userAuth.roles != null && userAuth.roles!.contains("CHANGE_PASSWORD")
-                    ? const SettingButton(
+                    ? SettingButton(
                         icon: "asset/svg/ic_password2.svg",
-                        title: "Change password",
+                        title: lang.changePassword,
                         routeName: routes.changePasswordPage,
                       )
                     : Container(),
-                const SettingButton(
+                SettingButton(
                   icon: "asset/svg/ic_history.svg",
-                  title: "Session History",
+                  title: lang.sessionHistory,
                   routeName: routes.sessionHistoryPage,
                 ),
-                const SettingButton(
-                  icon: "asset/svg/ic_heart_fill.svg",
-                  title: "Favorite Tutors",
-                  routeName: routes.sessionHistoryPage,
-                ),
-                const SettingButton(
+                SettingButton(
                   icon: "asset/svg/ic_setting2.svg",
-                  title: "Advanced Settings",
+                  title: lang.advancedSetting,
                   routeName: routes.advancedSettingPage,
                 ),
               ],
@@ -131,10 +128,10 @@ class _SettingPageState extends State<SettingPage> {
                   padding: const EdgeInsets.only(top: 13, bottom: 13),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text(
-                        "Logout",
-                        style: TextStyle(color: Colors.white),
+                        lang.logout,
+                        style: const TextStyle(color: Colors.white),
                       )
                     ],
                   ),

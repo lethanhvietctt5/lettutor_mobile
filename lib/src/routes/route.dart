@@ -47,7 +47,7 @@ Route<dynamic> controller(RouteSettings settings) {
     case sessionHistoryPage:
       return MaterialPageRoute(builder: (context) => const SessionHistoryPage());
     case advancedSettingPage:
-      return MaterialPageRoute(builder: (context) => const AdvancedSettingPage());
+      return MaterialPageRoute(builder: (context) => AdvancedSettingPage());
     case bookDetailPage:
       return MaterialPageRoute(builder: (context) => const BookDetail());
     case changePasswordPage:

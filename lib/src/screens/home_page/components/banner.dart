@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
+import 'package:lettutor_mobile/src/models/language_model/language.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/provider/navigation_index.dart';
 import 'package:lettutor_mobile/src/services/user_service.dart';
@@ -40,8 +42,8 @@ class _BannerHomePageState extends State<BannerHomePage> {
   @override
   Widget build(BuildContext context) {
     final navigationIndex = Provider.of<NavigationIndex>(context);
-
     final authProvider = Provider.of<AuthProvider>(context);
+    final lang = Provider.of<AppProvider>(context).language;
 
     if (isLoading) {
       fetchTotalLessonTime(authProvider.tokens!.access.token);
@@ -60,8 +62,8 @@ class _BannerHomePageState extends State<BannerHomePage> {
         children: [
           Text(
             timeStamp != 0 && totalLessonTime != null
-                ? "Total lesson time is ${covertTotalTime(totalLessonTime as Duration)} "
-                : "Wellcome to Lettutor",
+                ? "${lang.totalLessonTime} ${covertTotalTime(totalLessonTime as Duration, lang)} "
+                : lang.wellcome,
             style: const TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.bold),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
@@ -69,9 +71,9 @@ class _BannerHomePageState extends State<BannerHomePage> {
           nextlesson != null
               ? Container(
                   margin: const EdgeInsets.only(top: 8, bottom: 8),
-                  child: const Text(
-                    "Upcomming lession",
-                    style: TextStyle(fontSize: 13, color: Colors.white),
+                  child: Text(
+                    lang.nextLesson,
+                    style: const TextStyle(fontSize: 13, color: Colors.white),
                   ),
                 )
               : Container(),
@@ -116,7 +118,7 @@ class _BannerHomePageState extends State<BannerHomePage> {
               child: Container(
                   padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Text(
-                    nextlesson != null ? "Enter lesson room" : "Book a lesson",
+                    nextlesson != null ? lang.enterRoom : lang.bookAlesson,
                     style: const TextStyle(color: Colors.blue, fontSize: 14, fontWeight: FontWeight.bold),
                   )),
               style: ElevatedButton.styleFrom(
@@ -131,19 +133,31 @@ class _BannerHomePageState extends State<BannerHomePage> {
   }
 }
 
-String covertTotalTime(Duration d) {
+String covertTotalTime(Duration d, Language lang) {
   String res = "";
   Duration total = d;
   if (d.inDays > 0) {
-    res += "${total.inDays} days ";
+    if (lang.name == "EN") {
+      res += "${total.inDays} days ";
+    } else {
+      res += "${total.inDays} ngày ";
+    }
     total = total - Duration(days: total.inDays);
   }
   if (d.inHours > 0) {
-    res += "${total.inHours} hours ";
+    if (lang.name == "EN") {
+      res += "${total.inHours} hours ";
+    } else {
+      res += "${total.inHours} giờ ";
+    }
     total = total - Duration(hours: total.inHours);
   }
   if (d.inMinutes > 0) {
-    res += "${total.inMinutes} minutes";
+    if (lang.name == "EN") {
+      res += "${total.inMinutes} minutes";
+    } else {
+      res += "${total.inMinutes} phút";
+    }
     total = total - Duration(minutes: total.inMinutes);
   }
 

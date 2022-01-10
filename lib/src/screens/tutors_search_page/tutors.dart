@@ -119,6 +119,7 @@ class _TutorsPageState extends State<TutorsPage> {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     final appProvider = Provider.of<AppProvider>(context);
+    final lang = appProvider.language;
 
     setState(() {
       token = authProvider.tokens!.access.token;
@@ -164,7 +165,7 @@ class _TutorsPageState extends State<TutorsPage> {
                   contentPadding: const EdgeInsets.only(left: 5, right: 5),
                   border: const OutlineInputBorder(
                       borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
-                  hintText: "Search Tutors")),
+                  hintText: lang.searchTutor)),
         ),
         Container(
           margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),

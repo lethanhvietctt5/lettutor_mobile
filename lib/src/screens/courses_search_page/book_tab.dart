@@ -137,6 +137,8 @@ class _BookTabState extends State<BookTab> {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     final appProvider = Provider.of<AppProvider>(context);
+    final lang = appProvider.language;
+
     setState(() {
       token = authProvider.tokens!.access.token;
     });
@@ -180,7 +182,7 @@ class _BookTabState extends State<BookTab> {
                     Radius.circular(10),
                   ),
                 ),
-                hintText: "Search books..."),
+                hintText: lang.searchEbook),
           ),
         ),
         Container(

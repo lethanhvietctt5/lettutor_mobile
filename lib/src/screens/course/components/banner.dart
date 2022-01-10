@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_mobile/src/models/course_model/course_model.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
+import 'package:provider/provider.dart';
 
 class BannerCourse extends StatelessWidget {
   const BannerCourse({Key? key, required this.course}) : super(key: key);
@@ -9,6 +11,8 @@ class BannerCourse extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lang = Provider.of<AppProvider>(context).language;
+
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -79,9 +83,9 @@ class BannerCourse extends StatelessWidget {
                           color: Colors.blue,
                         ),
                       ),
-                      const Text(
-                        "topics",
-                        style: TextStyle(
+                      Text(
+                        lang.topic,
+                        style: const TextStyle(
                           fontSize: 25,
                           color: Colors.blue,
                         ),
@@ -90,18 +94,18 @@ class BannerCourse extends StatelessWidget {
                   ),
                 ),
                 Column(
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       "1",
-                      style:  TextStyle(
+                      style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),
                     ),
                     Text(
-                      "tutors",
-                      style: TextStyle(
+                      lang.tutor,
+                      style: const TextStyle(
                         fontSize: 25,
                         color: Colors.black87,
                       ),

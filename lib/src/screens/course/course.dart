@@ -31,6 +31,7 @@ class _CoursePageState extends State<CoursePage> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
+
     if (isFetching) {
       _loadCourse(authProvider.tokens!.access.token);
     }

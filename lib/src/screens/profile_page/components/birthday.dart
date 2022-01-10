@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
+import 'package:provider/provider.dart';
 
 class BirthdayEdition extends StatefulWidget {
   const BirthdayEdition({
@@ -29,6 +31,8 @@ class _BirthdayEditionState extends State<BirthdayEdition> {
 
   @override
   Widget build(BuildContext context) {
+    final lang = Provider.of<AppProvider>(context).language;
+
     return Container(
       margin: const EdgeInsets.only(bottom: 10, top: 10),
       child: Column(
@@ -37,9 +41,9 @@ class _BirthdayEditionState extends State<BirthdayEdition> {
         children: [
           Container(
             margin: const EdgeInsets.only(left: 5),
-            child: const Text(
-              "Birthday",
-              style: TextStyle(fontSize: 17),
+            child: Text(
+              lang.birthday,
+              style: const TextStyle(fontSize: 17),
             ),
           ),
           InkWell(

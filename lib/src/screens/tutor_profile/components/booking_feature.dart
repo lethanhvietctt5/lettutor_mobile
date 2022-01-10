@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:lettutor_mobile/src/helpers/generate_ratio.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/schedule_detail_model.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/schedule_model.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/services/schedule_service.dart';
 import 'package:provider/provider.dart';
@@ -65,7 +66,7 @@ class _BookingFeatureState extends State<BookingFeature> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
-
+    final lang = Provider.of<AppProvider>(context).language;
     if (mounted && isLoading) {
       fetchSchedules(authProvider.tokens!.access.token);
     }
@@ -97,10 +98,10 @@ class _BookingFeatureState extends State<BookingFeature> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const <Widget>[
+                          children: <Widget>[
                             Text(
-                              "Select available schedule",
-                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                              lang.selectScheduleDetail,
+                              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
@@ -215,9 +216,9 @@ class _BookingFeatureState extends State<BookingFeature> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const <Widget>[
-                            Text("Select available schedule",
-                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                          children: <Widget>[
+                            Text(lang.selectSchedule,
+                                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                           ],
                         ),
                         decoration: BoxDecoration(color: Colors.grey[300])),
@@ -290,7 +291,7 @@ class _BookingFeatureState extends State<BookingFeature> {
               padding: const EdgeInsets.only(top: 13, bottom: 13),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [Text("Booking", style: TextStyle(color: Colors.white))],
+                children: [Text(lang.booking, style: const TextStyle(color: Colors.white))],
               ),
             ),
             style: ElevatedButton.styleFrom(

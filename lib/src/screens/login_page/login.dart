@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/models/language_model/language_en.dart';
+import 'package:lettutor_mobile/src/models/language_model/language_vi.dart';
 import 'package:lettutor_mobile/src/models/user_model/tokens_model.dart';
 import 'package:lettutor_mobile/src/models/user_model/user_model.dart';
 import 'package:lettutor_mobile/src/provider/app_provider.dart';
@@ -32,6 +34,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     final appProvider = Provider.of<AppProvider>(context);
+    final language = appProvider.language;
 
     _emailController.text = "student@lettutor.com";
     _passwordController.text = "123456";
@@ -72,6 +75,18 @@ class _LoginPageState extends State<LoginPage> {
       authenticate();
     }
 
+    void loadLangue() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final lang = prefs.getString('lang') ?? "EN";
+      if (lang == "EN") {
+        appProvider.language = English();
+      } else {
+        appProvider.language = VietNamese();
+      }
+    }
+
+    loadLangue();
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -96,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 4),
                                   child: Text(
-                                    "Email",
+                                    language.email,
                                     style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
@@ -134,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 4),
                                   child: Text(
-                                    "Password",
+                                    language.password,
                                     style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
@@ -171,18 +186,18 @@ class _LoginPageState extends State<LoginPage> {
                                 children: [
                                   Row(
                                     children: <Widget>[
-                                      const Text("Not a member yet? ", style: TextStyle(fontSize: 12)),
+                                      Text(language.signUpQuestion, style: const TextStyle(fontSize: 12)),
                                       GestureDetector(
-                                          child:
-                                              const Text("Sign up", style: TextStyle(color: Colors.blue, fontSize: 12)),
+                                          child: Text(language.signUp,
+                                              style: const TextStyle(color: Colors.blue, fontSize: 12)),
                                           onTap: () {
                                             Navigator.popAndPushNamed(context, routes.registerPage);
                                           })
                                     ],
                                   ),
                                   GestureDetector(
-                                      child: const Text("Forgot password?",
-                                          style: TextStyle(color: Colors.blue, fontSize: 12)),
+                                      child: Text(language.forgotPassword,
+                                          style: const TextStyle(color: Colors.blue, fontSize: 12)),
                                       onTap: () {
                                         Navigator.popAndPushNamed(context, routes.forgotPasswordPage);
                                       })
@@ -190,14 +205,13 @@ class _LoginPageState extends State<LoginPage> {
                               )),
                           ButtonFullWidth(
                               padding: const EdgeInsets.all(8.0),
-                              text: "Sign in",
+                              text: language.signIn,
                               backgroundColor: const Color(0xff007CFF),
                               onPress: handleLogin),
                           Container(
                             margin: const EdgeInsets.only(top: 10),
                             child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [Text("Or continue with")]),
+                                mainAxisAlignment: MainAxisAlignment.center, children: [Text(language.continueWith)]),
                           ),
                           LoginWith(callback: callback),
                         ],

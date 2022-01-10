@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lettutor_mobile/src/provider/setting.dart';
+import 'package:lettutor_mobile/src/models/language_model/language_en.dart';
+import 'package:lettutor_mobile/src/models/language_model/language_vi.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AdvancedSettingPage extends StatelessWidget {
-  const AdvancedSettingPage({Key? key}) : super(key: key);
+  AdvancedSettingPage({Key? key}) : super(key: key);
+  final en = English();
+  final vi = VietNamese();
 
   @override
   Widget build(BuildContext context) {
-    final setting = Provider.of<SettingProvider>(context);
-    List<String> lans = ["Tiếng Việt", "English"];
+    final appProvider = Provider.of<AppProvider>(context);
+    final lang = appProvider.language;
 
     return SafeArea(
       child: Scaffold(
@@ -23,7 +28,7 @@ class AdvancedSettingPage extends StatelessWidget {
           title: Container(
             margin: const EdgeInsets.only(left: 10),
             child: Text(
-              "Advanced Settings",
+              lang.advancedSetting,
               style: TextStyle(color: Colors.grey[800]),
             ),
           ),
@@ -35,12 +40,12 @@ class AdvancedSettingPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Language",
-                  style: TextStyle(fontSize: 17),
+                Text(
+                  lang.languages,
+                  style: const TextStyle(fontSize: 17),
                 ),
                 Text(
-                  setting.language,
+                  appProvider.language.name == "EN" ? "English" : "Tiếng Việt",
                   style: const TextStyle(fontSize: 14),
                 )
               ],
@@ -76,8 +81,15 @@ class AdvancedSettingPage extends StatelessWidget {
                 value: 1,
               ),
             ],
-            onSelected: (int value) {
-              setting.changeLanguage(lans[value]);
+            onSelected: (int value) async {
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              if (value == 0) {
+                appProvider.language = vi;
+                await prefs.setString("lang", "VI");
+              } else {
+                appProvider.language = en;
+                await prefs.setString("lang", "EN");
+              }
             },
           ),
         ),

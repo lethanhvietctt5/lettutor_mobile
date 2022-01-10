@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/services/schedule_service.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +28,8 @@ class UpComingCard extends StatelessWidget {
     final String roomId = jsonRes['room'];
     final String domainUrl = jsonRes["sub"];
     final String tokenMeeting = upcomming.studentMeetingLink.split("token=")[1];
+
+    final lang = Provider.of<AppProvider>(context).language;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
@@ -141,10 +144,10 @@ class UpComingCard extends StatelessWidget {
                                 const BorderRadius.only(topLeft: Radius.circular(4), bottomLeft: Radius.circular(4))),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const <Widget>[
+                          children: <Widget>[
                             Text(
-                              "Cancel",
-                              style: TextStyle(color: Colors.red),
+                              lang.cancel,
+                              style: const TextStyle(color: Colors.red),
                             )
                           ],
                         ),
@@ -175,7 +178,7 @@ class UpComingCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              "Go to meeting",
+                              lang.goToMeeting,
                               style: TextStyle(
                                   color: isVisibleMeetingBtn(upcomming) ? Colors.white : Colors.grey[500] as Color),
                             )

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lettutor_mobile/src/constants/colors_app.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/provider/navigation_index.dart';
 import 'package:lettutor_mobile/src/screens/courses_search_page/courses.dart';
@@ -22,7 +23,6 @@ class NavigationBar extends StatefulWidget {
 }
 
 class _NavigationBarState extends State<NavigationBar> {
-  List<String> titles = ["Home", "Courses", "Upcoming", "Tutors", "Setting"];
   List<Widget> pages = [
     const HomePage(),
     const CoursesSearchPage(),
@@ -35,6 +35,8 @@ class _NavigationBarState extends State<NavigationBar> {
   Widget build(BuildContext context) {
     final navigationIndex = Provider.of<NavigationIndex>(context);
     final authUser = Provider.of<AuthProvider>(context).userLoggedIn;
+    final lang = Provider.of<AppProvider>(context).language;
+    List<String> titles = [lang.home, lang.course, lang.upcoming, lang.tutors, lang.setting];
 
     return SafeArea(
       child: Scaffold(
@@ -90,16 +92,11 @@ class _NavigationBarState extends State<NavigationBar> {
           elevation: 20,
           currentIndex: navigationIndex.index,
           items: [
-            const MenuItem(sourceIcon: "asset/svg/ic_home.svg", label: "Home")
-                .generateItem(context),
-            const MenuItem(sourceIcon: "asset/svg/ic_course.svg", label: "Courses")
-                .generateItem(context),
-            const MenuItem(sourceIcon: "asset/svg/ic_upcoming.svg", label: "Upcoming")
-                .generateItem(context),
-            const MenuItem(sourceIcon: "asset/svg/ic_tutor.svg", label: "Tutors")
-                .generateItem(context),
-            const MenuItem(sourceIcon: "asset/svg/ic_setting.svg", label: "Setting")
-                .generateItem(context),
+            MenuItem(sourceIcon: "asset/svg/ic_home.svg", label: lang.home).generateItem(context),
+            MenuItem(sourceIcon: "asset/svg/ic_course.svg", label: lang.course).generateItem(context),
+            MenuItem(sourceIcon: "asset/svg/ic_upcoming.svg", label: lang.upcoming).generateItem(context),
+            MenuItem(sourceIcon: "asset/svg/ic_tutor.svg", label: lang.tutors).generateItem(context),
+            MenuItem(sourceIcon: "asset/svg/ic_setting.svg", label: lang.setting).generateItem(context),
           ],
         ),
       ),

@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import 'package:flutter/painting.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/models/tutor_model/tutor_model.dart';
+import 'package:lettutor_mobile/src/provider/app_provider.dart';
 import 'package:lettutor_mobile/src/provider/auth_provider.dart';
 import 'package:lettutor_mobile/src/provider/navigation_index.dart';
 import 'package:lettutor_mobile/src/screens/home_page/components/banner.dart';
@@ -42,6 +43,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final navigationIndex = Provider.of<NavigationIndex>(context);
     final authProvider = Provider.of<AuthProvider>(context);
+    final lang = Provider.of<AppProvider>(context).language;
 
     if (authProvider.tokens != null && _isLoading) {
       fetchRecommendTutors(authProvider.tokens?.access.token as String);
@@ -64,9 +66,9 @@ class _HomePageState extends State<HomePage> {
                 Expanded(
                   child: Container(
                     padding: const EdgeInsets.only(bottom: 2),
-                    child: const Text(
-                      "Recommended Tutors",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
+                    child: Text(
+                      lang.recommendTutor,
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -78,9 +80,9 @@ class _HomePageState extends State<HomePage> {
                   },
                   child: Row(
                     children: [
-                      const Text(
-                        "See all",
-                        style: TextStyle(color: Colors.blue),
+                      Text(
+                        lang.seeAll,
+                        style: const TextStyle(color: Colors.blue),
                       ),
                       SvgPicture.asset(
                         "asset/svg/ic_next.svg",
