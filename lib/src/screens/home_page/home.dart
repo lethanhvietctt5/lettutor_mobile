@@ -9,6 +9,7 @@ import 'package:lettutor_mobile/src/global_state/navigation_index.dart';
 import 'package:lettutor_mobile/src/screens/home_page/components/banner.dart';
 import 'package:lettutor_mobile/src/screens/home_page/components/card_tutor.dart';
 import 'package:lettutor_mobile/src/services/tutor_service.dart';
+import 'package:lettutor_mobile/src/services/user_service.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,7 +23,10 @@ class _HomePageState extends State<HomePage> {
   List<Tutor> _tutors = [];
   bool _isLoading = true;
 
-  void fetchRecommendTutors(String token) async {
+  void fetchRecommendTutors(String token, AppProvider appProvider) async {
+    final allTopics = await UserService.fetchAllLearningTopic(token);
+    final allTestPreparation = await UserService.fetchAllTestPreparation(token);
+    appProvider.load(allTopics, allTestPreparation);
     final result = await TutorService.getListTutorWithPagination(1, 9, token);
     final List<Tutor> listTutors = [];
 
@@ -43,14 +47,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final navigationIndex = Provider.of<NavigationIndex>(context);
     final authProvider = Provider.of<AuthProvider>(context);
-    final lang = Provider.of<AppProvider>(context).language;
+    final appProvider = Provider.of<AppProvider>(context);
+    final lang = appProvider.language;
 
-    if (authProvider.tokens != null && _isLoading) {
-      fetchRecommendTutors(authProvider.tokens?.access.token as String);
-    }
-
-    if (authProvider.tokens == null) {
-      return Container();
+    if (_isLoading && authProvider.tokens != null) {
+      fetchRecommendTutors(authProvider.tokens?.access.token as String, appProvider);
     }
 
     return SingleChildScrollView(

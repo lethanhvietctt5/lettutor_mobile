@@ -29,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool isAuthenticating = true;
+  bool isAuthenticated = false;
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +42,15 @@ class _LoginPageState extends State<LoginPage> {
 
     callback(User user, Tokens tokens) async {
       authProvider.logIn(user, tokens);
-      final allTopics = await UserService.fetchAllLearningTopic(authProvider.tokens!.access.token);
-      final allTestPreparation = await UserService.fetchAllTestPreparation(authProvider.tokens!.access.token);
-      appProvider.load(allTopics, allTestPreparation);
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('refresh_token', authProvider.tokens!.refresh.token);
-      Navigator.pushNamedAndRemoveUntil(context, routes.homePage, (Route<dynamic> route) => false);
+      if (mounted) {
+        setState(() {
+          isAuthenticating = false;
+          isAuthenticated = true;
+        });
+      }
+      Navigator.of(context).pushNamedAndRemoveUntil(routes.homePage, (Route<dynamic> route) => false);
     }
 
     void authenticate() async {
@@ -55,9 +59,11 @@ class _LoginPageState extends State<LoginPage> {
         final refreshToken = prefs.getString('refresh_token') ?? "";
         await AuthService.authenticate(refreshToken, callback);
       } catch (e) {
-        setState(() {
-          isAuthenticating = false;
-        });
+        if (mounted) {
+          setState(() {
+            isAuthenticating = false;
+          });
+        }
       }
     }
 
@@ -71,10 +77,6 @@ class _LoginPageState extends State<LoginPage> {
       }
     }
 
-    if (isAuthenticating) {
-      authenticate();
-    }
-
     void loadLangue() async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       final lang = prefs.getString('lang') ?? "EN";
@@ -85,14 +87,17 @@ class _LoginPageState extends State<LoginPage> {
       }
     }
 
-    loadLangue();
+    if (isAuthenticating) {
+      authenticate();
+      loadLangue();
+    }
 
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
         child: isAuthenticating
             ? const CircularProgressIndicator()
-            : authProvider.tokens != null
+            : isAuthenticated
                 ? Container()
                 : SingleChildScrollView(
                     child: Padding(

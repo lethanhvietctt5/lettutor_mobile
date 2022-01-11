@@ -35,8 +35,6 @@ class _BannerHomePageState extends State<BannerHomePage> {
         isLoading = false;
       });
     }
-
-    // ! Show Error if fetching failed
   }
 
   @override
@@ -45,12 +43,8 @@ class _BannerHomePageState extends State<BannerHomePage> {
     final authProvider = Provider.of<AuthProvider>(context);
     final lang = Provider.of<AppProvider>(context).language;
 
-    if (isLoading) {
-      fetchTotalLessonTime(authProvider.tokens!.access.token);
-
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+    if (isLoading && authProvider.tokens != null) {
+      fetchTotalLessonTime(authProvider.tokens?.access.token as String);
     }
 
     return Container(

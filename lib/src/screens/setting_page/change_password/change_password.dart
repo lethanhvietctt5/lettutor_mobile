@@ -74,19 +74,19 @@ class _ChagePasswordPageState extends State<ChangePasswordPage> {
                   ),
                   style: ElevatedButton.styleFrom(primary: Colors.blue),
                   onPressed: () async {
-                    if (passwordController.text.length < 8 ||
-                        newPasswordController.text.length < 8 ||
-                        confirmPasswordController.text.length < 8) {
+                    if (passwordController.text.length < 6 ||
+                        newPasswordController.text.length < 6 ||
+                        confirmPasswordController.text.length < 6) {
                       showTopSnackBar(
                         context,
-                        const CustomSnackBar.error(message: "Password must be at least 8 characters"),
+                        CustomSnackBar.error(message: lang.passwordAtLeast),
                         showOutAnimationDuration: const Duration(milliseconds: 1000),
                         displayDuration: const Duration(microseconds: 4000),
                       );
                     } else if (newPasswordController.text != confirmPasswordController.text) {
                       showTopSnackBar(
                         context,
-                        const CustomSnackBar.error(message: "New password and confirm password must be the same"),
+                        CustomSnackBar.error(message: lang.errPasswordMismatch),
                         showOutAnimationDuration: const Duration(milliseconds: 1000),
                         displayDuration: const Duration(microseconds: 4000),
                       );
@@ -97,8 +97,8 @@ class _ChagePasswordPageState extends State<ChangePasswordPage> {
                         if (res) {
                           showTopSnackBar(
                             context,
-                            const CustomSnackBar.success(
-                              message: "Password changed successfully",
+                            CustomSnackBar.success(
+                              message: lang.changePasswordSuccess,
                               backgroundColor: Colors.green,
                             ),
                             showOutAnimationDuration: const Duration(milliseconds: 1000),

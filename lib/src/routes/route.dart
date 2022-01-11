@@ -5,7 +5,6 @@ import 'package:lettutor_mobile/src/navigation.dart';
 import 'package:lettutor_mobile/src/screens/course/course.dart';
 import 'package:lettutor_mobile/src/screens/courses_search_page/book_detail.dart';
 import 'package:lettutor_mobile/src/screens/feedback_page.dart/feedback_page.dart';
-import 'package:lettutor_mobile/src/screens/lesson/lesson.dart';
 import 'package:lettutor_mobile/src/screens/login_page/forgot_pass.dart';
 import 'package:lettutor_mobile/src/screens/login_page/login.dart';
 import 'package:lettutor_mobile/src/screens/profile_page/profile_page.dart';
@@ -23,7 +22,6 @@ const String homePage = 'home';
 const String profilePage = 'profile';
 const String tutorProfilePage = 'tutorProfile';
 const String coursePage = 'course';
-const String lessonPage = 'lesson';
 const String sessionHistoryPage = 'sessionHistory';
 const String advancedSettingPage = 'advancedSetting';
 const String feedbackPage = 'feedback';
@@ -59,16 +57,6 @@ Route<dynamic> controller(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) {
         Map<String, String> arg = settings.arguments as Map<String, String>;
         return RecordVideo(url: arg['url'] as String);
-      });
-
-    case lessonPage:
-      return MaterialPageRoute(builder: (context) {
-        Map<String, String> arg = settings.arguments as Map<String, String>;
-        return LessonPage(
-          roomId: arg['roomId'] as String,
-          domainUrl: arg['domainUrl'] as String,
-          tokenMeeting: arg['tokenMeeting'] as String,
-        );
       });
 
     case tutorProfilePage:

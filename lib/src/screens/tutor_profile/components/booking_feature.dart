@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor_mobile/src/helpers/generate_ratio.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/schedule_detail_model.dart';
@@ -130,8 +129,8 @@ class _BookingFeatureState extends State<BookingFeature> {
 
                                       showTopSnackBar(
                                         context,
-                                        const CustomSnackBar.success(
-                                          message: "Booking successful. ",
+                                        CustomSnackBar.success(
+                                          message: lang.bookingSuccess,
                                           backgroundColor: Colors.green,
                                         ),
                                         showOutAnimationDuration: const Duration(milliseconds: 700),
@@ -300,26 +299,6 @@ class _BookingFeatureState extends State<BookingFeature> {
             ),
           ),
         ),
-        Container(
-          margin: const EdgeInsets.only(top: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                children: [
-                  SvgPicture.asset("asset/svg/ic_message2.svg", color: Colors.blue),
-                  const Text("Message", style: TextStyle(color: Colors.blue, fontSize: 14))
-                ],
-              ),
-              Column(
-                children: [
-                  SvgPicture.asset("asset/svg/ic_report.svg", color: Colors.blue),
-                  const Text("Report", style: TextStyle(color: Colors.blue, fontSize: 14))
-                ],
-              ),
-            ],
-          ),
-        )
       ],
     );
   }

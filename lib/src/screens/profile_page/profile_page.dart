@@ -96,21 +96,21 @@ class _ProfilePageState extends State<ProfilePage> {
           if (newInfo != null) {
             authProvider.setUser(newInfo);
           } else {
-            showTopSnackBar(context, const CustomSnackBar.error(message: "Cannot get new infomation"),
+            showTopSnackBar(context, CustomSnackBar.error(message: lang.errGetNewProfile),
                 showOutAnimationDuration: const Duration(milliseconds: 1000),
                 displayDuration: const Duration(microseconds: 4000));
           }
 
           showTopSnackBar(
               context,
-              const CustomSnackBar.success(
-                message: "Upload new avatar successfully",
+              CustomSnackBar.success(
+                message: lang.successUploadAvatar,
                 backgroundColor: Colors.green,
               ),
               showOutAnimationDuration: const Duration(milliseconds: 1000),
               displayDuration: const Duration(microseconds: 4000));
         } else {
-          showTopSnackBar(context, const CustomSnackBar.error(message: "Cannot upload new avatar"),
+          showTopSnackBar(context, CustomSnackBar.error(message: lang.errUploadAvatar),
               showOutAnimationDuration: const Duration(milliseconds: 1000),
               displayDuration: const Duration(microseconds: 4000));
         }
@@ -213,15 +213,19 @@ class _ProfilePageState extends State<ProfilePage> {
                     phone: _phone ?? "",
                     isPhoneActivated: authProvider.userLoggedIn.isPhoneActivated ?? false),
                 DropdownEdit(
-                    title: lang.country,
-                    selectedItem: _country != null ? _country as String : "VN",
-                    items: countryList,
-                    onChange: setForm),
+                  title: lang.country,
+                  selectedItem: _country != null ? _country as String : "VN",
+                  items: countryList,
+                  onChange: setForm,
+                  fieldName: "Country",
+                ),
                 DropdownEdit(
-                    title: lang.level,
-                    selectedItem: _level != null ? _level as String : "BEGINNER",
-                    items: listLevel,
-                    onChange: setForm),
+                  title: lang.level,
+                  selectedItem: _level != null ? _level as String : "BEGINNER",
+                  items: listLevel,
+                  onChange: setForm,
+                  fieldName: "Level",
+                ),
                 Container(
                   margin: const EdgeInsets.only(bottom: 2, left: 5),
                   child: Row(
@@ -245,14 +249,14 @@ class _ProfilePageState extends State<ProfilePage> {
                       if (_phone != null && _phone?.isEmpty as bool) {
                         showTopSnackBar(
                           context,
-                          const CustomSnackBar.error(message: "Phone number is invalid."),
+                          CustomSnackBar.error(message: lang.errPhoneNumber),
                           showOutAnimationDuration: const Duration(milliseconds: 700),
                           displayDuration: const Duration(milliseconds: 200),
                         );
                       } else if (_nameController.text.isEmpty) {
                         showTopSnackBar(
                           context,
-                          const CustomSnackBar.error(message: "Please enter name."),
+                          CustomSnackBar.error(message: lang.errEnterName),
                           showOutAnimationDuration: const Duration(milliseconds: 700),
                           displayDuration: const Duration(milliseconds: 200),
                         );
@@ -260,7 +264,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           _birthday!.millisecondsSinceEpoch > DateTime.now().millisecondsSinceEpoch) {
                         showTopSnackBar(
                           context,
-                          const CustomSnackBar.error(message: "Birthday is invalid."),
+                          CustomSnackBar.error(message: lang.errBirthday),
                           showOutAnimationDuration: const Duration(milliseconds: 700),
                           displayDuration: const Duration(milliseconds: 200),
                         );
@@ -281,8 +285,8 @@ class _ProfilePageState extends State<ProfilePage> {
                           authProvider.logIn(res, authProvider.tokens as Tokens);
                           showTopSnackBar(
                             context,
-                            const CustomSnackBar.success(
-                              message: "Update profile successfully.",
+                            CustomSnackBar.success(
+                              message: lang.successUpdateProfile,
                               backgroundColor: Colors.green,
                             ),
                             showOutAnimationDuration: const Duration(milliseconds: 700),
@@ -292,7 +296,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         } else {
                           showTopSnackBar(
                             context,
-                            const CustomSnackBar.error(message: "Update profile failed."),
+                            CustomSnackBar.error(message: lang.errUpdateProfile),
                             showOutAnimationDuration: const Duration(milliseconds: 700),
                             displayDuration: const Duration(milliseconds: 200),
                           );

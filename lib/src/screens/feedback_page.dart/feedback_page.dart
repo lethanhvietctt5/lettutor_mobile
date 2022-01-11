@@ -90,14 +90,14 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         if (_controller.text.isEmpty) {
                           showTopSnackBar(
                             context,
-                            const CustomSnackBar.error(message: "Please enter feedback content..."),
+                            CustomSnackBar.error(message: lang.errEnterFeedback),
                             showOutAnimationDuration: const Duration(milliseconds: 1000),
                             displayDuration: const Duration(microseconds: 1000),
                           );
                         } else if (_controller.text.split(" ").length < 3) {
                           showTopSnackBar(
                             context,
-                            const CustomSnackBar.error(message: "Feedback content must has 3 words at least."),
+                            CustomSnackBar.error(message: lang.errFeedbackLength),
                             showOutAnimationDuration: const Duration(milliseconds: 1000),
                             displayDuration: const Duration(microseconds: 1000),
                           );
@@ -111,8 +111,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                           if (res) {
                             showTopSnackBar(
                               context,
-                              const CustomSnackBar.success(
-                                message: "Feedback successfully.",
+                              CustomSnackBar.success(
+                                message: lang.successFeedback,
                                 backgroundColor: Colors.green,
                               ),
                               showOutAnimationDuration: const Duration(milliseconds: 1000),

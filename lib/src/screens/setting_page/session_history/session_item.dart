@@ -104,7 +104,7 @@ class SessionItem extends StatelessWidget {
                           ),
                           Text(
                             lang.mark +
-                                (session.scoreByTutor != null ? session.scoreByTutor.toString() : "Tutor not mark yet"),
+                                (session.scoreByTutor != null ? session.scoreByTutor.toString() : lang.tutorNotMark),
                             style: const TextStyle(fontSize: 13),
                           ),
                         ],

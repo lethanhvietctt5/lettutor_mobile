@@ -26,6 +26,10 @@ class VietNamese extends Language {
   get confirmPassword => "Xác nhận mật khẩu";
   @override
   get loginQuestion => "Đã có tài khoản? ";
+  @override
+  get errEnterAllFields => "Vui lòng nhập đầy đủ thông tin";
+  @override
+  get errPasswordMismatch => "Mật khẩu không khớp";
 
   // Reset Password Page
   @override
@@ -38,7 +42,6 @@ class VietNamese extends Language {
   get home => "Trang chủ";
   @override
   get totalLessonTime => "Tổng thời gian học là ";
-
   @override
   get enterRoom => "Vào phòng học";
   @override
@@ -69,6 +72,22 @@ class VietNamese extends Language {
   get wantToLearn => "Muốn học";
   @override
   get save => "Lưu";
+  @override
+  get errGetNewProfile => "Không thể cập nhật mới hồ sơ.";
+  @override
+  get errUploadAvatar => "Thay đổi ảnh đại diện không thành công";
+  @override
+  get successUploadAvatar => "Thay đổi ảnh đại diện thành công";
+  @override
+  get errUpdateProfile => "Cập nhật hồ sơ không thành công";
+  @override
+  get successUpdateProfile => "Cập nhật hồ sơ thành công";
+  @override
+  get errPhoneNumber => "Số điện thoại không hợp lệ";
+  @override
+  get errEnterName => "Vui lòng nhập họ tên";
+  @override
+  get errBirthday => "Ngày sinh không hợp lệ";
 
   // Course page
   @override
@@ -77,6 +96,9 @@ class VietNamese extends Language {
   get searchCourse => "Tìm kiếm khoá học...";
   @override
   get lesson => " Bài học";
+  @override
+  get errNotAnyResult => "Không tìm thấy kết quả tương ứng...";
+
   // Course Detail
   @override
   get aboutCourse => "Thông tin";
@@ -104,6 +126,12 @@ class VietNamese extends Language {
   get cancel => "Huỷ bỏ";
   @override
   get goToMeeting => "Vào phòng học";
+  @override
+  get dontHaveUpcoming => "Hiện tại bạn không có buổi học nào sắp diễn ra";
+  @override
+  get removeUpcomingSuccess => "Huỷ buổi học thành công";
+  @override
+  get removeUpcomingFail => "Bạn chỉ có thể huỷ buổi học trước giờ học 2 tiếng";
 
   // Tutor search page and Tutor detail page
   @override
@@ -124,6 +152,8 @@ class VietNamese extends Language {
   get selectSchedule => "Chọn lịch học";
   @override
   get selectScheduleDetail => "Chọn giờ học";
+  @override
+  get bookingSuccess => "Đặt lịch học thành công";
 
   // Setting page
   @override
@@ -142,6 +172,10 @@ class VietNamese extends Language {
   get newPassword => "Mật khẩu mới";
   @override
   get confirmNewPassword => "Nhập lại mật khẩu mới";
+  @override
+  get passwordAtLeast => "Mật khẩu phải có ít nhất 6 ký tự";
+  @override
+  get changePasswordSuccess => "Đổi mật khẩu thành công";
 
   // Session history page
   @override
@@ -150,10 +184,18 @@ class VietNamese extends Language {
   get watchRecord => "Xem lại buổi học";
   @override
   get mark => "Điểm số: ";
+  @override
+  get tutorNotMark => "Gia sư chưa chấm điểm";
 
   // Feedback page
   @override
   get feedback => "Đánh giá";
   @override
   get hintFeedback => "Nhập nội dung đánh giá của bạn...";
+  @override
+  get errEnterFeedback => "Vui lòng nhập nội dung đánh giá";
+  @override
+  get errFeedbackLength => "Nội dung đánh giá phải có ít nhất 3 từ";
+  @override
+  get successFeedback => "Đánh giá thành công";
 }

@@ -216,7 +216,7 @@ class _BookTabState extends State<BookTab> {
                               Container(
                                 margin: const EdgeInsets.only(top: 20),
                                 child: Text(
-                                  "Not found any match result...",
+                                  lang.errNotAnyResult,
                                   style: TextStyle(color: Colors.grey[700]),
                                 ),
                               ),

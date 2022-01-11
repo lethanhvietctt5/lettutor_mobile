@@ -6,8 +6,6 @@ import 'package:lettutor_mobile/src/global_state/auth_provider.dart';
 import 'package:lettutor_mobile/src/services/user_service.dart';
 import 'package:lettutor_mobile/src/widgets/rate_stars.dart';
 import 'package:provider/provider.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class MainInfo extends StatefulWidget {
   const MainInfo({Key? key, required this.tutor}) : super(key: key);
@@ -95,15 +93,6 @@ class _MainInfoState extends State<MainInfo> {
                     setState(() {
                       isFavorite = true;
                     });
-                    showTopSnackBar(
-                      context,
-                      const CustomSnackBar.success(
-                        message: "Add to Favorites successful.",
-                        backgroundColor: Colors.blue,
-                      ),
-                      showOutAnimationDuration: const Duration(milliseconds: 1000),
-                      displayDuration: const Duration(microseconds: 1000),
-                    );
                   }
                 } else {
                   final res = await UserService.addAndRemoveTutorFavorite(

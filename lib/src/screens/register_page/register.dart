@@ -29,14 +29,14 @@ class _SignUpPageState extends State<SignUpPage> {
       if (_emailController.text.isEmpty || _passwordController.text.isEmpty || _repasswordControler.text.isEmpty) {
         showTopSnackBar(
           context,
-          const CustomSnackBar.error(message: "Signup failed! Please enter all fields."),
+          CustomSnackBar.error(message: lang.errEnterAllFields),
           showOutAnimationDuration: const Duration(milliseconds: 1000),
           displayDuration: const Duration(microseconds: 1000),
         );
       } else if (_passwordController.text != _repasswordControler.text) {
         showTopSnackBar(
           context,
-          const CustomSnackBar.error(message: "Signup failed! Passwords do not match."),
+          CustomSnackBar.error(message: lang.errPasswordMismatch),
           showOutAnimationDuration: const Duration(milliseconds: 1000),
           displayDuration: const Duration(microseconds: 1000),
         );

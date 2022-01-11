@@ -25,6 +25,10 @@ class English extends Language {
   get confirmPassword => "Re-enter password";
   @override
   get loginQuestion => "Already have a account ?";
+  @override
+  get errEnterAllFields => "Please enter all fields";
+  @override
+  get errPasswordMismatch => "Passwords do not match";
 
   // Reset Password Page
   @override
@@ -39,7 +43,6 @@ class English extends Language {
   get totalLessonTime => "Total lesson time is ";
   @override
   get enterRoom => "Enter lesson room";
-
   @override
   get recommendTutor => "Recommend Tutors";
   @override
@@ -68,6 +71,22 @@ class English extends Language {
   get wantToLearn => "Want to learn";
   @override
   get save => "Save";
+  @override
+  get errGetNewProfile => "Can't get new profile";
+  @override
+  get errUploadAvatar => "Upload avatar failed";
+  @override
+  get successUploadAvatar => "Upload avatar success";
+  @override
+  get errUpdateProfile => "Update profile failed";
+  @override
+  get successUpdateProfile => "Update profile success";
+  @override
+  get errPhoneNumber => "Invalid phone number";
+  @override
+  get errEnterName => "Please enter your name";
+  @override
+  get errBirthday => "Birthday is invalid";
 
   // Course page
   @override
@@ -76,6 +95,9 @@ class English extends Language {
   get searchCourse => "Search courses...";
   @override
   get lesson => " Lesson";
+  @override
+  get errNotAnyResult => "Not found any match result...";
+
   // Course Detail
   @override
   get aboutCourse => "About Course";
@@ -103,6 +125,12 @@ class English extends Language {
   get cancel => "Cancel";
   @override
   get goToMeeting => "Go to meeting";
+  @override
+  get dontHaveUpcoming => "You don't have any upcomming...";
+  @override
+  get removeUpcomingSuccess => "Remove upcoming success";
+  @override
+  get removeUpcomingFail => "You just can remove upcoming 2 hours before schedule";
 
   // Tutor search page and Tutor detail page
   @override
@@ -123,6 +151,8 @@ class English extends Language {
   get selectSchedule => "Select available schedule";
   @override
   get selectScheduleDetail => "Select available schedule time";
+  @override
+  get bookingSuccess => "Booking success";
 
   // Setting page
   @override
@@ -138,9 +168,13 @@ class English extends Language {
 
   // Change password page
   @override
-  get newPassword => "Mật khẩu mới";
+  get newPassword => "New password";
   @override
-  get confirmNewPassword => "Nhập lại mật khẩu mới";
+  get confirmNewPassword => "Enter new password again";
+  @override
+  get passwordAtLeast => "Password must be at least 6 characters";
+  @override
+  get changePasswordSuccess => "Change password success";
 
   // Session history page
   @override
@@ -149,10 +183,18 @@ class English extends Language {
   get watchRecord => "Watch record";
   @override
   get mark => "Mark: ";
+  @override
+  get tutorNotMark => "Tutor hasn't mark yet";
 
-    // Feedback page
+  // Feedback page
   @override
   get feedback => "Feedback";
   @override
   get hintFeedback => "Enter your feedback here...";
+  @override
+  get errEnterFeedback => "Please enter your feedback";
+  @override
+  get errFeedbackLength => "Feedback must be at least 3 words";
+  @override
+  get successFeedback => "Feedback success";
 }

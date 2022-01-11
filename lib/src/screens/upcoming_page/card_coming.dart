@@ -127,8 +127,8 @@ class UpComingCard extends StatelessWidget {
                           refetch(authProvider.tokens!.access.token);
                           showTopSnackBar(
                             context,
-                            const CustomSnackBar.success(
-                              message: "Remove upcomming successful.",
+                            CustomSnackBar.success(
+                              message: lang.removeUpcomingSuccess,
                               backgroundColor: Colors.green,
                             ),
                             showOutAnimationDuration: const Duration(milliseconds: 700),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/global_state/app_provider.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
 import 'package:lettutor_mobile/src/global_state/auth_provider.dart';
 import 'package:lettutor_mobile/src/screens/upcoming_page/card_coming.dart';
@@ -75,6 +76,7 @@ class _UpcomingPageState extends State<UpcomingPage> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
+    final lang = Provider.of<AppProvider>(context).language;
 
     setState(() {
       token = authProvider.tokens!.access.token;
@@ -104,7 +106,7 @@ class _UpcomingPageState extends State<UpcomingPage> {
                         Container(
                           margin: const EdgeInsets.only(top: 20),
                           child: Text(
-                            "You don't have any upcomming...",
+                            lang.dontHaveUpcoming,
                             style: TextStyle(color: Colors.grey[700]),
                           ),
                         ),
