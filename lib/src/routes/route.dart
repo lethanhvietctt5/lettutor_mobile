@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
 import 'package:lettutor_mobile/src/navigation.dart';
 import 'package:lettutor_mobile/src/screens/course/course.dart';
-import 'package:lettutor_mobile/src/screens/courses_search_page/book_detail.dart';
+import 'package:lettutor_mobile/src/screens/course/topic_course/topic_course.dart';
 import 'package:lettutor_mobile/src/screens/feedback_page.dart/feedback_page.dart';
 import 'package:lettutor_mobile/src/screens/login_page/forgot_pass.dart';
 import 'package:lettutor_mobile/src/screens/login_page/login.dart';
@@ -22,10 +22,10 @@ const String homePage = 'home';
 const String profilePage = 'profile';
 const String tutorProfilePage = 'tutorProfile';
 const String coursePage = 'course';
+const String courseTopicPDF = 'courseTopicPDF';
 const String sessionHistoryPage = 'sessionHistory';
 const String advancedSettingPage = 'advancedSetting';
 const String feedbackPage = 'feedback';
-const String bookDetailPage = 'bookDetail';
 const String changePasswordPage = 'changePassword';
 const String recordVideoPage = 'recordVideo';
 const String favoriteTutorPage = 'favoriteTutor';
@@ -46,8 +46,6 @@ Route<dynamic> controller(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const SessionHistoryPage());
     case advancedSettingPage:
       return MaterialPageRoute(builder: (context) => AdvancedSettingPage());
-    case bookDetailPage:
-      return MaterialPageRoute(builder: (context) => const BookDetail());
     case changePasswordPage:
       return MaterialPageRoute(builder: (context) => const ChangePasswordPage());
     case favoriteTutorPage:
@@ -57,6 +55,12 @@ Route<dynamic> controller(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) {
         Map<String, String> arg = settings.arguments as Map<String, String>;
         return RecordVideo(url: arg['url'] as String);
+      });
+
+    case courseTopicPDF:
+      return MaterialPageRoute(builder: (context) {
+        Map<String, String> arg = settings.arguments as Map<String, String>;
+        return CourseTopicPDFViewer(url: arg['url'] as String, title: arg['title'] as String);
       });
 
     case tutorProfilePage:

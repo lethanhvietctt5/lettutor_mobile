@@ -20,7 +20,6 @@ dependencies:
   top_snackbar_flutter: ^1.0.2
   intl: ^0.17.0
   flutter_rating_bar: ^4.0.0
-  flutter_cached_pdfview: ^0.4.0-nullsafety
   image_picker: ^0.8.4+4
   http: ^0.13.4
   cached_network_image: ^3.2.0
@@ -33,6 +32,7 @@ dependencies:
   flutter_facebook_auth: ^4.0.0
   jitsi_meet: ^4.0.0
   shared_preferences: ^2.0.11
+  syncfusion_flutter_pdfviewer: ^19.4.42-beta
 
 dev_dependencies:
   flutter_test:

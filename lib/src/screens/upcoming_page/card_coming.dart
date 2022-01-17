@@ -26,7 +26,6 @@ class UpComingCard extends StatelessWidget {
     final urlObject = utf8.decode(base64Decoded);
     final jsonRes = json.decode(urlObject);
     final String roomId = jsonRes['room'];
-    final String domainUrl = jsonRes["sub"];
     final String tokenMeeting = upcomming.studentMeetingLink.split("token=")[1];
 
     final lang = Provider.of<AppProvider>(context).language;

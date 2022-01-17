@@ -51,78 +51,79 @@ class _BannerHomePageState extends State<BannerHomePage> {
       padding: const EdgeInsets.symmetric(vertical: 30),
       width: MediaQuery.of(context).size.width,
       color: const Color(0xff0040D6),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            timeStamp != 0 && totalLessonTime != null
-                ? "${lang.totalLessonTime} ${covertTotalTime(totalLessonTime as Duration, lang)} "
-                : lang.wellcome,
-            style: const TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.bold),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-          nextlesson != null
-              ? Container(
-                  margin: const EdgeInsets.only(top: 8, bottom: 8),
-                  child: Text(
-                    lang.nextLesson,
-                    style: const TextStyle(fontSize: 13, color: Colors.white),
+      child: isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  timeStamp != 0 && totalLessonTime != null
+                      ? "${lang.totalLessonTime} ${covertTotalTime(totalLessonTime as Duration, lang)} "
+                      : lang.wellcome,
+                  style: const TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.bold),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                nextlesson != null
+                    ? Container(
+                        margin: const EdgeInsets.only(top: 8, bottom: 8),
+                        child: Text(
+                          lang.nextLesson,
+                          style: const TextStyle(fontSize: 13, color: Colors.white),
+                        ),
+                      )
+                    : Container(),
+                Text(
+                  nextlesson != null
+                      ? DateFormat.yMEd().format(DateTime.fromMillisecondsSinceEpoch(
+                              nextlesson!.scheduleDetailInfo!.startPeriodTimestamp)) +
+                          " " +
+                          DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(
+                              nextlesson!.scheduleDetailInfo!.startPeriodTimestamp)) +
+                          " - " +
+                          DateFormat('HH:mm').format(
+                              DateTime.fromMillisecondsSinceEpoch(nextlesson!.scheduleDetailInfo!.endPeriodTimestamp))
+                      : "",
+                  style: const TextStyle(fontSize: 13, color: Colors.white),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      if (nextlesson != null) {
+                        final base64Decoded = base64
+                            .decode(base64.normalize(nextlesson!.studentMeetingLink.split("token=")[1].split(".")[1]));
+                        final urlObject = utf8.decode(base64Decoded);
+                        final jsonRes = json.decode(urlObject);
+                        final String roomId = jsonRes['room'];
+                        final String tokenMeeting = nextlesson!.studentMeetingLink.split("token=")[1];
+
+                        final options = JitsiMeetingOptions(room: roomId)
+                          ..serverURL = "https://meet.lettutor.com"
+                          ..audioOnly = true
+                          ..audioMuted = true
+                          ..token = tokenMeeting
+                          ..videoMuted = true;
+
+                        await JitsiMeet.joinMeeting(options);
+                      } else {
+                        navigationIndex.index = 3;
+                      }
+                    },
+                    child: Container(
+                        padding: const EdgeInsets.only(top: 10, bottom: 10),
+                        child: Text(
+                          nextlesson != null ? lang.enterRoom : lang.bookAlesson,
+                          style: const TextStyle(color: Colors.blue, fontSize: 14, fontWeight: FontWeight.bold),
+                        )),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(1000))),
+                    ),
                   ),
                 )
-              : Container(),
-          Text(
-            nextlesson != null
-                ? DateFormat.yMEd().format(
-                        DateTime.fromMillisecondsSinceEpoch(nextlesson!.scheduleDetailInfo!.startPeriodTimestamp)) +
-                    " " +
-                    DateFormat('HH:mm').format(
-                        DateTime.fromMillisecondsSinceEpoch(nextlesson!.scheduleDetailInfo!.startPeriodTimestamp)) +
-                    " - " +
-                    DateFormat('HH:mm')
-                        .format(DateTime.fromMillisecondsSinceEpoch(nextlesson!.scheduleDetailInfo!.endPeriodTimestamp))
-                : "",
-            style: const TextStyle(fontSize: 13, color: Colors.white),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 10),
-            child: ElevatedButton(
-              onPressed: () async {
-                if (nextlesson != null) {
-                  final base64Decoded =
-                      base64.decode(base64.normalize(nextlesson!.studentMeetingLink.split("token=")[1].split(".")[1]));
-                  final urlObject = utf8.decode(base64Decoded);
-                  final jsonRes = json.decode(urlObject);
-                  final String roomId = jsonRes['room'];
-                  final String domainUrl = jsonRes["sub"];
-                  final String tokenMeeting = nextlesson!.studentMeetingLink.split("token=")[1];
-
-                  final options = JitsiMeetingOptions(room: roomId)
-                    ..serverURL = "https://meet.lettutor.com"
-                    ..audioOnly = true
-                    ..audioMuted = true
-                    ..token = tokenMeeting
-                    ..videoMuted = true;
-
-                  await JitsiMeet.joinMeeting(options);
-                } else {
-                  navigationIndex.index = 3;
-                }
-              },
-              child: Container(
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: Text(
-                    nextlesson != null ? lang.enterRoom : lang.bookAlesson,
-                    style: const TextStyle(color: Colors.blue, fontSize: 14, fontWeight: FontWeight.bold),
-                  )),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.white,
-                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(1000))),
-              ),
+              ],
             ),
-          )
-        ],
-      ),
     );
   }
 }
@@ -130,14 +131,6 @@ class _BannerHomePageState extends State<BannerHomePage> {
 String covertTotalTime(Duration d, Language lang) {
   String res = "";
   Duration total = d;
-  if (d.inDays > 0) {
-    if (lang.name == "EN") {
-      res += "${total.inDays} days ";
-    } else {
-      res += "${total.inDays} ngày ";
-    }
-    total = total - Duration(days: total.inDays);
-  }
   if (d.inHours > 0) {
     if (lang.name == "EN") {
       res += "${total.inHours} hours ";

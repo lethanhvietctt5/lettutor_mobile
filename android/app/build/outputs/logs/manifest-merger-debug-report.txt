@@ -1,0 +1,867 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:1:1-64:12
+INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:1:1-64:12
+INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:1:1-64:12
+INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:1:1-64:12
+MERGED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:1:1-64:12
+MERGED from [:firebase_auth] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
+MERGED from [:firebase_core] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
+MERGED from [:image_picker] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-19:12
+MERGED from [:flutter_plugin_android_lifecycle] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:sqflite] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:url_launcher_android] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-14:12
+MERGED from [:path_provider_android] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\path_provider_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_facebook_auth] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\flutter_facebook_auth\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:wakelock] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\wakelock\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:shared_preferences_android] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\shared_preferences_android\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:jitsi_meet] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\jitsi_meet\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-19:12
+MERGED from [:video_player] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\video_player\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:advance_pdf_viewer] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\advance_pdf_viewer\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:google_sign_in] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\google_sign_in\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.android:facebook-login:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\4691e870008b7a25fabd735bfc133ddc\jetified-facebook-login-12.2.0\AndroidManifest.xml:21:1-31:12
+MERGED from [com.facebook.android:facebook-common:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cebde7ae7979ee10587108daa648d2ce\jetified-facebook-common-12.2.0\AndroidManifest.xml:21:1-52:12
+MERGED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:21:1-60:12
+MERGED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:17:1-83:12
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\94f77ebcb16e8130d7bde0a91eb2d9f2\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.firebase:firebase-common:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7d89ca10f1cdfdc7d7953b0cad752c89\jetified-firebase-common-20.0.0\AndroidManifest.xml:15:1-40:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\8891497ef61610674e49506d3b7e1491\exifinterface-1.3.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cf571625f73afda1168e1011b27c2d73\jetified-exoplayer-hls-2.14.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\e817bab7b375d3d5b158a43bfac76329\jetified-exoplayer-dash-2.14.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\34975ab0ad51c622cd44ea9830a27fc8\jetified-exoplayer-smoothstreaming-2.14.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\a62c9f4de2ec71ee13fa8d581859d3dc\jetified-exoplayer-core-2.14.1\AndroidManifest.xml:17:1-26:12
+MERGED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:2:1-64:12
+MERGED from [com.facebook.react:react-native-device-info:8.0.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7b351d24df7e9e52b2539495a4b86c30\jetified-react-native-device-info-8.0.0-jitsi-7097494\AndroidManifest.xml:2:1-11:12
+MERGED from [com.facebook.react:react-native-google-signin:3.0.1-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\0f9d732183eb349ad42104a9eccc2326\jetified-react-native-google-signin-3.0.1-jitsi-7097494\AndroidManifest.xml:2:1-11:12
+MERGED from [com.facebook.react:react-native-async-storage:1.13.2-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\82eeb671e90d6834806397cfaa4b75c3\jetified-react-native-async-storage-1.13.2-jitsi-7097494\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.react:react-native-background-timer:2.4.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\56a7029765090bdbb9380e71e7872a54\jetified-react-native-background-timer-2.4.0-jitsi-7097494\AndroidManifest.xml:2:1-13:12
+MERGED from [com.facebook.react:react-native-calendar-events:2.0.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\eb3155a9e8b726982fe5b0e6958b2595\jetified-react-native-calendar-events-2.0.0-jitsi-7097494\AndroidManifest.xml:2:1-14:12
+MERGED from [com.facebook.react:react-native-community_netinfo:4.1.5-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\36efab2c9593aa0dd768ded3ceb52b6f\jetified-react-native-community_netinfo-4.1.5-jitsi-7097494\AndroidManifest.xml:2:1-11:12
+MERGED from [com.facebook.react:react-native-default-preference:1.4.2-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\6dadefa01b4d917f0b9f9e81764375cd\jetified-react-native-default-preference-1.4.2-jitsi-7097494\AndroidManifest.xml:2:1-11:12
+MERGED from [com.facebook.react:react-native-immersive:2.0.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\06a11a83b3e431adeda7c1d69152e950\jetified-react-native-immersive-2.0.0-jitsi-7097494\AndroidManifest.xml:2:1-11:12
+MERGED from [com.facebook.react:react-native-keep-awake:4.0.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\49ca2f2aeeaeb1aeec201d7ed765b6ab\jetified-react-native-keep-awake-4.0.0-jitsi-7097494\AndroidManifest.xml:2:1-11:12
+MERGED from [com.facebook.react:react-native-sound:0.11.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\861abdbd6ebc406a3a6054aa4c6f5cac\jetified-react-native-sound-0.11.0-jitsi-7097494\AndroidManifest.xml:2:1-12:12
+MERGED from [com.facebook.react:react-native-svg:12.1.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\136c9227aa404bdb98831d1bb63a5ee2\jetified-react-native-svg-12.1.0-jitsi-7097494\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.react:react-native-webrtc:1.89.1-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\2de6cc304b025a06ae100a5845191d20\jetified-react-native-webrtc-1.89.1-jitsi-7097494\AndroidManifest.xml:2:1-11:12
+MERGED from [com.facebook.react:react-native-webview:11.0.2-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\60c6e710c21d43bb3b15b5f21e4a88a3\jetified-react-native-webview-11.0.2-jitsi-7097494\AndroidManifest.xml:2:1-23:12
+MERGED from [com.facebook.react:react-native-splash-screen:3.2.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\ed2bd6bc8e183266014933baca8a3d91\jetified-react-native-splash-screen-3.2.0-jitsi-7097494\AndroidManifest.xml:2:1-14:12
+MERGED from [com.facebook.react:react-native:0.61.5-jitsi.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\83e408d1cd184199feb709839689172b\jetified-react-native-0.61.5-jitsi.2\AndroidManifest.xml:2:1-13:12
+MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\4cb4af3df6336fc31929dfd2d587657a\appcompat-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bd5f0a1ea54e2950917dcd87df194ac9\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.browser:browser:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\23cade699bf53a3d1fb147a3c64c4671\browser-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\b7185aece0e1fcd8bdb7796a200bf964\legacy-support-core-ui-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.gms:play-services-iid:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bd4310f0c509aa66fb58bf1bd1f11b99\jetified-play-services-iid-17.0.0\AndroidManifest.xml:17:1-28:12
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\eac6610885ef88f38cee06fd5abeda0d\jetified-play-services-stats-17.0.0\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\30d8edef14dd0f48dc18e978c3bef2b1\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\9960116b889c771633b45c9e15493f35\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3490cdf3092be7feb107e6ddf3e83c07\swiperefreshlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\9d5eec1f73ab9f0c8e08f845776271c5\jetified-exoplayer-extractor-2.14.1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\a8c9f8c2b93b9f707ce7a3666a4eecea\jetified-exoplayer-common-2.14.1\AndroidManifest.xml:17:1-26:12
+MERGED from [com.google.firebase:firebase-components:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\dbf2e521d41c76676a22e67bc1b880e2\jetified-firebase-components-17.0.0\AndroidManifest.xml:15:1-23:12
+MERGED from [androidx.core:core-ktx:1.3.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\d398a773c21687442854d93f9d59e5cf\jetified-core-ktx-1.3.2\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-auth:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\73e0508f5dcc83ba40d6282813cfd7e6\jetified-play-services-auth-17.0.0\AndroidManifest.xml:17:1-39:12
+MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\da19b37809f8057c9df6993317b32dcb\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bbcad06a2e8b35be02135beac5e1d474\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\ce506c7a62f8ded1dca2bb5b2f67411d\jetified-play-services-auth-base-17.0.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\028e2af049aff9ad02b583c22895ed29\jetified-play-services-base-17.1.0\AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\edde1debf9ec2c22a689858215bc4941\jetified-play-services-tasks-17.0.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:17.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\53033d4c1010726b62dafde69881c33f\jetified-play-services-basement-17.1.0\AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.fragment:fragment:1.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\52d909d8296cfeaf60c922016687a798\fragment-1.3.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7f6b5c16f0fa81fd49d08f60fd263756\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\49f5e5a48e7ebf35afdb16ca3a428868\jetified-activity-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7b1ad8e817a3b184c406032bfe7d7d3c\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\2d19afa683739754b80af2f60434f0c7\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\89d062dea2ebfbfb1c7ebf7196afa83e\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\002f5a2bf7e19dea3e989ebdd7700ffc\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\51e9f2b05652e43d44a9aee8269e114f\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7ade2a4be3e91f7e51e3a34817e2a398\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\5bc583802523b9960fcf2a9cb17bd331\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\c0e1df096afeee9ef7cb4c7981cbc2fc\print-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\22832a3981fc2520811f981e4f46cfd8\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\27332e79591033e4860df3db8315a58f\media-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\99eeffc8da5f2df64f2d6fb90aa0086c\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3521db25050072492236aaa62bd6f8b0\coordinatorlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\07b6467fca31199399404df5c7632759\slidingpanelayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\ab4193f567ed2ddd535b082ce8b8bc48\customview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\23fdb3d127fc04113ceb58d203213b99\asynclayoutinflater-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.3.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3752aea6c90a377f75867a4a77bb1a67\core-1.3.2\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\946ad84ff42d7c1f49298b7cf58bf409\versionedparcelable-1.1.0\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\b7bcbd9f8db77507c504dc52b0ae6e1f\jetified-lifecycle-viewmodel-savedstate-2.3.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\b3406ab12cd75a24da6f1c37283b9c69\lifecycle-viewmodel-2.3.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\95ecc1c9aef6321726fafd1b82b7e979\jetified-savedstate-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\96f1f0fe334f645e89f43df9e81a6f2b\lifecycle-runtime-2.3.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1f9c2cb07695e06e6ed23de90fa0170a\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\2f73d0277a9ec27cc526e96bd7f3b2c7\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\63bff83c1df6ab7af81eb1bb6057a39e\lifecycle-livedata-core-2.3.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\6b70b00e5132fd3f024474fe7d8f6bd4\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [org.webkit:android-jsc:r245459] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3f258c7bd2aff4905a3bf18f17c9728d\jetified-android-jsc-r245459\AndroidManifest.xml:2:1-11:12
+MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1338e676c0bf471f4f47d86d0bef2714\jetified-timber-4.7.1\AndroidManifest.xml:2:1-9:12
+MERGED from [com.squareup.duktape:duktape-android:1.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\873b0c53696f242b3e4d21805ea3709a\jetified-duktape-android-1.3.0\AndroidManifest.xml:2:1-14:12
+MERGED from [com.android.installreferrer:installreferrer:1.1.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\57fdf571449dd36048bfac49b3c1a4a5\jetified-installreferrer-1.1.2\AndroidManifest.xml:2:1-13:12
+MERGED from [com.facebook.fresco:fresco:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\037747ddf451b54778d54adcef04a16f\jetified-fresco-2.0.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cdda02e7bf5a147ba41b3e71ab2f2e1d\jetified-imagepipeline-okhttp3-2.0.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:drawee:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\86e144a6d86175ed88c9199626b839ce\jetified-drawee-2.0.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:nativeimagefilters:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bfde3605b6f99f7e5ee00771e8a992df\jetified-nativeimagefilters-2.0.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3d11b9fd6899fe17045c30182de499b3\jetified-imagepipeline-2.0.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\2dc49316fb82916df5084e877c378c85\jetified-nativeimagetranscoder-2.0.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\6d780f6139896c8a09c75bcbba0bfea8\jetified-imagepipeline-base-2.0.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.soloader:soloader:0.6.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\811a5164361859d33ca8298a13666092\jetified-soloader-0.6.0\AndroidManifest.xml:2:1-13:12
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7b1d9a15c38b16a8d8b44c6208344a8c\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.facebook.fresco:fbcore:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3e1d67713a3a37883035e586b346b5c8\jetified-fbcore-2.0.0\AndroidManifest.xml:2:1-9:12
+INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+	package
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:2:5-42
+		INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\debug\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:1:1-64:12
+		INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\debug\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:3:5-51
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:1:1-64:12
+		INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\debug\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:1:11-69
+application
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:4:4-59:19
+MERGED from [:firebase_auth] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_auth] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_core] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_core] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:image_picker] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-17:19
+MERGED from [:image_picker] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-17:19
+MERGED from [:url_launcher_android] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-12:19
+MERGED from [:url_launcher_android] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-12:19
+MERGED from [:jitsi_meet] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\jitsi_meet\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-17:19
+MERGED from [:jitsi_meet] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\jitsi_meet\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-17:19
+MERGED from [com.facebook.android:facebook-login:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\4691e870008b7a25fabd735bfc133ddc\jetified-facebook-login-12.2.0\AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-login:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\4691e870008b7a25fabd735bfc133ddc\jetified-facebook-login-12.2.0\AndroidManifest.xml:28:5-29:19
+MERGED from [com.facebook.android:facebook-common:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cebde7ae7979ee10587108daa648d2ce\jetified-facebook-common-12.2.0\AndroidManifest.xml:29:5-50:19
+MERGED from [com.facebook.android:facebook-common:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cebde7ae7979ee10587108daa648d2ce\jetified-facebook-common-12.2.0\AndroidManifest.xml:29:5-50:19
+MERGED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:28:5-58:19
+MERGED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:28:5-58:19
+MERGED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:26:5-81:19
+MERGED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:26:5-81:19
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\94f77ebcb16e8130d7bde0a91eb2d9f2\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\94f77ebcb16e8130d7bde0a91eb2d9f2\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-common:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7d89ca10f1cdfdc7d7953b0cad752c89\jetified-firebase-common-20.0.0\AndroidManifest.xml:25:5-38:19
+MERGED from [com.google.firebase:firebase-common:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7d89ca10f1cdfdc7d7953b0cad752c89\jetified-firebase-common-20.0.0\AndroidManifest.xml:25:5-38:19
+MERGED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:32:5-62:19
+MERGED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:32:5-62:19
+MERGED from [com.facebook.react:react-native-webview:11.0.2-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\60c6e710c21d43bb3b15b5f21e4a88a3\jetified-react-native-webview-11.0.2-jitsi-7097494\AndroidManifest.xml:11:5-21:19
+MERGED from [com.facebook.react:react-native-webview:11.0.2-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\60c6e710c21d43bb3b15b5f21e4a88a3\jetified-react-native-webview-11.0.2-jitsi-7097494\AndroidManifest.xml:11:5-21:19
+MERGED from [com.facebook.react:react-native-splash-screen:3.2.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\ed2bd6bc8e183266014933baca8a3d91\jetified-react-native-splash-screen-3.2.0-jitsi-7097494\AndroidManifest.xml:11:5-12:19
+MERGED from [com.facebook.react:react-native-splash-screen:3.2.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\ed2bd6bc8e183266014933baca8a3d91\jetified-react-native-splash-screen-3.2.0-jitsi-7097494\AndroidManifest.xml:11:5-12:19
+MERGED from [com.facebook.react:react-native:0.61.5-jitsi.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\83e408d1cd184199feb709839689172b\jetified-react-native-0.61.5-jitsi.2\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.react:react-native:0.61.5-jitsi.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\83e408d1cd184199feb709839689172b\jetified-react-native-0.61.5-jitsi.2\AndroidManifest.xml:11:5-20
+MERGED from [com.google.android.gms:play-services-iid:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bd4310f0c509aa66fb58bf1bd1f11b99\jetified-play-services-iid-17.0.0\AndroidManifest.xml:26:5-20
+MERGED from [com.google.android.gms:play-services-iid:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bd4310f0c509aa66fb58bf1bd1f11b99\jetified-play-services-iid-17.0.0\AndroidManifest.xml:26:5-20
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\eac6610885ef88f38cee06fd5abeda0d\jetified-play-services-stats-17.0.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\eac6610885ef88f38cee06fd5abeda0d\jetified-play-services-stats-17.0.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-auth:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\73e0508f5dcc83ba40d6282813cfd7e6\jetified-play-services-auth-17.0.0\AndroidManifest.xml:22:5-37:19
+MERGED from [com.google.android.gms:play-services-auth:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\73e0508f5dcc83ba40d6282813cfd7e6\jetified-play-services-auth-17.0.0\AndroidManifest.xml:22:5-37:19
+MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bbcad06a2e8b35be02135beac5e1d474\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bbcad06a2e8b35be02135beac5e1d474\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\028e2af049aff9ad02b583c22895ed29\jetified-play-services-base-17.1.0\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\028e2af049aff9ad02b583c22895ed29\jetified-play-services-base-17.1.0\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\edde1debf9ec2c22a689858215bc4941\jetified-play-services-tasks-17.0.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\edde1debf9ec2c22a689858215bc4941\jetified-play-services-tasks-17.0.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:17.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\53033d4c1010726b62dafde69881c33f\jetified-play-services-basement-17.1.0\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:17.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\53033d4c1010726b62dafde69881c33f\jetified-play-services-basement-17.1.0\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.core:core:1.3.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3752aea6c90a377f75867a4a77bb1a67\core-1.3.2\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.3.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3752aea6c90a377f75867a4a77bb1a67\core-1.3.2\AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\946ad84ff42d7c1f49298b7cf58bf409\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\946ad84ff42d7c1f49298b7cf58bf409\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
+MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1338e676c0bf471f4f47d86d0bef2714\jetified-timber-4.7.1\AndroidManifest.xml:7:5-20
+MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1338e676c0bf471f4f47d86d0bef2714\jetified-timber-4.7.1\AndroidManifest.xml:7:5-20
+MERGED from [com.squareup.duktape:duktape-android:1.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\873b0c53696f242b3e4d21805ea3709a\jetified-duktape-android-1.3.0\AndroidManifest.xml:12:5-20
+MERGED from [com.squareup.duktape:duktape-android:1.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\873b0c53696f242b3e4d21805ea3709a\jetified-duktape-android-1.3.0\AndroidManifest.xml:12:5-20
+MERGED from [com.android.installreferrer:installreferrer:1.1.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\57fdf571449dd36048bfac49b3c1a4a5\jetified-installreferrer-1.1.2\AndroidManifest.xml:11:5-20
+MERGED from [com.android.installreferrer:installreferrer:1.1.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\57fdf571449dd36048bfac49b3c1a4a5\jetified-installreferrer-1.1.2\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.soloader:soloader:0.6.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\811a5164361859d33ca8298a13666092\jetified-soloader-0.6.0\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.soloader:soloader:0.6.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\811a5164361859d33ca8298a13666092\jetified-soloader-0.6.0\AndroidManifest.xml:11:5-20
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.3.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3752aea6c90a377f75867a4a77bb1a67\core-1.3.2\AndroidManifest.xml:24:18-86
+	android:supportsRtl
+		ADDED from [com.facebook.android:facebook-login:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\4691e870008b7a25fabd735bfc133ddc\jetified-facebook-login-12.2.0\AndroidManifest.xml:28:18-44
+	android:label
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:6:9-40
+		REJECTED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:34:9-41
+		REJECTED from [com.facebook.react:react-native-splash-screen:3.2.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\ed2bd6bc8e183266014933baca8a3d91\jetified-react-native-splash-screen-3.2.0-jitsi-7097494\AndroidManifest.xml:11:18-50
+	android:allowBackup
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:33:9-35
+	android:icon
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:8:9-43
+	tools:replace
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:5:9-38
+	android:usesCleartextTraffic
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:7:9-44
+activity#com.example.lettutor_mobile.MainActivity
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:9:9-37:20
+	android:launchMode
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:11:13-43
+	android:hardwareAccelerated
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:14:13-47
+	android:windowSoftInputMode
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:15:13-55
+	android:configChanges
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:13:13-163
+	android:theme
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:12:13-47
+	android:name
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:10:13-41
+meta-data#io.flutter.embedding.android.NormalTheme
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:20:13-23:17
+	android:resource
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:22:15-52
+	android:name
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:21:15-70
+meta-data#io.flutter.embedding.android.SplashScreenDrawable
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:29:13-32:17
+	android:resource
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:31:15-61
+	android:name
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:30:15-79
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:33:13-36:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:34:17-68
+	android:name
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:34:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:35:17-76
+	android:name
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:35:27-74
+meta-data#flutterEmbedding
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:40:9-42:33
+	android:value
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:42:13-30
+	android:name
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:41:13-44
+meta-data#com.facebook.sdk.ApplicationId
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:44:9-107
+	android:value
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:44:66-105
+	android:name
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:44:20-65
+activity#com.facebook.FacebookActivity
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:45:9-48:46
+MERGED from [com.facebook.android:facebook-common:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cebde7ae7979ee10587108daa648d2ce\jetified-facebook-common-12.2.0\AndroidManifest.xml:30:9-33:66
+MERGED from [com.facebook.android:facebook-common:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cebde7ae7979ee10587108daa648d2ce\jetified-facebook-common-12.2.0\AndroidManifest.xml:30:9-33:66
+	android:label
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:48:11-43
+	android:configChanges
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:47:11-95
+	android:theme
+		ADDED from [com.facebook.android:facebook-common:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cebde7ae7979ee10587108daa648d2ce\jetified-facebook-common-12.2.0\AndroidManifest.xml:33:13-63
+	android:name
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:46:11-55
+activity#com.facebook.CustomTabActivity
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:49:9-58:20
+MERGED from [com.facebook.android:facebook-common:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cebde7ae7979ee10587108daa648d2ce\jetified-facebook-common-12.2.0\AndroidManifest.xml:35:9-49:20
+MERGED from [com.facebook.android:facebook-common:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cebde7ae7979ee10587108daa648d2ce\jetified-facebook-common-12.2.0\AndroidManifest.xml:35:9-49:20
+	tools:node
+		ADDED from [com.facebook.android:facebook-common:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cebde7ae7979ee10587108daa648d2ce\jetified-facebook-common-12.2.0\AndroidManifest.xml:38:13-31
+	android:exported
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:51:11-34
+	android:name
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:50:11-56
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:scheme:@string/fb_login_protocol_scheme
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:52:11-57:27
+action#android.intent.action.VIEW
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:53:13-65
+	android:name
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:53:21-62
+category#android.intent.category.DEFAULT
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:54:13-72
+	android:name
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:54:23-69
+category#android.intent.category.BROWSABLE
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:55:13-74
+	android:name
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:55:23-71
+data
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:56:13-71
+	android:scheme
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:56:19-68
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:60:5-66
+MERGED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:60:5-66
+MERGED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:60:5-66
+MERGED from [:google_sign_in] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\google_sign_in\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-67
+MERGED from [:google_sign_in] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\google_sign_in\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-67
+MERGED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:23:5-67
+MERGED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:13:5-67
+MERGED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:13:5-67
+MERGED from [com.google.android.gms:play-services-iid:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bd4310f0c509aa66fb58bf1bd1f11b99\jetified-play-services-iid-17.0.0\AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.gms:play-services-iid:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bd4310f0c509aa66fb58bf1bd1f11b99\jetified-play-services-iid-17.0.0\AndroidManifest.xml:24:5-67
+	android:name
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:60:22-64
+queries
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:61:5-63:15
+provider
+ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:62:9-89
+	android:authorities
+		ADDED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml:62:19-86
+uses-sdk
+INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml
+MERGED from [:firebase_auth] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_auth] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:image_picker] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:image_picker] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher_android] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher_android] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:path_provider_android] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\path_provider_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:path_provider_android] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\path_provider_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_facebook_auth] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\flutter_facebook_auth\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_facebook_auth] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\flutter_facebook_auth\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:wakelock] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\wakelock\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:wakelock] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\wakelock\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_android] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\shared_preferences_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_android] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\shared_preferences_android\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:jitsi_meet] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\jitsi_meet\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:jitsi_meet] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\jitsi_meet\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:video_player] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\video_player\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:video_player] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\video_player\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:advance_pdf_viewer] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\advance_pdf_viewer\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:advance_pdf_viewer] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\advance_pdf_viewer\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:google_sign_in] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\google_sign_in\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:google_sign_in] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\google_sign_in\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [com.facebook.android:facebook-login:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\4691e870008b7a25fabd735bfc133ddc\jetified-facebook-login-12.2.0\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-login:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\4691e870008b7a25fabd735bfc133ddc\jetified-facebook-login-12.2.0\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-common:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cebde7ae7979ee10587108daa648d2ce\jetified-facebook-common-12.2.0\AndroidManifest.xml:25:5-27:41
+MERGED from [com.facebook.android:facebook-common:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cebde7ae7979ee10587108daa648d2ce\jetified-facebook-common-12.2.0\AndroidManifest.xml:25:5-27:41
+MERGED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:24:5-26:41
+MERGED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:24:5-26:41
+MERGED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:21:5-44
+MERGED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:21:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\94f77ebcb16e8130d7bde0a91eb2d9f2\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\94f77ebcb16e8130d7bde0a91eb2d9f2\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-common:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7d89ca10f1cdfdc7d7953b0cad752c89\jetified-firebase-common-20.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.firebase:firebase-common:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7d89ca10f1cdfdc7d7953b0cad752c89\jetified-firebase-common-20.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\8891497ef61610674e49506d3b7e1491\exifinterface-1.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\8891497ef61610674e49506d3b7e1491\exifinterface-1.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cf571625f73afda1168e1011b27c2d73\jetified-exoplayer-hls-2.14.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-hls:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cf571625f73afda1168e1011b27c2d73\jetified-exoplayer-hls-2.14.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\e817bab7b375d3d5b158a43bfac76329\jetified-exoplayer-dash-2.14.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-dash:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\e817bab7b375d3d5b158a43bfac76329\jetified-exoplayer-dash-2.14.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\34975ab0ad51c622cd44ea9830a27fc8\jetified-exoplayer-smoothstreaming-2.14.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-smoothstreaming:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\34975ab0ad51c622cd44ea9830a27fc8\jetified-exoplayer-smoothstreaming-2.14.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\a62c9f4de2ec71ee13fa8d581859d3dc\jetified-exoplayer-core-2.14.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\a62c9f4de2ec71ee13fa8d581859d3dc\jetified-exoplayer-core-2.14.1\AndroidManifest.xml:20:5-22:41
+MERGED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:6:5-8:41
+MERGED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:6:5-8:41
+MERGED from [com.facebook.react:react-native-device-info:8.0.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7b351d24df7e9e52b2539495a4b86c30\jetified-react-native-device-info-8.0.0-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-device-info:8.0.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7b351d24df7e9e52b2539495a4b86c30\jetified-react-native-device-info-8.0.0-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-google-signin:3.0.1-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\0f9d732183eb349ad42104a9eccc2326\jetified-react-native-google-signin-3.0.1-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-google-signin:3.0.1-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\0f9d732183eb349ad42104a9eccc2326\jetified-react-native-google-signin-3.0.1-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-async-storage:1.13.2-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\82eeb671e90d6834806397cfaa4b75c3\jetified-react-native-async-storage-1.13.2-jitsi-7097494\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.react:react-native-async-storage:1.13.2-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\82eeb671e90d6834806397cfaa4b75c3\jetified-react-native-async-storage-1.13.2-jitsi-7097494\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.react:react-native-background-timer:2.4.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\56a7029765090bdbb9380e71e7872a54\jetified-react-native-background-timer-2.4.0-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-background-timer:2.4.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\56a7029765090bdbb9380e71e7872a54\jetified-react-native-background-timer-2.4.0-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-calendar-events:2.0.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\eb3155a9e8b726982fe5b0e6958b2595\jetified-react-native-calendar-events-2.0.0-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-calendar-events:2.0.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\eb3155a9e8b726982fe5b0e6958b2595\jetified-react-native-calendar-events-2.0.0-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-community_netinfo:4.1.5-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\36efab2c9593aa0dd768ded3ceb52b6f\jetified-react-native-community_netinfo-4.1.5-jitsi-7097494\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.react:react-native-community_netinfo:4.1.5-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\36efab2c9593aa0dd768ded3ceb52b6f\jetified-react-native-community_netinfo-4.1.5-jitsi-7097494\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.react:react-native-default-preference:1.4.2-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\6dadefa01b4d917f0b9f9e81764375cd\jetified-react-native-default-preference-1.4.2-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-default-preference:1.4.2-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\6dadefa01b4d917f0b9f9e81764375cd\jetified-react-native-default-preference-1.4.2-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-immersive:2.0.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\06a11a83b3e431adeda7c1d69152e950\jetified-react-native-immersive-2.0.0-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-immersive:2.0.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\06a11a83b3e431adeda7c1d69152e950\jetified-react-native-immersive-2.0.0-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-keep-awake:4.0.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\49ca2f2aeeaeb1aeec201d7ed765b6ab\jetified-react-native-keep-awake-4.0.0-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-keep-awake:4.0.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\49ca2f2aeeaeb1aeec201d7ed765b6ab\jetified-react-native-keep-awake-4.0.0-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-sound:0.11.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\861abdbd6ebc406a3a6054aa4c6f5cac\jetified-react-native-sound-0.11.0-jitsi-7097494\AndroidManifest.xml:8:5-10:41
+MERGED from [com.facebook.react:react-native-sound:0.11.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\861abdbd6ebc406a3a6054aa4c6f5cac\jetified-react-native-sound-0.11.0-jitsi-7097494\AndroidManifest.xml:8:5-10:41
+MERGED from [com.facebook.react:react-native-svg:12.1.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\136c9227aa404bdb98831d1bb63a5ee2\jetified-react-native-svg-12.1.0-jitsi-7097494\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.react:react-native-svg:12.1.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\136c9227aa404bdb98831d1bb63a5ee2\jetified-react-native-svg-12.1.0-jitsi-7097494\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.react:react-native-webrtc:1.89.1-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\2de6cc304b025a06ae100a5845191d20\jetified-react-native-webrtc-1.89.1-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-webrtc:1.89.1-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\2de6cc304b025a06ae100a5845191d20\jetified-react-native-webrtc-1.89.1-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-webview:11.0.2-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\60c6e710c21d43bb3b15b5f21e4a88a3\jetified-react-native-webview-11.0.2-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-webview:11.0.2-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\60c6e710c21d43bb3b15b5f21e4a88a3\jetified-react-native-webview-11.0.2-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-splash-screen:3.2.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\ed2bd6bc8e183266014933baca8a3d91\jetified-react-native-splash-screen-3.2.0-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native-splash-screen:3.2.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\ed2bd6bc8e183266014933baca8a3d91\jetified-react-native-splash-screen-3.2.0-jitsi-7097494\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native:0.61.5-jitsi.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\83e408d1cd184199feb709839689172b\jetified-react-native-0.61.5-jitsi.2\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native:0.61.5-jitsi.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\83e408d1cd184199feb709839689172b\jetified-react-native-0.61.5-jitsi.2\AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\4cb4af3df6336fc31929dfd2d587657a\appcompat-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\4cb4af3df6336fc31929dfd2d587657a\appcompat-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bd5f0a1ea54e2950917dcd87df194ac9\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bd5f0a1ea54e2950917dcd87df194ac9\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.browser:browser:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\23cade699bf53a3d1fb147a3c64c4671\browser-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.browser:browser:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\23cade699bf53a3d1fb147a3c64c4671\browser-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\b7185aece0e1fcd8bdb7796a200bf964\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\b7185aece0e1fcd8bdb7796a200bf964\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-iid:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bd4310f0c509aa66fb58bf1bd1f11b99\jetified-play-services-iid-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-iid:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bd4310f0c509aa66fb58bf1bd1f11b99\jetified-play-services-iid-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\eac6610885ef88f38cee06fd5abeda0d\jetified-play-services-stats-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\eac6610885ef88f38cee06fd5abeda0d\jetified-play-services-stats-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\30d8edef14dd0f48dc18e978c3bef2b1\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\30d8edef14dd0f48dc18e978c3bef2b1\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\9960116b889c771633b45c9e15493f35\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\9960116b889c771633b45c9e15493f35\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3490cdf3092be7feb107e6ddf3e83c07\swiperefreshlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3490cdf3092be7feb107e6ddf3e83c07\swiperefreshlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\9d5eec1f73ab9f0c8e08f845776271c5\jetified-exoplayer-extractor-2.14.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-extractor:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\9d5eec1f73ab9f0c8e08f845776271c5\jetified-exoplayer-extractor-2.14.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\a8c9f8c2b93b9f707ce7a3666a4eecea\jetified-exoplayer-common-2.14.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\a8c9f8c2b93b9f707ce7a3666a4eecea\jetified-exoplayer-common-2.14.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.firebase:firebase-components:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\dbf2e521d41c76676a22e67bc1b880e2\jetified-firebase-components-17.0.0\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-components:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\dbf2e521d41c76676a22e67bc1b880e2\jetified-firebase-components-17.0.0\AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.core:core-ktx:1.3.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\d398a773c21687442854d93f9d59e5cf\jetified-core-ktx-1.3.2\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.core:core-ktx:1.3.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\d398a773c21687442854d93f9d59e5cf\jetified-core-ktx-1.3.2\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android.gms:play-services-auth:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\73e0508f5dcc83ba40d6282813cfd7e6\jetified-play-services-auth-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\73e0508f5dcc83ba40d6282813cfd7e6\jetified-play-services-auth-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\da19b37809f8057c9df6993317b32dcb\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\da19b37809f8057c9df6993317b32dcb\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bbcad06a2e8b35be02135beac5e1d474\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bbcad06a2e8b35be02135beac5e1d474\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\ce506c7a62f8ded1dca2bb5b2f67411d\jetified-play-services-auth-base-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\ce506c7a62f8ded1dca2bb5b2f67411d\jetified-play-services-auth-base-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\028e2af049aff9ad02b583c22895ed29\jetified-play-services-base-17.1.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\028e2af049aff9ad02b583c22895ed29\jetified-play-services-base-17.1.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\edde1debf9ec2c22a689858215bc4941\jetified-play-services-tasks-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\edde1debf9ec2c22a689858215bc4941\jetified-play-services-tasks-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\53033d4c1010726b62dafde69881c33f\jetified-play-services-basement-17.1.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\53033d4c1010726b62dafde69881c33f\jetified-play-services-basement-17.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\52d909d8296cfeaf60c922016687a798\fragment-1.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\52d909d8296cfeaf60c922016687a798\fragment-1.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7f6b5c16f0fa81fd49d08f60fd263756\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7f6b5c16f0fa81fd49d08f60fd263756\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\49f5e5a48e7ebf35afdb16ca3a428868\jetified-activity-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\49f5e5a48e7ebf35afdb16ca3a428868\jetified-activity-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7b1ad8e817a3b184c406032bfe7d7d3c\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7b1ad8e817a3b184c406032bfe7d7d3c\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\2d19afa683739754b80af2f60434f0c7\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\2d19afa683739754b80af2f60434f0c7\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\89d062dea2ebfbfb1c7ebf7196afa83e\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\89d062dea2ebfbfb1c7ebf7196afa83e\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\002f5a2bf7e19dea3e989ebdd7700ffc\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\002f5a2bf7e19dea3e989ebdd7700ffc\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\51e9f2b05652e43d44a9aee8269e114f\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\51e9f2b05652e43d44a9aee8269e114f\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7ade2a4be3e91f7e51e3a34817e2a398\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7ade2a4be3e91f7e51e3a34817e2a398\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\5bc583802523b9960fcf2a9cb17bd331\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\5bc583802523b9960fcf2a9cb17bd331\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\c0e1df096afeee9ef7cb4c7981cbc2fc\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\c0e1df096afeee9ef7cb4c7981cbc2fc\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\22832a3981fc2520811f981e4f46cfd8\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\22832a3981fc2520811f981e4f46cfd8\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\27332e79591033e4860df3db8315a58f\media-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\27332e79591033e4860df3db8315a58f\media-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\99eeffc8da5f2df64f2d6fb90aa0086c\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\99eeffc8da5f2df64f2d6fb90aa0086c\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3521db25050072492236aaa62bd6f8b0\coordinatorlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3521db25050072492236aaa62bd6f8b0\coordinatorlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\07b6467fca31199399404df5c7632759\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\07b6467fca31199399404df5c7632759\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\ab4193f567ed2ddd535b082ce8b8bc48\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\ab4193f567ed2ddd535b082ce8b8bc48\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\23fdb3d127fc04113ceb58d203213b99\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\23fdb3d127fc04113ceb58d203213b99\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.3.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3752aea6c90a377f75867a4a77bb1a67\core-1.3.2\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.3.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3752aea6c90a377f75867a4a77bb1a67\core-1.3.2\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\946ad84ff42d7c1f49298b7cf58bf409\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\946ad84ff42d7c1f49298b7cf58bf409\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\b7bcbd9f8db77507c504dc52b0ae6e1f\jetified-lifecycle-viewmodel-savedstate-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\b7bcbd9f8db77507c504dc52b0ae6e1f\jetified-lifecycle-viewmodel-savedstate-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\b3406ab12cd75a24da6f1c37283b9c69\lifecycle-viewmodel-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\b3406ab12cd75a24da6f1c37283b9c69\lifecycle-viewmodel-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\95ecc1c9aef6321726fafd1b82b7e979\jetified-savedstate-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\95ecc1c9aef6321726fafd1b82b7e979\jetified-savedstate-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\96f1f0fe334f645e89f43df9e81a6f2b\lifecycle-runtime-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\96f1f0fe334f645e89f43df9e81a6f2b\lifecycle-runtime-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1f9c2cb07695e06e6ed23de90fa0170a\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1f9c2cb07695e06e6ed23de90fa0170a\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\2f73d0277a9ec27cc526e96bd7f3b2c7\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\2f73d0277a9ec27cc526e96bd7f3b2c7\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\63bff83c1df6ab7af81eb1bb6057a39e\lifecycle-livedata-core-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\63bff83c1df6ab7af81eb1bb6057a39e\lifecycle-livedata-core-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\6b70b00e5132fd3f024474fe7d8f6bd4\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\6b70b00e5132fd3f024474fe7d8f6bd4\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [org.webkit:android-jsc:r245459] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3f258c7bd2aff4905a3bf18f17c9728d\jetified-android-jsc-r245459\AndroidManifest.xml:7:5-9:41
+MERGED from [org.webkit:android-jsc:r245459] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3f258c7bd2aff4905a3bf18f17c9728d\jetified-android-jsc-r245459\AndroidManifest.xml:7:5-9:41
+MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1338e676c0bf471f4f47d86d0bef2714\jetified-timber-4.7.1\AndroidManifest.xml:5:5-43
+MERGED from [com.jakewharton.timber:timber:4.7.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1338e676c0bf471f4f47d86d0bef2714\jetified-timber-4.7.1\AndroidManifest.xml:5:5-43
+MERGED from [com.squareup.duktape:duktape-android:1.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\873b0c53696f242b3e4d21805ea3709a\jetified-duktape-android-1.3.0\AndroidManifest.xml:8:5-10:41
+MERGED from [com.squareup.duktape:duktape-android:1.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\873b0c53696f242b3e4d21805ea3709a\jetified-duktape-android-1.3.0\AndroidManifest.xml:8:5-10:41
+MERGED from [com.android.installreferrer:installreferrer:1.1.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\57fdf571449dd36048bfac49b3c1a4a5\jetified-installreferrer-1.1.2\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.installreferrer:installreferrer:1.1.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\57fdf571449dd36048bfac49b3c1a4a5\jetified-installreferrer-1.1.2\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fresco:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\037747ddf451b54778d54adcef04a16f\jetified-fresco-2.0.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fresco:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\037747ddf451b54778d54adcef04a16f\jetified-fresco-2.0.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cdda02e7bf5a147ba41b3e71ab2f2e1d\jetified-imagepipeline-okhttp3-2.0.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cdda02e7bf5a147ba41b3e71ab2f2e1d\jetified-imagepipeline-okhttp3-2.0.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:drawee:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\86e144a6d86175ed88c9199626b839ce\jetified-drawee-2.0.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:drawee:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\86e144a6d86175ed88c9199626b839ce\jetified-drawee-2.0.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagefilters:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bfde3605b6f99f7e5ee00771e8a992df\jetified-nativeimagefilters-2.0.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagefilters:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bfde3605b6f99f7e5ee00771e8a992df\jetified-nativeimagefilters-2.0.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3d11b9fd6899fe17045c30182de499b3\jetified-imagepipeline-2.0.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3d11b9fd6899fe17045c30182de499b3\jetified-imagepipeline-2.0.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\2dc49316fb82916df5084e877c378c85\jetified-nativeimagetranscoder-2.0.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\2dc49316fb82916df5084e877c378c85\jetified-nativeimagetranscoder-2.0.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\6d780f6139896c8a09c75bcbba0bfea8\jetified-imagepipeline-base-2.0.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\6d780f6139896c8a09c75bcbba0bfea8\jetified-imagepipeline-base-2.0.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.soloader:soloader:0.6.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\811a5164361859d33ca8298a13666092\jetified-soloader-0.6.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.soloader:soloader:0.6.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\811a5164361859d33ca8298a13666092\jetified-soloader-0.6.0\AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7b1d9a15c38b16a8d8b44c6208344a8c\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7b1d9a15c38b16a8d8b44c6208344a8c\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.facebook.fresco:fbcore:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3e1d67713a3a37883035e586b346b5c8\jetified-fbcore-2.0.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:2.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\3e1d67713a3a37883035e586b346b5c8\jetified-fbcore-2.0.0\AndroidManifest.xml:5:5-7:41
+INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\debug\AndroidManifest.xml
+INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\debug\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\debug\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\letha\Desktop\Repos\lettutor_mobile\android\app\src\debug\AndroidManifest.xml
+service#com.google.firebase.components.ComponentDiscoveryService
+ADDED from [:firebase_auth] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_core] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_core] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:74:9-80:19
+MERGED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:74:9-80:19
+MERGED from [com.google.firebase:firebase-common:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7d89ca10f1cdfdc7d7953b0cad752c89\jetified-firebase-common-20.0.0\AndroidManifest.xml:33:9-37:35
+MERGED from [com.google.firebase:firebase-common:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7d89ca10f1cdfdc7d7953b0cad752c89\jetified-firebase-common-20.0.0\AndroidManifest.xml:33:9-37:35
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:76:13-37
+	tools:targetApi
+		ADDED from [com.google.firebase:firebase-common:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7d89ca10f1cdfdc7d7953b0cad752c89\jetified-firebase-common-20.0.0\AndroidManifest.xml:37:13-32
+	android:directBootAware
+		ADDED from [com.google.firebase:firebase-common:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7d89ca10f1cdfdc7d7953b0cad752c89\jetified-firebase-common-20.0.0\AndroidManifest.xml:35:13-43
+	android:name
+		ADDED from [:firebase_auth] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:8:18-89
+meta-data#com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar
+ADDED from [:firebase_auth] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+	android:value
+		ADDED from [:firebase_auth] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+	android:name
+		ADDED from [:firebase_auth] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-124
+meta-data#com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar
+ADDED from [:firebase_core] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+	android:value
+		ADDED from [:firebase_core] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+	android:name
+		ADDED from [:firebase_core] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-124
+provider#io.flutter.plugins.imagepicker.ImagePickerFileProvider
+ADDED from [:image_picker] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-16:20
+	android:grantUriPermissions
+		ADDED from [:image_picker] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-47
+	android:authorities
+		ADDED from [:image_picker] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-74
+	android:exported
+		ADDED from [:image_picker] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-37
+	android:name
+		ADDED from [:image_picker] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-82
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:image_picker] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-15:75
+	android:resource
+		ADDED from [:image_picker] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-72
+	android:name
+		ADDED from [:image_picker] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-67
+activity#io.flutter.plugins.urllauncher.WebViewActivity
+ADDED from [:url_launcher_android] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-11:74
+	android:exported
+		ADDED from [:url_launcher_android] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-37
+	android:theme
+		ADDED from [:url_launcher_android] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-71
+	android:name
+		ADDED from [:url_launcher_android] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\url_launcher_android\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-74
+activity#com.gunschu.jitsi_meet.JitsiMeetPluginActivity
+ADDED from [:jitsi_meet] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\jitsi_meet\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-16:20
+	android:launchMode
+		ADDED from [:jitsi_meet] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\jitsi_meet\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-44
+	android:windowSoftInputMode
+		ADDED from [:jitsi_meet] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\jitsi_meet\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-55
+	android:supportsPictureInPicture
+		ADDED from [:jitsi_meet] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\jitsi_meet\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-52
+	android:resizeableActivity
+		ADDED from [:jitsi_meet] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\jitsi_meet\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-46
+	android:configChanges
+		ADDED from [:jitsi_meet] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\jitsi_meet\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-115
+	android:theme
+		ADDED from [:jitsi_meet] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\jitsi_meet\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-71
+	android:name
+		ADDED from [:jitsi_meet] C:\Users\letha\Desktop\Repos\lettutor_mobile\build\jitsi_meet\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-74
+activity#com.facebook.CustomTabMainActivity
+ADDED from [com.facebook.android:facebook-common:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cebde7ae7979ee10587108daa648d2ce\jetified-facebook-common-12.2.0\AndroidManifest.xml:34:9-71
+	android:name
+		ADDED from [com.facebook.android:facebook-common:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cebde7ae7979ee10587108daa648d2ce\jetified-facebook-common-12.2.0\AndroidManifest.xml:34:19-68
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:cct.${applicationId}+data:scheme:fbconnect
+ADDED from [com.facebook.android:facebook-common:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cebde7ae7979ee10587108daa648d2ce\jetified-facebook-common-12.2.0\AndroidManifest.xml:39:13-48:29
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:cct.com.example.lettutor_mobile+data:scheme:fbconnect
+ADDED from [com.facebook.android:facebook-common:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\cebde7ae7979ee10587108daa648d2ce\jetified-facebook-common-12.2.0\AndroidManifest.xml:39:13-48:29
+provider#com.facebook.internal.FacebookInitProvider
+ADDED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:39:9-42:40
+	android:authorities
+		ADDED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:41:13-72
+	android:exported
+		ADDED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:42:13-37
+	android:name
+		ADDED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:40:13-70
+receiver#com.facebook.CurrentAccessTokenExpirationBroadcastReceiver
+ADDED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:44:9-50:20
+	android:exported
+		ADDED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:46:13-37
+	android:name
+		ADDED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:45:13-86
+intent-filter#action:name:com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED
+ADDED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:47:13-49:29
+action#com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED
+ADDED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:48:17-95
+	android:name
+		ADDED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:48:25-92
+receiver#com.facebook.AuthenticationTokenManager$CurrentAuthenticationTokenChangedBroadcastReceiver
+ADDED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:51:9-57:20
+	android:exported
+		ADDED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:53:13-37
+	android:name
+		ADDED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:52:13-118
+intent-filter#action:name:com.facebook.sdk.ACTION_CURRENT_AUTHENTICATION_TOKEN_CHANGED
+ADDED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:54:13-56:29
+action#com.facebook.sdk.ACTION_CURRENT_AUTHENTICATION_TOKEN_CHANGED
+ADDED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:55:17-103
+	android:name
+		ADDED from [com.facebook.android:facebook-core:12.2.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\1b5f7b3ada4df4a3d0010c9799245e05\jetified-facebook-core-12.2.0\AndroidManifest.xml:55:25-100
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\a62c9f4de2ec71ee13fa8d581859d3dc\jetified-exoplayer-core-2.14.1\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-core:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\a62c9f4de2ec71ee13fa8d581859d3dc\jetified-exoplayer-core-2.14.1\AndroidManifest.xml:24:5-79
+MERGED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:10:5-79
+MERGED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:10:5-79
+MERGED from [com.facebook.react:react-native-community_netinfo:4.1.5-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\36efab2c9593aa0dd768ded3ceb52b6f\jetified-react-native-community_netinfo-4.1.5-jitsi-7097494\AndroidManifest.xml:9:5-79
+MERGED from [com.facebook.react:react-native-community_netinfo:4.1.5-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\36efab2c9593aa0dd768ded3ceb52b6f\jetified-react-native-community_netinfo-4.1.5-jitsi-7097494\AndroidManifest.xml:9:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\a8c9f8c2b93b9f707ce7a3666a4eecea\jetified-exoplayer-common-2.14.1\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.exoplayer:exoplayer-common:2.14.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\a8c9f8c2b93b9f707ce7a3666a4eecea\jetified-exoplayer-common-2.14.1\AndroidManifest.xml:24:5-79
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:24:22-76
+activity#com.google.firebase.auth.internal.GenericIdpActivity
+ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:27:9-44:20
+	android:excludeFromRecents
+		ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:29:13-46
+	android:launchMode
+		ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:31:13-44
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:30:13-36
+	android:theme
+		ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:32:13-72
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:28:13-80
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:firebase.auth+data:path:/+data:scheme:genericidp
+ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:33:13-43:29
+activity#com.google.firebase.auth.internal.RecaptchaActivity
+ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:45:9-62:20
+	android:excludeFromRecents
+		ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:47:13-46
+	android:launchMode
+		ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:49:13-44
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:48:13-36
+	android:theme
+		ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:50:13-72
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:46:13-79
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:firebase.auth+data:path:/+data:scheme:recaptcha
+ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:51:13-61:29
+service#com.google.firebase.auth.api.fallback.service.FirebaseAuthFallbackService
+ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:64:9-73:19
+	android:enabled
+		ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:66:13-35
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:67:13-37
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:65:13-101
+intent-filter#action:name:com.google.firebase.auth.api.gms.service.START+category:name:android.intent.category.DEFAULT
+ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:68:13-72:29
+action#com.google.firebase.auth.api.gms.service.START
+ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:69:17-89
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:69:25-86
+meta-data#com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar
+ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:77:13-79:85
+	android:value
+		ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:79:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:21.0.1] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\28f00132fff1c369e2338edba642437c\jetified-firebase-auth-21.0.1\AndroidManifest.xml:78:17-109
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7d89ca10f1cdfdc7d7953b0cad752c89\jetified-firebase-common-20.0.0\AndroidManifest.xml:26:9-31:39
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7d89ca10f1cdfdc7d7953b0cad752c89\jetified-firebase-common-20.0.0\AndroidManifest.xml:28:13-72
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7d89ca10f1cdfdc7d7953b0cad752c89\jetified-firebase-common-20.0.0\AndroidManifest.xml:30:13-37
+	android:directBootAware
+		ADDED from [com.google.firebase:firebase-common:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7d89ca10f1cdfdc7d7953b0cad752c89\jetified-firebase-common-20.0.0\AndroidManifest.xml:29:13-43
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7d89ca10f1cdfdc7d7953b0cad752c89\jetified-firebase-common-20.0.0\AndroidManifest.xml:31:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-common:20.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\7d89ca10f1cdfdc7d7953b0cad752c89\jetified-firebase-common-20.0.0\AndroidManifest.xml:27:13-77
+uses-permission#android.permission.BLUETOOTH
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:11:5-68
+	android:name
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:11:22-65
+uses-permission#android.permission.CAMERA
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:12:5-65
+	android:name
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:12:22-62
+uses-permission#android.permission.MANAGE_OWN_CALLS
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:14:5-75
+	android:name
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:14:22-72
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:15:5-80
+	android:name
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:15:22-77
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:16:5-71
+	android:name
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:16:22-68
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:17:5-78
+	android:name
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:17:22-75
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:18:5-68
+MERGED from [com.facebook.react:react-native-background-timer:2.4.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\56a7029765090bdbb9380e71e7872a54\jetified-react-native-background-timer-2.4.0-jitsi-7097494\AndroidManifest.xml:11:5-68
+MERGED from [com.facebook.react:react-native-background-timer:2.4.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\56a7029765090bdbb9380e71e7872a54\jetified-react-native-background-timer-2.4.0-jitsi-7097494\AndroidManifest.xml:11:5-68
+	android:name
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:18:22-65
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:19:5-76
+	android:name
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:19:22-73
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:20:5-77
+	android:name
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:20:22-74
+uses-feature#0x00020000
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:22:5-24:35
+	android:glEsVersion
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:23:9-41
+	android:required
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:24:9-32
+uses-feature#android.hardware.camera
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:25:5-27:36
+	android:required
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:27:9-33
+	android:name
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:26:9-47
+uses-feature#android.hardware.camera.autofocus
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:28:5-30:36
+	android:required
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:30:9-33
+	android:name
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:29:9-57
+activity#org.jitsi.meet.sdk.JitsiMeetActivity
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:36:9-42:58
+	android:launchMode
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:39:13-44
+	android:windowSoftInputMode
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:42:13-55
+	android:supportsPictureInPicture
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:41:13-52
+	android:resizeableActivity
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:40:13-46
+	android:configChanges
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:38:13-115
+	android:name
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:37:13-64
+activity#com.facebook.react.devsupport.DevSettingsActivity
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:43:9-86
+	android:name
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:43:19-83
+service#org.jitsi.meet.sdk.ConnectionService
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:45:9-51:19
+	android:permission
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:47:13-84
+	android:name
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:46:13-64
+intent-filter#action:name:android.telecom.ConnectionService
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:48:13-50:29
+action#android.telecom.ConnectionService
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:49:17-76
+	android:name
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:49:25-73
+service#org.jitsi.meet.sdk.JitsiMeetOngoingConferenceService
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:52:9-54:63
+	android:foregroundServiceType
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:54:13-60
+	android:name
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:53:13-80
+provider#com.reactnativecommunity.webview.RNCWebViewFileProvider
+ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:56:9-61:20
+MERGED from [com.facebook.react:react-native-webview:11.0.2-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\60c6e710c21d43bb3b15b5f21e4a88a3\jetified-react-native-webview-11.0.2-jitsi-7097494\AndroidManifest.xml:12:9-20:20
+MERGED from [com.facebook.react:react-native-webview:11.0.2-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\60c6e710c21d43bb3b15b5f21e4a88a3\jetified-react-native-webview-11.0.2-jitsi-7097494\AndroidManifest.xml:12:9-20:20
+	android:grantUriPermissions
+		ADDED from [com.facebook.react:react-native-webview:11.0.2-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\60c6e710c21d43bb3b15b5f21e4a88a3\jetified-react-native-webview-11.0.2-jitsi-7097494\AndroidManifest.xml:16:13-47
+	android:enabled
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:59:13-36
+	android:authorities
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:58:13-64
+		REJECTED from [com.facebook.react:react-native-webview:11.0.2-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\60c6e710c21d43bb3b15b5f21e4a88a3\jetified-react-native-webview-11.0.2-jitsi-7097494\AndroidManifest.xml:14:13-64
+	android:exported
+		ADDED from [com.facebook.react:react-native-webview:11.0.2-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\60c6e710c21d43bb3b15b5f21e4a88a3\jetified-react-native-webview-11.0.2-jitsi-7097494\AndroidManifest.xml:15:13-37
+	tools:replace
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:60:13-48
+	android:name
+		ADDED from [org.jitsi.react:jitsi-meet-sdk:3.3.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\80a2e5ced1b06c476f32079d552a9820\jetified-jitsi-meet-sdk-3.3.0\AndroidManifest.xml:57:13-83
+uses-permission#android.permission.WRITE_CALENDAR
+ADDED from [com.facebook.react:react-native-calendar-events:2.0.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\eb3155a9e8b726982fe5b0e6958b2595\jetified-react-native-calendar-events-2.0.0-jitsi-7097494\AndroidManifest.xml:11:5-73
+	android:name
+		ADDED from [com.facebook.react:react-native-calendar-events:2.0.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\eb3155a9e8b726982fe5b0e6958b2595\jetified-react-native-calendar-events-2.0.0-jitsi-7097494\AndroidManifest.xml:11:22-70
+uses-permission#android.permission.READ_CALENDAR
+ADDED from [com.facebook.react:react-native-calendar-events:2.0.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\eb3155a9e8b726982fe5b0e6958b2595\jetified-react-native-calendar-events-2.0.0-jitsi-7097494\AndroidManifest.xml:12:5-72
+	android:name
+		ADDED from [com.facebook.react:react-native-calendar-events:2.0.0-jitsi-7097494] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\eb3155a9e8b726982fe5b0e6958b2595\jetified-react-native-calendar-events-2.0.0-jitsi-7097494\AndroidManifest.xml:12:22-69
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from [com.google.android.gms:play-services-iid:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bd4310f0c509aa66fb58bf1bd1f11b99\jetified-play-services-iid-17.0.0\AndroidManifest.xml:23:5-82
+	android:name
+		ADDED from [com.google.android.gms:play-services-iid:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\bd4310f0c509aa66fb58bf1bd1f11b99\jetified-play-services-iid-17.0.0\AndroidManifest.xml:23:22-79
+activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
+ADDED from [com.google.android.gms:play-services-auth:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\73e0508f5dcc83ba40d6282813cfd7e6\jetified-play-services-auth-17.0.0\AndroidManifest.xml:23:9-27:75
+	android:excludeFromRecents
+		ADDED from [com.google.android.gms:play-services-auth:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\73e0508f5dcc83ba40d6282813cfd7e6\jetified-play-services-auth-17.0.0\AndroidManifest.xml:25:13-46
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\73e0508f5dcc83ba40d6282813cfd7e6\jetified-play-services-auth-17.0.0\AndroidManifest.xml:26:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-auth:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\73e0508f5dcc83ba40d6282813cfd7e6\jetified-play-services-auth-17.0.0\AndroidManifest.xml:27:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\73e0508f5dcc83ba40d6282813cfd7e6\jetified-play-services-auth-17.0.0\AndroidManifest.xml:24:13-93
+service#com.google.android.gms.auth.api.signin.RevocationBoundService
+ADDED from [com.google.android.gms:play-services-auth:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\73e0508f5dcc83ba40d6282813cfd7e6\jetified-play-services-auth-17.0.0\AndroidManifest.xml:33:9-36:110
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\73e0508f5dcc83ba40d6282813cfd7e6\jetified-play-services-auth-17.0.0\AndroidManifest.xml:35:13-36
+	android:permission
+		ADDED from [com.google.android.gms:play-services-auth:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\73e0508f5dcc83ba40d6282813cfd7e6\jetified-play-services-auth-17.0.0\AndroidManifest.xml:36:13-107
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:17.0.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\73e0508f5dcc83ba40d6282813cfd7e6\jetified-play-services-auth-17.0.0\AndroidManifest.xml:34:13-89
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\028e2af049aff9ad02b583c22895ed29\jetified-play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\028e2af049aff9ad02b583c22895ed29\jetified-play-services-base-17.1.0\AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\028e2af049aff9ad02b583c22895ed29\jetified-play-services-base-17.1.0\AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\028e2af049aff9ad02b583c22895ed29\jetified-play-services-base-17.1.0\AndroidManifest.xml:24:13-79
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:17.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\53033d4c1010726b62dafde69881c33f\jetified-play-services-basement-17.1.0\AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:17.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\53033d4c1010726b62dafde69881c33f\jetified-play-services-basement-17.1.0\AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:17.1.0] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\53033d4c1010726b62dafde69881c33f\jetified-play-services-basement-17.1.0\AndroidManifest.xml:24:13-58
+uses-permission#com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
+ADDED from [com.android.installreferrer:installreferrer:1.1.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\57fdf571449dd36048bfac49b3c1a4a5\jetified-installreferrer-1.1.2\AndroidManifest.xml:9:5-110
+	android:name
+		ADDED from [com.android.installreferrer:installreferrer:1.1.2] C:\Users\letha\.gradle\caches\transforms-2\files-2.1\57fdf571449dd36048bfac49b3c1a4a5\jetified-installreferrer-1.1.2\AndroidManifest.xml:9:22-107

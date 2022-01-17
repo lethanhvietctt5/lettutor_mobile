@@ -10,7 +10,6 @@ import 'package:lettutor_mobile/src/global_state/app_provider.dart';
 import 'package:lettutor_mobile/src/global_state/auth_provider.dart';
 import 'package:lettutor_mobile/src/screens/login_page/login_with.dart';
 import 'package:lettutor_mobile/src/services/auth_service.dart';
-import 'package:lettutor_mobile/src/services/user_service.dart';
 import 'package:lettutor_mobile/src/widgets/button_expand.dart';
 import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -49,8 +48,8 @@ class _LoginPageState extends State<LoginPage> {
           isAuthenticating = false;
           isAuthenticated = true;
         });
+        Navigator.of(context).pushNamedAndRemoveUntil(routes.homePage, (Route<dynamic> route) => false);
       }
-      Navigator.of(context).pushNamedAndRemoveUntil(routes.homePage, (Route<dynamic> route) => false);
     }
 
     void authenticate() async {

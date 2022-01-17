@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_mobile/src/models/course_model/course_model.dart';
 import 'package:lettutor_mobile/src/global_state/app_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
 class TopicCourse extends StatelessWidget {
   const TopicCourse({Key? key, required this.course}) : super(key: key);
@@ -37,40 +38,52 @@ class TopicCourse extends StatelessWidget {
               elevation: 10,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 50,
-                      height: 50,
-                      margin: const EdgeInsets.only(right: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.indigo[200],
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            (index + 1).toString(),
-                            style: const TextStyle(fontSize: 30, color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        course.topics[index].name,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      routes.courseTopicPDF,
+                      arguments: {
+                        "url": course.topics[index].nameFile,
+                        "title": course.topics[index].name,
+                      },
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 50,
+                        height: 50,
+                        margin: const EdgeInsets.only(right: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.indigo[200],
                         ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              (index + 1).toString(),
+                              style: const TextStyle(fontSize: 30, color: Colors.white),
+                            ),
+                          ],
+                        ),
                       ),
-                    )
-                  ],
+                      Expanded(
+                        child: Text(
+                          course.topics[index].name,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
