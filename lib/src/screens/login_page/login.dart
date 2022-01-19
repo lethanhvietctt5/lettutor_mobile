@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_mobile/src/models/language_model/language.dart';
 import 'package:lettutor_mobile/src/models/language_model/language_en.dart';
 import 'package:lettutor_mobile/src/models/language_model/language_vi.dart';
 import 'package:lettutor_mobile/src/models/user_model/tokens_model.dart';
@@ -37,79 +38,83 @@ class _LoginPageState extends State<LoginPage> {
     isAuthenticated = false;
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    final appProvider = Provider.of<AppProvider>(context);
-    final language = appProvider.language;
+  callback(User user, Tokens tokens, AuthProvider authProvider) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    authProvider.logIn(user, tokens);
+    await prefs.setString('refresh_token', authProvider.tokens!.refresh.token);
+    if (mounted) {
+      setState(() {
+        isAuthenticating = false;
+        isAuthenticated = true;
+      });
+    }
 
-    callback(User user, Tokens tokens) async {
-      authProvider.logIn(user, tokens);
+    Future.delayed(const Duration(milliseconds: 500), () {
+      Navigator.pop(context);
+      Navigator.of(context).pushNamed(routes.homePage);
+    });
+  }
+
+  void authenticate(AuthProvider authProvider) async {
+    try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('refresh_token', authProvider.tokens!.refresh.token);
+      final refreshToken = prefs.getString('refresh_token') ?? "";
+      await AuthService.authenticate(refreshToken, authProvider, callback);
+    } catch (e) {
       if (mounted) {
         setState(() {
           isAuthenticating = false;
-          isAuthenticated = true;
         });
-        Navigator.of(context).pushNamedAndRemoveUntil(routes.homePage, (Route<dynamic> route) => false);
       }
     }
+  }
 
-    void authenticate() async {
+  void handleLogin(Language language, AuthProvider authProvider) async {
+    if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
+      showTopSnackBar(context, CustomSnackBar.error(message: language.emptyField),
+          showOutAnimationDuration: const Duration(milliseconds: 1000), displayDuration: const Duration(microseconds: 4000));
+      return;
+    }
+
+    if (_passwordController.text.length < 6) {
+      showTopSnackBar(context, CustomSnackBar.error(message: language.passwordTooShort),
+          showOutAnimationDuration: const Duration(milliseconds: 1000), displayDuration: const Duration(microseconds: 4000));
+      return;
+    }
+
+    if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_emailController.text)) {
       try {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        final refreshToken = prefs.getString('refresh_token') ?? "";
-        await AuthService.authenticate(refreshToken, callback);
+        await AuthService.loginByEmailAndPassword(_emailController.text, _passwordController.text, authProvider, callback);
       } catch (e) {
-        if (mounted) {
-          setState(() {
-            isAuthenticating = false;
-          });
-        }
-      }
-    }
-
-    void handleLogin() async {
-      if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
-        showTopSnackBar(context, CustomSnackBar.error(message: language.emptyField),
-            showOutAnimationDuration: const Duration(milliseconds: 1000), displayDuration: const Duration(microseconds: 4000));
-        return;
-      }
-
-      if (_passwordController.text.length < 6) {
-        showTopSnackBar(context, CustomSnackBar.error(message: language.passwordTooShort),
-            showOutAnimationDuration: const Duration(milliseconds: 1000), displayDuration: const Duration(microseconds: 4000));
-        return;
-      }
-
-      if (RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_emailController.text)) {
-        try {
-          await AuthService.loginByEmailAndPassword(_emailController.text, _passwordController.text, callback);
-        } catch (e) {
-          showTopSnackBar(context, CustomSnackBar.error(message: "Login failed! ${e.toString()}"),
-              showOutAnimationDuration: const Duration(milliseconds: 1000), displayDuration: const Duration(microseconds: 4000));
-        }
-      } else {
-        showTopSnackBar(context, CustomSnackBar.error(message: language.invalidEmail),
+        showTopSnackBar(context, CustomSnackBar.error(message: "Login failed! ${e.toString()}"),
             showOutAnimationDuration: const Duration(milliseconds: 1000), displayDuration: const Duration(microseconds: 4000));
       }
+    } else {
+      showTopSnackBar(context, CustomSnackBar.error(message: language.invalidEmail),
+          showOutAnimationDuration: const Duration(milliseconds: 1000), displayDuration: const Duration(microseconds: 4000));
     }
+  }
 
-    void loadLangue() async {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      final lang = prefs.getString('lang') ?? "EN";
-      if (lang == "EN") {
-        appProvider.language = English();
-      } else {
-        appProvider.language = VietNamese();
-      }
+  void loadLangue(AppProvider appProvider) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final lang = prefs.getString('lang') ?? "EN";
+    if (lang == "EN") {
+      appProvider.language = English();
+    } else {
+      appProvider.language = VietNamese();
     }
+  }
 
-    loadLangue();
+  @override
+  Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+    final appProvider = Provider.of<AppProvider>(context);
+    final language = appProvider.language;
+
+    loadLangue(appProvider);
 
     if (isAuthenticating) {
-      authenticate();
+      authenticate(authProvider);
     }
 
     return Scaffold(
@@ -212,7 +217,9 @@ class _LoginPageState extends State<LoginPage> {
                               padding: const EdgeInsets.all(8.0),
                               text: language.signIn,
                               backgroundColor: const Color(0xff007CFF),
-                              onPress: handleLogin),
+                              onPress: () {
+                                handleLogin(language, authProvider);
+                              }),
                           Container(
                             margin: const EdgeInsets.only(top: 10),
                             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [Text(language.continueWith)]),
