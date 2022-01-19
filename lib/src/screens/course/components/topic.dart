@@ -30,25 +30,25 @@ class TopicCourse extends StatelessWidget {
             itemCount: course.topics.length,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (_, index) => Card(
-              shape: RoundedRectangleBorder(
-                side: const BorderSide(color: Colors.white70, width: 1),
-                borderRadius: BorderRadius.circular(6),
-              ),
-              elevation: 10,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      routes.courseTopicPDF,
-                      arguments: {
-                        "url": course.topics[index].nameFile,
-                        "title": course.topics[index].name,
-                      },
-                    );
+            itemBuilder: (_, index) => GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  routes.courseTopicPDF,
+                  arguments: {
+                    "url": course.topics[index].nameFile,
+                    "title": course.topics[index].name,
                   },
+                );
+              },
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  side: const BorderSide(color: Colors.white70, width: 1),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                elevation: 10,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Row(
                     children: [
                       Container(

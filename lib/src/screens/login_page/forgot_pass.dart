@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/global_state/app_provider.dart';
+import 'package:lettutor_mobile/src/services/auth_service.dart';
 import 'package:lettutor_mobile/src/widgets/button_expand.dart';
 import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 import 'package:provider/provider.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);
@@ -43,10 +46,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10),
-                        child: Text(
-                          "Email",
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey[800]),
-                        ),
+                        child: Text("Email", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey[800])),
                       ),
                       TextField(
                         style: TextStyle(fontSize: 15, color: Colors.grey[900]),
@@ -56,17 +56,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           fillColor: Colors.grey.shade200,
                           prefixIcon: Container(
                             padding: const EdgeInsets.all(13),
-                            child: SvgPicture.asset(
-                              "asset/svg/ic_email.svg",
-                              color: Colors.grey[600],
-                            ),
+                            child: SvgPicture.asset("asset/svg/ic_email.svg", color: Colors.grey[600]),
                           ),
-                          border: const OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                          ),
+                          border: const OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.all(Radius.circular(10))),
                           hintText: "abc@gmail.com",
                         ),
                       ),
@@ -77,17 +69,33 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   padding: const EdgeInsets.all(8.0),
                   text: lang.resetPassword,
                   backgroundColor: const Color(0xff007CFF),
-                  onPress: () {},
+                  onPress: () async {
+                    if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_emailController.text)) {
+                      showTopSnackBar(context, CustomSnackBar.error(message: lang.invalidEmail),
+                          showOutAnimationDuration: const Duration(milliseconds: 1000), displayDuration: const Duration(microseconds: 4000));
+                    } else if (_emailController.text.isNotEmpty) {
+                      final bool res = await AuthService.forgotPassword(_emailController.text);
+                      if (res) {
+                        showTopSnackBar(
+                            context,
+                            CustomSnackBar.success(
+                              message: lang.forgotPasswordSuccess,
+                              backgroundColor: Colors.green,
+                            ),
+                            showOutAnimationDuration: const Duration(milliseconds: 1000),
+                            displayDuration: const Duration(microseconds: 4000));
+                        Navigator.popAndPushNamed(context, routes.loginPage);
+                      } else {
+                        showTopSnackBar(context, CustomSnackBar.error(message: lang.forgotPasswordFail),
+                            showOutAnimationDuration: const Duration(milliseconds: 1000), displayDuration: const Duration(microseconds: 4000));
+                      }
+                    }
+                  },
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: GestureDetector(
-                    child: Text(
-                      lang.gobackLogin,
-                      style: const TextStyle(
-                        color: Colors.blue,
-                      ),
-                    ),
+                    child: Text(lang.gobackLogin, style: const TextStyle(color: Colors.blue)),
                     onTap: () {
                       Navigator.popAndPushNamed(context, routes.loginPage);
                     },

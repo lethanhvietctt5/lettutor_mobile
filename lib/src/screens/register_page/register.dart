@@ -31,14 +31,28 @@ class _SignUpPageState extends State<SignUpPage> {
           context,
           CustomSnackBar.error(message: lang.errEnterAllFields),
           showOutAnimationDuration: const Duration(milliseconds: 1000),
-          displayDuration: const Duration(microseconds: 1000),
+          displayDuration: const Duration(microseconds: 3000),
+        );
+      } else if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_emailController.text)) {
+        showTopSnackBar(
+          context,
+          CustomSnackBar.error(message: lang.invalidEmail),
+          showOutAnimationDuration: const Duration(milliseconds: 1000),
+          displayDuration: const Duration(microseconds: 3000),
+        );
+      } else if (_passwordController.text.length < 6) {
+        showTopSnackBar(
+          context,
+          CustomSnackBar.error(message: lang.passwordTooShort),
+          showOutAnimationDuration: const Duration(milliseconds: 1000),
+          displayDuration: const Duration(microseconds: 3000),
         );
       } else if (_passwordController.text != _repasswordControler.text) {
         showTopSnackBar(
           context,
           CustomSnackBar.error(message: lang.errPasswordMismatch),
           showOutAnimationDuration: const Duration(milliseconds: 1000),
-          displayDuration: const Duration(microseconds: 1000),
+          displayDuration: const Duration(microseconds: 3000),
         );
       } else {
         try {
@@ -53,8 +67,8 @@ class _SignUpPageState extends State<SignUpPage> {
           showTopSnackBar(
             context,
             CustomSnackBar.error(message: "Signup failed!. ${e.toString()}"),
-            showOutAnimationDuration: const Duration(milliseconds: 5000),
-            displayDuration: const Duration(microseconds: 5000),
+            showOutAnimationDuration: const Duration(milliseconds: 1000),
+            displayDuration: const Duration(microseconds: 4000),
           );
         }
       }

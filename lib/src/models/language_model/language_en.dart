@@ -10,7 +10,7 @@ class English extends Language {
   @override
   get password => "Password";
   @override
-  get signUpQuestion => "Not a member yet ?";
+  get signUpQuestion => "Not a member yet? ";
   @override
   get signUp => "Sign Up";
   @override
@@ -19,6 +19,16 @@ class English extends Language {
   get forgotPassword => "Forgot password ?";
   @override
   get continueWith => "Continue with";
+  @override
+  get invalidEmail => "Invalid Email";
+  @override
+  get emptyField => "Please fill in all fields";
+  @override
+  get passwordTooShort => "Password must be at least 6 characters";
+  @override
+  get forgotPasswordFail => "Reset password failed";
+  @override
+  get forgotPasswordSuccess => "Reset password success, please check your email";
 
   // Sign Up Page
   @override
@@ -164,6 +174,8 @@ class English extends Language {
   @override
   get advancedSetting => "Advanced setting";
   @override
+  get ourWebsite => "Our website";
+  @override
   get logout => "Logout";
 
   // Change password page
@@ -185,6 +197,8 @@ class English extends Language {
   get mark => "Mark: ";
   @override
   get tutorNotMark => "Tutor hasn't mark yet";
+  @override
+  get emptySession => "You don't have any session history";
 
   // Feedback page
   @override

@@ -20,6 +20,16 @@ class VietNamese extends Language {
   get forgotPassword => "Quên mật khẩu ?";
   @override
   get continueWith => "Đăng nhập với";
+  @override
+  get invalidEmail => "Email không hợp lệ.";
+  @override
+  get emptyField => "Vui lòng điền đầy đủ thông tin.";
+  @override
+  get passwordTooShort => "Mật khẩu ít nhất 6 ký tự.";
+  @override
+  get forgotPasswordFail => "Reset mật khẩu không thành công.";
+  @override
+  get forgotPasswordSuccess => "Reset mật khẩu thành công, vui lòng kiểm tra email.";
 
   // Sign Up Page
   @override
@@ -165,6 +175,8 @@ class VietNamese extends Language {
   @override
   get advancedSetting => "Cài đặt nâng cao";
   @override
+  get ourWebsite => "Trang web của chúng tôi";
+  @override
   get logout => "Đăng xuất";
 
   // Change password page
@@ -186,6 +198,8 @@ class VietNamese extends Language {
   get mark => "Điểm số: ";
   @override
   get tutorNotMark => "Gia sư chưa chấm điểm";
+  @override
+  get emptySession => "Bạn chưa tham gia buổi học nào !";
 
   // Feedback page
   @override

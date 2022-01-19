@@ -74,10 +74,10 @@ class _ProfilePageState extends State<ProfilePage> {
       if (isInit) {
         _birthday = authProvider.userLoggedIn.birthday != null
             ? DateFormat("yyyy-MM-dd").parse(authProvider.userLoggedIn.birthday as String)
-            : null;
+            : DateFormat("yyyy-MM-dd").parse("1999-01-22");
         _phone = authProvider.userLoggedIn.phone;
         _country = authProvider.userLoggedIn.country != null ? (authProvider.userLoggedIn.country as String) : "VN";
-        _level = authProvider.userLoggedIn.level;
+        _level = authProvider.userLoggedIn.level ?? "BEGINNER";
         _nameController.text = authProvider.userLoggedIn.name;
         _topics = authProvider.userLoggedIn.learnTopics ?? [];
         _tests = authProvider.userLoggedIn.testPreparations ?? [];
@@ -97,8 +97,7 @@ class _ProfilePageState extends State<ProfilePage> {
             authProvider.setUser(newInfo);
           } else {
             showTopSnackBar(context, CustomSnackBar.error(message: lang.errGetNewProfile),
-                showOutAnimationDuration: const Duration(milliseconds: 1000),
-                displayDuration: const Duration(microseconds: 4000));
+                showOutAnimationDuration: const Duration(milliseconds: 1000), displayDuration: const Duration(microseconds: 4000));
           }
 
           showTopSnackBar(
@@ -111,8 +110,7 @@ class _ProfilePageState extends State<ProfilePage> {
               displayDuration: const Duration(microseconds: 4000));
         } else {
           showTopSnackBar(context, CustomSnackBar.error(message: lang.errUploadAvatar),
-              showOutAnimationDuration: const Duration(milliseconds: 1000),
-              displayDuration: const Duration(microseconds: 4000));
+              showOutAnimationDuration: const Duration(milliseconds: 1000), displayDuration: const Duration(microseconds: 4000));
         }
       }
     }
@@ -174,8 +172,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     )
                   ],
                 ),
-                Text(authProvider.userLoggedIn.email,
-                    style: TextStyle(fontSize: 14, color: Colors.grey[800], fontWeight: FontWeight.w500)),
+                Text(authProvider.userLoggedIn.email, style: TextStyle(fontSize: 14, color: Colors.grey[800], fontWeight: FontWeight.w500)),
                 Container(
                   margin: const EdgeInsets.only(bottom: 10, top: 10),
                   child: Column(
@@ -193,14 +190,11 @@ class _ProfilePageState extends State<ProfilePage> {
                           fillColor: Colors.white,
                           contentPadding: const EdgeInsets.only(left: 15, right: 15),
                           border: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black26, width: 0.3),
-                              borderRadius: BorderRadius.all(Radius.circular(10))),
+                              borderSide: BorderSide(color: Colors.black26, width: 0.3), borderRadius: BorderRadius.all(Radius.circular(10))),
                           enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black26, width: 0.3),
-                              borderRadius: BorderRadius.all(Radius.circular(10))),
+                              borderSide: BorderSide(color: Colors.black26, width: 0.3), borderRadius: BorderRadius.all(Radius.circular(10))),
                           focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black26, width: 0.3),
-                              borderRadius: BorderRadius.all(Radius.circular(10))),
+                              borderSide: BorderSide(color: Colors.black26, width: 0.3), borderRadius: BorderRadius.all(Radius.circular(10))),
                           hintText: lang.fullName,
                         ),
                       )
@@ -208,10 +202,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
                 BirthdayEdition(setBirthday: setForm, birthday: _birthday),
-                PhoneEdition(
-                    changePhone: setForm,
-                    phone: _phone ?? "",
-                    isPhoneActivated: authProvider.userLoggedIn.isPhoneActivated ?? false),
+                PhoneEdition(changePhone: setForm, phone: _phone ?? "", isPhoneActivated: authProvider.userLoggedIn.isPhoneActivated ?? false),
                 DropdownEdit(
                   title: lang.country,
                   selectedItem: _country != null ? _country as String : "VN",
@@ -237,11 +228,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   ),
                 ),
-                WantToLearn(
-                    userTopics: _topics,
-                    editTopics: editTopics,
-                    userTestPreparations: _tests,
-                    editTestPreparations: editTests),
+                WantToLearn(userTopics: _topics, editTopics: editTopics, userTestPreparations: _tests, editTestPreparations: editTests),
                 Container(
                   margin: const EdgeInsets.only(top: 20, bottom: 20),
                   child: ElevatedButton(
@@ -260,8 +247,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           showOutAnimationDuration: const Duration(milliseconds: 700),
                           displayDuration: const Duration(milliseconds: 200),
                         );
-                      } else if (_birthday != null &&
-                          _birthday!.millisecondsSinceEpoch > DateTime.now().millisecondsSinceEpoch) {
+                      } else if (_birthday != null && _birthday!.millisecondsSinceEpoch > DateTime.now().millisecondsSinceEpoch) {
                         showTopSnackBar(
                           context,
                           CustomSnackBar.error(message: lang.errBirthday),

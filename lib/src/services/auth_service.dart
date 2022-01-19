@@ -82,15 +82,13 @@ class AuthService {
     }
   }
 
-  static forgotPassword(String email, String token) async {
-    final response = await http.post(Uri.parse(url + "/auth/forgot-password"), body: {
+  static Future<bool> forgotPassword(String email) async {
+    final response = await http.post(Uri.parse(url + "/user/forgotPassword"), body: {
       'email': email,
-      'token': token,
     });
 
     if (response.statusCode == 200) {
-      final jsonRes = json.decode(response.body);
-      throw Exception(jsonRes["message"]);
+      return true;
     } else {
       final jsonRes = json.decode(response.body);
       throw Exception(jsonRes["message"]);

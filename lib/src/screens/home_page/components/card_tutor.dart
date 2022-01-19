@@ -127,7 +127,7 @@ class _CardTutorState extends State<CardTutor> {
                             ],
                           ),
                           SizedBox(
-                            height: 30,
+                            height: 34,
                             child: ListView.builder(
                               itemCount: _specialties.length,
                               scrollDirection: Axis.horizontal,
@@ -135,7 +135,7 @@ class _CardTutorState extends State<CardTutor> {
                               itemBuilder: (context, index) {
                                 return Container(
                                   margin: const EdgeInsets.only(top: 5, right: 8),
-                                  padding: const EdgeInsets.all(5),
+                                  padding: const EdgeInsets.all(8),
                                   child: Text(
                                     _specialties[index],
                                     style: const TextStyle(

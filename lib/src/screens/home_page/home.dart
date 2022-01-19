@@ -95,15 +95,19 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          Container(
-            margin: const EdgeInsets.only(left: 15, right: 15),
-            child: ListView.builder(
-              itemCount: _tutors.length,
-              itemBuilder: (context, index) => CardTutor(tutor: _tutors[index]),
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-            ),
-          ),
+          _isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Container(
+                  margin: const EdgeInsets.only(left: 15, right: 15),
+                  child: ListView.builder(
+                    itemCount: _tutors.length,
+                    itemBuilder: (context, index) => CardTutor(tutor: _tutors[index]),
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                  ),
+                ),
         ],
       ),
     );

@@ -8,6 +8,11 @@ abstract class Language {
   get signIn;
   get forgotPassword;
   get continueWith;
+  get invalidEmail;
+  get emptyField;
+  get passwordTooShort;
+  get forgotPasswordFail;
+  get forgotPasswordSuccess;
 
   // Sign Up Page
   get confirmPassword;
@@ -89,6 +94,7 @@ abstract class Language {
   get changePassword;
   get sessionHistory;
   get advancedSetting;
+  get ourWebsite;
   get logout;
 
   // Change password page
@@ -102,6 +108,7 @@ abstract class Language {
   get watchRecord;
   get mark;
   get tutorNotMark;
+  get emptySession;
 
   // Feedback page
   get feedback;

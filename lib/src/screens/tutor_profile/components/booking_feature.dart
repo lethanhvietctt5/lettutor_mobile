@@ -25,9 +25,11 @@ class _BookingFeatureState extends State<BookingFeature> {
 
   void fetchSchedules(String token) async {
     List<Schedule> res = await ScheduleService.getTutorSchedule(widget.tutorId, token);
-    res = res
-        .where((schedule) => DateTime.fromMillisecondsSinceEpoch(schedule.startTimestamp).compareTo(DateTime.now()) > 0)
-        .toList();
+    res = res.where((schedule) {
+      final now = DateTime.now();
+      final start = DateTime.fromMillisecondsSinceEpoch(schedule.startTimestamp);
+      return start.isAfter(now) || (start.day == now.day && start.month == now.month && start.year == now.year);
+    }).toList();
     res.sort((s1, s2) => s1.startTimestamp.compareTo(s2.startTimestamp));
 
     List<Schedule> tempRes = [];
@@ -50,8 +52,8 @@ class _BookingFeatureState extends State<BookingFeature> {
     }
 
     for (int index = 0; index < tempRes.length; index++) {
-      tempRes[index].scheduleDetails.sort((s1, s2) => DateTime.fromMillisecondsSinceEpoch(s1.startPeriodTimestamp)
-          .compareTo(DateTime.fromMillisecondsSinceEpoch(s2.startPeriodTimestamp)));
+      tempRes[index].scheduleDetails.sort((s1, s2) =>
+          DateTime.fromMillisecondsSinceEpoch(s1.startPeriodTimestamp).compareTo(DateTime.fromMillisecondsSinceEpoch(s2.startPeriodTimestamp)));
     }
 
     if (mounted) {
@@ -118,10 +120,10 @@ class _BookingFeatureState extends State<BookingFeature> {
                             scheduleDetails.length,
                             (index) => ElevatedButton(
                               onPressed: () async {
-                                if (!scheduleDetails[index].isBooked) {
+                                if (!scheduleDetails[index].isBooked &&
+                                    DateTime.fromMillisecondsSinceEpoch(scheduleDetails[index].startPeriodTimestamp).isAfter(DateTime.now())) {
                                   try {
-                                    final res = await ScheduleService.bookAClass(
-                                        scheduleDetails[index].id, authProvider.tokens!.access.token);
+                                    final res = await ScheduleService.bookAClass(scheduleDetails[index].id, authProvider.tokens!.access.token);
                                     if (res) {
                                       scheduleDetails[index].isBooked = true;
                                       Navigator.pop(context);
@@ -153,21 +155,22 @@ class _BookingFeatureState extends State<BookingFeature> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(
-                                              scheduleDetails[index].startPeriodTimestamp)) +
+                                      DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(scheduleDetails[index].startPeriodTimestamp)) +
                                           " - ",
                                       style: const TextStyle(color: Colors.blue),
                                     ),
                                     Text(
-                                      DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(
-                                          scheduleDetails[index].endPeriodTimestamp)),
+                                      DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(scheduleDetails[index].endPeriodTimestamp)),
                                       style: const TextStyle(color: Colors.blue),
                                     ),
                                   ],
                                 ),
                               ),
                               style: ElevatedButton.styleFrom(
-                                primary: scheduleDetails[index].isBooked ? Colors.grey[200] : Colors.white,
+                                primary: scheduleDetails[index].isBooked ||
+                                        DateTime.fromMillisecondsSinceEpoch(scheduleDetails[index].startPeriodTimestamp).isBefore(DateTime.now())
+                                    ? Colors.grey[200]
+                                    : Colors.white,
                                 shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(10),
@@ -216,8 +219,7 @@ class _BookingFeatureState extends State<BookingFeature> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            Text(lang.selectSchedule,
-                                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                            Text(lang.selectSchedule, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                           ],
                         ),
                         decoration: BoxDecoration(color: Colors.grey[300])),
@@ -242,8 +244,7 @@ class _BookingFeatureState extends State<BookingFeature> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      DateFormat.MMMEd().format(
-                                          DateTime.fromMillisecondsSinceEpoch(_schedules[index].startTimestamp)),
+                                      DateFormat.MMMEd().format(DateTime.fromMillisecondsSinceEpoch(_schedules[index].startTimestamp)),
                                       style: const TextStyle(color: Colors.blue),
                                     )
                                   ],

@@ -13,7 +13,7 @@ class InforChips extends StatelessWidget {
     return _chips
         .map((chip) => Container(
               margin: const EdgeInsets.only(top: 5, right: 8),
-              padding: const EdgeInsets.all(5),
+              padding: const EdgeInsets.all(7),
               child: Text(
                 chip,
                 style: TextStyle(

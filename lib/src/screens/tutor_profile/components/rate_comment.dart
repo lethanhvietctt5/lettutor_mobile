@@ -18,52 +18,51 @@ class RateAndComment extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              //crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                    margin: const EdgeInsets.only(right: 10),
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 10, right: 15),
-                      height: 40,
-                      width: 40,
-                      child: CircleAvatar(
-                          child: ClipRRect(
-                        borderRadius: BorderRadius.circular(1000),
-                        child: Image.network(
-                          feedback.firstInfo.avatar,
-                          width: 70,
-                          height: 70,
-                          fit: BoxFit.cover,
-                          errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                            return Container(
-                              color: Colors.amber,
-                              alignment: Alignment.center,
-                              child: const Text(
-                                'Whoops!',
-                                style: TextStyle(fontSize: 30),
-                              ),
-                            );
-                          },
-                        ),
-                      )),
-                    )),
+                  margin: const EdgeInsets.only(bottom: 10, right: 15),
+                  height: 40,
+                  width: 40,
+                  child: CircleAvatar(
+                      child: ClipRRect(
+                    borderRadius: BorderRadius.circular(1000),
+                    child: Image.network(
+                      feedback.firstInfo.avatar,
+                      width: 70,
+                      height: 70,
+                      fit: BoxFit.cover,
+                      errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                        return Container(
+                          color: Colors.amber,
+                          alignment: Alignment.center,
+                          child: const Text(
+                            'Whoops!',
+                            style: TextStyle(fontSize: 30),
+                          ),
+                        );
+                      },
+                    ),
+                  )),
+                ),
                 Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        feedback.firstInfo.name,
-                        style: const TextStyle(fontSize: 14),
-                      ),
-                      RateStars(count: feedback.rating)
-                    ],
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          feedback.firstInfo.name,
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                        RateStars(count: feedback.rating)
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
-            Container(
-                margin: const EdgeInsets.only(top: 10, bottom: 10),
-                child: feedback.content.isNotEmpty ? Text(feedback.content) : null),
+            Container(margin: const EdgeInsets.only(top: 10, bottom: 10), child: feedback.content.isNotEmpty ? Text(feedback.content) : null),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

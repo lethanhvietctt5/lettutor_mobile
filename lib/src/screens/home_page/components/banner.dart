@@ -131,7 +131,7 @@ class _BannerHomePageState extends State<BannerHomePage> {
 String covertTotalTime(Duration d, Language lang) {
   String res = "";
   Duration total = d;
-  if (d.inHours > 0) {
+  if (total.inHours > 0) {
     if (lang.name == "EN") {
       res += "${total.inHours} hours ";
     } else {
@@ -139,7 +139,7 @@ String covertTotalTime(Duration d, Language lang) {
     }
     total = total - Duration(hours: total.inHours);
   }
-  if (d.inMinutes > 0) {
+  if (total.inMinutes > 0) {
     if (lang.name == "EN") {
       res += "${total.inMinutes} minutes";
     } else {

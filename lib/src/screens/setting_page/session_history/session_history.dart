@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
 import 'package:lettutor_mobile/src/global_state/app_provider.dart';
 import 'package:lettutor_mobile/src/global_state/auth_provider.dart';
@@ -62,8 +63,7 @@ class _SessionHistoryPageState extends State<SessionHistoryPage> {
         }
       } catch (e) {
         showTopSnackBar(context, const CustomSnackBar.error(message: "Cannot load more"),
-            showOutAnimationDuration: const Duration(milliseconds: 1000),
-            displayDuration: const Duration(microseconds: 4000));
+            showOutAnimationDuration: const Duration(milliseconds: 1000), displayDuration: const Duration(microseconds: 4000));
       }
     }
   }
@@ -103,29 +103,51 @@ class _SessionHistoryPageState extends State<SessionHistoryPage> {
             ? const Center(
                 child: CircularProgressIndicator(),
               )
-            : Column(
-                children: [
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: _bookedList.length,
-                      controller: _scrollController,
-                      itemBuilder: (context, index) => Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 15),
-                        child: SessionItem(
-                          session: _bookedList[index],
+            : !isLoading && _bookedList.isEmpty
+                ? SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.8,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            "asset/svg/ic_empty.svg",
+                            width: 200,
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(top: 20),
+                            child: Text(
+                              lang.emptySession,
+                              style: TextStyle(color: Colors.grey[700]),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                : Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: _bookedList.length,
+                          controller: _scrollController,
+                          itemBuilder: (context, index) => Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 15),
+                            child: SessionItem(
+                              session: _bookedList[index],
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                      if (isLoadMore)
+                        const SizedBox(
+                          height: 50,
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        ),
+                    ],
                   ),
-                  if (isLoadMore)
-                    const SizedBox(
-                      height: 50,
-                      child: Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    ),
-                ],
-              ),
       ),
     );
   }

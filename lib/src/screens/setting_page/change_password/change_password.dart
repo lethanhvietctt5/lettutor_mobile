@@ -72,11 +72,9 @@ class _ChagePasswordPageState extends State<ChangePasswordPage> {
                       ],
                     ),
                   ),
-                  style: ElevatedButton.styleFrom(primary: Colors.blue),
+                  style: ElevatedButton.styleFrom(primary: const Color(0xff007CFF)),
                   onPressed: () async {
-                    if (passwordController.text.length < 6 ||
-                        newPasswordController.text.length < 6 ||
-                        confirmPasswordController.text.length < 6) {
+                    if (passwordController.text.length < 6 || newPasswordController.text.length < 6 || confirmPasswordController.text.length < 6) {
                       showTopSnackBar(
                         context,
                         CustomSnackBar.error(message: lang.passwordAtLeast),
@@ -92,8 +90,8 @@ class _ChagePasswordPageState extends State<ChangePasswordPage> {
                       );
                     } else {
                       try {
-                        final res = await UserService.changePassword(
-                            authProvider.tokens!.access.token, passwordController.text, newPasswordController.text);
+                        final res =
+                            await UserService.changePassword(authProvider.tokens!.access.token, passwordController.text, newPasswordController.text);
                         if (res) {
                           showTopSnackBar(
                             context,
@@ -104,11 +102,7 @@ class _ChagePasswordPageState extends State<ChangePasswordPage> {
                             showOutAnimationDuration: const Duration(milliseconds: 1000),
                             displayDuration: const Duration(microseconds: 4000),
                           );
-                          Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            routes.loginPage,
-                            (Route<dynamic> route) => false,
-                          );
+                          Navigator.pop(context);
                         }
                       } catch (e) {
                         showTopSnackBar(

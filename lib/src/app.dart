@@ -27,8 +27,6 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         useInheritedMediaQuery: true,
-        // locale: DevicePreview.locale(context),
-        // builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
         onGenerateRoute: routes.controller,
         // showPerformanceOverlay: true,
