@@ -25,7 +25,11 @@ class FeedBack {
     bookingId = json['bookingId'];
     firstId = json['firstId'];
     secondId = json['secondId'];
-    rating = json['rating'];
+    if (json["rating"].runtimeType == int) {
+      rating = json['rating'];
+    } else {
+      rating = json['rating'].toInt() ?? 5;
+    }
     content = json['content'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
