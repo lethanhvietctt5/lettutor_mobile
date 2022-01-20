@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:jitsi_meet/feature_flag/feature_flag.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:lettutor_mobile/src/models/schedule_model/booking_info_model.dart';
 import 'package:lettutor_mobile/src/global_state/app_provider.dart';

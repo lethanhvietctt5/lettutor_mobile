@@ -7,7 +7,6 @@ import 'package:lettutor_mobile/src/services/user_service.dart';
 import 'package:provider/provider.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
-import 'package:lettutor_mobile/src/routes/route.dart' as routes;
 
 class ChangePasswordPage extends StatefulWidget {
   const ChangePasswordPage({Key? key}) : super(key: key);

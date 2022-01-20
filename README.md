@@ -1,8 +1,7 @@
 # lettutor_mobile
 
-Project in HCMUS
+Project in HCMUS: Advanced Mobile
 
-## Video Demo Milestone 2
+## Video Demo Milestone 3
 
-<br>
-Youtube: https://youtu.be/UsdAZYLJmVI
+Youtube: https://youtu.be/pwXs4NRlgoc
