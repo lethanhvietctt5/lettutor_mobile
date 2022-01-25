@@ -100,8 +100,7 @@ class UserService {
       final jsonRes = json.decode(response.body);
       final listData = jsonRes["data"] as List;
       List<BookingInfo> arrLesson = listData.map((e) => BookingInfo.fromJson(e)).toList();
-      arrLesson.sort(
-          (a, b) => a.scheduleDetailInfo!.startPeriodTimestamp.compareTo(b.scheduleDetailInfo!.startPeriodTimestamp));
+      arrLesson.sort((a, b) => a.scheduleDetailInfo!.startPeriodTimestamp.compareTo(b.scheduleDetailInfo!.startPeriodTimestamp));
 
       arrLesson = arrLesson.where((element) => element.scheduleDetailInfo!.startPeriodTimestamp > dateTime).toList();
       if (arrLesson.isEmpty) {
@@ -114,8 +113,8 @@ class UserService {
     }
   }
 
-  static Future<User?> updateInfo(String token, String name, String country, String birthday, String level,
-      List<String> learnTopics, List<String> testPreparations) async {
+  static Future<User?> updateInfo(
+      String token, String name, String country, String birthday, String level, List<String> learnTopics, List<String> testPreparations) async {
     Map<String, dynamic> args = {
       'name': name,
       'country': country,
